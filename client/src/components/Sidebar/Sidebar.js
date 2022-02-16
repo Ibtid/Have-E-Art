@@ -6,6 +6,7 @@ import followingOutline from '../../assets/icons/followingOutline.svg';
 import categoryOutline from '../../assets/icons/categoryOutline.svg';
 import popularArtistsOutline from '../../assets/icons/popularArtistsOutline.svg';
 import RecommendationsOutline from '../../assets/icons/RecommendationsOutline.svg';
+import downArrow from '../../assets/icons/downArrow.svg';
 
 import './Sidebar.css';
 
@@ -44,12 +45,40 @@ const Sidebar = () => {
         <div className='sidebar__name'>Filters</div>
       </div>
 
+      <div className='sidebar__listItems'>
+        <div className='sidebar__listItem'>Trending</div>
+        <div className='sidebar__listItem'>Lastest</div>
+        <div className='sidebar__listItem'>Top Rated</div>
+        <div className='sidebar__listItem'>Top Collections</div>
+      </div>
+
+      <div className='sidebar__showMoreOption'>
+        <div className='sidebar__iconContainer'>
+          <img src={downArrow} alt='homefilled' />
+        </div>
+        <div className='sidebar__name'>Show More</div>
+      </div>
+
       {/*Category*/}
       <div className='sidebar__item'>
         <div className='sidebar__iconContainer'>
           <img src={categoryOutline} alt='homefilled' />
         </div>
         <div className='sidebar__name'>Category</div>
+      </div>
+
+      <div className='sidebar__listItems'>
+        <div className='sidebar__listItem'>3D</div>
+        <div className='sidebar__listItem'>People</div>
+        <div className='sidebar__listItem'>Animal</div>
+        <div className='sidebar__listItem'>Scenery</div>
+      </div>
+
+      <div className='sidebar__showMoreOption'>
+        <div className='sidebar__iconContainer'>
+          <img src={downArrow} alt='homefilled' />
+        </div>
+        <div className='sidebar__name'>Show More</div>
       </div>
 
       {/*Following*/}

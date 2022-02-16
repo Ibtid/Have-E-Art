@@ -64,10 +64,23 @@
 
 @media screen and (max-width: 720px) {
   .navbar__logo {
-    margin-left: 1rem;
+    margin-left: 0.5rem;
+  }
+
+  .navbar__searchIconContainer {
+    width: 2.5rem;
+  }
+
+  .navbar__searchbar {
+    width: 20vw;
   }
 
   .navbar__authSection {
-    margin-right: 1rem;
+    margin-right: 0.5rem;
+  }
+
+  .navbar__signup {
+    width: 4rem;
+    font-size: 0.8rem;
   }
 }
