@@ -1,6 +1,7 @@
 import './App.css';
-import Navbar from './components/Navbar/Navbar';
-import Sidebar from './components/Sidebar/Sidebar';
+import Navbar from './components/shared/Navbar/Navbar';
+import Sidebar from './components/shared/Sidebar/Sidebar';
+import Home from './pages/Home/Home';
 
 function App() {
   return (
@@ -8,7 +9,9 @@ function App() {
       <Navbar />
       <div className='app_bodyWithSideBar'>
         <Sidebar />
-        <div>hi</div>
+        <div>
+          <Home />
+        </div>
       </div>
       {/*Login */}
       {/*Register */}

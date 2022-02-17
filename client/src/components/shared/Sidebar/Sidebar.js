@@ -1,12 +1,12 @@
 import React from 'react';
-import homeIconfilled from '../../assets/icons/homeFilled.svg';
-import favouritesOutline from '../../assets/icons/favouritesOutline.svg';
-import filtersOutline from '../../assets/icons/filtersOutline.svg';
-import followingOutline from '../../assets/icons/followingOutline.svg';
-import categoryOutline from '../../assets/icons/categoryOutline.svg';
-import popularArtistsOutline from '../../assets/icons/popularArtistsOutline.svg';
-import RecommendationsOutline from '../../assets/icons/RecommendationsOutline.svg';
-import downArrow from '../../assets/icons/downArrow.svg';
+import homeIconfilled from '../../../assets/icons/homeFilled.svg';
+import favouritesOutline from '../../../assets/icons/favouritesOutline.svg';
+import filtersOutline from '../../../assets/icons/filtersOutline.svg';
+import followingOutline from '../../../assets/icons/followingOutline.svg';
+import categoryOutline from '../../../assets/icons/categoryOutline.svg';
+import popularArtistsOutline from '../../../assets/icons/popularArtistsOutline.svg';
+import RecommendationsOutline from '../../../assets/icons/RecommendationsOutline.svg';
+import downArrow from '../../../assets/icons/downArrow.svg';
 
 import './Sidebar.css';
 
