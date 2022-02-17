@@ -1,0 +1,84 @@
+.productShowcaseCard {
+  background-color: var(--secondary);
+  height: 18.5rem;
+  width: 15.5rem;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-direction: column;
+}
+
+.productShowcaseCard__imageContainer {
+  height: 11.5rem;
+  width: 14.5rem;
+  background-color: var(--primary);
+  border-radius: 0.5rem;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.productShowcaseCard__image {
+  max-height: 11.5rem;
+  max-width: 14.5rem;
+}
+
+.productShowcaseCard__description {
+  height: 5.5rem;
+  width: 14.5rem;
+  color: var(--white);
+  font-family: Montserrat, sans-serif;
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  flex-direction: column;
+  margin-top: 0.5rem;
+}
+
+.productShowcaseCard__rowOne {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 700;
+}
+
+.productShowcaseCard__price {
+  color: var(--accent);
+}
+
+.productShowcaseCard__rowTwo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.6rem;
+  color: var(--inactive);
+}
+
+.productShowcaseCard__rowThree {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.productShowcaseCard__people {
+  font-size: 0.7rem;
+}
+
+.productShowcaseCard__owned {
+  margin-top: 0.5rem;
+}
+
+.productShowcaseCard__button {
+  cursor: pointer;
+  background-color: var(--accent);
+  height: 2rem;
+  width: 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  border-radius: 0.3rem;
+  font-size: 0.9rem;
+}
