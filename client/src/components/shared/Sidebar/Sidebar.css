@@ -1,7 +1,7 @@
 .sidebar {
   height: calc(100vh - 4rem);
   width: 18rem;
-  background-color: var(--blackSecondary);
+  background-color: var(--secondary);
   transition: all 0.3s ease-in-out;
   overflow-y: scroll;
   overflow-x: hidden;
@@ -11,7 +11,7 @@
   width: 8px;
 }
 .sidebar::-webkit-scrollbar-track {
-  background: var(--blackSecondary);
+  background: var(--secondary);
 }
 .sidebar::-webkit-scrollbar-thumb {
   background: var(--greyhighlight);
@@ -73,7 +73,7 @@
 
 .sidebar__showMoreOption {
   display: flex;
-  color: var(--lessImportantText);
+  color: var(--inactive);
   align-items: center;
   justify-content: center;
   font-family: Montserrat, 'sans-serif';
@@ -83,7 +83,7 @@
 }
 .sidebar__showMoreOption:hover {
   cursor: pointer;
-  color: var(--white);
+  color: var(--greyhighlight);
 }
 
 @media screen and (max-width: 1400px) {

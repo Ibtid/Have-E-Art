@@ -2,12 +2,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
 html {
-  --blackSecondary: #1e1e1e;
-  --blackPrimary: #111111;
+  --secondary: #1e1e1e;
+  --primary: #111111;
   --white: #ffffff;
-  --purple: #9d8df1;
+  --accent: #9d8df1;
   --greyhighlight: #4d4d4d;
-  --lessImportantText: #757f91;
+  --inactive: #737983;
 }
 
 .app_bodyWithSideBar {
