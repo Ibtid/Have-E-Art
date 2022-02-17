@@ -13,3 +13,9 @@ html {
 .app_bodyWithSideBar {
   display: flex;
 }
+
+@media screen and (max-width: 600px) {
+  .app_bodyWithSideBar {
+    flex-direction: column-reverse;
+  }
+}

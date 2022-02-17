@@ -106,15 +106,25 @@
 
 @media screen and (max-width: 600px) {
   .sidebar {
-    width: 3.5rem;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 4rem;
   }
 
   .sidebar__item {
     width: 3.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .sidebar__iconContainer {
-    margin-left: 1rem;
+    margin: 0rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .sidebar__name {
