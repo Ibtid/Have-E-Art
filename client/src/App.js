@@ -10,9 +10,7 @@ function App() {
       <Navbar />
       <div className='app_bodyWithSideBar'>
         <Sidebar />
-        <div>
-          <Home />
-        </div>
+        <Home />
       </div>
       {/*<Authentication />*/}
       {/*My Profile */}

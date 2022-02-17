@@ -2,6 +2,8 @@ import React from 'react';
 
 import image from '../../../assets/images/pexels-dan-cristian-pădureț-1193743 1.png';
 import image2 from '../../../assets/images/pexels-jane-pham-1571673.jpg';
+import favouriteOutline from '../../../assets/icons/favouritesOutline.svg';
+import shareOutline from '../../../assets/icons/shareIcon.svg';
 import './ProductShowcaseCard.css';
 
 const ProductShowcaseCard = () => {
@@ -9,6 +11,17 @@ const ProductShowcaseCard = () => {
     <div className='productShowcaseCard'>
       <div className='productShowcaseCard__imageContainer'>
         <img className='productShowcaseCard__image' src={image2} alt='image' />
+        <div className='productShowcaseCard__imageDetails'></div>
+        <img
+          className='productShowcaseCard__favouriteIcon'
+          src={favouriteOutline}
+          alt='favourite'
+        />
+        <img
+          className='productShowcaseCard__shareIcon'
+          src={shareOutline}
+          alt='favourite'
+        />
       </div>
       <div className='productShowcaseCard__description'>
         <div className='productShowcaseCard__rowOne'>
@@ -22,12 +35,12 @@ const ProductShowcaseCard = () => {
         <div className='productShowcaseCard__rowThree'>
           <div className='productShowcaseCard__people'>
             <div className='productShowcaseCard__created'>
-              <span>Created by</span>
-              <span>Don Carlo</span>
+              <span>Creator :</span>
+              <span className='productShowcaseCard__name'>Don Carlo</span>
             </div>
             <div className='productShowcaseCard__owned'>
-              <span>Owned by</span>
-              <span>Don Carlo</span>
+              <span>Owner:</span>
+              <span className='productShowcaseCard__name'>Don Carlo</span>
             </div>
           </div>
           <div className='productShowcaseCard__button'>Buy Now</div>

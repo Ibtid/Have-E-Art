@@ -1,12 +1,15 @@
 .productShowcaseCard {
   background-color: var(--secondary);
-  height: 18.5rem;
+  height: 19rem;
   width: 15.5rem;
   border-radius: 0.5rem;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
   flex-direction: column;
+  padding-bottom: 0.5rem;
+  margin-top: 1rem;
+  margin-left: 1rem;
 }
 
 .productShowcaseCard__imageContainer {
@@ -18,11 +21,57 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
 }
 
 .productShowcaseCard__image {
   max-height: 11.5rem;
   max-width: 14.5rem;
+}
+
+.productShowcaseCard__imageDetails {
+  position: absolute;
+  top: 0rem;
+  height: 11.5rem;
+  width: 14.5rem;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(13, 13, 13, 0.5);
+  display: none;
+  transition: all 0.3s ease-in-out;
+}
+
+.productShowcaseCard__favouriteIcon {
+  position: absolute;
+  top: 0.5rem;
+  right: 1rem;
+  display: none;
+  transition: all 0.3s ease-in-out;
+}
+
+.productShowcaseCard__shareIcon {
+  position: absolute;
+  top: 0.43rem;
+  right: 3rem;
+  display: none;
+  transition: all 0.3s ease-in-out;
+}
+
+.productShowcaseCard__imageContainer:hover .productShowcaseCard__imageDetails {
+  display: block;
+}
+
+.productShowcaseCard__imageContainer:hover .productShowcaseCard__shareIcon {
+  display: block;
+}
+
+.productShowcaseCard__imageContainer:hover .productShowcaseCard__favouriteIcon {
+  display: block;
 }
 
 .productShowcaseCard__description {
@@ -70,6 +119,11 @@
   margin-top: 0.5rem;
 }
 
+.productShowcaseCard__name {
+  text-decoration: underline;
+  margin-left: 0.2rem;
+}
+
 .productShowcaseCard__button {
   cursor: pointer;
   background-color: var(--accent);
@@ -81,4 +135,16 @@
   font-weight: 700;
   border-radius: 0.3rem;
   font-size: 0.9rem;
+}
+
+@media screen and (max-width: 1408px) {
+  .productShowcaseCard {
+    margin-left: 3rem;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .productShowcaseCard {
+    margin-left: 0rem;
+  }
 }

@@ -6,7 +6,33 @@ import './Home.css';
 const Home = () => {
   return (
     <div className='home'>
-      <ProductShowcaseCard />
+      <div className='home__cardContainer'>
+        <ProductShowcaseCard />
+        <ProductShowcaseCard />
+        <ProductShowcaseCard />
+        <ProductShowcaseCard />
+        <ProductShowcaseCard />
+        <ProductShowcaseCard />
+        <ProductShowcaseCard />
+        <ProductShowcaseCard />
+        <ProductShowcaseCard />
+        <ProductShowcaseCard />
+        <ProductShowcaseCard />
+        <ProductShowcaseCard />
+        <ProductShowcaseCard />
+        <ProductShowcaseCard />
+        <ProductShowcaseCard />
+        <ProductShowcaseCard />
+        <ProductShowcaseCard />
+        <ProductShowcaseCard />
+        <ProductShowcaseCard />
+        <ProductShowcaseCard />
+        <ProductShowcaseCard />
+        <ProductShowcaseCard />
+        <ProductShowcaseCard />
+        <ProductShowcaseCard />
+      </div>
+      <div className='home__scrollShade'></div>
     </div>
   );
 };
