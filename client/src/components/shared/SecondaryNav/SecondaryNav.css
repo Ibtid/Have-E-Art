@@ -1,7 +1,7 @@
 .secondaryNav {
   height: 3.5rem;
-  width: 40vw;
-  margin-left: 2rem;
+  width: 30vw;
+  margin-left: 3rem;
   background-color: var(--primary);
   display: flex;
   align-items: center;
@@ -26,6 +26,18 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+@media screen and (max-width: 1420px) {
+  .secondaryNav {
+    height: 3rem;
+    width: 40vw;
+    margin-left: 2rem;
+    background-color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
 }
 
 @media screen and (max-width: 600px) {
