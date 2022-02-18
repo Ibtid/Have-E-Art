@@ -76,6 +76,19 @@
   transition: all 0.3s ease-in-out;
 }
 
+.navbar__flexRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navbar__icon {
+  height: 1.25rem;
+  width: 1.25rem;
+  cursor: pointer;
+  margin-right: -5vw;
+}
+
 @media screen and (max-width: 720px) {
   .navbar__logo {
     margin-left: 0.5rem;
@@ -92,6 +105,10 @@
   .navbar__signup {
     width: 4rem;
     font-size: 0.8rem;
+  }
+  .navbar__icon {
+    margin-top: 0.25rem;
+    margin-right: 0vw;
   }
 }
 
