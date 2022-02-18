@@ -6,7 +6,7 @@ import Authentication from './pages/Authentication/Authentication';
 import Home from './pages/Home/Home';
 
 function App() {
-  let signedIn = false;
+  let signedIn = true;
   return (
     <div className='App'>
       <Navbar />
@@ -14,7 +14,14 @@ function App() {
         <Sidebar />
         <div>
           {signedIn && <SecondaryNav />}
-          <Home signedIn={signedIn} />
+          <div
+            className={
+              signedIn ? 'app__authenticated' : 'app__notAuthenticated'
+            }>
+            {/*Change Component*/}
+            <Home />
+            <div className='home__scrollShade'></div>
+          </div>
         </div>
       </div>
       {/*<Authentication />*/}
