@@ -9,7 +9,7 @@ function App() {
   let signedIn = true;
   return (
     <div className='App'>
-      <Navbar />
+      <Navbar user={signedIn} />
       <div className='app_bodyWithSideBar'>
         <Sidebar />
         <div>

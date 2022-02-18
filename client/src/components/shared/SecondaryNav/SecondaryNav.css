@@ -1,91 +1,74 @@
 .secondaryNav {
   height: 3.5rem;
-  width: calc(100vw - 18rem);
+  width: 40vw;
+  margin-left: 2rem;
   background-color: var(--primary);
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-between;
 }
 
 .secondaryNav__option {
-  border: 1px solid var(--white);
-  height: 1.5rem;
-  width: 7rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: Montserrat, sans-serif;
+  margin-right: 1rem;
   color: var(--white);
-  border-radius: 3rem;
-  margin-left: 3rem;
-  margin-top: 0.3rem;
-  font-size: 0.8rem;
-}
-
-.secondaryNav__imageContainer {
-  margin-right: 0.3rem;
+  font-family: Montserrat, sans-serif;
+  border: 1px solid var(--white);
   display: flex;
   align-items: center;
   justify-content: center;
+  height: 1.8rem;
+  width: 10rem;
+  border-radius: 2rem;
+  font-size: 0.86rem;
 }
-
-.secondaryNav__image {
-  height: 0.95rem;
-  width: 0.95rem;
-}
-
-@media screen and (max-width: 1408px) {
-  .secondaryNav {
-    width: calc(100vw - 15rem);
-  }
-
-  .secondaryNav__option {
-    border: 1px solid var(--white);
-    height: 1.8rem;
-    width: 8rem;
-    color: var(--white);
-    border-radius: 3rem;
-    margin-left: 2rem;
-    margin-top: 0.15rem;
-    font-size: 0.8rem;
-  }
+.secondaryNav__imageContainer {
+  margin-right: 0.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 @media screen and (max-width: 600px) {
-  .secondaryNav {
-    margin-left: -0.3rem;
-    width: 100vw;
-    justify-content: center;
-  }
-
   .secondaryNav__optionText {
     display: none;
   }
-
-  .secondaryNav__option {
-    width: 4rem;
-    padding-left: 0.3rem;
-    margin-left: 1rem;
-    margin-right: 1rem;
+  .secondaryNav__imageContainer {
+    margin-right: 0rem;
+  }
+  .secondaryNav__image {
+    height: 0.99rem;
+    width: 0.99rem;
+  }
+  .secondaryNav {
+    height: 3rem;
+    width: 40vw;
+    margin-left: 21vw;
+    background-color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
 }
 
 @media screen and (max-width: 480px) {
-  .secondaryNav {
-    width: 100vw;
-    justify-content: center;
-    margin-left: -0.3rem;
+  .secondaryNav__image {
+    height: 0.99rem;
+    width: 0.99rem;
   }
-
-  .secondaryNav__optionText {
-    display: none;
+  .secondaryNav {
+    height: 3rem;
+    width: 40vw;
+    margin-left: 14vw;
+    background-color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
 
   .secondaryNav__option {
-    margin-top: 0rem;
-    width: 4rem;
-    padding-left: 0.3rem;
-    margin-left: 1rem;
-    margin-right: 1rem;
+    height: 1.8rem;
+    width: 12rem;
+    border-radius: 0.6rem;
+    font-size: 0.86rem;
   }
 }

@@ -3,7 +3,7 @@ import searchIcon from '../../../assets/icons/magnifyingGlass.svg';
 
 import './Navbar.css';
 
-const Navbar = () => {
+const Navbar = (props) => {
   const [toggleDisplay, setToggleDisplay] = useState(true);
   return (
     <div className='navbar'>
