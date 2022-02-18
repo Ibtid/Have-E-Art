@@ -10,3 +10,171 @@
   width: 100%;
   z-index: 1015;
 }
+.modal-container{
+  background-color: var(--primary);
+  border: 20px;
+  border-color: var(--greyhighlight);
+}
+.modal-paper{
+  background-color: var(--primary);
+  border-radius: 10px;
+}
+
+.auth-btn-grid{
+  display: flex;
+  width: 100%;
+  height: 2rem;
+  justify-content: space-around;
+  padding: 10px;
+}
+
+.sign_up-btn1{
+  height: 2rem;
+  width: 100%;
+  font-family: Montserrat;
+  font-size: 18px;
+  color: var(--accent);
+  font-weight: bold;
+  background-color: var(--primary);
+  border: none;
+  margin-top: 10px;
+  cursor: pointer;
+}
+.sign_in-btn1{
+  height: 2rem;
+  width: 100%;
+  font-family: Montserrat;
+  font-size: 18px;
+  color: var(--greyhighlight);
+  font-weight: bold;
+  border: none;
+  background-color: var(--primary);
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.sign_up-btn2{
+  height: 2rem;
+  width: 100%;
+  font-family: Montserrat;
+  font-size: 18px;
+  color: var(--greyhighlight);
+  font-weight: bold;
+  background-color: var(--primary);
+  border: none;
+  margin-top: 10px;
+  cursor: pointer;
+}
+.sign_in-btn2{
+  height: 2rem;
+  width: 100%;
+  font-family: Montserrat;
+  font-size: 18px;
+  color: var(--accent);
+  font-weight: bold;
+  border: none;
+  background-color: var(--primary);
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.modal-heading{
+  display: flex;
+  font-size: 24px;
+  font-family: Montserrat;
+  font-weight: bolder;
+  padding: 30px;
+  color: var(--accent);
+  align-items: center;
+  justify-content: center;
+  
+}
+.modal-sub-heading{
+  color: var(--white);
+
+}
+
+.input-field{
+  background-color: var(--greyhighlight);
+  border-radius: 10px;
+  border: none;
+
+}
+::placeholder{
+  color: var(--white);
+}
+
+.modal-content{
+  display:flex;
+  justify-content: space-between; 
+  font-size: 16px;
+}
+
+.modal-checkbox-content{
+  display: flex;
+  width: 50%;
+}
+
+.modal-checkbox{
+  color: var(--accent);
+  height: 20px;
+  width: 20px;
+  cursor: pointer;
+  margin-top: 18px;
+  background-color: var(--accent);
+}
+
+.modal-checkbox-text{
+  color: var(--white);
+}
+
+.modal-checkbox:checked{
+  background-color: var(--accent);
+}
+
+.modal-content-text{
+  width: 50%;
+  color: var(--accent);
+  font-family: Montserrat;
+  font-size: 14px;
+  font-weight:normal;
+  right: 0;
+  cursor: pointer;
+}
+.modal-footer{
+  display:flex;
+  justify-content: space-around;
+  margin-top: 10px;
+}
+
+.footer-text{
+  color: var(--white);
+  font-family: Montserrat;
+  font-size: 14px;
+  font-weight:normal;
+}
+
+.footer-sub-text{
+ color: var(--accent);
+ cursor: pointer;
+}
+
+.confirm-btn{
+  height: 2rem;
+  width: 20%;
+  font-family: Montserrat;
+  font-size: 14px;
+  color: var(--white);
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  background-color: var(--accent);
+ 
+  cursor: pointer;
+}
+
+@media screen and (max-width: 600px) {
+ .modal-heading{
+   font-size: 18px;
+ }
+}

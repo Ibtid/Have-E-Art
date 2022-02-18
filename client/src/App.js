@@ -14,7 +14,7 @@ function App() {
           <Home />
         </div>
       </div>
-      {/*<Authentication />*/}
+      <Authentication />
       {/*My Profile */}
       {/*Users Profile */}
       {/*Home */}
