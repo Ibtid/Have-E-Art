@@ -1,7 +1,7 @@
 .secondaryNav {
   height: 3.5rem;
   width: 30vw;
-  margin-left: 3rem;
+  margin-left: 3vw;
   background-color: var(--primary);
   display: flex;
   align-items: center;
@@ -32,7 +32,7 @@
   .secondaryNav {
     height: 3rem;
     width: 40vw;
-    margin-left: 2rem;
+    margin-left: 3vw;
     background-color: var(--primary);
     display: flex;
     align-items: center;
@@ -54,7 +54,7 @@
   .secondaryNav {
     height: 3rem;
     width: 40vw;
-    margin-left: 21vw;
+    margin-left: 3vw;
     background-color: var(--primary);
     display: flex;
     align-items: center;
@@ -70,7 +70,7 @@
   .secondaryNav {
     height: 3rem;
     width: 40vw;
-    margin-left: 14vw;
+    margin-left: 3vw;
     background-color: var(--primary);
     display: flex;
     align-items: center;

@@ -149,13 +149,13 @@
 
 @media screen and (max-width: 1920px) {
   .productShowcaseCard {
-    margin-left: 3.5rem;
+    margin-left: 3vw;
   }
 }
 
 @media screen and (max-width: 1408px) {
   .productShowcaseCard {
-    margin-left: 2rem;
+    margin-left: 3vw;
   }
 }
 
