@@ -2,15 +2,22 @@ import React from 'react';
 
 import image from '../../../assets/images/pexels-dan-cristian-pădureț-1193743 1.png';
 import image2 from '../../../assets/images/pexels-jane-pham-1571673.jpg';
+import image3 from '../../../assets/images/pexels-vincent-pelletier-908713.jpg';
+import image4 from '../../../assets/images/pexels-ayswarya-aish-2109147.jpg';
 import favouriteOutline from '../../../assets/icons/favouritesOutline.svg';
 import shareOutline from '../../../assets/icons/shareIcon.svg';
 import './ProductShowcaseCard.css';
 
 const ProductShowcaseCard = () => {
+  const imageArray = [image, image2, image3, image4];
   return (
     <div className='productShowcaseCard'>
       <div className='productShowcaseCard__imageContainer'>
-        <img className='productShowcaseCard__image' src={image2} alt='image' />
+        <img
+          className='productShowcaseCard__image'
+          src={imageArray[Math.floor(Math.random() * 3.9)]}
+          alt='art'
+        />
         <div className='productShowcaseCard__imageDetails'></div>
         <img
           className='productShowcaseCard__favouriteIcon'
