@@ -6,6 +6,7 @@ import image3 from '../../../assets/images/pexels-vincent-pelletier-908713.jpg';
 import image4 from '../../../assets/images/pexels-ayswarya-aish-2109147.jpg';
 import favouriteOutline from '../../../assets/icons/favouritesOutline.svg';
 import shareOutline from '../../../assets/icons/shareIcon.svg';
+import views from '../../../assets/icons/views.svg';
 import './ProductShowcaseCard.css';
 
 const ProductShowcaseCard = () => {
@@ -37,16 +38,23 @@ const ProductShowcaseCard = () => {
         </div>
         <div className='productShowcaseCard__rowTwo'>
           <div className='productShowcaseCard__date'>16th February, 2022</div>
-          <div className='productShowcaseCard__views'>198,222</div>
+          <div className='productShowcaseCard__views'>
+            <img
+              src={views}
+              className='productShowcaseCard__viewsicon'
+              alt='views'
+            />
+            <div className='productShowcaseCard__viewsNumber'> 198,222</div>
+          </div>
         </div>
         <div className='productShowcaseCard__rowThree'>
           <div className='productShowcaseCard__people'>
             <div className='productShowcaseCard__created'>
-              <span>Creator :</span>
+              <span>Created by :</span>
               <span className='productShowcaseCard__name'>Don Carlo</span>
             </div>
             <div className='productShowcaseCard__owned'>
-              <span>Owner:</span>
+              <span>Owned by:</span>
               <span className='productShowcaseCard__name'>Don Carlo</span>
             </div>
           </div>

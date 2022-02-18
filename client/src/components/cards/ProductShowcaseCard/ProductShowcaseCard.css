@@ -1,20 +1,20 @@
 .productShowcaseCard {
   background-color: var(--secondary);
-  height: 19rem;
-  width: 15.5rem;
+  height: 19.5rem;
+  width: 16.8rem;
   border-radius: 0.5rem;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
   flex-direction: column;
   padding-bottom: 0.5rem;
-  margin-top: 1rem;
+  margin-top: 2rem;
   margin-left: 1rem;
 }
 
 .productShowcaseCard__imageContainer {
   height: 11.5rem;
-  width: 14.5rem;
+  width: 15.5rem;
   background-color: var(--primary);
   border-radius: 0.5rem;
   overflow: hidden;
@@ -28,14 +28,14 @@
 
 .productShowcaseCard__image {
   max-height: 11.5rem;
-  max-width: 14.5rem;
+  max-width: 16rem;
 }
 
 .productShowcaseCard__imageDetails {
   position: absolute;
   top: 0rem;
   height: 11.5rem;
-  width: 14.5rem;
+  width: 15.5rem;
   border-radius: 0.5rem;
   overflow: hidden;
   display: flex;
@@ -76,7 +76,7 @@
 
 .productShowcaseCard__description {
   height: 5.5rem;
-  width: 14.5rem;
+  width: 15.5rem;
   color: var(--white);
   font-family: Montserrat, sans-serif;
   display: flex;
@@ -137,9 +137,25 @@
   font-size: 0.9rem;
 }
 
+.productShowcaseCard__views {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.productShowcaseCard__viewsNumber {
+  margin-left: 0.3rem;
+}
+
+@media screen and (max-width: 1920px) {
+  .productShowcaseCard {
+    margin-left: 3.5rem;
+  }
+}
+
 @media screen and (max-width: 1408px) {
   .productShowcaseCard {
-    margin-left: 3rem;
+    margin-left: 2rem;
   }
 }
 
