@@ -2,11 +2,9 @@
   height: calc(100vh - 4rem);
   width: 18rem;
   background-color: var(--secondary);
-  transition: all 0.3s ease-in-out;
+  transition: all 0.3s;
   overflow-y: scroll;
   overflow-x: hidden;
-  position: sticky;
-  top: 4rem;
 }
 
 .sidebar::-webkit-scrollbar {
@@ -28,7 +26,7 @@
   font-family: Montserrat, sans-serif;
   height: 3.5rem;
   width: 18rem;
-  transition: all 0.3s ease-in-out;
+  transition: all 0.3s;
 }
 
 .sidebar__item:hover {
@@ -39,7 +37,7 @@
 .sidebar__iconContainer {
   margin-right: 1rem;
   margin-left: 2.5rem;
-  transition: all 0.3s ease-in-out;
+  transition: all 0.3s;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -47,7 +45,7 @@
 
 .sidebar__name {
   margin-left: 0rem;
-  transition: all 0.3s ease-in-out;
+  transition: all 0.3s;
 }
 
 .sidebar__listItems {
@@ -64,7 +62,7 @@
   font-family: Montserrat, sans-serif;
   height: 3.5rem;
   padding-left: 1rem;
-  transition: all 0.3s ease-in-out;
+  transition: all 0.3s;
   cursor: pointer;
 }
 

@@ -1,0 +1,86 @@
+.secondaryNav {
+  height: 3.5rem;
+  width: 30vw;
+  margin-left: 3vw;
+  background-color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.secondaryNav__option {
+  margin-right: 1rem;
+  color: var(--white);
+  font-family: Montserrat, sans-serif;
+  border: 1px solid var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 1.8rem;
+  width: 10rem;
+  border-radius: 2rem;
+  font-size: 0.86rem;
+}
+.secondaryNav__imageContainer {
+  margin-right: 0.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media screen and (max-width: 1420px) {
+  .secondaryNav {
+    height: 3rem;
+    width: 40vw;
+    margin-left: 3vw;
+    background-color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .secondaryNav__optionText {
+    display: none;
+  }
+  .secondaryNav__imageContainer {
+    margin-right: 0rem;
+  }
+  .secondaryNav__image {
+    height: 0.99rem;
+    width: 0.99rem;
+  }
+  .secondaryNav {
+    height: 3rem;
+    width: 40vw;
+    margin-left: 3vw;
+    background-color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .secondaryNav__image {
+    height: 0.99rem;
+    width: 0.99rem;
+  }
+  .secondaryNav {
+    height: 3rem;
+    width: 40vw;
+    margin-left: 3vw;
+    background-color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .secondaryNav__option {
+    height: 1.8rem;
+    width: 12rem;
+    border-radius: 0.6rem;
+    font-size: 0.86rem;
+  }
+}

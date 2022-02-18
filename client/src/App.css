@@ -14,8 +14,59 @@ html {
   display: flex;
 }
 
+.app__notAuthenticated {
+  height: calc(100vh - 4rem);
+  width: calc(100vw - 18rem);
+  color: var(--white);
+  background-color: var(--primary);
+  transition: all 0.3s;
+  font-family: Montserrat, sans-serif;
+  position: relative;
+}
+
+.app__authenticated {
+  height: calc(100vh - 7.5rem);
+  width: calc(100vw - 18rem);
+  color: var(--white);
+  background-color: var(--primary);
+  transition: all 0.3s;
+  font-family: Montserrat, sans-serif;
+  position: relative;
+}
+
+.home__scrollShade {
+  position: absolute;
+  bottom: 0rem;
+  height: 2.5rem;
+  width: 100%;
+  background-image: linear-gradient(
+    to top,
+    rgba(17, 17, 17, 1),
+    rgba(17, 17, 17, 0)
+  );
+}
+
+@media screen and (max-width: 1408px) {
+  .app__notAuthenticated {
+    width: calc(100vw - 15rem);
+  }
+
+  .app__authenticated {
+    width: calc(100vw - 15rem);
+  }
+}
+
 @media screen and (max-width: 600px) {
   .app_bodyWithSideBar {
     flex-direction: column-reverse;
+  }
+
+  .app__notAuthenticated {
+    width: 100vw;
+    height: calc(100vh - 8rem);
+  }
+  .app__authenticated {
+    width: 100vw;
+    height: calc(100vh - 11.5rem);
   }
 }
