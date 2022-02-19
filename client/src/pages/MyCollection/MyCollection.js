@@ -1,6 +1,7 @@
 import React from 'react';
 import BoughtCard from '../../components/cards/BoughtCard/BoughtCard';
 import ForSale from '../../components/cards/ForSale/ForSale';
+import Gallery from '../../components/cards/Gallery/Gallery';
 import './MyCollection.css';
 
 const MyCollection = () => {
@@ -14,12 +15,15 @@ const MyCollection = () => {
 
       <div className='myCollection__scroll'>
         <div className='home__cardContainer'>
-          <ForSale />
-          <ForSale />
-          <ForSale />
-          <ForSale />
-          <ForSale />
-          <ForSale />
+          <Gallery />
+          <Gallery />
+          <Gallery />
+          <Gallery />
+          <Gallery />
+          <Gallery />
+          <Gallery />
+          <Gallery />
+          <Gallery />
         </div>
       </div>
     </div>
