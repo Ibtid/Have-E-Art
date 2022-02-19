@@ -206,3 +206,21 @@
     font-size: 1.5rem;
   }
 }
+
+@media screen and (max-width: 900px) {
+  .productDetails__priceText {
+    font-size: 1.1rem;
+  }
+  .productDetails__priceNumber {
+    font-size: 1.1rem;
+  }
+}
+
+@media screen and (max-width: 720px) {
+  .productDetails__priceText {
+    font-size: 1.5rem;
+  }
+  .productDetails__priceNumber {
+    font-size: 1.5rem;
+  }
+}

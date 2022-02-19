@@ -130,7 +130,7 @@ html {
   }
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 720px) {
   .app__bigImageComponent {
     width: 100vw;
     grid-template-columns: 1fr;
@@ -150,7 +150,7 @@ html {
   }
 
   .app__bigImageText {
-    height: calc(100vh - 12rem);
+    max-height: calc(100vh - 12rem);
     margin-left: 1vw;
     width: 90vw;
     /*background-color: var(--secondary);*/
