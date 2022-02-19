@@ -1,0 +1,70 @@
+.boughtCard {
+  background-color: var(--secondary);
+  height: 19.5rem;
+  width: 19rem;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-direction: column;
+  padding-bottom: 0.5rem;
+  margin-top: 1rem;
+  margin-left: 1rem;
+}
+
+.bought__imageContainer {
+  height: 11.5rem;
+  width: 17.5rem;
+  background-color: var(--primary);
+  border-radius: 0.5rem;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.bought__image {
+  max-height: 11.5rem;
+  max-width: 17.5rem;
+}
+
+.bought__description {
+  height: 5.5rem;
+  width: 17.5rem;
+  color: var(--white);
+  font-family: Montserrat, sans-serif;
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  flex-direction: column;
+  margin-top: 0.5rem;
+}
+
+.bought__rowOne {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 700;
+}
+
+.bought__rowTwo {
+  font-size: 0.7em;
+  color: var(--inactive);
+}
+
+.bought__rowThree {
+  font-size: 0.7em;
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+}
+
+.bought__owned {
+  margin-top: 0.5rem;
+}
+
+.bought__format {
+  margin-top: 0.5rem;
+}

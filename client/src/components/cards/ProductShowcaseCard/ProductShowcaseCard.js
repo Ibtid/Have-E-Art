@@ -37,15 +37,18 @@ const ProductShowcaseCard = () => {
           <div className='productShowcaseCard__price'>$ 10,000</div>
         </div>
         <div className='productShowcaseCard__rowTwo'>
-          <div className='productShowcaseCard__date'>16th February, 2022</div>
-          <div className='productShowcaseCard__views'>
-            <img
-              src={views}
-              className='productShowcaseCard__viewsicon'
-              alt='views'
-            />
-            <div className='productShowcaseCard__viewsNumber'> 198,222</div>
+          <div className='productShowcaseCard__dateAndViewsContainer'>
+            <div className='productShowcaseCard__date'>16th February, 2022</div>
+            <div className='productShowcaseCard__views'>
+              <img
+                src={views}
+                className='productShowcaseCard__viewsicon'
+                alt='views'
+              />
+              <div className='productShowcaseCard__viewsNumber'> 198,222</div>
+            </div>
           </div>
+          <div className='productShowcaseCard__pricePerCopy'>$500/copy</div>
         </div>
         <div className='productShowcaseCard__rowThree'>
           <div className='productShowcaseCard__people'>
