@@ -54,10 +54,9 @@ function App() {
   return (
     <div className='App'>
       <Navbar user={signedIn} />
-      {/*componentWithSideBar(<Home />)*/}
-      {componentWithOutSideBar(<ProductDetails />)}
+      {componentWithSideBar(<Home />)}
+      {/*componentWithOutSideBar(<ProductDetails />)*/}
       {/*<Authentication />*/}
-      
     </div>
   );
 }
