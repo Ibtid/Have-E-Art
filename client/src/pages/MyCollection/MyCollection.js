@@ -4,8 +4,10 @@ import ForSale from '../../components/cards/ForSale/ForSale';
 import Gallery from '../../components/cards/Gallery/Gallery';
 import plus from '../../assets/icons/plusIcon.svg';
 import './MyCollection.css';
+import GalleryDetails from '../../components/MyCollection/GalleryDetail/GalleryDetails';
 
 const MyCollection = () => {
+  let details = true;
   const [navItem, setNavItem] = useState('bought');
   const clickNav = (item) => {
     setNavItem(item);
@@ -68,30 +70,34 @@ const MyCollection = () => {
           </div>
         )}
       </div>
+      {details ? (
+        <GalleryDetails />
+      ) : (
+        <div className='myCollection__scroll'>
+          {navItem === 'gallery' && (
+            <div className=' gallery__rowGap'>
+              {listingart.map((a) => (
+                <Gallery />
+              ))}
+            </div>
+          )}
 
-      <div className='myCollection__scroll'>
-        {navItem === 'gallery' && (
-          <div className=' gallery__rowGap'>
-            {listingart.map((a) => (
-              <Gallery />
-            ))}
-          </div>
-        )}
-        {navItem === 'sale' && (
-          <div className='home__cardContainer'>
-            {listingart.map((a) => (
-              <ForSale />
-            ))}
-          </div>
-        )}
-        {navItem === 'bought' && (
-          <div className='home__cardContainer'>
-            {listingart.map((a) => (
-              <BoughtCard />
-            ))}
-          </div>
-        )}
-      </div>
+          {navItem === 'sale' && (
+            <div className='home__cardContainer'>
+              {listingart.map((a) => (
+                <ForSale />
+              ))}
+            </div>
+          )}
+          {navItem === 'bought' && (
+            <div className='home__cardContainer'>
+              {listingart.map((a) => (
+                <BoughtCard />
+              ))}
+            </div>
+          )}
+        </div>
+      )}
       <div className='myCollection__floatButton'>
         <img style={{ height: '1.5rem', width: '1.5rem' }} src={plus} alt='+' />
       </div>

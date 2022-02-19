@@ -8,6 +8,7 @@ import ProductDetails from './pages/ProductDetails/ProductDetails';
 import backIcon from './assets/icons/backIcon.svg';
 import image1 from './assets/images/pexels-ayswarya-aish-2109147.jpg';
 import MyCollection from './pages/MyCollection/MyCollection';
+import Checkout from './pages/Checkout/Checkout';
 
 function App() {
   let signedIn = true;
@@ -58,6 +59,7 @@ function App() {
       {/*componentWithSideBar(<Home />)*/}
       {componentWithSideBar(<MyCollection />)}
       {/*componentWithOutSideBar(<ProductDetails />)*/}
+      {/*componentWithOutSideBar(<Checkout />)*/}
       {/*<Authentication />*/}
     </div>
   );

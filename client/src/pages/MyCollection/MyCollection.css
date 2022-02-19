@@ -46,13 +46,14 @@
   background-color: var(--accent);
 }
 
-.active {
-  color: var(--accent);
-}
-
 .myCollection__navItem {
   margin-right: 2rem;
   cursor: pointer;
+  color: var(--secondaryWhite);
+}
+
+.active {
+  color: var(--accent);
 }
 
 .myCollection__addButton {
