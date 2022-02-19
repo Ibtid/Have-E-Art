@@ -49,7 +49,7 @@ function App() {
       <Navbar user={signedIn} />
       {componentWithSideBar(<Home />)}
       {/*componentWithSecondaryNav(<ProductDetails />)*/}
-      {/*<Authentication />*/}
+      <Authentication />
     </div>
   );
 }

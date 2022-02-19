@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 
 import './Authentication.css';
@@ -6,22 +6,43 @@ import AuthForm from './AuthForm';
 
 const Authentication = () => {
   
-  
+  const ref = useRef()
   const [isSignup, setIsSignup] = useState(true)
+  const [showForm, setShowForm] = useState(true)
+
+  useEffect(() => {
+    const checkIfClickedOutside = e => {
+      // If the menu is open and the clicked target is not within the menu,
+      // then close the menu
+      if (showForm && ref.current && !ref.current.contains(e.target)) {
+        setShowForm(false)
+      }
+    }
+
+    document.addEventListener("mousedown", checkIfClickedOutside)
+
+    return () => {
+      // Cleanup the event listener
+      document.removeEventListener("mousedown", checkIfClickedOutside)
+    }
+  }, [showForm])
+
 
   const handleSignUp = e =>{
       setIsSignup(true)
-      console.log(isSignup)
+      setShowForm(true)
   }
 
   const handleSignIn = e =>{
     setIsSignup(false)
-    console.log(isSignup)
+    setShowForm(true)
   }
   
   const authComponent =
-  <div>
+  <div ref={ref}>
+    { showForm && 
     <AuthForm isSignup={isSignup} handleSignUp={handleSignUp} handleSignIn={handleSignIn}/>
+    }
   </div>
 
   // const signinComponent = 

@@ -13,20 +13,19 @@ function AuthForm(props) {
     const [showPassword, setShowPassword] = useState(false)
 
   return (
-      <div>
-    <Container className="modal-container" component="main" maxWidth="sm">
-      <div className="modal-paper" elevation={3}>  
+    <div className="modal-container">
+      <div className="modal-paper">  
       { props.isSignup?
       <div className='auth-btn-grid'>
        
-        <button fullWidth className='sign_up-btn1' onClick={props.handleSignUp} > Sign up </button>
-        <button fullWidth className='sign_in-btn1' onClick={props.handleSignIn} > Sign in </button>
+        <button  className='sign_up-btn1' onClick={props.handleSignUp} > Sign up </button>
+        <button  className='sign_in-btn1' onClick={props.handleSignIn} > Sign in </button>
       </div>
       :
         <div className='auth-btn-grid'>
        
-        <button fullWidth className='sign_up-btn2' onClick={props.handleSignUp} > Sign up </button>
-        <button fullWidth className='sign_in-btn2' onClick={props.handleSignIn} > Sign in </button>
+        <button  className='sign_up-btn2' onClick={props.handleSignUp} > Sign up </button>
+        <button  className='sign_in-btn2' onClick={props.handleSignIn} > Sign in </button>
       </div>
       }
       <div className='modal-heading'>
@@ -37,14 +36,14 @@ function AuthForm(props) {
             
             {props.isSignup &&(
               <> 
-              <Input className="input-field" name="firstName" placeholder="First name" label="First Name" autoFocus half />
-              <Input name="lastName" className="input-field" label="Last Name" half />
+              <Input name="firstName" label="First Name" half />
+              <Input name="lastName" label="Last Name" half />
               </>
             )}
                  
-            <Input className="input-field" name="email" label="Email Address"  type="email" />
-            <Input className="input-field" name="password" label="Password" type={showPassword ? 'text' : 'password'} />
-            {props.isSignup && <Input name="confirmPassword" label="Confirm Password" type="password" /> }
+            <Input extra name="email" label="Email Address"  type="email" />
+            <Input extra name="password" label="Password" type={showPassword ? 'text' : 'password'} />
+            {props.isSignup && <Input extra name="confirmPassword" label="Confirm Password" type="password" /> }
           </Grid>
           { props.isSignup? 
           ( 
@@ -72,9 +71,10 @@ function AuthForm(props) {
           )}
         </form>
     </div>
-    </Container>
-</div>
-  
+    <div className={props.isSignup? "modal-bar-left": "modal-bar-right"}>
+
+    </div>
+    </div>
   )
 }
 
