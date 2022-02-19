@@ -1,0 +1,17 @@
+.myCollection__nav {
+  margin-left: 3vw;
+  display: flex;
+  align-items: center;
+  height: 3rem;
+  position: sticky;
+  top: 7.5rem;
+}
+
+.myCollection__navItem {
+  margin-right: 2rem;
+  cursor: pointer;
+}
+
+.myCollection__scroll {
+  height: calc(100vh - 10.5rem);
+}
