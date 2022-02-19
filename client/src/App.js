@@ -24,7 +24,7 @@ function App() {
             }>
             {/*Change Component*/}
             {component}
-            <div className='home__scrollShade'></div>
+            {/*<div className='home__scrollShade'></div>*/}
           </div>
         </div>
       </div>
