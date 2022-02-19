@@ -8,6 +8,11 @@ html {
   --accent: #9d8df1;
   --greyhighlight: #4d4d4d;
   --inactive: #737983;
+  --secondaryWhite: #c1c1c1;
+}
+
+.App {
+  font-family: Montserrat;
 }
 
 .app_bodyWithSideBar {
@@ -46,6 +51,75 @@ html {
   );
 }
 
+.app__scroll {
+  height: calc(100vh - 4rem);
+  width: 100vw;
+  overflow-y: scroll;
+}
+
+.app__scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.app__goback {
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-left: 3vw;
+  height: 3rem;
+  cursor: pointer;
+}
+
+.app__bigImageComponent {
+  height: calc(100vh - 10.5rem);
+  width: 100vw;
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  padding-left: 0vw;
+  /*background-color: #fff;*/
+
+  align-items: center;
+}
+
+.app__bigImageContainer {
+  height: calc(100vh - 12rem);
+  width: 55vw;
+  background-color: var(--secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 0.5rem;
+  margin-left: 3vw;
+}
+
+.app__bigImage {
+  max-width: 55vw;
+  max-height: calc(100vh - 12rem);
+}
+
+.app__bigImageText {
+  height: calc(100vh - 12rem);
+  margin-left: 1vw;
+  width: 38vw;
+  /*background-color: var(--secondary);*/
+  overflow-y: scroll;
+  position: relative;
+}
+
+.app__bigImageText::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+.app__bigImageText::-webkit-scrollbar-track {
+  background: var(--secondary);
+}
+.app__bigImageText::-webkit-scrollbar-thumb {
+  background: var(--greyhighlight);
+  border-radius: 0.3rem;
+}
+
 @media screen and (max-width: 1408px) {
   .app__notAuthenticated {
     width: calc(100vw - 15rem);
@@ -54,6 +128,38 @@ html {
   .app__authenticated {
     width: calc(100vw - 15rem);
   }
+}
+
+@media screen and (max-width: 900px) {
+  .app__bigImageComponent {
+    width: 100vw;
+    grid-template-columns: 1fr;
+    align-items: center;
+    justify-items: center;
+  }
+  .app__bigImageContainer {
+    height: 15rem;
+    width: 60vw;
+    margin-left: 0vw;
+    margin-bottom: 2.5rem;
+  }
+
+  .app__bigImage {
+    max-height: 15rem;
+    max-width: 60vw;
+  }
+
+  .app__bigImageText {
+    height: calc(100vh - 12rem);
+    margin-left: 1vw;
+    width: 90vw;
+    /*background-color: var(--secondary);*/
+    overflow-y: scroll;
+    position: relative;
+  }
+  /*.app__bigImageText::-webkit-scrollbar {
+    display: none;
+  }*/
 }
 
 @media screen and (max-width: 600px) {
