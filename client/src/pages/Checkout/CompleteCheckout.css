@@ -1,0 +1,43 @@
+.checkout-complete-heading{
+    font-size: 36px;
+    font-weight: bolder;
+    color:var(--accent);
+}
+.checkout-complete-sub-heading{
+    font-size: 32px;
+    font-weight: bold;
+    color: var(--white);
+}
+.checkout-complete-button{
+    display: flex;
+    margin-top: 2rem;
+}
+.back-home-button{
+    height: 2rem;
+    width: 10rem;
+    background-color: var(--primary);
+    color: var(--white);
+    border: 1px solid var(--white) ;
+    border-radius: 5px;
+    font-size:16px;
+    font-family: Montserrat;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+.back-collection-button{
+    height: 2rem;
+    width: 10rem;
+    background-color: var(--primary);
+    color: var(--white);
+    border: 1px solid var(--white) ;
+    border-radius: 5px;
+    margin-left: 2rem;
+    font-family: Montserrat;
+    font-size:16px;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}

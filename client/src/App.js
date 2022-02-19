@@ -7,6 +7,8 @@ import Home from './pages/Home/Home';
 import ProductDetails from './pages/ProductDetails/ProductDetails';
 import backIcon from './assets/icons/backIcon.svg';
 import image1 from './assets/images/pexels-ayswarya-aish-2109147.jpg';
+import CompleteCheckout from './pages/Checkout/CompleteCheckout';
+import Checkout from './pages/Checkout/Checkout';
 
 function App() {
   let signedIn = true;
@@ -55,9 +57,11 @@ function App() {
     <div className='App'>
       <Navbar user={signedIn} />
       {/*componentWithSideBar(<Home />)*/}
-      {componentWithOutSideBar(<ProductDetails />)}
+      {/* {componentWithOutSideBar(<ProductDetails />)} */}
+      {componentWithOutSideBar(<CompleteCheckout />)}
+      {/* {componentWithOutSideBar(<Checkout/>)} */}
       {/*<Authentication />*/}
-      
+
     </div>
   );
 }
