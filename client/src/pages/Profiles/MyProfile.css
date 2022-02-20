@@ -1,0 +1,17 @@
+.profile {
+  height: calc(100vh - 7.5rem);
+  width: 100%;
+  overflow-y: scroll;
+}
+
+.profile::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+.profile::-webkit-scrollbar-track {
+  background: var(--secondary);
+}
+.profile::-webkit-scrollbar-thumb {
+  background: var(--greyhighlight);
+  border-radius: 0.3rem;
+}
