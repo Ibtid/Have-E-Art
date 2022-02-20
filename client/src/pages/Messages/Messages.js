@@ -5,10 +5,13 @@ import SecondaryNav from '../../components/shared/SecondaryNav/SecondaryNav';
 import './Messages.css';
 
 const Messages = () => {
-  const [chatOpen, setChatOpen] = useState(false);
+  const [chatOpen, setChatOpen] = useState(true);
   return (
     <div className='messages'>
       <div
+        onClick={() => {
+          setChatOpen(true);
+        }}
         className={chatOpen ? 'messages__left no__display' : 'messages__left'}>
         <MessagesOverview />
       </div>
