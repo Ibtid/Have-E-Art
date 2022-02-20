@@ -40,7 +40,7 @@
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 900px) {
   .secondaryNav__optionText {
     display: none;
   }

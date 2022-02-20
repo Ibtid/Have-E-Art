@@ -1,0 +1,77 @@
+.messagesOverview {
+  height: calc(100vh - 4rem);
+  width: 25rem;
+  background-color: var(--secondary);
+}
+
+.messagesOverview__head {
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  margin-left: 3vw;
+  font-weight: 700;
+}
+
+.messagesOverview__searchBar {
+  margin-left: 3vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  background-color: var(--secondaryWhite);
+  height: 2rem;
+  width: 15rem;
+  border-radius: 0.4rem;
+  margin-bottom: 2rem;
+}
+
+.messagesOverview_searchInput {
+  outline: none;
+  border: none;
+  font-family: Montserrat, sans-serif;
+  height: 1.5rem;
+  width: 10rem;
+  background-color: var(--secondaryWhite);
+  font-weight: 500;
+}
+
+.messagesOverview__scroll {
+  height: calc(100vh - 11rem);
+  width: 25rem;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.messagesOverview__scroll::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+.messagesOverview__scroll::-webkit-scrollbar-track {
+  background: var(--secondary);
+}
+.messagesOverview__scroll::-webkit-scrollbar-thumb {
+  background: var(--greyhighlight);
+  border-radius: 0.3rem;
+}
+
+@media screen and (max-width: 1400px) {
+  .messagesOverview {
+    width: 20rem;
+  }
+
+  .messagesOverview__scroll {
+    width: 20rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .messagesOverview {
+    width: 100vw;
+    background-color: var(--primary);
+  }
+
+  .messagesOverview__scroll {
+    width: 100vw;
+
+    height: calc(100vh - 14.5rem);
+  }
+}

@@ -1,0 +1,10 @@
+.messages {
+  color: var(--white);
+  display: flex;
+}
+
+@media screen and (max-width: 768px) {
+  .no__display {
+    display: none;
+  }
+}

@@ -1,0 +1,132 @@
+.chat {
+  height: calc(100vh - 7.5rem);
+  width: calc(100vw - 25rem);
+}
+
+.chat__head {
+  height: 4rem;
+  width: calc(94vw - 25rem);
+  margin-left: 3vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 0.1rem solid var(--white);
+}
+
+.chat__nameAndActiveStatus {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chat__name {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-right: 1rem;
+}
+
+.chat__activeStatus {
+  height: 0.9rem;
+  width: 0.9rem;
+  background-color: #adf18d;
+  border-radius: 50%;
+  margin-left: 1rem;
+}
+
+.chat__viewProfileButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.chat__viewProfileText {
+  margin-right: 1rem;
+  color: var(--secondaryWhite);
+}
+
+.chat__scroll {
+  margin-left: 3vw;
+  height: calc(100vh - 16rem);
+  width: calc(94vw - 25rem);
+  overflow-y: scroll;
+}
+
+.chat__scroll::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+.chat__scroll::-webkit-scrollbar-track {
+  background: var(--secondary);
+}
+.chat__scroll::-webkit-scrollbar-thumb {
+  background: var(--greyhighlight);
+  border-radius: 0.3rem;
+}
+.chat__footer {
+  margin-left: 3vw;
+  width: calc(94vw - 25rem);
+  height: 4rem;
+}
+
+.chat__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.chat__button {
+  background: var(--accent);
+  height: 2.2rem;
+  width: 10%;
+  border-radius: 0.3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.chat__input {
+  height: 2.2rem;
+  padding-left: 0.5rem;
+  width: 85%;
+  border-radius: 0.3rem;
+  border: none;
+  outline: none;
+  background: var(--secondaryWhite);
+  font-size: 1.1rem;
+}
+
+@media screen and (max-width: 1600px) {
+  .chat__input {
+    width: 80%;
+  }
+
+  .chat__button {
+    width: 15%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .chat {
+    width: calc(100vw - 0rem);
+  }
+
+  .chat__head {
+    width: calc(94vw - 0rem);
+  }
+
+  .chat__scroll {
+    width: calc(94vw - 0rem);
+  }
+
+  .chat__footer {
+    width: calc(94vw - 0rem);
+  }
+
+  .chat__activeStatus {
+    height: 0.7rem;
+    width: 0.7rem;
+    margin-left: 0.5rem;
+  }
+}
