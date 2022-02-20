@@ -1,6 +1,6 @@
 .messagesOverview {
   height: calc(100vh - 4rem);
-  width: 20rem;
+  width: 25rem;
   background-color: var(--secondary);
 }
 
@@ -36,8 +36,9 @@
 
 .messagesOverview__scroll {
   height: calc(100vh - 11rem);
-  width: 20rem;
+  width: 25rem;
   overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 .messagesOverview__scroll::-webkit-scrollbar {
@@ -50,4 +51,27 @@
 .messagesOverview__scroll::-webkit-scrollbar-thumb {
   background: var(--greyhighlight);
   border-radius: 0.3rem;
+}
+
+@media screen and (max-width: 1400px) {
+  .messagesOverview {
+    width: 20rem;
+  }
+
+  .messagesOverview__scroll {
+    width: 20rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .messagesOverview {
+    width: 100vw;
+    background-color: var(--primary);
+  }
+
+  .messagesOverview__scroll {
+    width: 100vw;
+
+    height: calc(100vh - 14.5rem);
+  }
 }

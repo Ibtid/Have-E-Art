@@ -19,6 +19,7 @@ const SingleMessageOverview = () => {
           Hi, I need to get this job...
         </div>
       </div>
+      <div className='singleMessageOverview__time'>2:21 AM</div>
     </div>
   );
 };

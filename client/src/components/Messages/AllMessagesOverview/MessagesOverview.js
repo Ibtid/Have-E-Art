@@ -1,11 +1,15 @@
 import React from 'react';
 import searchgray from '../../../assets/icons/searchGray.svg';
 import SingleMessageOverview from '../SingleMessageOverview/SingleMessageOverview';
+import useWindowDimensions from '../../../hooks/useWindowDimension';
 import './MessagesOverview.css';
+import SecondaryNav from '../../shared/SecondaryNav/SecondaryNav';
 
 const MessagesOverview = () => {
+  const { width, height } = useWindowDimensions();
   return (
     <div className='messagesOverview'>
+      {width <= 768 && <SecondaryNav />}
       <div className='messagesOverview__head'>Messages</div>
       <div className='messagesOverview__searchBar'>
         <img

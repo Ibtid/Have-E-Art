@@ -1,16 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import MessagesOverview from '../../components/Messages/AllMessagesOverview/MessagesOverview';
+import Chat from '../../components/Messages/Chat/Chat';
 import SecondaryNav from '../../components/shared/SecondaryNav/SecondaryNav';
 import './Messages.css';
 
 const Messages = () => {
+  const [chatOpen, setChatOpen] = useState(false);
   return (
     <div className='messages'>
-      <div className='messages__left'>
+      <div
+        className={chatOpen ? 'messages__left no__display' : 'messages__left'}>
         <MessagesOverview />
       </div>
-      <div className='messages__right'>
+      <div
+        className={
+          chatOpen ? 'messages__right' : 'messages__right no__display'
+        }>
         <SecondaryNav />
+        {chatOpen && <Chat />}
       </div>
     </div>
   );
