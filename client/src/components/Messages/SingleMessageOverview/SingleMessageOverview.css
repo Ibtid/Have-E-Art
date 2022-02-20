@@ -1,0 +1,33 @@
+.singleMessageOverview {
+  display: grid;
+  grid-template-columns: 1fr 6fr;
+  align-items: center;
+  justify-items: center;
+  margin-bottom: 1.5rem;
+  padding: 0.5rem;
+  cursor: pointer;
+}
+.singleMessageOverview:hover {
+  background-color: #4d4d4d;
+}
+
+.singleMessageOverview__imageContainer {
+  margin-left: 2vw;
+}
+
+.singleMessageOverview__message {
+  margin-top: 0.5rem;
+}
+
+.singleMessageOverview__nameAndActive {
+  display: flex;
+  align-items: center;
+}
+
+.singleMessageOverview__active {
+  height: 0.7rem;
+  width: 0.7rem;
+  background-color: #adf18d;
+  border-radius: 50%;
+  margin-left: 1rem;
+}
