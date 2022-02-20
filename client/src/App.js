@@ -62,8 +62,8 @@ function App() {
       {/*componentWithSideBar(<MyCollection />)*/}
       {/*componentWithOutSideBar(<ProductDetails />)*/}
       {/*componentWithOutSideBar(<Checkout />)*/}
-      {/*componentWithSideBar(<MyProfile />)*/}
-      {componentWithSideBar(<UserProfile />)}
+      {componentWithSideBar(<MyProfile />)}
+      {/*componentWithSideBar(<UserProfile />)*/}
       {/*<Authentication />*/}
     </div>
   );
