@@ -1,0 +1,44 @@
+.OneFollowingUser {
+  width: 100%;
+  margin-bottom: 3rem;
+}
+
+.OneFollowingUser__rowOne {
+  width: 90%;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-left: 3vw;
+  font-size: 0.9rem;
+}
+
+.OneFollowingUser__viewMoreContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--secondaryWhite);
+}
+
+.gridWithOneItems {
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: center;
+  justify-items: center;
+}
+
+.gridWithTwoItems {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.gridWithThreeItems {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.gridWithFourItems {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}

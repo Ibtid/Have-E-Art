@@ -166,6 +166,12 @@
   }
 }
 
+@media screen and (max-width: 1380px) {
+  .productShowcaseCard {
+    margin-left: 1.5vw;
+  }
+}
+
 @media screen and (max-width: 600px) {
   .productShowcaseCard {
     margin-left: 0rem;

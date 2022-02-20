@@ -11,6 +11,7 @@ import MyCollection from './pages/MyCollection/MyCollection';
 import Checkout from './pages/Checkout/Checkout';
 import MyProfile from './pages/Profiles/MyProfile';
 import UserProfile from './pages/Profiles/UserProfile';
+import Following from './pages/Following/Following';
 
 function App() {
   let signedIn = true;
@@ -62,8 +63,9 @@ function App() {
       {/*componentWithSideBar(<MyCollection />)*/}
       {/*componentWithOutSideBar(<ProductDetails />)*/}
       {/*componentWithOutSideBar(<Checkout />)*/}
-      {componentWithSideBar(<MyProfile />)}
+      {/*componentWithSideBar(<MyProfile />)*/}
       {/*componentWithSideBar(<UserProfile />)*/}
+      {componentWithSideBar(<Following />)}
       {/*<Authentication />*/}
     </div>
   );
