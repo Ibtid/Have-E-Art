@@ -3,6 +3,7 @@ import searchIcon from '../../../assets/icons/magnifyingGlass.svg';
 import avatar from '../../../assets/icons/avatar.svg';
 import bellTcon from '../../../assets/icons/bellIcon.svg';
 import Authentication from '../../../modals/Authentication/Authentication';
+import { Link } from 'react-router-dom';
 
 import './Navbar.css';
 
@@ -18,9 +19,11 @@ const Navbar = (props) => {
           }}
         />
       )}
-      <div className={`navbar__logo ${toggleDisplay ? '' : 'no__display'}`}>
+      <Link
+        to='/'
+        className={`navbar__logo ${toggleDisplay ? '' : 'no__display'}`}>
         HAVEEART
-      </div>
+      </Link>
       <div className='navbar__searchbarContainer'>
         <input
           className={`navbar__searchbar ${
@@ -57,9 +60,12 @@ const Navbar = (props) => {
           <div className='navbar__iconButton' style={{ marginRight: '5vw' }}>
             <img src={bellTcon} className='navbar__icon' alt='search' />
           </div>
-          <div className='navbar__iconButton' style={{ marginRight: '5vw' }}>
+          <Link
+            to='/myProfile'
+            className='navbar__iconButton'
+            style={{ marginRight: '5vw' }}>
             <img src={avatar} className='navbar__icon' alt='search' />
-          </div>
+          </Link>
         </div>
       )}
     </div>

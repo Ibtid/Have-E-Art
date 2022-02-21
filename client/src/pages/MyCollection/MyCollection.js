@@ -7,7 +7,7 @@ import './MyCollection.css';
 import GalleryDetails from '../../components/MyCollection/GalleryDetail/GalleryDetails';
 
 const MyCollection = () => {
-  let details = true;
+  let details = false;
   const [navItem, setNavItem] = useState('bought');
   const clickNav = (item) => {
     setNavItem(item);
