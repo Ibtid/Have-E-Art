@@ -107,6 +107,7 @@
 
 @media screen and (max-width: 600px) {
   .sidebar {
+    margin-top: 0.5rem;
     width: 100vw;
     display: flex;
     align-items: center;

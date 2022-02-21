@@ -49,16 +49,6 @@ const Authentication = (props) => {
     </div>
   );
 
-  // const signinComponent =
-  // <div>
-  //   <AuthForm handleAuthOption={handleAuthOption} isSignup={false}/>
-  // </div>;
-
-  // const signupComponent =
-  // <div>
-  //   <AuthForm handleAuthOption={handleAuthOption} isSignup={true} />
-  // </div>;
-
   return ReactDOM.createPortal(
     <div className='authentication'>{authComponent}</div>,
     document.getElementById('authentication')

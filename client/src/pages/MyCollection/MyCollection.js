@@ -64,9 +64,15 @@ const MyCollection = () => {
           )}
         </div>
         {navItem === 'gallery' && (
-          <div className='myCollection__addButton'>
-            <img src={plus} alt='+' />
-            Add Gallery
+          <div style={{ display: 'flex' }}>
+            <div className='myCollection__addButton'>
+              <img src={plus} alt='+' />
+              New Group
+            </div>
+            <div className='myCollection__addButton'>
+              <img src={plus} alt='+' />
+              Add Gallery
+            </div>
           </div>
         )}
       </div>
@@ -98,9 +104,15 @@ const MyCollection = () => {
           )}
         </div>
       )}
-      <div className='myCollection__floatButton'>
-        <img style={{ height: '1.5rem', width: '1.5rem' }} src={plus} alt='+' />
-      </div>
+      {navItem === 'gallery' && (
+        <div className='myCollection__floatButton'>
+          <img
+            style={{ height: '1.5rem', width: '1.5rem' }}
+            src={plus}
+            alt='+'
+          />
+        </div>
+      )}
     </div>
   );
 };
