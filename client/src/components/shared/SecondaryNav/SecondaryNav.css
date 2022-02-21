@@ -20,6 +20,7 @@
   width: 10rem;
   border-radius: 2rem;
   font-size: 0.86rem;
+  text-decoration: none;
 }
 .secondaryNav__imageContainer {
   margin-right: 0.4rem;

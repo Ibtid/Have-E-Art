@@ -14,6 +14,7 @@ import Following from './pages/Following/Following';
 import Messages from './pages/Messages/Messages';
 import CompleteCheckout from './pages/Checkout/CompleteCheckout';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import ComponentWithSideBar from './layouts/ComponentWithSideBar';
 
 function App() {
   let signedIn = true;
@@ -62,15 +63,39 @@ function App() {
     <BrowserRouter>
       <div className='App'>
         <Navbar user={signedIn} />
-        {/*componentWithSideBar(<Home />)*/}
-        {/*componentWithSideBar(<MyCollection />)*/}
+        <Routes>
+          <Route
+            path='/'
+            element={
+              <ComponentWithSideBar signedIn={signedIn}>
+                <Home />
+              </ComponentWithSideBar>
+            }
+          />
+          <Route
+            path='/following'
+            element={
+              <ComponentWithSideBar signedIn={signedIn}>
+                <Following />
+              </ComponentWithSideBar>
+            }
+          />
+          <Route
+            path='/MyCollection'
+            element={
+              <ComponentWithSideBar signedIn={signedIn}>
+                <MyCollection />
+              </ComponentWithSideBar>
+            }
+          />
+          <Route path='/messages' element={<Messages />} />
+        </Routes>
+
         {/*componentWithOutSideBar(<ProductDetails />)*/}
         {/*componentWithOutSideBar(<Checkout />)*/}
-        {componentWithOutSideBar(<CompleteCheckout />)}
+        {/*componentWithOutSideBar(<CompleteCheckout />)*/}
         {/*componentWithSideBar(<MyProfile />)*/}
         {/*componentWithSideBar(<UserProfile />)*/}
-        {/*componentWithSideBar(<Following />)*/}
-        {/*<Messages />*/}
       </div>
     </BrowserRouter>
   );
