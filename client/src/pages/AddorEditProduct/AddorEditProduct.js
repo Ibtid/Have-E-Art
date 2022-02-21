@@ -1,6 +1,7 @@
 import React from 'react';
 
 import backIcon from '../../assets/icons/backIcon.svg';
+import AddorEditProductText from '../../components/AddorEditProducts.js/AddorEditProductText';
 import SecondaryNav from '../../components/shared/SecondaryNav/SecondaryNav';
 
 import './AddorEditProduct.css';
@@ -29,7 +30,9 @@ const AddorEditProduct = (props) => {
             </div>
           )}
         </div>
-        <div className='app__bigImageText'></div>
+        <div className='app__bigImageText'>
+          <AddorEditProductText />
+        </div>
       </div>
     </div>
   );

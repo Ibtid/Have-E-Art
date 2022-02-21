@@ -1,0 +1,121 @@
+.addOrEditProductText {
+  color: var(--white);
+}
+
+.addOrEditProductText__inputLabel {
+  font-weight: bold;
+  letter-spacing: 0.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.addOrEditProductText__inputText {
+  background-color: var(--primary);
+  outline: none;
+  border: 1px solid var(--greyhighlight);
+  color: var(--secondaryWhite);
+  font-family: Montserrat, sans-serif;
+  width: 80%;
+  height: 1rem;
+  padding: 0.5rem;
+  border-radius: 0.3rem;
+  letter-spacing: 0.05rem;
+  margin-bottom: 1.5rem;
+  color: var(--secondaryWhite);
+}
+
+.extra__height {
+  height: 5rem;
+}
+
+.addOrEditProductText__dropDown {
+  width: 20rem;
+  height: 2rem;
+  background-color: var(--secondary);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 0.3rem;
+  margin-bottom: 1.5rem;
+  cursor: pointer;
+}
+
+.addOrEditProductText__dropDownText {
+  margin-left: 0.5rem;
+}
+
+.addOrEditProductText__dropDownImage {
+  margin-right: 0.5rem;
+}
+
+.addOrEditProductText__checkbox {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+}
+
+.addOrEditProductText__checkboxCircle {
+  height: 0.7rem;
+  width: 0.7rem;
+  background-color: var(--secondaryWhite);
+  border-radius: 50%;
+  margin-right: 0.5rem;
+}
+
+.addOrEditProductText__checkboxText {
+  color: var(--secondaryWhite);
+}
+
+.addOrEditProductText__checkboxMarginBottom {
+  margin-bottom: 1.5rem;
+}
+
+.addOrEditProductText__smallInputGroup {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.addOrEditProductText__smallInput {
+  background-color: var(--primary);
+  outline: none;
+  border: 1px solid var(--greyhighlight);
+  color: var(--secondaryWhite);
+  font-family: Montserrat, sans-serif;
+  width: 15rem;
+  height: 1rem;
+  padding: 0.5rem;
+  border-radius: 0.3rem;
+  letter-spacing: 0.05rem;
+  margin-right: 1rem;
+  color: var(--secondaryWhite);
+  justify-content: center;
+}
+
+.addOrEditProductText__buttonGroup {
+  display: flex;
+  align-items: center;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.addOrEditProductText__cancelButton {
+  display: flex;
+  align-items: center;
+
+  color: var(--inactive);
+  height: 2rem;
+  width: 6rem;
+  margin-right: 0.5rem;
+}
+
+.addOrEditProductText__submitButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--accent);
+  height: 2rem;
+  width: 15rem;
+  margin-right: 0.5rem;
+  border-radius: 0.3rem;
+}
