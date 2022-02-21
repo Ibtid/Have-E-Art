@@ -1,4 +1,6 @@
 import React from 'react';
+import image1 from '../assets/images/pexels-ayswarya-aish-2109147.jpg';
+import backIcon from '../assets/icons/backIcon.svg';
 import SecondaryNav from '../components/shared/SecondaryNav/SecondaryNav';
 
 const ComponentWithOutSideBar = (props) => {

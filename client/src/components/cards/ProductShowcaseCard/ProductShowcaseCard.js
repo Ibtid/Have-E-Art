@@ -7,12 +7,13 @@ import image4 from '../../../assets/images/pexels-ayswarya-aish-2109147.jpg';
 import favouriteOutline from '../../../assets/icons/favouritesOutline.svg';
 import shareOutline from '../../../assets/icons/shareIcon.svg';
 import views from '../../../assets/icons/views.svg';
+import { Link } from 'react-router-dom';
 import './ProductShowcaseCard.css';
 
 const ProductShowcaseCard = () => {
   const imageArray = [image, image2, image3, image4];
   return (
-    <div className='productShowcaseCard'>
+    <Link to='/product/1' className='productShowcaseCard'>
       <div className='productShowcaseCard__imageContainer'>
         <img
           className='productShowcaseCard__image'
@@ -64,7 +65,7 @@ const ProductShowcaseCard = () => {
           <div className='productShowcaseCard__button'>Buy E-art</div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 
