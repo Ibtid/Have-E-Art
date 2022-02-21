@@ -14,7 +14,7 @@ const ComponentWithSideBar = (props) => {
           }>
           {/*Change Component*/}
           {props.children}
-          {/*<div className='home__scrollShade'></div>*/}
+          <div className='home__scrollShade'></div>
         </div>
       </div>
     </div>

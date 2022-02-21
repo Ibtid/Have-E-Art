@@ -208,6 +208,12 @@
   cursor: pointer;
 }
 
+@media screen and (max-width: 1440px) {
+  .modal-container {
+    transform: scale(0.85);
+  }
+}
+
 @media screen and (max-width: 600px) {
   .modal-heading {
     font-size: 14px;
