@@ -1,6 +1,6 @@
 .home__cardContainer {
   height: 100%;
-  width: 100%;
+  width: calc(100% - 2vw);
   color: var(--white);
   background-color: var(--primary);
 
@@ -8,6 +8,7 @@
   display: flex;
   flex-wrap: wrap;
   overflow-y: scroll;
+  margin-left: 2vw;
 }
 
 .home__cardContainer::-webkit-scrollbar {

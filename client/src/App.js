@@ -2,7 +2,6 @@ import './App.css';
 import Navbar from './components/shared/Navbar/Navbar';
 import SecondaryNav from './components/shared/SecondaryNav/SecondaryNav';
 import Sidebar from './components/shared/Sidebar/Sidebar';
-import Authentication from './pages/Authentication/Authentication';
 import Home from './pages/Home/Home';
 import ProductDetails from './pages/ProductDetails/ProductDetails';
 import backIcon from './assets/icons/backIcon.svg';
@@ -13,6 +12,8 @@ import MyProfile from './pages/Profiles/MyProfile';
 import UserProfile from './pages/Profiles/UserProfile';
 import Following from './pages/Following/Following';
 import Messages from './pages/Messages/Messages';
+import CompleteCheckout from './pages/Checkout/CompleteCheckout';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 function App() {
   let signedIn = true;
@@ -58,19 +59,20 @@ function App() {
   };
 
   return (
-    <div className='App'>
-      <Navbar user={signedIn} />
-      {/*componentWithSideBar(<Home />)*/}
-      {/*componentWithSideBar(<MyCollection />)*/}
-      {/*componentWithOutSideBar(<ProductDetails />)*/}
-      {/*componentWithOutSideBar(<Checkout />)*/}
-
-      {/*componentWithSideBar(<MyProfile />)*/}
-      {/*componentWithSideBar(<UserProfile />)*/}
-      {/*componentWithSideBar(<Following />)*/}
-      {/*<Authentication />*/}
-      {<Messages />}
-    </div>
+    <BrowserRouter>
+      <div className='App'>
+        <Navbar user={signedIn} />
+        {/*componentWithSideBar(<Home />)*/}
+        {/*componentWithSideBar(<MyCollection />)*/}
+        {/*componentWithOutSideBar(<ProductDetails />)*/}
+        {/*componentWithOutSideBar(<Checkout />)*/}
+        {componentWithOutSideBar(<CompleteCheckout />)}
+        {/*componentWithSideBar(<MyProfile />)*/}
+        {/*componentWithSideBar(<UserProfile />)*/}
+        {/*componentWithSideBar(<Following />)*/}
+        {/*<Messages />*/}
+      </div>
+    </BrowserRouter>
   );
 }
 

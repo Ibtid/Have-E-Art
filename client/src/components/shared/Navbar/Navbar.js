@@ -2,13 +2,22 @@ import React, { useState } from 'react';
 import searchIcon from '../../../assets/icons/magnifyingGlass.svg';
 import avatar from '../../../assets/icons/avatar.svg';
 import bellTcon from '../../../assets/icons/bellIcon.svg';
+import Authentication from '../../../modals/Authentication/Authentication';
 
 import './Navbar.css';
 
 const Navbar = (props) => {
+  const [openForm, setOpenForm] = useState(false);
   const [toggleDisplay, setToggleDisplay] = useState(true);
   return (
     <div className='navbar'>
+      {openForm && (
+        <Authentication
+          closeForm={() => {
+            setOpenForm(false);
+          }}
+        />
+      )}
       <div className={`navbar__logo ${toggleDisplay ? '' : 'no__display'}`}>
         HAVEEART
       </div>
@@ -31,7 +40,13 @@ const Navbar = (props) => {
           className={`navbar__authSection ${
             toggleDisplay ? '' : 'no__display'
           }`}>
-          <div className='navbar__signup'>Sign Up</div>
+          <div
+            className='navbar__signup'
+            onClick={() => {
+              setOpenForm(true);
+            }}>
+            Sign Up
+          </div>
         </div>
       )}
       {props.user && (

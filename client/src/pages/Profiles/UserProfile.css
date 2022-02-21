@@ -1,112 +1,110 @@
-.user-grid{
-
-    display: grid;
-    grid-template-columns: 4fr 12fr 5fr;
-    margin-top: 1.5rem;
-    margin-left: 3rem;
-      
+.user-grid {
+  display: grid;
+  grid-template-columns: 4fr 12fr 5fr;
+  margin-top: 1.5rem;
+  margin-left: 3rem;
 }
-.user-info{
-    width: 20rem;
-  }
-.user-info-grid{
-    display: grid;
-    grid-template-columns: 2fr 5fr ;
-    align-items: center;
-    justify-content: center;
-    margin-left: 6rem;
+.user-info {
+  width: 20rem;
 }
-.user-button-group{
-    display: flex;
+.user-info-grid {
+  display: grid;
+  grid-template-columns: 2fr 5fr;
+  align-items: center;
+  justify-content: center;
+  margin-left: 6rem;
+}
+.user-button-group {
+  display: flex;
 }
 
-.user-fullname-white{
-    margin-left: 0rem;
-    margin-right: 3rem;
-    font-size: 24px;
-    font-weight: bolder;
-    font-family: Montserrat;
-    color: var(--white);
-    height: 2rem;
-    background-color: var(--primary);
+.user-fullname-white {
+  margin-left: 0rem;
+  margin-right: 3rem;
+  font-size: 24px;
+  font-weight: bolder;
+  font-family: Montserrat;
+  color: var(--white);
+  height: 2rem;
+  background-color: var(--primary);
 }
 
-.profile-follow-button{
-    width: 5rem;
-    height: max-content;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-left: 25px;
-    background-color: var(--accent);
-    border-radius: 5px;
-    color: var(--white);
-  
+.profile-follow-button {
+  width: 5rem;
+  height: max-content;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 25px;
+  background-color: var(--accent);
+  border-radius: 5px;
+  color: var(--white);
 }
-.profile-msg-button{
-    width: max-content;
-    height: max-content;
-    padding: 10px;
-    border: 1px solid var(--secondaryWhite);
-    background-color: var(--primary);
-    border-radius: 5px;
-    color: var(--white);
-    margin-left: 1rem;
+.profile-msg-button {
+  width: max-content;
+  height: max-content;
+  padding: 10px;
+  border: 1px solid var(--secondaryWhite);
+  background-color: var(--primary);
+  border-radius: 5px;
+  color: var(--white);
+  margin-left: 1rem;
 }
-.user-grid-section2{
-    margin-left: 3rem;
+.user-grid-section2 {
+  margin-left: 3rem;
 }
-.user-sub-heading{
-    font-size: 18px;
-    font-weight: bold;
-    margin-bottom: .5rem;
-  }
-  .user-text-grey{
-    font-size: 16px;
-    color: var(--secondaryWhite);
-    margin-bottom: 1rem;
-    background-color: var(--primary);
-  }
-.profile-text-lightWhite{
-    color: var(--secondaryWhite);
-    font-size: 16px;
-    font-family: Montserrat;
+.user-sub-heading {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
 }
-.profile-card-container{
-    height: 100%;
-    width: 100%;  
-    display: flex;
-    flex-wrap: wrap;
-    
+.user-text-grey {
+  font-size: 16px;
+  color: var(--secondaryWhite);
+  margin-bottom: 1rem;
+  background-color: var(--primary);
+}
+.profile-text-lightWhite {
+  color: var(--secondaryWhite);
+  font-size: 16px;
+  font-family: Montserrat;
+}
+.profile-card-container {
+  height: 100%;
+  width: calc(100% + 3vw);
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.userProfile__card {
+  margin-right: 1.5vw;
 }
 
 @media screen and (max-width: 1450px) {
-    .user-info{
-        margin-left: 3rem;
-    }
+  .user-info {
+    margin-left: 3rem;
+  }
 }
 @media screen and (max-width: 1200px) {
-    .user-info-grid{
-        margin-top: 1rem;
-    }
-    .user-grid{
-        grid-template-columns: 1fr;
-    }
-    .user-info{
-        margin-left: 0rem;
-    }
+  .user-info-grid {
+    margin-top: 1rem;
+  }
+  .user-grid {
+    grid-template-columns: 1fr;
+  }
+  .user-info {
+    margin-left: 0rem;
+  }
 }
 
 @media screen and (max-width: 790px) {
-    .user-info-grid{
-        display: grid;
-        grid-template-columns: 1fr ;
-        align-items: center;
-        justify-content: center;
-        margin-left: 0rem;
-    }
-    .user-button-group{
-        margin-top: 1rem;
-    }
-
-    
+  .user-info-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: center;
+    justify-content: center;
+    margin-left: 0rem;
+  }
+  .user-button-group {
+    margin-top: 1rem;
+  }
 }

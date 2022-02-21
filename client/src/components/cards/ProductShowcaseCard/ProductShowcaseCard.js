@@ -61,7 +61,7 @@ const ProductShowcaseCard = () => {
               <span className='productShowcaseCard__name'>Don Carlo</span>
             </div>
           </div>
-          <div className='productShowcaseCard__button'>Buy Now</div>
+          <div className='productShowcaseCard__button'>Buy E-art</div>
         </div>
       </div>
     </div>
