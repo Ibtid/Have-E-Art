@@ -14,6 +14,7 @@ import CompleteCheckout from './pages/Checkout/CompleteCheckout';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import ComponentWithSideBar from './layouts/ComponentWithSideBar';
 import ComponentWithOutSideBar from './layouts/ComponentWithOutSideBar';
+import AddorEditProduct from './pages/AddorEditProduct/AddorEditProduct';
 
 function App() {
   let signedIn = true;
@@ -56,6 +57,7 @@ function App() {
               </ComponentWithOutSideBar>
             }
           />
+          <Route path='/product/add' element={<AddorEditProduct />} />
         </Routes>
         {/*componentWithOutSideBar(<Checkout />)*/}
         {/*componentWithOutSideBar(<CompleteCheckout />)*/}

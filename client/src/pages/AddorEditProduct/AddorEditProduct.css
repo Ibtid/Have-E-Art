@@ -1,0 +1,30 @@
+.addOrEditProduct__accentButton {
+  background-color: var(--accent);
+  height: 2rem;
+  width: 10rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 1rem;
+  margin-bottom: 0.5rem;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  color: var(--white);
+  font-weight: bold;
+}
+
+.addOrEditProduct__buttonGroupText {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 1rem;
+  margin-bottom: 0.5rem;
+  border-radius: 0.3rem;
+
+  color: var(--white);
+  font-weight: bold;
+}
+
+.no_bold {
+  font-weight: 500;
+}
