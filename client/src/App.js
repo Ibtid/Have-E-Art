@@ -15,6 +15,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import ComponentWithSideBar from './layouts/ComponentWithSideBar';
 import ComponentWithOutSideBar from './layouts/ComponentWithOutSideBar';
 import AddorEditProduct from './pages/AddorEditProduct/AddorEditProduct';
+import Notifications from './modals/Notifications/Notifications';
 
 function App() {
   let signedIn = true;
@@ -22,6 +23,7 @@ function App() {
   return (
     <BrowserRouter>
       <div className='App'>
+        <Notifications />
         <Navbar user={signedIn} />
         <Routes>
           <Route

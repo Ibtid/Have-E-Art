@@ -1,0 +1,88 @@
+.notifications {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(13, 13, 13, 0.4);
+  position: fixed;
+  left: 0px;
+  top: 4rem;
+  height: calc(100vh - 4rem);
+  width: 100vw;
+  z-index: 1015;
+}
+
+.notifications__Container {
+  color: var(--white);
+  font-family: Montserrat, sans-serif;
+  background-color: var(--secondary);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  position: fixed;
+  right: 6vw;
+  top: 4rem;
+}
+
+.notifications__title {
+  font-weight: bold;
+  letter-spacing: 0.05rem;
+  margin-bottom: 1rem;
+}
+
+.notifications__scroll {
+  min-height: 24rem;
+  overflow-y: scroll;
+}
+
+.notifications__scroll::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+.notifications__scroll::-webkit-scrollbar-track {
+  background: var(--secondary);
+}
+.notifications__scroll::-webkit-scrollbar-thumb {
+  background: var(--greyhighlight);
+  border-radius: 0.3rem;
+}
+
+.notifications__oneNotification {
+  margin-bottom: 1rem;
+  width: 20rem;
+  display: grid;
+  grid-template-columns: 1fr 6fr;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 0.3rem;
+}
+.notifications__oneNotification:hover {
+  background-color: var(--greyhighlight);
+}
+
+.notifications__textContainer {
+  font-size: 0.9rem;
+}
+
+.notifications__time {
+  margin-top: 0.3rem;
+  font-size: 0.7rem;
+  color: var(--inactive);
+}
+
+.notifications__image {
+  height: 2rem;
+  width: 2rem;
+  border-radius: 50%;
+}
+
+@media screen and (max-width: 1440px) {
+  .notifications__Container {
+    right: 4vw;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .notifications__Container {
+    transform: scale(0.8);
+    top: 2vh;
+  }
+}
