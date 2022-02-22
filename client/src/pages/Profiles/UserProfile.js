@@ -28,11 +28,12 @@ const UserProfile = () => {
           </div>
         </div>
         <div className='user-info'>
-          <div className='user-info-grid'>
-            <div className='user-fullname-white'>Sananda</div>
-            <div className='user-button-group'>
-              <div className='profile-follow-button'>Follow</div>
-              <div className='profile-msg-button'>Send Message</div>
+          <div className='userInfo__nameAndButtons'>
+            <div className='userInfo__name'>Nafiz Imtiaz</div>
+            <div className='userInfo__buttonGroup'>
+              <div className='userInfo__accentButton'>Follow</div>
+              <div className='userInfo__accentOutLine'>Send Message</div>
+              <div></div>
             </div>
           </div>
           <div className='profile-username-accent'>sananda05</div>

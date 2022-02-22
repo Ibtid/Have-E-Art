@@ -8,12 +8,52 @@
   width: 20rem;
 }
 .user-info-grid {
+  width: 20rem;
   display: grid;
   grid-template-columns: 2fr 5fr;
   align-items: center;
   justify-content: center;
-  margin-left: 6rem;
+  margin-left: 0rem;
 }
+
+.userInfo__nameAndButtons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 25rem;
+}
+
+.userInfo__name {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.userInfo__buttonGroup {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.userInfo__accentButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--accent);
+  padding: 0.3rem;
+  border-radius: 5px;
+  margin-right: 0.5rem;
+}
+
+.userInfo__accentOutLine {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--secondaryWhite);
+  padding: 0.3rem;
+  border-radius: 5px;
+  margin-right: 0.5rem;
+}
+
 .user-button-group {
   display: flex;
 }
@@ -94,6 +134,10 @@
   .user-info {
     margin-left: 0rem;
   }
+  .userInfo__nameAndButtons {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
 }
 
 @media screen and (max-width: 790px) {
@@ -106,5 +150,14 @@
   }
   .user-button-group {
     margin-top: 1rem;
+  }
+  .userInfo__nameAndButtons {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+  .userInfo__buttonGroup {
+    margin-top: 0.5rem;
   }
 }

@@ -58,7 +58,7 @@ const MyProfile = () => {
                 ? 'profile-fullname-white profile-edit-border hide'
                 : 'profile-fullname-white'
             }>
-            Sananda
+            Nafiz Imtiaz
           </div>
           <input
             className={
