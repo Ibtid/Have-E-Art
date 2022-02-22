@@ -118,7 +118,7 @@ const Sidebar = () => {
           to='/trending'
           className={
             selected === 'trending'
-              ? 'sidebar__item sidebar__active'
+              ? 'sidebar__item sidebar__active  margin__right'
               : 'sidebar__listItem'
           }
           onClick={() => {
@@ -130,7 +130,7 @@ const Sidebar = () => {
           to='/latest'
           className={
             selected === 'latest'
-              ? 'sidebar__item sidebar__active'
+              ? 'sidebar__item sidebar__active margin__right'
               : 'sidebar__listItem'
           }
           onClick={() => {
@@ -142,7 +142,7 @@ const Sidebar = () => {
           to='/topRated'
           className={
             selected === 'topRated'
-              ? 'sidebar__item sidebar__active'
+              ? 'sidebar__item sidebar__active  margin__right'
               : 'sidebar__listItem'
           }
           onClick={() => {
@@ -154,7 +154,7 @@ const Sidebar = () => {
           to='/topCollections'
           className={
             selected === 'topCollections'
-              ? 'sidebar__item sidebar__active'
+              ? 'sidebar__item sidebar__active  margin__right'
               : 'sidebar__listItem'
           }
           onClick={() => {

@@ -92,7 +92,10 @@
 .sidebar__active {
   color: var(--accent);
   font-weight: bold;
-  background-color: var(--greyhighlight);
+}
+
+.margin__right {
+  padding-left: 1rem;
 }
 
 @media screen and (max-width: 1400px) {
@@ -124,10 +127,14 @@
   }
 
   .sidebar__item {
-    width: 3.5rem;
+    width: 2.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+
+  .sidebar__active {
+    background-color: var(--secondary);
   }
 
   .sidebar__iconContainer {
