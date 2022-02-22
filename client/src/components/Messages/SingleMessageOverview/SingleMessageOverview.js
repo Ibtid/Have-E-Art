@@ -1,12 +1,13 @@
 import React from 'react';
 
 import avatar from '../../../assets/icons/avatar.svg';
+import { Link } from 'react-router-dom';
 
 import './SingleMessageOverview.css';
 
 const SingleMessageOverview = () => {
   return (
-    <div className='singleMessageOverview'>
+    <Link to='/messages/1' className='singleMessageOverview'>
       <div className='singleMessageOverview__imageContainer'>
         <img src={avatar} className='singleMessageOverview__image' />
       </div>
@@ -20,7 +21,7 @@ const SingleMessageOverview = () => {
         </div>
       </div>
       <div className='singleMessageOverview__time'>2:21 AM</div>
-    </div>
+    </Link>
   );
 };
 

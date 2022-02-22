@@ -85,6 +85,7 @@ function App() {
               </ComponentWithSideBar>
             }
           />
+          <Route path='/messages/:chatId' element={<Messages />} />
         </Routes>
 
         {/*componentWithOutSideBar(<Checkout />)*/}

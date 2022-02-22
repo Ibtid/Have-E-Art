@@ -2,10 +2,11 @@
   display: grid;
   grid-template-columns: 1fr 3fr;
   align-items: center;
-
+  color: var(--white);
   margin-bottom: 1.5rem;
   padding: 0.5rem;
   cursor: pointer;
+  text-decoration: none;
 }
 .singleMessageOverview:hover {
   background-color: #4d4d4d;

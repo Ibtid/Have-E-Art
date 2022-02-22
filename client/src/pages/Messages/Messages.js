@@ -3,24 +3,20 @@ import MessagesOverview from '../../components/Messages/AllMessagesOverview/Mess
 import Chat from '../../components/Messages/Chat/Chat';
 import SecondaryNav from '../../components/shared/SecondaryNav/SecondaryNav';
 import './Messages.css';
+import { useParams } from 'react-router-dom';
 
 const Messages = () => {
-  const [chatOpen, setChatOpen] = useState(true);
+  const { chatId } = useParams();
+
   return (
     <div className='messages'>
-      <div
-        onClick={() => {
-          setChatOpen(true);
-        }}
-        className={chatOpen ? 'messages__left no__display' : 'messages__left'}>
+      <div className={chatId ? 'messages__left no__display' : 'messages__left'}>
         <MessagesOverview />
       </div>
       <div
-        className={
-          chatOpen ? 'messages__right' : 'messages__right no__display'
-        }>
+        className={chatId ? 'messages__right' : 'messages__right no__display'}>
         <SecondaryNav />
-        {chatOpen && <Chat />}
+        {chatId && <Chat />}
       </div>
     </div>
   );
