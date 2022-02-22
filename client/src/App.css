@@ -13,7 +13,6 @@ html {
 
 .App {
   font-family: Montserrat;
-  overflow: hidden;
 }
 
 .app_bodyWithSideBar {
@@ -31,7 +30,7 @@ html {
 }
 
 .app__authenticated {
-  height: calc(100vh - 7.5rem);
+  height: calc(100vh - 8rem);
   width: calc(100vw - 18rem);
   color: var(--white);
   background-color: var(--primary);
