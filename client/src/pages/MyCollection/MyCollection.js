@@ -7,9 +7,10 @@ import './MyCollection.css';
 import GalleryDetails from '../../components/MyCollection/GalleryDetail/GalleryDetails';
 import GalleryIcon from '../../assets/icons/gallery-svgrepo-com 1.svg';
 import imageIcon from '../../assets/icons/imageIcon.svg';
+import { Link } from 'react-router-dom';
 
 const MyCollection = () => {
-  let details = false;
+  const [openGallery, setOpenGallery] = useState(false);
   const [navItem, setNavItem] = useState('bought');
   const [toggleDisplayfloatButton, setToggleDisplayfloatButton] =
     useState(false);
@@ -73,21 +74,29 @@ const MyCollection = () => {
               <img src={plus} alt='+' />
               New Group
             </div>
-            <div className='myCollection__addButton'>
+            <Link to='/product/add' className='myCollection__addButton'>
               <img src={plus} alt='+' />
               Add Gallery
-            </div>
+            </Link>
           </div>
         )}
       </div>
-      {details ? (
-        <GalleryDetails />
+      {openGallery ? (
+        <GalleryDetails
+          openGallery={() => {
+            setOpenGallery(false);
+          }}
+        />
       ) : (
         <div className='myCollection__scroll'>
           {navItem === 'gallery' && (
             <div className=' gallery__rowGap'>
               {listingart.map((a) => (
-                <Gallery />
+                <Gallery
+                  openGallery={() => {
+                    setOpenGallery(true);
+                  }}
+                />
               ))}
             </div>
           )}

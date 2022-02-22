@@ -5,10 +5,14 @@ import image3 from '../../../assets/images/pexels-vincent-pelletier-908713.jpg';
 import image4 from '../../../assets/images/pexels-ayswarya-aish-2109147.jpg';
 import './Gallery.css';
 
-const Gallery = () => {
+const Gallery = (props) => {
   const imageArray = [image, image2, image3, image4];
   return (
-    <div className='gallery'>
+    <div
+      className='gallery'
+      onClick={() => {
+        props.openGallery();
+      }}>
       <div className='gallery__imageContainer'>
         <img
           className='gallery__image'

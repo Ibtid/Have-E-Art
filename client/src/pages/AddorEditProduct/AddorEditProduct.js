@@ -3,15 +3,21 @@ import React from 'react';
 import backIcon from '../../assets/icons/backIcon.svg';
 import AddorEditProductText from '../../components/AddorEditProducts.js/AddorEditProductText';
 import SecondaryNav from '../../components/shared/SecondaryNav/SecondaryNav';
+import { useNavigate } from 'react-router-dom';
 
 import './AddorEditProduct.css';
 
 const AddorEditProduct = (props) => {
+  let history = useNavigate();
   let image = false;
   return (
     <div className='app__scroll'>
       <SecondaryNav />
-      <div className='app__goback'>
+      <div
+        className='app__goback'
+        onClick={() => {
+          history(`${window.location.replace(document.referrer)}`);
+        }}>
         <img src={backIcon} />
         <div>Go back</div>
       </div>

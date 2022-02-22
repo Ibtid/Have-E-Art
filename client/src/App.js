@@ -58,7 +58,9 @@ function App() {
               </ComponentWithOutSideBar>
             }
           />
+
           <Route path='/product/add' element={<AddorEditProduct />} />
+
           <Route
             path='/checkout'
             element={
@@ -84,6 +86,7 @@ function App() {
             }
           />
         </Routes>
+
         {/*componentWithOutSideBar(<Checkout />)*/}
         {/*componentWithOutSideBar(<CompleteCheckout />)*/}
       </div>

@@ -67,6 +67,9 @@
   margin-right: 3vw;
   font-size: 0.95rem;
   margin-bottom: 0.5rem;
+  cursor: pointer;
+  text-decoration: none;
+  color: var(--white);
 }
 
 .myCollection__scroll {
