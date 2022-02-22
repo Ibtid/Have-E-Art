@@ -5,6 +5,8 @@ import Gallery from '../../components/cards/Gallery/Gallery';
 import plus from '../../assets/icons/plusIcon.svg';
 import './MyCollection.css';
 import GalleryDetails from '../../components/MyCollection/GalleryDetail/GalleryDetails';
+import GalleryIcon from '../../assets/icons/gallery-svgrepo-com 1.svg';
+import imageIcon from '../../assets/icons/imageIcon.svg';
 
 const MyCollection = () => {
   let details = false;
@@ -105,13 +107,29 @@ const MyCollection = () => {
         </div>
       )}
       {navItem === 'gallery' && (
-        <div className='myCollection__floatButton'>
-          <img
-            style={{ height: '1.5rem', width: '1.5rem' }}
-            src={plus}
-            alt='+'
-          />
-        </div>
+        <>
+          <div className='myCollection__floatButton'>
+            <img
+              style={{ height: '1.5rem', width: '1.5rem' }}
+              src={plus}
+              alt='+'
+            />
+          </div>
+          <div className='myCollection__floatButton myCollection__galleryFloat'>
+            <img
+              style={{ height: '1.5rem', width: '1.5rem' }}
+              src={GalleryIcon}
+              alt='+'
+            />
+          </div>
+          <div className='myCollection__floatButton myCollectionGroupFloat'>
+            <img
+              style={{ height: '1.5rem', width: '1.5rem' }}
+              src={imageIcon}
+              alt='+'
+            />
+          </div>
+        </>
       )}
     </div>
   );

@@ -157,4 +157,11 @@
   .myCollection__scroll {
     height: calc(100vh - 14rem);
   }
+  .myCollection__galleryFloat {
+    bottom: 5.5rem;
+  }
+
+  .myCollectionGroupFloat {
+    bottom: 9.5rem;
+  }
 }
