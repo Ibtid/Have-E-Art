@@ -58,11 +58,33 @@ function App() {
             }
           />
           <Route path='/product/add' element={<AddorEditProduct />} />
+          <Route
+            path='/checkout'
+            element={
+              <ComponentWithOutSideBar>
+                <Checkout />
+              </ComponentWithOutSideBar>
+            }
+          />
+          <Route
+            path='/profile'
+            element={
+              <ComponentWithSideBar signedIn={signedIn}>
+                <MyProfile />
+              </ComponentWithSideBar>
+            }
+          />
+          <Route
+            path='/profile/:id'
+            element={
+              <ComponentWithSideBar signedIn={signedIn}>
+                <UserProfile />
+              </ComponentWithSideBar>
+            }
+          />
         </Routes>
         {/*componentWithOutSideBar(<Checkout />)*/}
         {/*componentWithOutSideBar(<CompleteCheckout />)*/}
-        {/*componentWithSideBar(<MyProfile />)*/}
-        {/*componentWithSideBar(<UserProfile />)*/}
       </div>
     </BrowserRouter>
   );

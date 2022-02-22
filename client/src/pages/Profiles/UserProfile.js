@@ -7,9 +7,7 @@ import fb from '../../assets/icons/fb.svg';
 import web from '../../assets/icons/web.svg';
 import instagram from '../../assets/icons/instagram.svg';
 import pinterest from '../../assets/icons/pinterest.svg';
-import edit from '../../assets/icons/edit.svg';
 
-import ForSale from '../../components/cards/ForSale/ForSale';
 import ProductShowcaseCard from '../../components/cards/ProductShowcaseCard/ProductShowcaseCard';
 
 const UserProfile = () => {

@@ -13,6 +13,7 @@ html {
 
 .App {
   font-family: Montserrat;
+  overflow: hidden;
 }
 
 .app_bodyWithSideBar {
@@ -40,6 +41,7 @@ html {
 }
 
 .home__scrollShade {
+  pointer-events: none;
   position: absolute;
   bottom: -0.5rem;
   height: 2.5rem;

@@ -11,8 +11,11 @@ import pinterest from '../../assets/icons/pinterest.svg';
 import edit from '../../assets/icons/edit.svg';
 import cancel from '../../assets/icons/cancel.svg';
 
+import CardDetails from '../../modals/CardDetails/CardDetails';
+
 const MyProfile = () => {
   const [isEditMode, setIsEditMode] = useState(false);
+  const [showForm, setShowForm] = useState(false);
 
   const handleEdit = (e) => {
     setIsEditMode(!isEditMode);
@@ -20,6 +23,13 @@ const MyProfile = () => {
 
   return (
     <div className='profile'>
+      {showForm && (
+        <CardDetails
+          closeForm={() => {
+            setShowForm(false);
+          }}
+        />
+      )}
       <div className='profile-head-section'>
         <div className='profile-heading'>Profile</div>
         <div
@@ -210,7 +220,11 @@ const MyProfile = () => {
             />
           </div>
           <br />
-          <div className='profile-add-button'>
+          <div
+            className='profile-add-button'
+            onClick={() => {
+              setShowForm(true);
+            }}>
             <div className='profile-add-button-sign'>+</div>
             <div className='profile-add-button-text'>Add New</div>
           </div>
