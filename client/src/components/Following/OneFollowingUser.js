@@ -4,6 +4,7 @@ import rightArrow from '../../assets/icons/rightArrow.svg';
 import ProductShowcaseCard from '../cards/ProductShowcaseCard/ProductShowcaseCard';
 import useWindowDimensions from '../../hooks/useWindowDimension';
 import './OneFollowingUser.css';
+import { Link } from 'react-router-dom';
 
 const OneFollowingUser = () => {
   const { height, width } = useWindowDimensions();
@@ -11,10 +12,10 @@ const OneFollowingUser = () => {
     <div className='OneFollowingUser'>
       <div className='OneFollowingUser__rowOne'>
         <div className='OneFollowingUser__name'>More from Don Carlo</div>
-        <div className='OneFollowingUser__viewMoreContainer'>
+        <Link to='/profile/1' className='OneFollowingUser__viewMoreContainer'>
           View More
           <img src={rightArrow} alt='>' />
-        </div>
+        </Link>
       </div>
 
       {width <= 720 && (

@@ -19,6 +19,7 @@
   justify-content: center;
   cursor: pointer;
   color: var(--secondaryWhite);
+  text-decoration: none;
 }
 
 .OneFollowingUser__rowTwo {
