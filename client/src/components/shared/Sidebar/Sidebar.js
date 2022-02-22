@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import homeIconfilled from '../../../assets/icons/homeFilled.svg';
 import favouritesOutline from '../../../assets/icons/favouritesOutline.svg';
 import filtersOutline from '../../../assets/icons/filtersOutline.svg';
@@ -28,7 +28,9 @@ const Sidebar = () => {
       {/*Home*/}
       <Link
         to='/'
-        className='sidebar__item sidebar__active'
+        className={
+          selected === '' ? 'sidebar__item sidebar__active' : 'sidebar__item'
+        }
         onClick={() => {
           setSelected('');
         }}>
@@ -44,7 +46,11 @@ const Sidebar = () => {
       {/*Favorites*/}
       <Link
         to='/favorites'
-        className='sidebar__item'
+        className={
+          selected === 'favorites'
+            ? 'sidebar__item sidebar__active'
+            : 'sidebar__item'
+        }
         onClick={() => {
           setSelected('favorites');
         }}>

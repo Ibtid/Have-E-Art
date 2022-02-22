@@ -89,6 +89,12 @@
   color: var(--greyhighlight);
 }
 
+.sidebar__active {
+  color: var(--accent);
+  font-weight: bold;
+  background-color: var(--greyhighlight);
+}
+
 @media screen and (max-width: 1400px) {
   .sidebar {
     width: 15rem;
