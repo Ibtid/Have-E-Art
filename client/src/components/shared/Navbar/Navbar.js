@@ -75,7 +75,7 @@ const Navbar = (props) => {
             <img src={bellTcon} className='navbar__icon' alt='search' />
           </div>
           <Link
-            to='/myProfile'
+            to='/profile'
             className='navbar__iconButton'
             style={{ marginRight: '5vw' }}>
             <img src={avatar} className='navbar__icon' alt='search' />
