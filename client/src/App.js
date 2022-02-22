@@ -34,6 +34,14 @@ function App() {
             }
           />
           <Route
+            path='/:attribute'
+            element={
+              <ComponentWithSideBar signedIn={signedIn}>
+                <Home />
+              </ComponentWithSideBar>
+            }
+          />
+          <Route
             path='/following'
             element={
               <ComponentWithSideBar signedIn={signedIn}>
