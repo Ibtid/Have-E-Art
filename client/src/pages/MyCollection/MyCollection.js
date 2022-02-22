@@ -11,6 +11,8 @@ import imageIcon from '../../assets/icons/imageIcon.svg';
 const MyCollection = () => {
   let details = false;
   const [navItem, setNavItem] = useState('bought');
+  const [toggleDisplayfloatButton, setToggleDisplayfloatButton] =
+    useState(false);
   const clickNav = (item) => {
     setNavItem(item);
   };
@@ -107,14 +109,20 @@ const MyCollection = () => {
         </div>
       )}
       {navItem === 'gallery' && (
+        <div
+          className='myCollection__floatButton'
+          onClick={() => {
+            setToggleDisplayfloatButton(!toggleDisplayfloatButton);
+          }}>
+          <img
+            style={{ height: '1.5rem', width: '1.5rem' }}
+            src={plus}
+            alt='+'
+          />
+        </div>
+      )}
+      {toggleDisplayfloatButton && (
         <>
-          <div className='myCollection__floatButton'>
-            <img
-              style={{ height: '1.5rem', width: '1.5rem' }}
-              src={plus}
-              alt='+'
-            />
-          </div>
           <div className='myCollection__floatButton myCollection__galleryFloat'>
             <img
               style={{ height: '1.5rem', width: '1.5rem' }}
