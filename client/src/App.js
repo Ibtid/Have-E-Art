@@ -23,7 +23,6 @@ function App() {
   return (
     <BrowserRouter>
       <div className='App'>
-        <Notifications />
         <Navbar user={signedIn} />
         <Routes>
           <Route

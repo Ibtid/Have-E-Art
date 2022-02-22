@@ -13,7 +13,7 @@ const Notifications = (props) => {
       // then close the menu
       if (showForm && ref.current && !ref.current.contains(e.target)) {
         setShowForm(false);
-        props.closeForm();
+        props.closeNotifications();
       }
     };
 

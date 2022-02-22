@@ -6,12 +6,21 @@ import Authentication from '../../../modals/Authentication/Authentication';
 import { Link } from 'react-router-dom';
 
 import './Navbar.css';
+import Notifications from '../../../modals/Notifications/Notifications';
 
 const Navbar = (props) => {
+  const [openNotifications, setOpenNotifications] = useState(false);
   const [openForm, setOpenForm] = useState(false);
   const [toggleDisplay, setToggleDisplay] = useState(true);
   return (
     <div className='navbar'>
+      {openNotifications && (
+        <Notifications
+          closeNotifications={() => {
+            setOpenNotifications(false);
+          }}
+        />
+      )}
       {openForm && (
         <Authentication
           closeForm={() => {
@@ -57,7 +66,12 @@ const Navbar = (props) => {
           className={`navbar__authSection navbar__flexRow ${
             toggleDisplay ? '' : 'no__display'
           }`}>
-          <div className='navbar__iconButton' style={{ marginRight: '5vw' }}>
+          <div
+            className='navbar__iconButton'
+            style={{ marginRight: '5vw' }}
+            onClick={() => {
+              setOpenNotifications(true);
+            }}>
             <img src={bellTcon} className='navbar__icon' alt='search' />
           </div>
           <Link
