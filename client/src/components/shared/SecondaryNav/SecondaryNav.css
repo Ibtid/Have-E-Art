@@ -29,6 +29,12 @@
   justify-content: center;
 }
 
+.accent__background {
+  background-color: var(--accent);
+  font-weight: bold;
+  border-color: var(--accent);
+}
+
 @media screen and (max-width: 1420px) {
   .secondaryNav {
     height: 3rem;
