@@ -118,6 +118,7 @@
 
 .productDetails__personName {
   text-decoration: underline;
+  color: var(--white);
 }
 
 .productDetails__personSocial {

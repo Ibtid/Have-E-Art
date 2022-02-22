@@ -11,12 +11,15 @@ import messageOutline from './lightmessage.svg';
 import lightfavourite from './lightfavourite.svg';
 import EditIcon from '../../assets/icons/edit.svg';
 
+import { Link, useNavigate } from 'react-router-dom';
+
 import './ProductDetails.css';
 
 const ProductDetails = () => {
+  let navigate = useNavigate();
   const ratingArray = [1, 2, 3, 4, 5];
 
-  let owner = true;
+  let owner = false;
   let listedForSale = true;
 
   return (
@@ -24,9 +27,9 @@ const ProductDetails = () => {
       <div className='productDetails__firstRow'>
         <div className='productDetails__name'>Color Brust</div>
         {owner && (
-          <div className='productDetails__editButton'>
+          <Link to='/product/edit/1' className='productDetails__editButton'>
             <img src={EditIcon} alt='edit' />
-          </div>
+          </Link>
         )}
       </div>
       <div className='productDetails__ratingsAndVotes'>
@@ -82,7 +85,9 @@ const ProductDetails = () => {
       {/*.............................................................................................*/}
       <div className='productDetails__title'>Creator:</div>
       <div className='productDetails__personDescription'>
-        <div className='productDetails__personName'>Don Carlo</div>
+        <Link to='/profile/1' className='productDetails__personName'>
+          Don Carlo
+        </Link>
         <div className='productDetails__personSocial'>
           <img
             src={lightfavourite}
@@ -103,7 +108,9 @@ const ProductDetails = () => {
       </div>
       <div className='productDetails__title'>Owner:</div>
       <div className='productDetails__personDescription'>
-        <div className='productDetails__personName'>Don Carlo</div>
+        <Link to='/profile/1' className='productDetails__personName'>
+          Don Carlo
+        </Link>
         <div className='productDetails__personSocial'>
           <img
             src={lightfavourite}
@@ -168,7 +175,11 @@ const ProductDetails = () => {
             <div className='productDetails__priceTagSmallText'>$500/copy</div>
           </div>
           <div className='productDetails__piecesSold'>69/100 pieces sold</div>
-          <div className='productDetails__buyButtons'>
+          <div
+            className='productDetails__buyButtons'
+            onClick={() => {
+              navigate('/product/edit/1');
+            }}>
             <div className='productDetails__changePrice'>Change Price</div>
           </div>
         </div>

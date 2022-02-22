@@ -60,6 +60,7 @@ function App() {
           />
 
           <Route path='/product/add' element={<AddorEditProduct />} />
+          <Route path='/product/edit/:id' element={<AddorEditProduct />} />
 
           <Route
             path='/checkout'
