@@ -66,7 +66,11 @@ const Sidebar = () => {
       {/*Recommendations*/}
       <Link
         to='/recommendations'
-        className='sidebar__item'
+        className={
+          selected === 'recommendations'
+            ? 'sidebar__item sidebar__active'
+            : 'sidebar__item'
+        }
         onClick={() => {
           setSelected('recommendations');
         }}>
@@ -84,12 +88,20 @@ const Sidebar = () => {
       </Link>
 
       {/*Filters*/}
-      <div className='sidebar__item'>
+      <div
+        className={
+          selected === 'trending' ||
+          selected === 'lastest' ||
+          selected === 'topRated' ||
+          selected === 'topCollections'
+            ? 'sidebar__item sidebar__active'
+            : 'sidebar__item'
+        }>
         <div className='sidebar__iconContainer'>
           <img
             src={
               selected === 'trending' ||
-              selected === 'lastest' ||
+              selected === 'latest' ||
               selected === 'topRated' ||
               selected === 'topCollections'
                 ? filterFilled
@@ -104,23 +116,35 @@ const Sidebar = () => {
       <div className='sidebar__listItems'>
         <Link
           to='/trending'
-          className='sidebar__listItem'
+          className={
+            selected === 'trending'
+              ? 'sidebar__item sidebar__active'
+              : 'sidebar__listItem'
+          }
           onClick={() => {
             setSelected('trending');
           }}>
           Trending
         </Link>
         <Link
-          to='/lastest'
-          className='sidebar__listItem'
+          to='/latest'
+          className={
+            selected === 'latest'
+              ? 'sidebar__item sidebar__active'
+              : 'sidebar__listItem'
+          }
           onClick={() => {
-            setSelected('lastest');
+            setSelected('latest');
           }}>
           Lastest
         </Link>
         <Link
           to='/topRated'
-          className='sidebar__listItem'
+          className={
+            selected === 'topRated'
+              ? 'sidebar__item sidebar__active'
+              : 'sidebar__listItem'
+          }
           onClick={() => {
             setSelected('topRated');
           }}>
@@ -128,7 +152,11 @@ const Sidebar = () => {
         </Link>
         <Link
           to='/topCollections'
-          className='sidebar__listItem'
+          className={
+            selected === 'topCollections'
+              ? 'sidebar__item sidebar__active'
+              : 'sidebar__listItem'
+          }
           onClick={() => {
             setSelected('topCollections');
           }}>
@@ -144,7 +172,15 @@ const Sidebar = () => {
       </div>
 
       {/*Category*/}
-      <div className='sidebar__item'>
+      <div
+        className={
+          selected === '3d' ||
+          selected === 'people' ||
+          selected === 'animal' ||
+          selected === 'scenery'
+            ? 'sidebar__item sidebar__active'
+            : 'sidebar__item'
+        }>
         <div className='sidebar__iconContainer'>
           <img
             src={
@@ -164,7 +200,11 @@ const Sidebar = () => {
       <div className='sidebar__listItems'>
         <Link
           to='/3d'
-          className='sidebar__listItem'
+          className={
+            selected === '3d'
+              ? 'sidebar__listItem sidebar__active'
+              : 'sidebar__listItem'
+          }
           onClick={() => {
             setSelected('3d');
           }}>
@@ -172,7 +212,11 @@ const Sidebar = () => {
         </Link>
         <Link
           to='/people'
-          className='sidebar__listItem'
+          className={
+            selected === 'people'
+              ? 'sidebar__listItem sidebar__active'
+              : 'sidebar__listItem'
+          }
           onClick={() => {
             setSelected('people');
           }}>
@@ -180,7 +224,11 @@ const Sidebar = () => {
         </Link>
         <Link
           to='/animal'
-          className='sidebar__listItem'
+          className={
+            selected === 'animal'
+              ? 'sidebar__listItem sidebar__active'
+              : 'sidebar__listItem'
+          }
           onClick={() => {
             setSelected('animal');
           }}>
@@ -188,7 +236,11 @@ const Sidebar = () => {
         </Link>
         <Link
           to='/scenery'
-          className='sidebar__listItem'
+          className={
+            selected === 'scenery'
+              ? 'sidebar__listItem sidebar__active'
+              : 'sidebar__listItem'
+          }
           onClick={() => {
             setSelected('scenery');
           }}>
@@ -206,7 +258,11 @@ const Sidebar = () => {
       {/*Following*/}
       <Link
         to='/following'
-        className='sidebar__item'
+        className={
+          selected === 'following'
+            ? 'sidebar__listItem sidebar__active'
+            : 'sidebar__listItem'
+        }
         onClick={() => {
           setSelected('following');
         }}>
@@ -226,7 +282,11 @@ const Sidebar = () => {
       {/*artist*/}
       <Link
         to='/artist'
-        className='sidebar__item'
+        className={
+          selected === 'artist'
+            ? 'sidebar__listItem sidebar__active'
+            : 'sidebar__listItem'
+        }
         onClick={() => {
           setSelected('artist');
         }}>
