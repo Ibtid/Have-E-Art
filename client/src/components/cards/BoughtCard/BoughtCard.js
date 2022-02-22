@@ -4,11 +4,12 @@ import image2 from '../../../assets/images/pexels-jane-pham-1571673.jpg';
 import image3 from '../../../assets/images/pexels-vincent-pelletier-908713.jpg';
 import image4 from '../../../assets/images/pexels-ayswarya-aish-2109147.jpg';
 import './BoughtCard.css';
+import { Link } from 'react-router-dom';
 
 const BoughtCard = () => {
   const imageArray = [image, image2, image3, image4];
   return (
-    <div className='boughtCard'>
+    <Link to='/product/1' className='boughtCard'>
       <div className='bought__imageContainer'>
         <img
           className='bought__image'
@@ -34,7 +35,7 @@ const BoughtCard = () => {
           <div className='bought__format'>Format: pdf</div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 
