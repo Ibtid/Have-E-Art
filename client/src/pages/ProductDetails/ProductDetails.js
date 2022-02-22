@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import star from '../../assets/icons/star.svg';
 import share from '../../assets/icons/shareIcon.svg';
@@ -19,8 +19,9 @@ const ProductDetails = () => {
   let navigate = useNavigate();
   const ratingArray = [1, 2, 3, 4, 5];
 
-  let owner = false;
-  let listedForSale = true;
+  let owner = true;
+
+  const [listedForSale, setListedForSale] = useState(false);
 
   return (
     <div className='productDetails'>
@@ -152,8 +153,12 @@ const ProductDetails = () => {
           </div>
           <div className='productDetails__piecesSold'>69/100 pieces sold</div>
           <div className='productDetails__buyButtons'>
-            <div className='productDetails__buy'>Buy Original</div>
-            <div className='productDetails__buy'>Buy Certified Copy</div>
+            <Link to='/checkout' className='productDetails__buy'>
+              Buy Original
+            </Link>
+            <Link to='/checkout' className='productDetails__buy'>
+              Buy Certified Copy
+            </Link>
           </div>
         </div>
       )}
@@ -161,8 +166,20 @@ const ProductDetails = () => {
       {owner && !listedForSale && (
         <div className='productDetails__sellButtonGroup'>
           <div className='productDetails__buyButtons'>
-            <div className='productDetails__buy'>Sell Original</div>
-            <div className='productDetails__buy'>Sell Certified Copy</div>
+            <div
+              className='productDetails__buy'
+              onClick={() => {
+                setListedForSale(true);
+              }}>
+              Sell Original
+            </div>
+            <div
+              className='productDetails__buy'
+              onClick={() => {
+                setListedForSale(true);
+              }}>
+              Sell Certified Copy
+            </div>
           </div>
         </div>
       )}
