@@ -9,11 +9,23 @@ import shareOutline from '../../../assets/icons/shareIcon.svg';
 import views from '../../../assets/icons/views.svg';
 import { Link } from 'react-router-dom';
 import './ProductShowcaseCard.css';
+import { useContext } from 'react';
+import { AppContext } from '../../../hooks/AppContext';
+import { useNavigate } from 'react-router-dom';
 
 const ProductShowcaseCard = () => {
   const imageArray = [image, image2, image3, image4];
+  const value = useContext(AppContext);
+  let navigator = useNavigate();
+
   return (
-    <Link to='/product/1' className='productShowcaseCard'>
+    <div
+      to='/product/1'
+      className='productShowcaseCard'
+      onClick={() => {
+        value.setOwner(false);
+        navigator('/product/1');
+      }}>
       <div className='productShowcaseCard__imageContainer'>
         <img
           className='productShowcaseCard__image'
@@ -65,7 +77,7 @@ const ProductShowcaseCard = () => {
           <div className='productShowcaseCard__button'>Buy E-art</div>
         </div>
       </div>
-    </Link>
+    </div>
   );
 };
 

@@ -6,11 +6,23 @@ import image4 from '../../../assets/images/pexels-ayswarya-aish-2109147.jpg';
 import views from '../../../assets/icons/views.svg';
 import './ForSale.css';
 import { Link } from 'react-router-dom';
+import { useContext } from 'react';
+import { AppContext } from '../../../hooks/AppContext';
+import { useNavigate } from 'react-router-dom';
 
 const ForSale = () => {
   const imageArray = [image, image2, image3, image4];
+  const value = useContext(AppContext);
+  let navigator = useNavigate();
+
   return (
-    <Link to='/product/1' className='boughtCard'>
+    <div
+      to='/product/1'
+      className='boughtCard'
+      onClick={() => {
+        value.setOwner(true);
+        navigator('/product/1');
+      }}>
       <div className='bought__imageContainer'>
         <img
           className='bought__image'
@@ -49,7 +61,7 @@ const ForSale = () => {
           <div className='bought__format'>Format: pdf</div>
         </div>
       </div>
-    </Link>
+    </div>
   );
 };
 
