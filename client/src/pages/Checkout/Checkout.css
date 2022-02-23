@@ -1,135 +1,133 @@
-.checkout-heading{
-    font-size:x-large;
-    font-weight: bolder;
-    font-family: Montserrat;
-    color: var(--white);
+.checkout-heading {
+  font-size: x-large;
+  font-weight: bolder;
+  font-family: Montserrat;
+  color: var(--white);
 }
-.checkout-sub-heading{
-    font-size: medium;
-    font-weight: bold;
-    margin-bottom: .5rem;
-    color: var(--white);
+.checkout-sub-heading {
+  font-size: medium;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: var(--white);
 }
-.checkout-text-grey{
-    font-size: small;
-    color: var(--secondaryWhite);
-    
+.checkout-text-grey {
+  font-size: small;
+  color: var(--secondaryWhite);
 }
-.checkout-text-accent{
-    font-size: small;
-    color: var(--accent);
-    font-weight: bold;
+.checkout-text-accent {
+  font-size: small;
+  color: var(--accent);
+  font-weight: bold;
 }
-.checkout-text-accent-large{
-    font-size: 16px;
-    color: var(--accent);
-    font-weight: bold;
-    margin-top: .5rem;
+.checkout-text-accent-large {
+  font-size: 16px;
+  color: var(--accent);
+  font-weight: bold;
+  margin-top: 0.5rem;
 }
-.checkout-price-details{
-    display: flex;
-    justify-content: space-between;
-    margin-right: 1rem;
-    margin-bottom: .5rem;
+.checkout-price-details {
+  display: flex;
+  justify-content: space-between;
+  margin-right: 1rem;
+  margin-bottom: 0.5rem;
 }
-.checkout-price-bar{
-    width: 97%;
-    height: .05rem;
-    background-color: var(--accent);
+.checkout-price-bar {
+  width: 97%;
+  height: 0.05rem;
+  background-color: var(--accent);
 }
-.checkout-payment-option{
-    display: flex;
-    align-items: center;
+.checkout-payment-option {
+  display: flex;
+  align-items: center;
 }
-.checkout-payment-text-accent{
-    font-size: 16px;
-    font-family: Montserrat;
-    color: var(--accent);
-    margin-left: .5rem;
+.checkout-payment-text-accent {
+  font-size: 16px;
+  font-family: Montserrat;
+  color: var(--accent);
+  margin-left: 0.5rem;
 }
-.checkout-payment-option-radio{
-    height: 17px;
-    width: 17px;
-    border: none;
-    border-radius: 100%;
-    cursor: pointer;
-    background-color: var(--secondaryWhite);
+.checkout-payment-option-radio {
+  height: 17px;
+  width: 17px;
+  border: none;
+  border-radius: 100%;
+  cursor: pointer;
+  background-color: var(--secondaryWhite);
 }
 
-.checkout-payment-text-grey{
-    font-size: 16px;
-    font-family: Montserrat;
-    color: var(--secondaryWhite);
-    margin-left: .5rem;
-    
+.checkout-payment-text-grey {
+  font-size: 16px;
+  font-family: Montserrat;
+  color: var(--secondaryWhite);
+  margin-left: 0.5rem;
 }
-.checkout-add-button{
-    display: flex;
-    align-items: center;
-    margin-left: .5rem;
-    cursor: pointer;
+.checkout-add-button {
+  display: flex;
+  align-items: center;
+  margin-left: 0.5rem;
+  cursor: pointer;
 }
-.checkout-add-button-sign{
-    font-size: xx-large;
-    font-family: Montserrat;
-    color: var(--accent);
+.checkout-add-button-sign {
+  font-size: xx-large;
+  font-family: Montserrat;
+  color: var(--accent);
 }
-.checkout-add-button-text{
-    font-size: large;
-    font-weight: medium;
-    font-family: Montserrat;
-    color: var(--white);
-    border: none;
-    background-color: var(--primary);
+.checkout-add-button-text {
+  font-size: large;
+  font-weight: medium;
+  font-family: Montserrat;
+  color: var(--white);
+  border: none;
+  background-color: var(--primary);
+  cursor: pointer;
 }
-.checkout-condition{
-    margin-left: .5rem;
+.checkout-condition {
+  margin-left: 0.5rem;
 }
-.checkout-condition-option{
-    display: grid ;
-    grid-template-columns: 1fr 20fr;
+.checkout-condition-option {
+  display: grid;
+  grid-template-columns: 1fr 20fr;
 }
-.checkout-condition-option-checkbox{
-    height: 15px;
-    width: 15px;
-    border: 1px solid var(--white);
-    border-radius: 1px;
-    cursor: pointer;
+.checkout-condition-option-checkbox {
+  height: 15px;
+  width: 15px;
+  border: 1px solid var(--white);
+  border-radius: 1px;
+  cursor: pointer;
 }
-.checkout-condition-text-grey{
-    font-size: smaller;
-    font-family: Montserrat;
-    font-weight: lighter;
-    color: var(--secondaryWhite);
-    margin-left: .2rem;
-    margin-right: .5rem;
-    
+.checkout-condition-text-grey {
+  font-size: smaller;
+  font-family: Montserrat;
+  font-weight: lighter;
+  color: var(--secondaryWhite);
+  margin-left: 0.2rem;
+  margin-right: 0.5rem;
 }
-.checkout-button-group{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: 1rem;
+.checkout-button-group {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1rem;
 }
-.checkout-cancel-button{
-    border: none;
-    color: var(--inactive);
-    font-family: Montserrat;
-    font-size: 16px;
-    font-weight: bold;
-    background-color: var(--primary);
-    cursor: pointer;
+.checkout-cancel-button {
+  border: none;
+  color: var(--inactive);
+  font-family: Montserrat;
+  font-size: 16px;
+  font-weight: bold;
+  background-color: var(--primary);
+  cursor: pointer;
 }
-.checkout-confirm-button{
-    border: none;
-    border-radius: 5px;
-    margin-right: .5rem;
-    padding: .5rem;
-    width: 12rem;
-    color: var(--white);
-    font-family: Montserrat;
-    font-size: 16px;
-    font-weight: bold;
-    background-color: var(--accent);
-    cursor: pointer;
+.checkout-confirm-button {
+  border: none;
+  border-radius: 5px;
+  margin-right: 0.5rem;
+  padding: 0.5rem;
+  width: 12rem;
+  color: var(--white);
+  font-family: Montserrat;
+  font-size: 16px;
+  font-weight: bold;
+  background-color: var(--accent);
+  cursor: pointer;
 }

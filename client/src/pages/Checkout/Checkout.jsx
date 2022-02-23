@@ -1,13 +1,24 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 import './Checkout.css';
 
 import {useNavigate} from 'react-router-dom';
+import CardDetails from '../../modals/CardDetails/CardDetails';
+
 
 function Checkout() {
   let navigate = useNavigate()
+  
+  const [showForm, setShowForm] = useState(false);
   return (
     <div>
+       {showForm && (
+        <CardDetails
+          closeForm={() => {
+            setShowForm(false);
+          }}
+        />
+      )}
       <div className='checkout-heading'>Checkout</div>
       <br />
       <div className='checkout-sub-heading'>Title:</div>
@@ -42,15 +53,15 @@ function Checkout() {
       </div>
       <br />
       <div className='checkout-sub-heading'>Payment Option:</div>
-      <div className='checkout-payment-option'>
+      <div className='checkout-payment-option' >
         <div className='checkout-payment-option-radio' />
-        <div className='checkout-payment-text-accent'>
+        <div className='checkout-payment-text-grey'>
           {' '}
           VISA **** **** **** 2139
         </div>
       </div>
       <br />
-      <div className='checkout-payment-option'>
+      <div className='checkout-payment-option' >
         <div className='checkout-payment-option-radio' />
         <div className='checkout-payment-text-grey'>
           {' '}
@@ -58,7 +69,9 @@ function Checkout() {
         </div>
       </div>
       <br />
-      <div className='checkout-add-button'>
+      <div className='checkout-add-button' onClick={() => {
+              setShowForm(true);
+            }}>
         <div className='checkout-add-button-sign'>+</div>
         <button className='checkout-add-button-text'>Add New</button>
       </div>
