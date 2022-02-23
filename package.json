@@ -18,5 +18,8 @@
   "homepage": "https://github.com/Ibtid/Have-E-Art#readme",
   "dependencies": {
     "express": "^4.17.3"
+  },
+  "engines": {
+    "node": "14.17.3"
   }
 }
