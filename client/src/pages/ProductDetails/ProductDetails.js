@@ -19,7 +19,7 @@ const ProductDetails = () => {
   let navigate = useNavigate();
   const ratingArray = [1, 2, 3, 4, 5];
 
-  let owner = false;
+  let owner = true;
 
   const [listedForSale, setListedForSale] = useState(false);
 

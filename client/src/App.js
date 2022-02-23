@@ -18,7 +18,7 @@ import AddorEditProduct from './pages/AddorEditProduct/AddorEditProduct';
 import Notifications from './modals/Notifications/Notifications';
 
 function App() {
-  let signedIn = true;
+  let signedIn = false;
 
   return (
     <BrowserRouter>
