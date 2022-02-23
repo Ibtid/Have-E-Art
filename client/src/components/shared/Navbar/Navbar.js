@@ -4,14 +4,17 @@ import avatar from '../../../assets/icons/avatar.svg';
 import bellTcon from '../../../assets/icons/bellIcon.svg';
 import Authentication from '../../../modals/Authentication/Authentication';
 import { Link } from 'react-router-dom';
-
+import { useContext } from 'react';
+import { AppContext } from '../../../hooks/AppContext';
 import './Navbar.css';
 import Notifications from '../../../modals/Notifications/Notifications';
 
-const Navbar = (props) => {
+const Navbar = () => {
   const [openNotifications, setOpenNotifications] = useState(false);
   const [openForm, setOpenForm] = useState(false);
   const [toggleDisplay, setToggleDisplay] = useState(true);
+  const value = useContext(AppContext);
+  console.log(value);
   return (
     <div className='navbar'>
       {openNotifications && (
@@ -47,7 +50,7 @@ const Navbar = (props) => {
           <img src={searchIcon} alt='search' />
         </div>
       </div>
-      {!props.user && (
+      {!value.loggedIn && (
         <div
           className={`navbar__authSection ${
             toggleDisplay ? '' : 'no__display'
@@ -61,7 +64,7 @@ const Navbar = (props) => {
           </div>
         </div>
       )}
-      {props.user && (
+      {value.loggedIn && (
         <div
           className={`navbar__authSection navbar__flexRow ${
             toggleDisplay ? '' : 'no__display'

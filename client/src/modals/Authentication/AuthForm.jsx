@@ -5,10 +5,15 @@ import { Grid, Container } from '@material-ui/core';
 
 import Input from './InputField';
 
+import { useContext } from 'react';
+import { AppContext } from '../../hooks/AppContext.js';
+
 import './Authentication.css';
 
 function AuthForm(props) {
   const [showPassword, setShowPassword] = useState(false);
+
+  const value = useContext(AppContext);
 
   return (
     <div className='modal-container'>
@@ -73,7 +78,14 @@ function AuthForm(props) {
                   <u>&nbsp;Login</u>
                 </a>
               </p>
-              <button type='submit' variant='contained' className='confirm-btn'>
+              <button
+                type='submit'
+                variant='contained'
+                className='confirm-btn'
+                onClick={() => {
+                  value.setLoggedIn(true);
+                  props.closeForm();
+                }}>
                 Register
               </button>
             </div>
@@ -100,7 +112,11 @@ function AuthForm(props) {
                 <button
                   type='submit'
                   variant='contained'
-                  className='confirm-btn'>
+                  className='confirm-btn'
+                  onClick={() => {
+                    value.setLoggedIn(true);
+                    props.closeForm();
+                  }}>
                   Login
                 </button>
               </div>

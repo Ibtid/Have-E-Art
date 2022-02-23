@@ -16,96 +16,98 @@ import ComponentWithSideBar from './layouts/ComponentWithSideBar';
 import ComponentWithOutSideBar from './layouts/ComponentWithOutSideBar';
 import AddorEditProduct from './pages/AddorEditProduct/AddorEditProduct';
 import Notifications from './modals/Notifications/Notifications';
+import AppContextProvider from './hooks/AppContext';
 
 function App() {
   let signedIn = true;
-
   return (
-    <BrowserRouter>
-      <div className='App'>
-        <Navbar user={signedIn} />
-        <Routes>
-          <Route
-            path='/'
-            element={
-              <ComponentWithSideBar signedIn={signedIn}>
-                <Home />
-              </ComponentWithSideBar>
-            }
-          />
-          <Route
-            path='/:attribute'
-            element={
-              <ComponentWithSideBar signedIn={signedIn}>
-                <Home />
-              </ComponentWithSideBar>
-            }
-          />
-          <Route
-            path='/following'
-            element={
-              <ComponentWithSideBar signedIn={signedIn}>
-                <Following />
-              </ComponentWithSideBar>
-            }
-          />
-          <Route
-            path='/MyCollection'
-            element={
-              <ComponentWithSideBar signedIn={signedIn}>
-                <MyCollection />
-              </ComponentWithSideBar>
-            }
-          />
-          <Route path='/messages' element={<Messages />} />
-          <Route
-            path='/product/:id'
-            element={
-              <ComponentWithOutSideBar>
-                <ProductDetails />
-              </ComponentWithOutSideBar>
-            }
-          />
+    <AppContextProvider>
+      <BrowserRouter>
+        <div className='App'>
+          <Navbar />
+          <Routes>
+            <Route
+              path='/'
+              element={
+                <ComponentWithSideBar signedIn={signedIn}>
+                  <Home />
+                </ComponentWithSideBar>
+              }
+            />
+            <Route
+              path='/:attribute'
+              element={
+                <ComponentWithSideBar signedIn={signedIn}>
+                  <Home />
+                </ComponentWithSideBar>
+              }
+            />
+            <Route
+              path='/following'
+              element={
+                <ComponentWithSideBar signedIn={signedIn}>
+                  <Following />
+                </ComponentWithSideBar>
+              }
+            />
+            <Route
+              path='/MyCollection'
+              element={
+                <ComponentWithSideBar signedIn={signedIn}>
+                  <MyCollection />
+                </ComponentWithSideBar>
+              }
+            />
+            <Route path='/messages' element={<Messages />} />
+            <Route
+              path='/product/:id'
+              element={
+                <ComponentWithOutSideBar>
+                  <ProductDetails />
+                </ComponentWithOutSideBar>
+              }
+            />
 
-          <Route path='/product/add' element={<AddorEditProduct />} />
-          <Route path='/product/edit/:id' element={<AddorEditProduct />} />
+            <Route path='/product/add' element={<AddorEditProduct />} />
+            <Route path='/product/edit/:id' element={<AddorEditProduct />} />
 
-          <Route
-            path='/checkout'
-            element={
-              <ComponentWithOutSideBar>
-                <Checkout />
-              </ComponentWithOutSideBar>
-            }
-          />
-          <Route
-            path='/checkoutComplete'
-            element={
-              <ComponentWithOutSideBar>
-                <CompleteCheckout />
-              </ComponentWithOutSideBar>
-            }
-          />
-          <Route
-            path='/profile'
-            element={
-              <ComponentWithSideBar signedIn={signedIn}>
-                <MyProfile />
-              </ComponentWithSideBar>
-            }
-          />
-          <Route
-            path='/profile/:id'
-            element={
-              <ComponentWithSideBar signedIn={signedIn}>
-                <UserProfile />
-              </ComponentWithSideBar>
-            }
-          />
-          <Route path='/messages/:chatId' element={<Messages />} />
-        </Routes>
-      </div>
-    </BrowserRouter>
+            <Route
+              path='/checkout'
+              element={
+                <ComponentWithOutSideBar>
+                  <Checkout />
+                </ComponentWithOutSideBar>
+              }
+            />
+            <Route
+              path='/checkoutComplete'
+              element={
+                <ComponentWithOutSideBar>
+                  <CompleteCheckout />
+                </ComponentWithOutSideBar>
+              }
+            />
+            <Route
+              path='/profile'
+              element={
+                <ComponentWithSideBar signedIn={signedIn}>
+                  <MyProfile />
+                </ComponentWithSideBar>
+              }
+            />
+            <Route
+              path='/profile/:id'
+              element={
+                <ComponentWithSideBar signedIn={signedIn}>
+                  <UserProfile />
+                </ComponentWithSideBar>
+              }
+            />
+            <Route path='/messages/:chatId' element={<Messages />} />
+          </Routes>
+        </div>
+      </BrowserRouter>
+    </AppContextProvider>
   );
 }
 

@@ -41,6 +41,7 @@ const Authentication = (props) => {
     <div ref={ref}>
       {showForm && (
         <AuthForm
+          closeForm={props.closeForm}
           isSignup={isSignup}
           handleSignUp={handleSignUp}
           handleSignIn={handleSignIn}
