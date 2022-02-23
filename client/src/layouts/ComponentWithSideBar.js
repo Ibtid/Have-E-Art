@@ -19,6 +19,7 @@ const ComponentWithSideBar = (props) => {
           {props.children}
           <div className='home__scrollShade'></div>
         </div>
+        <div className='extra__divToHide'></div>
       </div>
     </div>
   );
