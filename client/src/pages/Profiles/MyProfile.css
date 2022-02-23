@@ -30,6 +30,7 @@
 .profile-edit {
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
 .profile-edit-icon {
   padding: 10px;

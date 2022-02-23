@@ -35,13 +35,9 @@ const MyProfile = () => {
         <div
           className={
             isEditMode ? 'profile-edit profile-edit-mode' : 'profile-edit'
-          }>
-          <img
-            className='profile-edit-icon'
-            src={edit}
-            alt='edit'
-            onClick={handleEdit}
-          />
+          }
+          onClick={handleEdit}>
+          <img className='profile-edit-icon' src={edit} alt='edit' />
           <div className='profile-edit-button'>Edit profile</div>
         </div>
       </div>
