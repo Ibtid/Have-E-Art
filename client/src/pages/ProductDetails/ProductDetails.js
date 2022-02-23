@@ -11,6 +11,9 @@ import messageOutline from './lightmessage.svg';
 import lightfavourite from './lightfavourite.svg';
 import EditIcon from '../../assets/icons/edit.svg';
 
+import { useContext } from 'react';
+import { AppContext } from '../../hooks/AppContext';
+
 import { Link, useNavigate } from 'react-router-dom';
 
 import './ProductDetails.css';
@@ -19,7 +22,7 @@ const ProductDetails = () => {
   let navigate = useNavigate();
   const ratingArray = [1, 2, 3, 4, 5];
 
-  let owner = true;
+  const value = useContext(AppContext);
 
   const [listedForSale, setListedForSale] = useState(false);
 
@@ -27,7 +30,7 @@ const ProductDetails = () => {
     <div className='productDetails'>
       <div className='productDetails__firstRow'>
         <div className='productDetails__name'>Color Brust</div>
-        {owner && (
+        {value.owner && (
           <Link to='/product/edit/1' className='productDetails__editButton'>
             <img src={EditIcon} alt='edit' />
           </Link>
@@ -144,7 +147,7 @@ const ProductDetails = () => {
         itself derives from a root that means to “join” or “fit together”.
       </div>
       {/*............................................................................................*/}
-      {!owner && (
+      {!value.owner && (
         <div className='productDetails__absoluteSection'>
           <div className='productDetails__priceTag'>
             <div className='productDetails__priceText'>Price: </div>
@@ -163,7 +166,7 @@ const ProductDetails = () => {
         </div>
       )}
       {/*............................................................................................*/}
-      {owner && !listedForSale && (
+      {value.owner && !listedForSale && (
         <div className='productDetails__sellButtonGroup'>
           <div className='productDetails__buyButtons'>
             <div
@@ -184,7 +187,7 @@ const ProductDetails = () => {
         </div>
       )}
       {/*............................................................................................*/}
-      {owner && listedForSale && (
+      {value.owner && listedForSale && (
         <div className='productDetails__absoluteSection'>
           <div className='productDetails__priceTag'>
             <div className='productDetails__priceText'>Price: </div>
