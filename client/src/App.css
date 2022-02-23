@@ -121,10 +121,6 @@ html {
   border-radius: 0.3rem;
 }
 
-.extra__divToHide {
-  display: none;
-}
-
 @media screen and (max-width: 1408px) {
   .app__notAuthenticated {
     width: calc(100vw - 15rem);
@@ -182,8 +178,8 @@ html {
   }
 
   .extra__divToHide {
-    display: inline;
-    height: 4rem;
+    display: block;
+    height: 8rem;
     width: 100vw;
   }
 }
