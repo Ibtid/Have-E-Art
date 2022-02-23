@@ -1,0 +1,15 @@
+.profileOptions__Container {
+  color: var(--secondaryWhite);
+  font-family: Montserrat, sans-serif;
+  background-color: var(--secondary);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  position: fixed;
+  right: 3vw;
+  top: 4rem;
+  cursor: pointer;
+}
+
+.profileOption__option:hover {
+  color: var(--white);
+}

@@ -4,6 +4,7 @@ import './ProfileOptions.css';
 import { useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import { AppContext } from '../../hooks/AppContext';
+import './ProfileOptions.css';
 
 const ProfileOptions = (props) => {
   const ref = useRef();
@@ -37,8 +38,9 @@ const ProfileOptions = (props) => {
       }}>
       <div ref={ref}>
         {showForm && (
-          <div className='notifications__Container'>
+          <div className='profileOptions__Container'>
             <div
+              className='profileOption__option'
               onClick={() => {
                 props.closeForm();
                 navigate('/profile');
@@ -51,6 +53,7 @@ const ProfileOptions = (props) => {
                 props.closeForm();
                 navigate('/');
               }}
+              className='profileOption__option'
               style={{ marginTop: '1rem' }}>
               Logout
             </div>
