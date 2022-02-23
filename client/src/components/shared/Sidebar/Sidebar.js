@@ -96,7 +96,10 @@ const Sidebar = () => {
           selected === 'topCollections'
             ? 'sidebar__item sidebar__active'
             : 'sidebar__item'
-        }>
+        }
+        onClick={() => {
+          setSelected('trending');
+        }}>
         <div className='sidebar__iconContainer'>
           <img
             src={
@@ -180,7 +183,10 @@ const Sidebar = () => {
           selected === 'scenery'
             ? 'sidebar__item sidebar__active'
             : 'sidebar__item'
-        }>
+        }
+        onClick={() => {
+          setSelected('3d');
+        }}>
         <div className='sidebar__iconContainer'>
           <img
             src={

@@ -79,6 +79,14 @@ function App() {
             }
           />
           <Route
+            path='/checkoutComplete'
+            element={
+              <ComponentWithOutSideBar>
+                <CompleteCheckout />
+              </ComponentWithOutSideBar>
+            }
+          />
+          <Route
             path='/profile'
             element={
               <ComponentWithSideBar signedIn={signedIn}>

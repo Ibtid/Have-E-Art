@@ -1,14 +1,16 @@
 import React from 'react'
 import "./CompleteCheckout.css"
 
+import {Link} from 'react-router-dom'
+
 function CompleteCheckout() {
   return (
     <div>
     <div className='checkout-complete-heading'>Congratulations!</div>
         <div className='checkout-complete-sub-heading'>This e-art now belongs to you.</div>
         <div className='checkout-complete-button'>
-         <div className='back-home-button'>Go to Home</div>
-         <div className='back-collection-button'>Go to My collection</div>
+         <Link to='/' className='back-home-button'>Go to Home</Link>
+         <Link to='/MyCollection' className='back-collection-button'>Go to My collection</Link>
         </div>
     </div>
     
