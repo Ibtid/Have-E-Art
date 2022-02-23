@@ -261,30 +261,6 @@ const Sidebar = () => {
         <div className='sidebar__name'>Show More</div>
       </div>
 
-      {/*Following*/}
-      <Link
-        to='/following'
-        className={
-          selected === 'following'
-            ? 'sidebar__listItem sidebar__active'
-            : 'sidebar__listItem'
-        }
-        onClick={() => {
-          setSelected('following');
-        }}>
-        <div className='sidebar__iconContainer'>
-          <img
-            src={
-              selected === 'following'
-                ? followingPurpleFilled
-                : followingOutline
-            }
-            alt='homefilled'
-          />
-        </div>
-        <div className='sidebar__name'>Following</div>
-      </Link>
-
       {/*artist*/}
       <Link
         to='/artist'

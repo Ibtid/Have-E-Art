@@ -124,6 +124,8 @@
     align-items: center;
     justify-content: space-evenly;
     height: 4rem;
+    position: fixed;
+    bottom: 0rem;
   }
 
   .sidebar__item {
