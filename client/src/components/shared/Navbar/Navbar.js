@@ -8,15 +8,24 @@ import { useContext } from 'react';
 import { AppContext } from '../../../hooks/AppContext';
 import './Navbar.css';
 import Notifications from '../../../modals/Notifications/Notifications';
+import ProfileOptions from '../../../modals/ProfileOptions/ProfileOptions';
 
 const Navbar = () => {
   const [openNotifications, setOpenNotifications] = useState(false);
   const [openForm, setOpenForm] = useState(false);
+  const [openProfileOptions, setOpenProfileOptions] = useState(false);
   const [toggleDisplay, setToggleDisplay] = useState(true);
   const value = useContext(AppContext);
   console.log(value);
   return (
     <div className='navbar'>
+      {openProfileOptions && (
+        <ProfileOptions
+          closeForm={() => {
+            setOpenProfileOptions(false);
+          }}
+        />
+      )}
       {openNotifications && (
         <Notifications
           closeNotifications={() => {
@@ -77,12 +86,14 @@ const Navbar = () => {
             }}>
             <img src={bellTcon} className='navbar__icon' alt='search' />
           </div>
-          <Link
-            to='/profile'
+          <div
+            onClick={() => {
+              setOpenProfileOptions(true);
+            }}
             className='navbar__iconButton'
             style={{ marginRight: '5vw' }}>
             <img src={avatar} className='navbar__icon' alt='search' />
-          </Link>
+          </div>
         </div>
       )}
     </div>

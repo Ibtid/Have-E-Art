@@ -1,7 +1,5 @@
 import './App.css';
 import Navbar from './components/shared/Navbar/Navbar';
-import SecondaryNav from './components/shared/SecondaryNav/SecondaryNav';
-import Sidebar from './components/shared/Sidebar/Sidebar';
 import Home from './pages/Home/Home';
 import ProductDetails from './pages/ProductDetails/ProductDetails';
 import MyCollection from './pages/MyCollection/MyCollection';
@@ -15,7 +13,6 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import ComponentWithSideBar from './layouts/ComponentWithSideBar';
 import ComponentWithOutSideBar from './layouts/ComponentWithOutSideBar';
 import AddorEditProduct from './pages/AddorEditProduct/AddorEditProduct';
-import Notifications from './modals/Notifications/Notifications';
 import AppContextProvider from './hooks/AppContext';
 
 function App() {
