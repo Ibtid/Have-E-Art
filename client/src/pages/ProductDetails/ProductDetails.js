@@ -17,6 +17,7 @@ import { AppContext } from '../../hooks/AppContext';
 import { Link, useNavigate } from 'react-router-dom';
 
 import './ProductDetails.css';
+import CertifiedSellForm from '../../modals/CertifiedSellForm/CertifiedSellForm';
 
 const ProductDetails = () => {
   let navigate = useNavigate();
@@ -25,9 +26,20 @@ const ProductDetails = () => {
   const value = useContext(AppContext);
 
   const [listedForSale, setListedForSale] = useState(false);
+  const [openCertifiedModal, setOpenCertifiedModal] = useState(false);
 
   return (
     <div className='productDetails'>
+      {openCertifiedModal && (
+        <CertifiedSellForm
+          closeForm={() => {
+            setOpenCertifiedModal(false);
+          }}
+          setListedForSale={() => {
+            setListedForSale(true);
+          }}
+        />
+      )}
       <div className='productDetails__firstRow'>
         <div className='productDetails__name'>Color Brust</div>
         {value.owner && (
@@ -179,7 +191,8 @@ const ProductDetails = () => {
             <div
               className='productDetails__buy'
               onClick={() => {
-                setListedForSale(true);
+                setOpenCertifiedModal(true);
+                /*setListedForSale(true);*/
               }}>
               Sell Certified Copy
             </div>
