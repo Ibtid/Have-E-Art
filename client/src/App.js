@@ -18,7 +18,7 @@ import AddorEditProduct from './pages/AddorEditProduct/AddorEditProduct';
 import Notifications from './modals/Notifications/Notifications';
 
 function App() {
-  let signedIn = false;
+  let signedIn = true;
 
   return (
     <BrowserRouter>
@@ -104,9 +104,6 @@ function App() {
           />
           <Route path='/messages/:chatId' element={<Messages />} />
         </Routes>
-
-        {/*componentWithOutSideBar(<Checkout />)*/}
-        {/*componentWithOutSideBar(<CompleteCheckout />)*/}
       </div>
     </BrowserRouter>
   );
