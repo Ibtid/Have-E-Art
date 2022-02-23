@@ -97,6 +97,10 @@
   font-size: 1.1rem;
 }
 
+.chat__viewProfileButton {
+  text-decoration: none;
+}
+
 @media screen and (max-width: 1600px) {
   .chat__input {
     width: 80%;

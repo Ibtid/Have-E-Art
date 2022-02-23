@@ -5,6 +5,8 @@ import rightArrow from '../../../assets/icons/rightArrow.svg';
 import './Chat.css';
 import OneChat from './OneChat';
 
+import { Link } from 'react-router-dom';
+
 const Chat = () => {
   return (
     <div className='chat'>
@@ -13,10 +15,10 @@ const Chat = () => {
           <div className='chat__name'>Lukas Korel</div>
           <div className='chat__activeStatus'></div>
         </div>
-        <div className='chat__viewProfileButton'>
+        <Link to='/profile/1' className='chat__viewProfileButton'>
           <div className='chat__viewProfileText'>View Profile</div>
           <img src={rightArrow} alt='' />
-        </div>
+        </Link>
       </div>
       <div className='chat__scroll'>
         <OneChat />

@@ -8,10 +8,12 @@ import GalleryDetails from '../../components/MyCollection/GalleryDetail/GalleryD
 import GalleryIcon from '../../assets/icons/gallery-svgrepo-com 1.svg';
 import imageIcon from '../../assets/icons/imageIcon.svg';
 import { Link } from 'react-router-dom';
+import NewGroup from '../../modals/NewGroup/NewGroup';
 
 const MyCollection = () => {
   const [openGallery, setOpenGallery] = useState(false);
   const [navItem, setNavItem] = useState('bought');
+  const [openNewGroup, setOpenNewGroup] = useState(false);
   const [toggleDisplayfloatButton, setToggleDisplayfloatButton] =
     useState(false);
   const clickNav = (item) => {
@@ -23,6 +25,13 @@ const MyCollection = () => {
   ];
   return (
     <div className='myCollection'>
+      {openNewGroup && (
+        <NewGroup
+          closeForm={() => {
+            setOpenNewGroup(false);
+          }}
+        />
+      )}
       <div className='myCollection__navWithAddButton'>
         <div className='myCollection__nav'>
           <div
@@ -70,7 +79,11 @@ const MyCollection = () => {
         </div>
         {navItem === 'gallery' && (
           <div style={{ display: 'flex' }}>
-            <div className='myCollection__addButton'>
+            <div
+              className='myCollection__addButton'
+              onClick={() => {
+                setOpenNewGroup(true);
+              }}>
               <img src={plus} alt='+' />
               New Group
             </div>
@@ -132,14 +145,20 @@ const MyCollection = () => {
       )}
       {toggleDisplayfloatButton && (
         <>
-          <div className='myCollection__floatButton myCollection__galleryFloat'>
+          <Link
+            to='/product/add'
+            className='myCollection__floatButton myCollection__galleryFloat'>
             <img
               style={{ height: '1.5rem', width: '1.5rem' }}
               src={GalleryIcon}
               alt='+'
             />
-          </div>
-          <div className='myCollection__floatButton myCollectionGroupFloat'>
+          </Link>
+          <div
+            className='myCollection__floatButton myCollectionGroupFloat'
+            onClick={() => {
+              setOpenNewGroup(true);
+            }}>
             <img
               style={{ height: '1.5rem', width: '1.5rem' }}
               src={imageIcon}
