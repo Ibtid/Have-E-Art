@@ -19,7 +19,6 @@ import Notifications from './modals/Notifications/Notifications';
 import AppContextProvider from './hooks/AppContext';
 
 function App() {
-  let signedIn = true;
   return (
     <AppContextProvider>
       <BrowserRouter>
@@ -29,7 +28,7 @@ function App() {
             <Route
               path='/'
               element={
-                <ComponentWithSideBar signedIn={signedIn}>
+                <ComponentWithSideBar>
                   <Home />
                 </ComponentWithSideBar>
               }
@@ -37,7 +36,7 @@ function App() {
             <Route
               path='/:attribute'
               element={
-                <ComponentWithSideBar signedIn={signedIn}>
+                <ComponentWithSideBar>
                   <Home />
                 </ComponentWithSideBar>
               }
@@ -45,7 +44,7 @@ function App() {
             <Route
               path='/following'
               element={
-                <ComponentWithSideBar signedIn={signedIn}>
+                <ComponentWithSideBar>
                   <Following />
                 </ComponentWithSideBar>
               }
@@ -53,7 +52,7 @@ function App() {
             <Route
               path='/MyCollection'
               element={
-                <ComponentWithSideBar signedIn={signedIn}>
+                <ComponentWithSideBar>
                   <MyCollection />
                 </ComponentWithSideBar>
               }
@@ -90,7 +89,7 @@ function App() {
             <Route
               path='/profile'
               element={
-                <ComponentWithSideBar signedIn={signedIn}>
+                <ComponentWithSideBar>
                   <MyProfile />
                 </ComponentWithSideBar>
               }
@@ -98,7 +97,7 @@ function App() {
             <Route
               path='/profile/:id'
               element={
-                <ComponentWithSideBar signedIn={signedIn}>
+                <ComponentWithSideBar>
                   <UserProfile />
                 </ComponentWithSideBar>
               }

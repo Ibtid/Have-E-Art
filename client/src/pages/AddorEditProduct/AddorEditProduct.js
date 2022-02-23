@@ -16,7 +16,7 @@ const AddorEditProduct = (props) => {
       <div
         className='app__goback'
         onClick={() => {
-          history(`${window.location.replace(document.referrer)}`);
+          history(-1);
         }}>
         <img src={backIcon} />
         <div>Go back</div>
