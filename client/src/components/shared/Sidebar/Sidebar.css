@@ -122,7 +122,7 @@
     width: 100vw;
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: space-around;
     height: 4rem;
     position: fixed;
     bottom: 0rem;
@@ -130,7 +130,7 @@
   }
 
   .sidebar__item {
-    width: 2.5rem;
+    width: 16vw;
     display: flex;
     align-items: center;
     justify-content: center;

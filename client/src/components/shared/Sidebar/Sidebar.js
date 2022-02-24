@@ -266,8 +266,8 @@ const Sidebar = () => {
         to='/artist'
         className={
           selected === 'artist'
-            ? 'sidebar__listItem sidebar__active'
-            : 'sidebar__listItem'
+            ? 'sidebar__item sidebar__active'
+            : 'sidebar__item'
         }
         onClick={() => {
           setSelected('artist');
