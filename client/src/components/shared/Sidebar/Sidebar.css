@@ -1,3 +1,7 @@
+.sidebar__extended {
+  display: none;
+}
+
 .sidebar {
   height: calc(100vh - 4rem);
   width: 18rem;
@@ -165,5 +169,35 @@
 
   .sidebar__listItem:hover {
     background-color: var(--secondary);
+  }
+
+  .sidebar__extended {
+    color: var(--white);
+    height: 2rem;
+    width: 100vw;
+    position: fixed;
+    bottom: 4rem;
+    left: 0rem;
+    background-color: var(--secondary);
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    font-size: 0.75rem;
+  }
+
+  .sidebar__extendedlistItem {
+    text-decoration: none;
+    color: var(--secondaryWhite);
+    border: 1px solid var(--secondaryWhite);
+    padding: 0.1rem;
+    border-radius: 0.3rem;
+  }
+
+  .sidebar__extendeditem {
+    text-decoration: none;
+    border: 1px solid var(--accent);
+    padding: 0.1rem;
+    border-radius: 0.3rem;
   }
 }
