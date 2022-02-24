@@ -25,8 +25,74 @@ const Sidebar = () => {
 
   return (
     <>
+      <div
+        className={
+          selected === '3d' ||
+          selected === 'people' ||
+          selected === 'animal' ||
+          selected === 'scenery'
+            ? 'sidebar__extended'
+            : 'hide'
+        }>
+        <Link
+          to='/3d'
+          className={
+            selected === '3d'
+              ? 'sidebar__extendeditem sidebar__active'
+              : 'sidebar__extendedlistItem'
+          }
+          onClick={() => {
+            setSelected('3d');
+          }}>
+          3D
+        </Link>
+        <Link
+          to='/people'
+          className={
+            selected === 'people'
+              ? 'sidebar__extendeditem sidebar__active'
+              : 'sidebar__extendedlistItem'
+          }
+          onClick={() => {
+            setSelected('people');
+          }}>
+          People
+        </Link>
+        <Link
+          to='/animal'
+          className={
+            selected === 'animal'
+              ? 'sidebar__extendeditem sidebar__active'
+              : 'sidebar__extendedlistItem'
+          }
+          onClick={() => {
+            setSelected('animal');
+          }}>
+          Animal
+        </Link>
+        <Link
+          to='/scenery'
+          className={
+            selected === 'scenery'
+              ? 'sidebar__extendeditem sidebar__active'
+              : 'sidebar__extendedlistItem'
+          }
+          onClick={() => {
+            setSelected('scenery');
+          }}>
+          Scenery
+        </Link>
+      </div>
       {/*---------------------------------------------------------------------------------------*/}
-      <div className='sidebar__extended'>
+      <div
+        className={
+          selected === 'trending' ||
+          selected === 'lastest' ||
+          selected === 'topRated' ||
+          selected === 'topCollections'
+            ? 'sidebar__extended'
+            : 'hide'
+        }>
         <Link
           to='/trending'
           className={
