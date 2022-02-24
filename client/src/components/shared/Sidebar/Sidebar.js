@@ -87,7 +87,7 @@ const Sidebar = () => {
       <div
         className={
           selected === 'trending' ||
-          selected === 'lastest' ||
+          selected === 'latest' ||
           selected === 'topRated' ||
           selected === 'topCollections'
             ? 'sidebar__extended'
@@ -115,7 +115,7 @@ const Sidebar = () => {
           onClick={() => {
             setSelected('latest');
           }}>
-          Lastest
+          Latest
         </Link>
         <Link
           to='/topRated'
@@ -261,7 +261,7 @@ const Sidebar = () => {
             onClick={() => {
               setSelected('latest');
             }}>
-            Lastest
+            Latest
           </Link>
           <Link
             to='/topRated'
