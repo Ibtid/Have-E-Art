@@ -63,6 +63,17 @@
 .profile-info {
   width: 20rem;
 }
+
+.profile__Name{
+  display: flex;
+  align-items: center;
+
+  
+}
+.minimizeWidth{
+  width: 8rem;
+  margin-right: 2rem;
+}
 .profile-fullname-white {
   font-size: 24px;
   font-weight: bolder;
@@ -232,6 +243,14 @@
   .profile-button-group {
     margin-top: 4rem;
   }
+}
+
+.social__input{
+  background-color: var(--primary);
+  border: 1px solid var(--secondaryWhite);
+  border-radius: 5px;
+  color: var(--white);
+
 }
 
 @media screen and (max-width: 790px) {

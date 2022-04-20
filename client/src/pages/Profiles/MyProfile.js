@@ -17,10 +17,20 @@ import { AppContext } from '../../hooks/AppContext';
 const MyProfile = () => {
   const [isEditMode, setIsEditMode] = useState(false);
   const [showForm, setShowForm] = useState(false);
-  const value = useContext(AppContext)
-  const [user, setUser] = useState(value.user)
+
+  const value = useContext(AppContext);
+  const [user, setUser] = useState(value.user);
   const handleEdit = (e) => {
     setIsEditMode(!isEditMode);
+  };
+
+  const [formData, setFormData] = useState({
+    ...user,
+  });
+
+  const onChangeFormData = (e) => {
+    console.log(formData);
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   return (
@@ -58,15 +68,30 @@ const MyProfile = () => {
             }>
             {user.firstName} {user.lastName}
           </div>
-          <input
-            className={
-              isEditMode
-                ? 'profile-fullname-white profile-edit-border'
-                : 'profile-fullname-white hide'
-            }
-            type='text'
-            value={user.firstName + " " + user.lastName}
-          />
+          <div className={isEditMode ? 'profile__Name' : 'hide'}>
+            <input
+              className={
+                isEditMode
+                  ? 'profile-fullname-white minimizeWidth profile-edit-border '
+                  : 'profile-fullname-white hide'
+              }
+              type='text'
+              name='firstName'
+              onChange={onChangeFormData}
+              value={formData.firstName}
+            />
+
+            <input
+              className={
+                isEditMode
+                  ? 'profile-fullname-white minimizeWidth profile-edit-border'
+                  : 'profile-fullname-white hide'
+              }
+              name='lastName'
+              onChange={onChangeFormData}
+              value={formData.lastName}
+            />
+          </div>
           <div
             className={
               isEditMode
@@ -82,7 +107,9 @@ const MyProfile = () => {
                 : 'profile-username-accent hide'
             }
             type='text'
-            value={user.userName}
+            name='userName'
+            onChange={onChangeFormData}
+            value={formData.userName}
           />
           <div
             className={
@@ -101,13 +128,25 @@ const MyProfile = () => {
                 ? 'profile-user-bio profile-edit-border user-bio-margin'
                 : 'profile-user-bio hide'
             }
-            value='By developing ideas with my clients and adapting new content to their needs, which sometimes involves combining 3D,videos, and photos, I like to call myself a content creator.'
+            name='bio'
+            onChange={onChangeFormData}
+            value={formData.bio}
           />
         </div>
         <div className='profile-contact'>
           <div className='profile-contact-info'>
             <img className='profile-contact-info-icon' src={fb} alt='fb' />
-            <div className='profile-contact-info-text'>sananda05</div>
+            <div className={isEditMode ? 'hide' : 'profile-contact-info-text'}>
+              facebook
+            </div>
+            <input
+              name='socialLinks.facebook'
+              onChange={onChangeFormData}
+              className={
+                isEditMode ? 'profile-contact-info-text social__input' : 'hide'
+              }
+              value={formData.socialLinks.facebook}
+            />
             <img
               className={
                 isEditMode
@@ -120,7 +159,17 @@ const MyProfile = () => {
           </div>
           <div className='profile-contact-info'>
             <img className='profile-contact-info-icon' src={web} alt='web' />
-            <div className='profile-contact-info-text'>www.nafizimtiaz.com</div>
+            <div className={isEditMode ? 'hide' : 'profile-contact-info-text'}>
+              twitterlink
+            </div>
+            <input
+              name='socialLinks.twitter'
+              onChange={onChangeFormData}
+              className={
+                isEditMode ? 'profile-contact-info-text social__input' : 'hide'
+              }
+              value={formData.socialLinks.twitter}
+            />
             <img
               className={
                 isEditMode
@@ -137,7 +186,17 @@ const MyProfile = () => {
               src={instagram}
               alt='instagram'
             />
-            <div className='profile-contact-info-text'>nafiz6969</div>
+            <div className={isEditMode ? 'hide' : 'profile-contact-info-text'}>
+              instagramLink
+            </div>
+            <input
+              name='socialLinks.instagram'
+              onChange={onChangeFormData}
+              className={
+                isEditMode ? 'profile-contact-info-text social__input' : 'hide'
+              }
+              value={formData.socialLinks.instagram}
+            />
             <img
               className={
                 isEditMode
@@ -154,7 +213,17 @@ const MyProfile = () => {
               src={pinterest}
               alt='pinterest'
             />
-            <div className='profile-contact-info-text'>mafizimt29</div>
+            <div className={isEditMode ? 'hide' : 'profile-contact-info-text'}>
+              mafizimt29
+            </div>
+            <input
+              name='socialLinks.pinterest'
+              onChange={onChangeFormData}
+              className={
+                isEditMode ? 'profile-contact-info-text social__input' : 'hide'
+              }
+              value={formData.socialLinks.pinterest}
+            />
             <img
               className={
                 isEditMode
@@ -171,23 +240,8 @@ const MyProfile = () => {
       <div className='profile-grid-section2'>
         <div>
           <div className='profile-sub-heading'>Email</div>
-          <div
-            className={
-              isEditMode
-                ? 'profile-text-grey profile-edit-border hide'
-                : 'profile-text-grey'
-            }>
-            {user.email}
-          </div>
-          <input
-            className={
-              isEditMode
-                ? 'profile-text-grey profile-edit-border'
-                : 'profile-text-grey hide'
-            }
-            type='text'
-            value={user.email}
-          />
+          <div className='profile-text-grey'>{user.email}</div>
+
           <div className='profile-sub-heading'>Credetial information:</div>
           <div className='profile-payment-option'>
             <div className='profile-option-text-grey'>
