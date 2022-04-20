@@ -5,16 +5,17 @@ import { Grid, InputAdornment, IconButton } from '@material-ui/core';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 
-const Input = ({ name, handleChange, label, half, extra, autoFocus, type, handleShowPassword }) => (
+const Input = ({ name, handleChange, label, half, extra, autoFocus, type, handleShowPassword, value, onChange }) => (
   <Grid item xs={12} sm={half ? 6 : 12}>
     <input className={extra? "input-field input-extra":"input-field"}
       name={name}
-      onChange={handleChange}
+      onChange={onChange}
       variant="outlined"
       required
       placeholder={label}
       autoFocus={autoFocus}
       type={type}
+      value = {value}
       inputprops={name === 'password' ? {
         endAdornment: (
           <InputAdornment position="end">

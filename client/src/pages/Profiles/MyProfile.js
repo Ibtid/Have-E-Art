@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './MyProfile.css';
 
 import { useState } from 'react';
@@ -12,11 +12,13 @@ import edit from '../../assets/icons/edit.svg';
 import cancel from '../../assets/icons/cancel.svg';
 
 import CardDetails from '../../modals/CardDetails/CardDetails';
+import { AppContext } from '../../hooks/AppContext';
 
 const MyProfile = () => {
   const [isEditMode, setIsEditMode] = useState(false);
   const [showForm, setShowForm] = useState(false);
-
+  const value = useContext(AppContext)
+  const [user, setUser] = useState(value.user)
   const handleEdit = (e) => {
     setIsEditMode(!isEditMode);
   };
@@ -54,7 +56,7 @@ const MyProfile = () => {
                 ? 'profile-fullname-white profile-edit-border hide'
                 : 'profile-fullname-white'
             }>
-            Nafiz Imtiaz
+            {user.firstName} {user.lastName}
           </div>
           <input
             className={
@@ -63,7 +65,7 @@ const MyProfile = () => {
                 : 'profile-fullname-white hide'
             }
             type='text'
-            value='Sananda'
+            value={user.firstName + " " + user.lastName}
           />
           <div
             className={
@@ -71,7 +73,7 @@ const MyProfile = () => {
                 ? 'profile-username-accent profile-edit-border hide'
                 : 'profile-username-accent'
             }>
-            sananda05
+            {user.userName}
           </div>
           <input
             className={
@@ -80,7 +82,7 @@ const MyProfile = () => {
                 : 'profile-username-accent hide'
             }
             type='text'
-            value='sananda05'
+            value={user.userName}
           />
           <div
             className={
@@ -175,7 +177,7 @@ const MyProfile = () => {
                 ? 'profile-text-grey profile-edit-border hide'
                 : 'profile-text-grey'
             }>
-            nafizimtiaz@gmail.com
+            {user.email}
           </div>
           <input
             className={
@@ -184,7 +186,7 @@ const MyProfile = () => {
                 : 'profile-text-grey hide'
             }
             type='text'
-            value='nafizimtiaz@gmail.com'
+            value={user.email}
           />
           <div className='profile-sub-heading'>Credetial information:</div>
           <div className='profile-payment-option'>
