@@ -100,6 +100,7 @@
   width: 30rem;
   font-family: Montserrat;
   background-color: var(--primary);
+  border: none;
 }
 .user-bio-margin {
   margin-top: 1rem;
@@ -115,6 +116,9 @@
 .profile-contact-info-text {
   font-size: smaller;
   font-family: Montserrat;
+  background-color: var(--primary);
+  border: none;
+  color: var(--white)
 }
 .profile-contact-info-icon {
   padding: 10px;

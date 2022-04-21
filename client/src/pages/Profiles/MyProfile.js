@@ -33,15 +33,12 @@ const MyProfile = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
   const onChangeSocialLinks = (e) => {
-    console.log(formData)
-    const {socialLinks} = formData
-    socialLinks[e.target.name] = e.target.value
-    setFormData({...formData, socialLinks})
-    
-  }
-  const onClickSubmit = async () => {
-
-  }
+    console.log(formData);
+    const { socialLinks } = formData;
+    socialLinks[e.target.name] = e.target.value;
+    setFormData({ ...formData, socialLinks });
+  };
+  const onClickSubmit = async () => {};
   return (
     <div className='profile'>
       {showForm && (
@@ -101,58 +98,35 @@ const MyProfile = () => {
               value={formData.lastName}
             />
           </div>
-          <div
-            className={
-              isEditMode
-                ? 'profile-username-accent profile-edit-border hide'
-                : 'profile-username-accent'
-            }>
-            {user.userName}
-          </div>
-          <input
-            className={
-              isEditMode
-                ? 'profile-username-accent profile-edit-border'
-                : 'profile-username-accent hide'
-            }
-            type='text'
-            name='userName'
-            onChange={onChangeFormData}
-            value={formData.userName}
-          />
-          <div
-            placeholder='Put In Your Bio Here'
-            className={
-              isEditMode
-                ? 'profile-user-bio profile-edit-border hide'
-                : 'profile-user-bio'
-            }>
-            {formData.bio}
-          </div>
+          <div className='profile-username-accent'>{user.userName}</div>
+
           <textarea
+            placeholder='Put In Your Bio Here'
             rows='2'
             className={
               isEditMode
                 ? 'profile-user-bio profile-edit-border user-bio-margin'
-                : 'profile-user-bio hide'
+                : 'profile-user-bio '
             }
             name='bio'
             onChange={onChangeFormData}
             value={formData.bio}
+            disabled={!isEditMode}
           />
         </div>
         <div className='profile-contact'>
           <div className='profile-contact-info'>
             <img className='profile-contact-info-icon' src={fb} alt='fb' />
-            <div className={isEditMode ? 'hide' : 'profile-contact-info-text'}>
-              facebook
-            </div>
             <input
               name='facebook'
+              placeholder='Add your Facebook Link here'
               onChange={onChangeSocialLinks}
               className={
-                isEditMode ? 'profile-contact-info-text social__input' : 'hide'
+                isEditMode
+                  ? 'profile-contact-info-text social__input'
+                  : 'profile-contact-info-text'
               }
+              disabled={!isEditMode}
               value={formData.socialLinks.facebook}
             />
             <img
@@ -167,15 +141,17 @@ const MyProfile = () => {
           </div>
           <div className='profile-contact-info'>
             <img className='profile-contact-info-icon' src={web} alt='web' />
-            <div className={isEditMode ? 'hide' : 'profile-contact-info-text'}>
-              twitterlink
-            </div>
+
             <input
               name='twitter'
               onChange={onChangeSocialLinks}
+              placeholder='Add your twitter link here'
               className={
-                isEditMode ? 'profile-contact-info-text social__input' : 'hide'
+                isEditMode
+                  ? 'profile-contact-info-text social__input'
+                  : 'profile-contact-info-text'
               }
+              disabled={!isEditMode}
               value={formData.socialLinks.twitter}
             />
             <img
@@ -194,15 +170,17 @@ const MyProfile = () => {
               src={instagram}
               alt='instagram'
             />
-            <div className={isEditMode ? 'hide' : 'profile-contact-info-text'}>
-              instagramLink
-            </div>
+
             <input
               name='instagram'
               onChange={onChangeSocialLinks}
+              placeholder='Add your instagram link here'
               className={
-                isEditMode ? 'profile-contact-info-text social__input' : 'hide'
+                isEditMode
+                  ? 'profile-contact-info-text social__input'
+                  : 'profile-contact-info-text'
               }
+              disabled={!isEditMode}
               value={formData.socialLinks.instagram}
             />
             <img
@@ -221,15 +199,17 @@ const MyProfile = () => {
               src={pinterest}
               alt='pinterest'
             />
-            <div className={isEditMode ? 'hide' : 'profile-contact-info-text'}>
-              mafizimt29
-            </div>
+
             <input
               name='pinterest'
               onChange={onChangeSocialLinks}
+              placeholder='Add your pinterest link here'
               className={
-                isEditMode ? 'profile-contact-info-text social__input' : 'hide'
+                isEditMode
+                  ? 'profile-contact-info-text social__input'
+                  : 'profile-contact-info-text'
               }
+              disabled={!isEditMode}
               value={formData.socialLinks.pinterest}
             />
             <img
