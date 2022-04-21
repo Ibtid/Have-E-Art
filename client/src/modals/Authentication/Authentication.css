@@ -208,6 +208,12 @@
   cursor: pointer;
 }
 
+.form__error{
+  color: red;
+  font-size: 11px;
+  margin-top: -11px;
+}
+
 @media screen and (max-width: 1440px) {
   .modal-container {
     transform: scale(0.85);

@@ -14,6 +14,7 @@ import actions from "../../dispatcher/actions";
 function AuthForm(props) {
     const [showPassword, setShowPassword] = useState(false);
     const value = useContext(AppContext);
+    const [errors,setErrors] = useState();
     const [formData, setFormData] = useState({
         firstName: "",
         lastName: "",
@@ -28,6 +29,12 @@ function AuthForm(props) {
         let response = await dispatch(actions.signUp, {}, { ...formData });
         if(response.errors){
             console.log(response);
+            let allErrors={}
+            response.errors.forEach((error)=>{
+                allErrors[error.param]=error.msg
+            })
+            console.log(allErrors);
+            setErrors(allErrors)
             return
         }
         const token = response
@@ -139,6 +146,7 @@ function AuthForm(props) {
                                     onChange={onChangeFormData}
                                     value={formData.userName}
                                 />
+                                {errors.userName && <div className="form__error">{errors.userName}</div>}
                             </>
                         )}
 
