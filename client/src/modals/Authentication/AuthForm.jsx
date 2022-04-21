@@ -26,10 +26,17 @@ function AuthForm(props) {
         e.preventDefault();
         console.log(formData);
         let response = await dispatch(actions.signUp, {}, { ...formData });
-        console.log(response);
+        if(response.errors){
+            console.log(response);
+            return
+        }
         const token = response
         response = await dispatch(actions.getMyProfile, {}, {}, response)
         console.log(response)
+        if(response.errors){
+            console.log(response)
+            return
+        }
         value.setUser({...response, token})
         value.setLoggedIn(true);
         props.closeForm();
@@ -42,8 +49,17 @@ function AuthForm(props) {
             {},
             { email: formData.email, password: formData.password }
         );
+        if(response.errors){
+            console.log(response);
+            return
+        }
         const token = response
         response = await dispatch(actions.getMyProfile, {}, {}, response)
+        console.log(response)
+        if(response.errors){
+            console.log(response)
+            return
+        }
         value.setUser({...response, token})
         value.setLoggedIn(true);
         props.closeForm();

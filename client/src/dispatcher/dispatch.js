@@ -3,6 +3,7 @@ import axios from 'axios';
 const baseUrl = 'https://secret-dawn-63355.herokuapp.com';
 
 const dispatch = async (action, headerParams = {}, body = {}, token = '') => {
+ try{
   let axiosOptions = {};
   let response = {};
   switch (action) {
@@ -31,7 +32,15 @@ const dispatch = async (action, headerParams = {}, body = {}, token = '') => {
       response = await axios(axiosOptions);
       return response.data;
       break;
+    case actions.editProfile:
+      axiosOptions = getAxiosOptions("PUT", `${baseUrl}/user`, {}, token)
+      response = await axios(axiosOptions);
+      return response.data;
+      break
   }
+ }catch(err){
+    return err.response.data
+ }
 };
 
 const getAxiosOptions = (method, url, body, token) => {

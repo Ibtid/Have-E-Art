@@ -32,7 +32,16 @@ const MyProfile = () => {
     console.log(formData);
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+  const onChangeSocialLinks = (e) => {
+    console.log(formData)
+    const {socialLinks} = formData
+    socialLinks[e.target.name] = e.target.value
+    setFormData({...formData, socialLinks})
+    
+  }
+  const onClickSubmit = async () => {
 
+  }
   return (
     <div className='profile'>
       {showForm && (
@@ -112,14 +121,13 @@ const MyProfile = () => {
             value={formData.userName}
           />
           <div
+            placeholder='Put In Your Bio Here'
             className={
               isEditMode
                 ? 'profile-user-bio profile-edit-border hide'
                 : 'profile-user-bio'
             }>
-            By developing ideas with my clients and adapting new content to
-            their needs, which sometimes involves combining 3D, videos, and
-            photos, I like to call myself – a content creator.
+            {formData.bio}
           </div>
           <textarea
             rows='2'
@@ -140,8 +148,8 @@ const MyProfile = () => {
               facebook
             </div>
             <input
-              name='socialLinks.facebook'
-              onChange={onChangeFormData}
+              name='facebook'
+              onChange={onChangeSocialLinks}
               className={
                 isEditMode ? 'profile-contact-info-text social__input' : 'hide'
               }
@@ -163,8 +171,8 @@ const MyProfile = () => {
               twitterlink
             </div>
             <input
-              name='socialLinks.twitter'
-              onChange={onChangeFormData}
+              name='twitter'
+              onChange={onChangeSocialLinks}
               className={
                 isEditMode ? 'profile-contact-info-text social__input' : 'hide'
               }
@@ -190,8 +198,8 @@ const MyProfile = () => {
               instagramLink
             </div>
             <input
-              name='socialLinks.instagram'
-              onChange={onChangeFormData}
+              name='instagram'
+              onChange={onChangeSocialLinks}
               className={
                 isEditMode ? 'profile-contact-info-text social__input' : 'hide'
               }
@@ -217,8 +225,8 @@ const MyProfile = () => {
               mafizimt29
             </div>
             <input
-              name='socialLinks.pinterest'
-              onChange={onChangeFormData}
+              name='pinterest'
+              onChange={onChangeSocialLinks}
               className={
                 isEditMode ? 'profile-contact-info-text social__input' : 'hide'
               }
