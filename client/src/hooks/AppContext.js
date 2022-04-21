@@ -6,18 +6,14 @@ const AppContextProvider = (props) => {
     const [loggedIn, setLoggedIn] = useState(false);
     const [owner, setOwner] = useState(false);
     const [user, setUser] = useState(undefined);
-
-    let value = {
-        loggedIn: loggedIn,
-        setLoggedIn: setLoggedIn,
-        owner: owner,
-        setOwner: setOwner,
-        user: user,
-        setUser: setUser,
-    };
+    const [contextStore, setContextStore] = useState({
+        loggedIn: false,
+        owner: false,
+        user: undefined
+    })
 
     return (
-        <AppContext.Provider value={value}>
+        <AppContext.Provider value={{contextStore, setContextStore}}>
             {props.children}
         </AppContext.Provider>
     );
