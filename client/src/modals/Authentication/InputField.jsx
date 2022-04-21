@@ -5,9 +5,14 @@ import { Grid, InputAdornment, IconButton } from '@material-ui/core';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 
-const Input = ({ name, handleChange, label, half, extra, autoFocus, type, handleShowPassword, value, onChange }) => (
+const Input = ({ name, handleChange, label, half, extra, autoFocus, type, handleShowPassword, value, onChange, errors }) =>{
+  
+  let classNameWithExtra = extra? "input-field input-extra":"input-field"
+  classNameWithExtra = errors? errors[name]?`${classNameWithExtra} red__border`:classNameWithExtra :classNameWithExtra
+
+  return (
   <Grid item xs={12} sm={half ? 6 : 12}>
-    <input className={extra? "input-field input-extra":"input-field"}
+    <input className={classNameWithExtra}
       name={name}
       onChange={onChange}
       variant="outlined"
@@ -26,7 +31,8 @@ const Input = ({ name, handleChange, label, half, extra, autoFocus, type, handle
         ),
       } : null}
     />
+    {errors && errors[name] && <div className="form__error">{errors[name].msg}</div>}
   </Grid>
-);
+);}
 
 export default Input;

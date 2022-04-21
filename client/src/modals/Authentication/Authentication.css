@@ -211,7 +211,11 @@
 .form__error{
   color: red;
   font-size: 11px;
-  margin-top: -11px;
+  margin-bottom: -10px;
+}
+
+.red__border{
+  border: 1.5px solid red;
 }
 
 @media screen and (max-width: 1440px) {
@@ -289,5 +293,13 @@
   .sign_in-btn2 {
     font-size: 16px;
     height: 1.5rem;
+  }
+
+  .form__error{
+    color: red;
+    font-size: 11px;
+    margin-bottom: -22px;
+    margin-top: 25px;
+    margin-left: 13px;
   }
 }

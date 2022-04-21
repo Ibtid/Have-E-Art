@@ -14,7 +14,7 @@ import actions from "../../dispatcher/actions";
 function AuthForm(props) {
     const [showPassword, setShowPassword] = useState(false);
     const value = useContext(AppContext);
-    const [errors,setErrors] = useState();
+    const [errors,setErrors] = useState([]);
     const [formData, setFormData] = useState({
         firstName: "",
         lastName: "",
@@ -31,8 +31,11 @@ function AuthForm(props) {
             console.log(response);
             let allErrors={}
             response.errors.forEach((error)=>{
-                allErrors[error.param]=error.msg
+                allErrors[error.param]={msg: error.msg, param: error.param}
             })
+            if(formData.confirmPassword!==formData.password){
+                allErrors['confirmPassword']={msg:`Password doesn't match`, param:'confirmPassword'}
+            }
             console.log(allErrors);
             setErrors(allErrors)
             return
@@ -58,6 +61,15 @@ function AuthForm(props) {
         );
         if(response.errors){
             console.log(response);
+            let allErrors={}
+            response.errors.forEach((error)=>{
+                allErrors[error.param]={msg: error.msg, param: error.param}
+            })
+            if(formData.confirmPassword!==formData.password){
+                allErrors['confirmPassword']={msg:`Password doesn't match`, param:'confirmPassword'}
+            }
+            console.log(allErrors);
+            setErrors(allErrors)
             return
         }
         const token = response
@@ -129,24 +141,29 @@ function AuthForm(props) {
                                     name="firstName"
                                     label="First Name"
                                     half
+                                    errors={errors}
                                     onChange={onChangeFormData}
                                     value={formData.firstName}
                                 />
+                                
                                 <Input
                                     name="lastName"
                                     label="Last Name"
                                     half
                                     onChange={onChangeFormData}
                                     value={formData.lastName}
+                                    errors={errors}
                                 />
+                               
                                 <Input
                                     extra
                                     name="userName"
                                     label="userName"
                                     onChange={onChangeFormData}
                                     value={formData.userName}
+                                    errors={errors}
                                 />
-                                {errors.userName && <div className="form__error">{errors.userName}</div>}
+                               
                             </>
                         )}
 
@@ -157,7 +174,9 @@ function AuthForm(props) {
                             type="email"
                             onChange={onChangeFormData}
                             value={formData.email}
+                            errors={errors}
                         />
+                        
                         <Input
                             extra
                             name="password"
@@ -165,7 +184,9 @@ function AuthForm(props) {
                             type={showPassword ? "text" : "password"}
                             onChange={onChangeFormData}
                             value={formData.password}
+                            errors={errors}
                         />
+                        
                         {props.isSignup && (
                             <Input
                                 extra
@@ -174,6 +195,7 @@ function AuthForm(props) {
                                 type="password"
                                 onChange={onChangeFormData}
                                 value={formData.confirmPassword}
+                                errors={errors}
                             />
                         )}
                     </Grid>
