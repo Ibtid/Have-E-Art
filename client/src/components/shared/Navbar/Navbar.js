@@ -15,8 +15,7 @@ const Navbar = () => {
   const [openForm, setOpenForm] = useState(false);
   const [openProfileOptions, setOpenProfileOptions] = useState(false);
   const [toggleDisplay, setToggleDisplay] = useState(true);
-  const value = useContext(AppContext);
-  console.log(value);
+  const {contextStore} = useContext(AppContext);
   return (
     <div className='navbar'>
       {openProfileOptions && (
@@ -59,7 +58,7 @@ const Navbar = () => {
           <img src={searchIcon} alt='search' />
         </div>
       </div>
-      {!value.loggedIn && (
+      {!contextStore.loggedIn && (
         <div
           className={`navbar__authSection ${
             toggleDisplay ? '' : 'no__display'
@@ -73,7 +72,7 @@ const Navbar = () => {
           </div>
         </div>
       )}
-      {value.loggedIn && (
+      {contextStore.loggedIn && (
         <div
           className={`navbar__authSection navbar__flexRow ${
             toggleDisplay ? '' : 'no__display'

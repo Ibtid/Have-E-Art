@@ -15,7 +15,7 @@ import { useNavigate } from 'react-router-dom';
 
 const ProductShowcaseCard = () => {
   const imageArray = [image, image2, image3, image4];
-  const value = useContext(AppContext);
+  const {contextStore, setContextStore} = useContext(AppContext);
   let navigator = useNavigate();
 
   return (
@@ -23,7 +23,7 @@ const ProductShowcaseCard = () => {
       to='/product/1'
       className='productShowcaseCard'
       onClick={() => {
-        value.setOwner(false);
+        setContextStore({...contextStore, owner: false});
         navigator('/product/1');
       }}>
       <div className='productShowcaseCard__imageContainer'>

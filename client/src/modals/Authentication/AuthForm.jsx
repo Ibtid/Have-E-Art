@@ -13,8 +13,10 @@ import actions from "../../dispatcher/actions";
 
 function AuthForm(props) {
     const [showPassword, setShowPassword] = useState(false);
-    const value = useContext(AppContext);
+
+    const {contextStore, setContextStore} = useContext(AppContext);
     const [errors,setErrors] = useState([]);
+
     const [formData, setFormData] = useState({
         firstName: "",
         lastName: "",
@@ -47,8 +49,7 @@ function AuthForm(props) {
             console.log(response)
             return
         }
-        value.setUser({...response, token})
-        value.setLoggedIn(true);
+        setContextStore({...contextStore, user: {...response, token}, loggedIn: true})
         props.closeForm();
     };
     const onClickLogIn = async (e) => {
@@ -79,8 +80,7 @@ function AuthForm(props) {
             console.log(response)
             return
         }
-        value.setUser({...response, token})
-        value.setLoggedIn(true);
+        setContextStore({...contextStore, user: {...response, token}, loggedIn: true})
         props.closeForm();
     };
     const onChangeFormData = (e) => {
@@ -163,7 +163,7 @@ function AuthForm(props) {
                                     value={formData.userName}
                                     errors={errors}
                                 />
-                               
+
                             </>
                         )}
 

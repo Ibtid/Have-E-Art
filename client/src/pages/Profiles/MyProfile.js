@@ -17,16 +17,13 @@ import { AppContext } from '../../hooks/AppContext';
 const MyProfile = () => {
   const [isEditMode, setIsEditMode] = useState(false);
   const [showForm, setShowForm] = useState(false);
-
-  const value = useContext(AppContext);
-  const [user, setUser] = useState(value.user);
+  const {contextStore} = useContext(AppContext);
+  console.log(contextStore.user)
+  const {user} = contextStore
   const handleEdit = (e) => {
     setIsEditMode(!isEditMode);
   };
-
-  const [formData, setFormData] = useState({
-    ...user,
-  });
+  const [formData, setFormData] = useState({...user});
 
   const onChangeFormData = (e) => {
     console.log(formData);
@@ -39,6 +36,12 @@ const MyProfile = () => {
     setFormData({ ...formData, socialLinks });
   };
   const onClickSubmit = async () => {};
+  const onClickCancel = () => {
+    console.log("Hello From Cancel click")
+    setFormData({...contextStore.user})
+    handleEdit()
+    
+  }
   return (
     <div className='profile'>
       {showForm && (
@@ -72,7 +75,7 @@ const MyProfile = () => {
                 ? 'profile-fullname-white profile-edit-border hide'
                 : 'profile-fullname-white'
             }>
-            {user.firstName} {user.lastName}
+            {formData.firstName} {formData.lastName}
           </div>
           <div className={isEditMode ? 'profile__Name' : 'hide'}>
             <input
@@ -98,7 +101,7 @@ const MyProfile = () => {
               value={formData.lastName}
             />
           </div>
-          <div className='profile-username-accent'>{user.userName}</div>
+          <div className='profile-username-accent'>{formData.userName}</div>
 
           <textarea
             placeholder='Put In Your Bio Here'
@@ -228,7 +231,7 @@ const MyProfile = () => {
       <div className='profile-grid-section2'>
         <div>
           <div className='profile-sub-heading'>Email</div>
-          <div className='profile-text-grey'>{user.email}</div>
+          <div className='profile-text-grey'>{formData.email}</div>
 
           <div className='profile-sub-heading'>Credetial information:</div>
           <div className='profile-payment-option'>
@@ -275,7 +278,7 @@ const MyProfile = () => {
               ? 'profile-button-group'
               : 'profile-button-group profile-edit-mode'
           }>
-          <div className='profile-cancel-button' onClick={handleEdit}>
+          <div className='profile-cancel-button' onClick={onClickCancel}>
             Cancel
           </div>
           <div className='profile-save-button'>Save</div>

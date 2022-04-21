@@ -12,7 +12,7 @@ import { useNavigate } from 'react-router-dom';
 
 const ForSale = () => {
   const imageArray = [image, image2, image3, image4];
-  const value = useContext(AppContext);
+  const {contextStore, setContextStore} = useContext(AppContext);
   let navigator = useNavigate();
 
   return (
@@ -20,7 +20,7 @@ const ForSale = () => {
       to='/product/1'
       className='boughtCard'
       onClick={() => {
-        value.setOwner(true);
+        setContextStore({owner: true});
         navigator('/product/1');
       }}>
       <div className='bought__imageContainer'>

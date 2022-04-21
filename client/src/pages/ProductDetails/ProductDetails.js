@@ -23,7 +23,7 @@ const ProductDetails = () => {
   let navigate = useNavigate();
   const ratingArray = [1, 2, 3, 4, 5];
 
-  const value = useContext(AppContext);
+  const {contextStore} = useContext(AppContext);
 
   const [listedForSale, setListedForSale] = useState(false);
   const [openCertifiedModal, setOpenCertifiedModal] = useState(false);
@@ -42,7 +42,7 @@ const ProductDetails = () => {
       )}
       <div className='productDetails__firstRow'>
         <div className='productDetails__name'>Color Brust</div>
-        {value.owner && (
+        {contextStore.owner && (
           <Link to='/product/edit/1' className='productDetails__editButton'>
             <img src={EditIcon} alt='edit' />
           </Link>
@@ -159,7 +159,7 @@ const ProductDetails = () => {
         itself derives from a root that means to “join” or “fit together”.
       </div>
       {/*............................................................................................*/}
-      {!value.owner && (
+      {!contextStore.owner && (
         <div className='productDetails__absoluteSection'>
           <div className='productDetails__priceTag'>
             <div className='productDetails__priceText'>Price: </div>
@@ -178,7 +178,7 @@ const ProductDetails = () => {
         </div>
       )}
       {/*............................................................................................*/}
-      {value.owner && !listedForSale && (
+      {contextStore.owner && !listedForSale && (
         <div className='productDetails__sellButtonGroup'>
           <div className='productDetails__buyButtons'>
             <div
@@ -200,7 +200,7 @@ const ProductDetails = () => {
         </div>
       )}
       {/*............................................................................................*/}
-      {value.owner && listedForSale && (
+      {contextStore.owner && listedForSale && (
         <div className='productDetails__absoluteSection'>
           <div className='productDetails__priceTag'>
             <div className='productDetails__priceText'>Price: </div>

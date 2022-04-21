@@ -10,7 +10,7 @@ const ProfileOptions = (props) => {
   const ref = useRef();
   const [showForm, setShowForm] = useState(true);
   let navigate = useNavigate();
-  const value = useContext(AppContext);
+  const {contextStore, setContextStore} = useContext(AppContext);
 
   useEffect(() => {
     const checkIfClickedOutside = (e) => {
@@ -49,7 +49,7 @@ const ProfileOptions = (props) => {
             </div>
             <div
               onClick={() => {
-                value.setLoggedIn(false);
+                setContextStore({...contextStore, loggedIn: false})
                 props.closeForm();
                 navigate('/');
               }}
