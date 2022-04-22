@@ -15,40 +15,51 @@ import CardDetails from '../../modals/CardDetails/CardDetails';
 import { AppContext } from '../../hooks/AppContext';
 
 const MyProfile = () => {
-
   const [isEditMode, setIsEditMode] = useState(false);
   const [showForm, setShowForm] = useState(false);
-  const {contextStore} = useContext(AppContext);
-  const {user} = contextStore
-  console.log(user)
+  const { contextStore } = useContext(AppContext);
+  const { user } = contextStore;
+
   const handleEdit = (e) => {
     setIsEditMode(!isEditMode);
   };
+
   const [formData, setFormData] = useState({
     socialLinks: {
-
-    }
+      facebook: '',
+      instagram: '',
+      pinterest: '',
+      twitter: '',
+      youtube: '',
+    },
+    bio: '',
   });
+
   useEffect(() => {
-    setFormData({...contextStore.user})
-  },[])
+    setFormData({ ...contextStore.user });
+  }, []);
+
   const onChangeFormData = (e) => {
-    console.log(formData);
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+
   const onChangeSocialLinks = (e) => {
-    console.log(formData);
     const { socialLinks } = formData;
     socialLinks[e.target.name] = e.target.value;
     setFormData({ ...formData, socialLinks });
   };
+
   const onClickSubmit = async () => {};
+
   const onClickCancel = () => {
-    console.log("Hello From Cancel click")
-    setFormData({...contextStore.user})
-    handleEdit()
-    
-  }
+    let previousFormData = contextStore.user;
+
+    previousFormData.bio = contextStore.user.bio ? contextStore.user.bio : '';
+
+    setFormData(previousFormData);
+    handleEdit();
+  };
+
   return (
     <div className='profile'>
       {showForm && (
