@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import './MyProfile.css';
 
 import { useState } from 'react';
@@ -15,16 +15,23 @@ import CardDetails from '../../modals/CardDetails/CardDetails';
 import { AppContext } from '../../hooks/AppContext';
 
 const MyProfile = () => {
+
   const [isEditMode, setIsEditMode] = useState(false);
   const [showForm, setShowForm] = useState(false);
   const {contextStore} = useContext(AppContext);
-  console.log(contextStore.user)
   const {user} = contextStore
+  console.log(user)
   const handleEdit = (e) => {
     setIsEditMode(!isEditMode);
   };
-  const [formData, setFormData] = useState({...user});
+  const [formData, setFormData] = useState({
+    socialLinks: {
 
+    }
+  });
+  useEffect(() => {
+    setFormData({...contextStore.user})
+  },[])
   const onChangeFormData = (e) => {
     console.log(formData);
     setFormData({ ...formData, [e.target.name]: e.target.value });
