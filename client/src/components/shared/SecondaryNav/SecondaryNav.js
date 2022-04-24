@@ -55,7 +55,7 @@ const SecondaryNav = () => {
         <div className='secondaryNav__optionText'>Messages</div>
       </Link>
       <Link
-        to='/MyCollection'
+        to='/MyCollection/BoughtShowcase'
         className={
           selected.includes('MyCollection')
             ? 'secondaryNav__option accent__background'

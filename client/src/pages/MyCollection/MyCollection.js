@@ -1,23 +1,22 @@
 import React, { useState } from 'react';
-import BoughtCard from '../../components/cards/BoughtCard/BoughtCard';
-import ForSale from '../../components/cards/ForSale/ForSale';
-import Gallery from '../../components/cards/Gallery/Gallery';
 import plus from '../../assets/icons/plusIcon.svg';
 import './MyCollection.css';
 import GalleryDetails from '../../components/MyCollection/GalleryDetail/GalleryDetails';
 import GalleryIcon from '../../assets/icons/gallery-svgrepo-com 1.svg';
 import imageIcon from '../../assets/icons/imageIcon.svg';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import NewGroup from '../../modals/NewGroup/NewGroup';
 
-const MyCollection = () => {
+const MyCollection = (props) => {
+  let navigation = useNavigate();
   const [openGallery, setOpenGallery] = useState(false);
-  const [navItem, setNavItem] = useState('bought');
+  const [navItem, setNavItem] = useState('BoughtShowcase');
   const [openNewGroup, setOpenNewGroup] = useState(false);
   const [toggleDisplayfloatButton, setToggleDisplayfloatButton] =
     useState(false);
   const clickNav = (item) => {
     setNavItem(item);
+    navigation(`/MyCollection/${item}`);
   };
   const listingart = [
     1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
@@ -36,77 +35,76 @@ const MyCollection = () => {
         <div className='myCollection__nav'>
           <div
             className={
-              navItem === 'bought'
+              navItem === 'BoughtShowcase'
                 ? 'myCollection__navItem active'
                 : 'myCollection__navItem'
             }
             onClick={() => {
-              clickNav('bought');
+              clickNav('BoughtShowcase');
             }}>
             Bought
           </div>
           <div
             className={
-              navItem === 'sale'
+              navItem === 'ForSaleShowcase'
                 ? 'myCollection__navItem active'
                 : 'myCollection__navItem'
             }
             onClick={() => {
-              clickNav('sale');
+              clickNav('ForSaleShowcase');
             }}>
             For Sale
           </div>
           <div
             className={
-              navItem === 'gallery'
+              navItem === 'GalleryShowcase'
                 ? 'myCollection__navItem active'
                 : 'myCollection__navItem'
             }
             onClick={() => {
-              clickNav('gallery');
+              clickNav('GalleryShowcase');
             }}>
             Gallery
           </div>
           <div
             className={
-              navItem === 'owned'
+              navItem === 'OwnedShowcase'
                 ? 'myCollection__navItem active'
                 : 'myCollection__navItem'
             }
             onClick={() => {
-              clickNav('owned');
+              clickNav('OwnedShowcase');
             }}>
             Owned
           </div>
-          {navItem === 'bought' && (
+          {navItem === 'BoughtShowcase' && (
             <div className='myCollection__activeBarLeft'></div>
           )}
-          {navItem === 'sale' && (
+          {navItem === 'ForSaleShowcase' && (
             <div className='myCollection__activeBarMiddle'></div>
           )}
-          {navItem === 'gallery' && (
+          {navItem === 'GalleryShowcase' && (
             <div className='myCollection__activeBarRight'></div>
           )}
-          {navItem === 'owned' && (
+          {navItem === 'OwnedShowcase' && (
             <div className='myCollection__activeBarRightMost'></div>
           )}
         </div>
-        {navItem === 'gallery' && (
-          <div style={{ display: 'flex' }}>
-            <div
-              className='myCollection__addButton'
-              onClick={() => {
-                setOpenNewGroup(true);
-              }}>
-              <img src={plus} alt='+' />
-              New Gallery
-            </div>
-            <Link to='/product/add' className='myCollection__addButton'>
-              <img src={plus} alt='+' />
-              Add E-art
-            </Link>
+
+        <div style={{ display: 'flex' }}>
+          <div
+            className='myCollection__addButton'
+            onClick={() => {
+              setOpenNewGroup(true);
+            }}>
+            <img src={plus} alt='+' />
+            New Gallery
           </div>
-        )}
+          <Link to='/product/add' className='myCollection__addButton'>
+            <img src={plus} alt='+' />
+            Add E-art
+          </Link>
+        </div>
       </div>
       {openGallery ? (
         <GalleryDetails
@@ -115,48 +113,17 @@ const MyCollection = () => {
           }}
         />
       ) : (
-        <div className='myCollection__scroll'>
-          {navItem === 'gallery' && (
-            <div className=' gallery__rowGap'>
-              {listingart.map((a) => (
-                <Gallery
-                  openGallery={() => {
-                    setOpenGallery(true);
-                  }}
-                />
-              ))}
-            </div>
-          )}
+        <div className='myCollection__scroll'>{props.children}</div>
+      )}
 
-          {navItem === 'sale' && (
-            <div className='home__cardContainer'>
-              {listingart.map((a) => (
-                <ForSale />
-              ))}
-            </div>
-          )}
-          {navItem === 'bought' && (
-            <div className='home__cardContainer'>
-              {listingart.map((a) => (
-                <BoughtCard />
-              ))}
-            </div>
-          )}
-        </div>
-      )}
-      {navItem === 'gallery' && (
-        <div
-          className='myCollection__floatButton'
-          onClick={() => {
-            setToggleDisplayfloatButton(!toggleDisplayfloatButton);
-          }}>
-          <img
-            style={{ height: '1.5rem', width: '1.5rem' }}
-            src={plus}
-            alt='+'
-          />
-        </div>
-      )}
+      <div
+        className='myCollection__floatButton'
+        onClick={() => {
+          setToggleDisplayfloatButton(!toggleDisplayfloatButton);
+        }}>
+        <img style={{ height: '1.5rem', width: '1.5rem' }} src={plus} alt='+' />
+      </div>
+
       {toggleDisplayfloatButton && (
         <>
           <Link

@@ -37,11 +37,13 @@ const NewGroup = (props) => {
             onClick={() => {
               setShowForm(true);
             }}>
-            <div className='cardDetails__label'>Group Name:</div>
+            <div className='cardDetails__label'>Gallery Name:</div>
             <input
               className='cardDetails__inputBig'
               placeholder='eg. Abstract'
             />
+            <div className='newGroup__button'></div>
+            <div className='cardDetails__button'>Add New Gallery</div>
           </div>
         )}
       </div>
