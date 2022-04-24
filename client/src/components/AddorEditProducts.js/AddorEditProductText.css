@@ -110,7 +110,7 @@
 .addOrEditProductText__cancelButton {
   display: flex;
   align-items: center;
-
+  cursor: pointer;
   color: var(--inactive);
   height: 2rem;
   width: 6rem;
@@ -126,6 +126,7 @@
   width: 15rem;
   margin-right: 0.5rem;
   border-radius: 0.3rem;
+  cursor: pointer;
 }
 
 
