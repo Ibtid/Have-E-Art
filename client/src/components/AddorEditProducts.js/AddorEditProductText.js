@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './AddorEditProductText.css';
 import downArrow from '../../assets/icons/downArrow.svg';
 import dispatch from '../../dispatcher/dispatch';
@@ -15,8 +15,9 @@ const AddorEditProductText = (props) => {
     backgroundStory: '',
     videoLink: '',
     privacy: true,
-    gallery: '',
+    gallery: null,
   });
+  const [galleries, setGalleries] = useState([])
   const [showSpinner, setShowSpinner] = useState(false)
   const [showDropDown, setShowDropDown] = useState(false);
 
@@ -25,6 +26,7 @@ const AddorEditProductText = (props) => {
   };
 
   const onClickSubmit = async() => {
+    console.log(formData)
     setShowSpinner(true)
     if(!props.image){
       alert("please add image")
@@ -33,7 +35,12 @@ const AddorEditProductText = (props) => {
     }
     let data = new FormData()
     for (const props in formData){
-        data.append(props, formData[props])
+      if(props == "gallery"){
+        data.append(props, JSON.stringify(formData[props]))
+      }
+        else{
+          data.append(props, formData[props])
+        }
     }
     data.append("image", props.image, props.image.name)
     const response = await dispatch(actions.addEArt,{},data, contextStore.user.token)
@@ -45,14 +52,17 @@ const AddorEditProductText = (props) => {
     }
     navigate(-1)
   }
-  const DUMMY_GALLERY = [
-    'Abstract',
-    'Cartoons',
-    'Nature',
-    'Cars',
-    'SkyScapper',
-  ];
+  useEffect(() => {
+    (async () => {
+      const response = await dispatch(actions.getGalleries, {},{}, contextStore.user.token)
+      console.log(response)
+      if(response.errors){
+        return
+      }
+      setGalleries(response)
+    })()
 
+  },[])
   return (
     <div className='addOrEditProductText'>
       {showSpinner && <Spinkit />}
@@ -99,7 +109,7 @@ const AddorEditProductText = (props) => {
           setShowDropDown(!showDropDown);
         }}>
         <div className='addOrEditProductText__dropDownText'>
-          {formData.gallery ? formData.gallery : 'None Selected'}
+          {formData.gallery ? formData.gallery.name : 'None Selected'}
         </div>
         <img
           className={
@@ -113,15 +123,16 @@ const AddorEditProductText = (props) => {
       </div>
       {showDropDown && (
         <div className='addToGallery__dropDown'>
-          {DUMMY_GALLERY.map((gallery) => (
+          {galleries.map((gallery) => (
             <div
               className='addToGallery__options'
-              key={gallery}
+              key={gallery._id}
               onClick={() => {
+                console.log(gallery)
                 setFormData({ ...formData, gallery: gallery });
                 setShowDropDown(!showDropDown);
               }}>
-              {gallery}
+              {gallery.name}
             </div>
           ))}
         </div>
