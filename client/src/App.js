@@ -101,7 +101,6 @@ function App() {
               }
             />
             <Route path='/messages/:chatId' element={<Messages />} />
-            <Route path='/spinkit' element={<Spinkit />} />
           </Routes>
         </div>
       </BrowserRouter>

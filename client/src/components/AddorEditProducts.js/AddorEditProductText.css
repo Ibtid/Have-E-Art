@@ -66,8 +66,16 @@
   color: var(--secondaryWhite);
 }
 
+.addOrEditProductText__checkboxText:hover{
+  color: var(--accent)
+}
+
 .addOrEditProductText__checkboxMarginBottom {
   margin-bottom: 1.5rem;
+}
+
+.accent__background{
+  background:var(--accent)
 }
 
 .addOrEditProductText__smallInputGroup {
@@ -96,7 +104,7 @@
   display: flex;
   align-items: center;
   margin-top: 2rem;
-  margin-bottom: 2rem;
+  margin-bottom: 0rem;
 }
 
 .addOrEditProductText__cancelButton {
@@ -118,4 +126,64 @@
   width: 15rem;
   margin-right: 0.5rem;
   border-radius: 0.3rem;
+}
+
+
+.addToGallery__dropDown {
+  position: absolute;
+  top: 10;
+  right: 10;
+  max-height: 100px;
+  width: 20rem;
+  border: 1px 1px 1px 1px solid var(--secondaryWhite);
+  overflow-y: scroll;
+  z-index: 12;
+  background-color: var(--primary);
+  color: var(--white);
+  font-family: 'Montserrat', sans-serif;
+  border-radius: 1vh;
+  margin-top: -1.5rem;
+}
+
+.addToGallery__dropDown::-webkit-scrollbar {
+  width: 6px;
+}
+.addToGallery__dropDown::-webkit-scrollbar-track {
+  background: #101522;
+}
+.addToGallery__dropDown::-webkit-scrollbar-thumb {
+  background: var(--secondaryWhite);
+  border-radius: 2.5vh;
+}
+
+.addToGallery__options {
+  height: 2rem;
+  background-color: var(--secondary);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  font-family: 'Montserrat', sans-serif;
+  margin-top: 1vh;
+  padding: 1vh 1vw 1vh 1vw;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  border-radius: 0.3rem;
+}
+
+.addToGallery__options:hover {
+  background-color: var(--accent);
+}
+
+.rotate180 {
+  -webkit-transform:rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+
+@media  screen and (max-width:600px){
+  .addOrEditProductText__buttonGroup {
+    margin-bottom: 2rem;
+  }
 }

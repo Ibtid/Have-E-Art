@@ -67,6 +67,17 @@ const MyCollection = () => {
             }}>
             Gallery
           </div>
+          <div
+            className={
+              navItem === 'owned'
+                ? 'myCollection__navItem active'
+                : 'myCollection__navItem'
+            }
+            onClick={() => {
+              clickNav('owned');
+            }}>
+            Owned
+          </div>
           {navItem === 'bought' && (
             <div className='myCollection__activeBarLeft'></div>
           )}
@@ -75,6 +86,9 @@ const MyCollection = () => {
           )}
           {navItem === 'gallery' && (
             <div className='myCollection__activeBarRight'></div>
+          )}
+          {navItem === 'owned' && (
+            <div className='myCollection__activeBarRightMost'></div>
           )}
         </div>
         {navItem === 'gallery' && (
@@ -85,11 +99,11 @@ const MyCollection = () => {
                 setOpenNewGroup(true);
               }}>
               <img src={plus} alt='+' />
-              New Group
+              New Gallery
             </div>
             <Link to='/product/add' className='myCollection__addButton'>
               <img src={plus} alt='+' />
-              Add Gallery
+              Add E-art
             </Link>
           </div>
         )}
