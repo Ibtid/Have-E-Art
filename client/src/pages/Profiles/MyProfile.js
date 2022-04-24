@@ -24,21 +24,9 @@ const MyProfile = () => {
     setIsEditMode(!isEditMode);
   };
 
-  const [formData, setFormData] = useState({
-    socialLinks: {
-      facebook: '',
-      instagram: '',
-      pinterest: '',
-      twitter: '',
-      youtube: '',
-    },
-    bio: '',
-  });
+  const [formData, setFormData] = useState(JSON.parse(localStorage.getItem("user")));
 
-  useEffect(() => {
-    setFormData({ ...contextStore.user });
-  }, []);
-
+ 
   const onChangeFormData = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -49,14 +37,13 @@ const MyProfile = () => {
     setFormData({ ...formData, socialLinks });
   };
 
-  const onClickSubmit = async () => {};
+  const onClickSubmit = async () => {
+    
+  };
 
   const onClickCancel = () => {
-    let previousFormData = contextStore.user;
-
-    previousFormData.bio = contextStore.user.bio ? contextStore.user.bio : '';
-
-    setFormData(previousFormData);
+    console.log(localStorage.getItem("user"))
+    setFormData(JSON.parse(localStorage.getItem("user")));
     handleEdit();
   };
 

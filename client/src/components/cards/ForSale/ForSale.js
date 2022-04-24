@@ -20,7 +20,7 @@ const ForSale = () => {
       to='/product/1'
       className='boughtCard'
       onClick={() => {
-        setContextStore({owner: true});
+        setContextStore({...contextStore, owner: true});
         navigator('/product/1');
       }}>
       <div className='bought__imageContainer'>
