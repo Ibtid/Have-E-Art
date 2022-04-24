@@ -16,6 +16,7 @@ import { AppContext } from '../../hooks/AppContext';
 import actions from '../../dispatcher/actions';
 import dispatch from '../../dispatcher/dispatch';
 import { useNavigate } from 'react-router-dom';
+import Spinkit from '../../modals/Spinkit/Spinkit';
 
 const MyProfile = () => {
   const [isEditMode, setIsEditMode] = useState(false);
@@ -25,7 +26,7 @@ const MyProfile = () => {
   const handleEdit = (e) => {
     setIsEditMode(!isEditMode);
   };
-
+  const [showSpinner, setShowSpinner] = useState(false)
   const [formData, setFormData] = useState(JSON.parse(localStorage.getItem("user")));
 
  
@@ -40,6 +41,7 @@ const MyProfile = () => {
   };
 
   const onClickSubmit = async () => {
+    setShowSpinner(true)
     const response = await dispatch(actions.editProfile,{}, {firstName: formData.firstName, lastName: formData.lastName, bio: formData.bio, socialLinks: formData.socialLinks}, contextStore.user.token)
     console.log(response)
     if(response.errors){
@@ -52,7 +54,7 @@ const MyProfile = () => {
     localStorage.setItem("user", JSON.stringify(user))
     setFormData(JSON.parse(localStorage.getItem("user")));
     handleEdit();
-    
+    setShowSpinner(false)
   };
 
   const onClickCancel = () => {
@@ -69,6 +71,7 @@ const MyProfile = () => {
           }}
         />
       )}
+      {showSpinner && <Spinkit />}
       <div className='profile-head-section'>
         <div className='profile-heading'>Profile</div>
         <div
