@@ -13,8 +13,12 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import ComponentWithSideBar from './layouts/ComponentWithSideBar';
 import ComponentWithOutSideBar from './layouts/ComponentWithOutSideBar';
 import AddorEditProduct from './pages/AddorEditProduct/AddorEditProduct';
+
 import { useContext, useEffect } from 'react';
 import { AppContext } from './hooks/AppContext';
+
+import Spinkit from './modals/Spinkit/Spinkit';
+
 
 function App() {
   const {contextStore, setContextStore} = useContext(AppContext)
@@ -107,6 +111,7 @@ function App() {
               }
             />
             <Route path='/messages/:chatId' element={<Messages />} />
+            <Route path='/spinkit' element={<Spinkit />} />
           </Routes>
         </div>
       </BrowserRouter>

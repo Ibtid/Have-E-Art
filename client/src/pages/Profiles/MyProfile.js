@@ -38,12 +38,13 @@ const MyProfile = () => {
   };
 
   const onClickSubmit = async () => {
-    
+
   };
 
   const onClickCancel = () => {
     console.log(localStorage.getItem("user"))
     setFormData(JSON.parse(localStorage.getItem("user")));
+
     handleEdit();
   };
 
