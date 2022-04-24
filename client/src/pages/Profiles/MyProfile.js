@@ -13,32 +13,23 @@ import cancel from '../../assets/icons/cancel.svg';
 
 import CardDetails from '../../modals/CardDetails/CardDetails';
 import { AppContext } from '../../hooks/AppContext';
+import actions from '../../dispatcher/actions';
+import dispatch from '../../dispatcher/dispatch';
+import { useNavigate } from 'react-router-dom';
+import Spinkit from '../../modals/Spinkit/Spinkit';
 
 const MyProfile = () => {
   const [isEditMode, setIsEditMode] = useState(false);
   const [showForm, setShowForm] = useState(false);
-  const { contextStore } = useContext(AppContext);
-  const { user } = contextStore;
-
+  const { contextStore, setContextStore } = useContext(AppContext);
+  const navigate = useNavigate()
   const handleEdit = (e) => {
     setIsEditMode(!isEditMode);
   };
+  const [showSpinner, setShowSpinner] = useState(false)
+  const [formData, setFormData] = useState(JSON.parse(localStorage.getItem("user")));
 
-  const [formData, setFormData] = useState({
-    socialLinks: {
-      facebook: '',
-      instagram: '',
-      pinterest: '',
-      twitter: '',
-      youtube: '',
-    },
-    bio: '',
-  });
-
-  useEffect(() => {
-    setFormData({ ...contextStore.user });
-  }, []);
-
+ 
   const onChangeFormData = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -49,13 +40,25 @@ const MyProfile = () => {
     setFormData({ ...formData, socialLinks });
   };
 
-  const onClickSubmit = async () => {};
+  const onClickSubmit = async () => {
+    setShowSpinner(true)
+    const response = await dispatch(actions.editProfile,{}, {firstName: formData.firstName, lastName: formData.lastName, bio: formData.bio, socialLinks: formData.socialLinks}, contextStore.user.token)
+    console.log(response)
+    if(response.errors){
+      console.log(response.errors)
+      navigate("/profile")
+      return
+    }
+    const user = {...response, token: contextStore.user.token}
+    setContextStore({...contextStore, user})
+    localStorage.setItem("user", JSON.stringify(user))
+    setFormData(JSON.parse(localStorage.getItem("user")));
+    handleEdit();
+    setShowSpinner(false)
+  };
 
   const onClickCancel = () => {
-    let previousFormData = contextStore.user;
-    previousFormData.bio = contextStore.user.bio ? contextStore.user.bio : '';
-
-    setFormData(previousFormData);
+    setFormData(JSON.parse(localStorage.getItem("user")));
     handleEdit();
   };
 
@@ -68,6 +71,7 @@ const MyProfile = () => {
           }}
         />
       )}
+      {showSpinner && <Spinkit />}
       <div className='profile-head-section'>
         <div className='profile-heading'>Profile</div>
         <div
@@ -298,7 +302,7 @@ const MyProfile = () => {
           <div className='profile-cancel-button' onClick={onClickCancel}>
             Cancel
           </div>
-          <div className='profile-save-button'>Save</div>
+          <div className='profile-save-button' onClick={onClickSubmit}>Save</div>
         </div>
       </div>
     </div>

@@ -13,12 +13,22 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import ComponentWithSideBar from './layouts/ComponentWithSideBar';
 import ComponentWithOutSideBar from './layouts/ComponentWithOutSideBar';
 import AddorEditProduct from './pages/AddorEditProduct/AddorEditProduct';
-import AppContextProvider from './hooks/AppContext';
+
+import { useContext, useEffect } from 'react';
+import { AppContext } from './hooks/AppContext';
+
 import Spinkit from './modals/Spinkit/Spinkit';
 
+
 function App() {
+  const {contextStore, setContextStore} = useContext(AppContext)
+  useEffect(() => {
+    if(localStorage.getItem("user")){
+      console.log(localStorage.getItem("user"))
+      setContextStore({...contextStore, loggedIn: true, user: JSON.parse(localStorage.getItem("user"))})
+    }
+  },[])
   return (
-    <AppContextProvider>
       <BrowserRouter>
         <div className='App'>
           <Navbar />
@@ -104,7 +114,7 @@ function App() {
           </Routes>
         </div>
       </BrowserRouter>
-    </AppContextProvider>
+    
   );
 }
 

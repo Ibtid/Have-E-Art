@@ -49,6 +49,7 @@ const ProfileOptions = (props) => {
             </div>
             <div
               onClick={() => {
+                localStorage.removeItem("user")
                 setContextStore({...contextStore, loggedIn: false})
                 props.closeForm();
                 navigate('/');

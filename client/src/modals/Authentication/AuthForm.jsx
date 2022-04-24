@@ -53,7 +53,9 @@ function AuthForm(props) {
             console.log(response)
             return
         }
-        setContextStore({...contextStore, user: {...response, token}, loggedIn: true})
+        const user = {...response, token}
+        localStorage.setItem("user", JSON.stringify(user))
+        setContextStore({...contextStore, user, loggedIn: true})
         props.closeForm();
         setShowSpinner(false)
     };
@@ -87,7 +89,9 @@ function AuthForm(props) {
             console.log(response)
             return
         }
-        setContextStore({...contextStore, user: {...response, token}, loggedIn: true})
+        const user = {...response, token}
+        localStorage.setItem("user", JSON.stringify(user))
+        setContextStore({...contextStore, user, loggedIn: true})
         props.closeForm();
         setShowSpinner(false)
     };

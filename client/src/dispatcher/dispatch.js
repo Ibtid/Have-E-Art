@@ -1,6 +1,7 @@
 import actions from './actions';
 import axios from 'axios';
 const baseUrl = 'https://secret-dawn-63355.herokuapp.com';
+// const baseUrl = "http://localhost:5000"
 
 const dispatch = async (action, headerParams = {}, body = {}, token = '') => {
  try{
@@ -33,7 +34,7 @@ const dispatch = async (action, headerParams = {}, body = {}, token = '') => {
       return response.data;
       break;
     case actions.editProfile:
-      axiosOptions = getAxiosOptions("PUT", `${baseUrl}/user`, {}, token)
+      axiosOptions = getAxiosOptions("PUT", `${baseUrl}/user`, body, token)
       response = await axios(axiosOptions);
       return response.data;
       break
