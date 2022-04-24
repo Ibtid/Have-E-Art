@@ -14,6 +14,7 @@ import ComponentWithSideBar from './layouts/ComponentWithSideBar';
 import ComponentWithOutSideBar from './layouts/ComponentWithOutSideBar';
 import AddorEditProduct from './pages/AddorEditProduct/AddorEditProduct';
 import AppContextProvider from './hooks/AppContext';
+import Spinkit from './modals/Spinkit/Spinkit';
 
 function App() {
   return (
@@ -100,6 +101,7 @@ function App() {
               }
             />
             <Route path='/messages/:chatId' element={<Messages />} />
+            <Route path='/spinkit' element={<Spinkit />} />
           </Routes>
         </div>
       </BrowserRouter>

@@ -10,12 +10,15 @@ import { AppContext } from "../../hooks/AppContext.js";
 
 import "./Authentication.css";
 import actions from "../../dispatcher/actions";
+import Spinkit from "../Spinkit/Spinkit";
 
 function AuthForm(props) {
     const [showPassword, setShowPassword] = useState(false);
 
     const {contextStore, setContextStore} = useContext(AppContext);
     const [errors,setErrors] = useState([]);
+
+    const[showSpinner, setShowSpinner] = useState(false);
 
     const [formData, setFormData] = useState({
         firstName: "",
@@ -27,6 +30,7 @@ function AuthForm(props) {
     });
     const onClickSignUp = async (e) => {
         e.preventDefault();
+        setShowSpinner(true)
         console.log(formData);
         let response = await dispatch(actions.signUp, {}, { ...formData });
         if(response.errors){
@@ -51,9 +55,11 @@ function AuthForm(props) {
         }
         setContextStore({...contextStore, user: {...response, token}, loggedIn: true})
         props.closeForm();
+        setShowSpinner(false)
     };
     const onClickLogIn = async (e) => {
         e.preventDefault();
+        setShowSpinner(true)
         console.log(formData);
         let response = await dispatch(
             actions.login,
@@ -71,6 +77,7 @@ function AuthForm(props) {
             }
             console.log(allErrors);
             setErrors(allErrors)
+          
             return
         }
         const token = response
@@ -82,6 +89,7 @@ function AuthForm(props) {
         }
         setContextStore({...contextStore, user: {...response, token}, loggedIn: true})
         props.closeForm();
+        setShowSpinner(false)
     };
     const onChangeFormData = (e) => {
         console.log(formData);
@@ -89,6 +97,7 @@ function AuthForm(props) {
     };
     return (
         <div className="modal-container">
+            {showSpinner && <Spinkit/>}
             <div className="modal-paper">
                 {props.isSignup ? (
                     <div className="auth-btn-grid">
