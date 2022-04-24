@@ -10,7 +10,6 @@ import './AddorEditProduct.css';
 const AddorEditProduct = (props) => {
   let history = useNavigate();
   const [image, setImage] = useState(null)
-
   const onChangeInputPicture = (e) => {
     console.log(e.target.files)
     setImage(e.target.files[0])

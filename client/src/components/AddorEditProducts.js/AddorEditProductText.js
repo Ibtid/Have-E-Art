@@ -5,6 +5,7 @@ import dispatch from '../../dispatcher/dispatch';
 import actions from '../../dispatcher/actions';
 import { AppContext } from '../../hooks/AppContext';
 import { useNavigate } from 'react-router-dom';
+import Spinkit from '../../modals/Spinkit/Spinkit';
 const AddorEditProductText = (props) => {
   const navigate = useNavigate()
   const {contextStore, setContextStore} = useContext(AppContext)
@@ -16,7 +17,7 @@ const AddorEditProductText = (props) => {
     privacy: true,
     gallery: '',
   });
-
+  const [showSpinner, setShowSpinner] = useState(false)
   const [showDropDown, setShowDropDown] = useState(false);
 
   const onChangeFormData = (e) => {
@@ -24,8 +25,10 @@ const AddorEditProductText = (props) => {
   };
 
   const onClickSubmit = async() => {
+    setShowSpinner(true)
     if(!props.image){
       alert("please add image")
+      setShowSpinner(false)
       return
     }
     let data = new FormData()
@@ -37,6 +40,7 @@ const AddorEditProductText = (props) => {
     console.log(response)
     if(response.errors){
       alert(response.errors[0].msg)
+      setShowSpinner(false)
       return
     }
     navigate(-1)
@@ -51,6 +55,7 @@ const AddorEditProductText = (props) => {
 
   return (
     <div className='addOrEditProductText'>
+      {showSpinner && <Spinkit />}
       <div className='addOrEditProductText__inputLabel'>Title:</div>
       <input
         type='text'
