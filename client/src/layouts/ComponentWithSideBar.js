@@ -5,15 +5,15 @@ import { useContext } from 'react';
 import { AppContext } from '../hooks/AppContext';
 
 const ComponentWithSideBar = (props) => {
-  const value = useContext(AppContext);
+  const {contextStore} = useContext(AppContext);
   return (
     <div className='app_bodyWithSideBar'>
       <Sidebar />
       <div>
-        {value.loggedIn && <SecondaryNav />}
+        {contextStore.loggedIn && <SecondaryNav />}
         <div
           className={
-            value.loggedIn ? 'app__authenticated' : 'app__notAuthenticated'
+            contextStore.loggedIn ? 'app__authenticated' : 'app__notAuthenticated'
           }>
           {/*Change Component*/}
           {props.children}

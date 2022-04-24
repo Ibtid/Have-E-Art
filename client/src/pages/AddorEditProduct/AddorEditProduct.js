@@ -26,7 +26,7 @@ const AddorEditProduct = (props) => {
           {image && <img className='app__bigImage' src={image} alt='art' />}
           {!image && (
             <div className='addOrEditProduct__buttonGroup'>
-              <div className='addOrEditProduct__accentButton'>Choose File</div>
+              <label className='addOrEditProduct__accentButton'><input type={"file"} />Choose File</label>
               <div className='addOrEditProduct__buttonGroupText no_bold'>
                 or
               </div>
