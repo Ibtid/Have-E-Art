@@ -53,7 +53,6 @@ const MyProfile = () => {
 
   const onClickCancel = () => {
     let previousFormData = contextStore.user;
-
     previousFormData.bio = contextStore.user.bio ? contextStore.user.bio : '';
 
     setFormData(previousFormData);
