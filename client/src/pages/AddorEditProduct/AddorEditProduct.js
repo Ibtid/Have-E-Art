@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 import backIcon from '../../assets/icons/backIcon.svg';
 import AddorEditProductText from '../../components/AddorEditProducts.js/AddorEditProductText';
@@ -9,7 +9,13 @@ import './AddorEditProduct.css';
 
 const AddorEditProduct = (props) => {
   let history = useNavigate();
-  let image = false;
+  const [image, setImage] = useState(null)
+
+  const onChangeInputPicture = (e) => {
+    console.log(e.target.files)
+    setImage(e.target.files[0])
+  }
+
   return (
     <div className='app__scroll'>
       <SecondaryNav />
@@ -23,10 +29,10 @@ const AddorEditProduct = (props) => {
       </div>
       <div className='app__bigImageComponent'>
         <div className='app__bigImageContainer'>
-          {image && <img className='app__bigImage' src={image} alt='art' />}
+          {image && <img className='app__bigImage' src={URL.createObjectURL(image)} alt='art' />}
           {!image && (
             <div className='addOrEditProduct__buttonGroup'>
-              <label className='addOrEditProduct__accentButton'><input type={"file"} />Choose File</label>
+              <label className='addOrEditProduct__accentButton'><input type={"file"} onChange = {onChangeInputPicture} accept = {"image/*"}/>Choose File</label>
               <div className='addOrEditProduct__buttonGroupText no_bold'>
                 or
               </div>
@@ -37,7 +43,7 @@ const AddorEditProduct = (props) => {
           )}
         </div>
         <div className='app__bigImageText'>
-          <AddorEditProductText />
+          <AddorEditProductText image = {image}/>
         </div>
       </div>
     </div>

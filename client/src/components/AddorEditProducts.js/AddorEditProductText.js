@@ -1,7 +1,13 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import './AddorEditProductText.css';
 import downArrow from '../../assets/icons/downArrow.svg';
-const AddorEditProductText = () => {
+import dispatch from '../../dispatcher/dispatch';
+import actions from '../../dispatcher/actions';
+import { AppContext } from '../../hooks/AppContext';
+import { useNavigate } from 'react-router-dom';
+const AddorEditProductText = (props) => {
+  const navigate = useNavigate()
+  const {contextStore, setContextStore} = useContext(AppContext)
   const [formData, setFormData] = useState({
     title: '',
     description: '',
@@ -17,6 +23,24 @@ const AddorEditProductText = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  const onClickSubmit = async() => {
+    if(!props.image){
+      alert("please add image")
+      return
+    }
+    let data = new FormData()
+    for (const props in formData){
+        data.append(props, formData[props])
+    }
+    data.append("image", props.image, props.image.name)
+    const response = await dispatch(actions.addEArt,{},data, contextStore.user.token)
+    console.log(response)
+    if(response.errors){
+      alert(response.errors[0].msg)
+      return
+    }
+    navigate(-1)
+  }
   const DUMMY_GALLERY = [
     'Abstract',
     'Cartoons',
@@ -139,8 +163,10 @@ const AddorEditProductText = () => {
         <div className='addOrEditProductText__smallInputText'>USD</div>
   </div>*/}
       <div className='addOrEditProductText__buttonGroup'>
-        <div className='addOrEditProductText__cancelButton'>Cancel</div>
-        <div className='addOrEditProductText__submitButton'>Add to Gallery</div>
+        <div className='addOrEditProductText__cancelButton' onClick={() => {
+          navigate("/MyCollection")
+        }}>Cancel</div>
+        <div className='addOrEditProductText__submitButton' onClick={onClickSubmit}>Add to Gallery</div>
       </div>
     </div>
   );

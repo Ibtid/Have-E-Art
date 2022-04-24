@@ -38,6 +38,13 @@ const dispatch = async (action, headerParams = {}, body = {}, token = '') => {
       response = await axios(axiosOptions);
       return response.data;
       break
+    case actions.addEArt:
+      console.log(body)
+      axiosOptions = getAxiosOptions("POST", `${baseUrl}/eart`, body, token)
+      console.log(axiosOptions.data)
+      response = await axios(axiosOptions)
+      return response.data
+      break
   }
  }catch(err){
     return err.response.data
@@ -63,9 +70,7 @@ const getAxiosOptions = (method, url, body, token) => {
         method: 'POST',
         url,
         headers,
-        data: {
-          ...body,
-        },
+        data: body
       };
       break;
     case 'PUT':
