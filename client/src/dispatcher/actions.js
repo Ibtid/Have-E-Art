@@ -6,7 +6,8 @@ const actions = {
     addEArt: "ADDEART",
     addGallery: "ADDGALLERY",
     getGalleries: "GETGALLERY",
-    getOwnedEarts: "GETOWNEDEARTS"
+    getOwnedEarts: "GETOWNEDEARTS",
+    uploadProfileImage: "UPLOADPROFILEIMAGE"
 }
 
 export default actions
