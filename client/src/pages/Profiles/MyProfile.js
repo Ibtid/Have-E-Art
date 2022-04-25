@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
 import './MyProfile.css';
 
 import { useState } from 'react';
@@ -22,14 +22,29 @@ const MyProfile = () => {
   const [isEditMode, setIsEditMode] = useState(false);
   const [showForm, setShowForm] = useState(false);
   const { contextStore, setContextStore } = useContext(AppContext);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const handleEdit = (e) => {
     setIsEditMode(!isEditMode);
   };
-  const [showSpinner, setShowSpinner] = useState(false)
-  const [formData, setFormData] = useState(JSON.parse(localStorage.getItem("user")));
+  const [showSpinner, setShowSpinner] = useState(false);
+  const [formData, setFormData] = useState(
+    JSON.parse(localStorage.getItem('user'))
+  );
 
- 
+  const [file, setFile] = useState(null);
+
+  const filePickerRef = useRef();
+
+  const pickImageHandler = () => {
+    filePickerRef.current.click();
+  };
+
+  const handleImage = async (event) => {
+    if (event.target.files && event.target.files.length === 1) {
+      setFile(event.target.files[0]);
+    }
+  };
+
   const onChangeFormData = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -41,26 +56,47 @@ const MyProfile = () => {
   };
 
   const onClickSubmit = async () => {
-    setShowSpinner(true)
-    const response = await dispatch(actions.editProfile,{}, {firstName: formData.firstName, lastName: formData.lastName, bio: formData.bio, socialLinks: formData.socialLinks}, contextStore.user.token)
-    console.log(response)
-    if(response.errors){
-      console.log(response.errors)
-      navigate("/profile")
-      return
+    setShowSpinner(true);
+    const response = await dispatch(
+      actions.editProfile,
+      {},
+      {
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        bio: formData.bio,
+        socialLinks: formData.socialLinks,
+      },
+      contextStore.user.token
+    );
+    console.log(response);
+    if (response.errors) {
+      console.log(response.errors);
+      navigate('/profile');
+      return;
     }
-    const user = {...response, token: contextStore.user.token}
-    setContextStore({...contextStore, user})
-    localStorage.setItem("user", JSON.stringify(user))
-    setFormData(JSON.parse(localStorage.getItem("user")));
+    const user = { ...response, token: contextStore.user.token };
+    setContextStore({ ...contextStore, user });
+    localStorage.setItem('user', JSON.stringify(user));
+    setFormData(JSON.parse(localStorage.getItem('user')));
     handleEdit();
-    setShowSpinner(false)
+    setShowSpinner(false);
   };
 
   const onClickCancel = () => {
-    setFormData(JSON.parse(localStorage.getItem("user")));
+    setFormData(JSON.parse(localStorage.getItem('user')));
     handleEdit();
   };
+
+  // useEffect(() => {
+  //   if (!file) {
+  //     return;
+  //   }
+  //   const fileReader = new FileReader();
+  //   fileReader.onload = () => {
+  //     setPreviewUrl(fileReader.result);
+  //   };
+  //   fileReader.readAsDataURL(file);
+  // }, [file]);
 
   return (
     <div className='profile'>
@@ -86,7 +122,27 @@ const MyProfile = () => {
       <div className='profile-grid'>
         <div className='profile-img-section'>
           <div className='profile-img-back'>
-            <img className='profile-img' src={userImg} alt='img' />
+            <img
+              className='profile-img'
+              src={file ? URL.createObjectURL(file) : userImg}
+              alt='img'
+            />
+            <div className='profile-img-upload-button'>
+              <div className='profile-img-button' onClick={pickImageHandler}>
+                Upload Image
+              </div>
+            </div>
+            <input
+              style={{ display: 'none' }}
+              ref={filePickerRef}
+              type='file'
+              className='profile-img__input'
+              id='image'
+              name='image'
+              placeholder='Choose the image'
+              accept='.jpg,.png,.jpeg'
+              onChange={handleImage}
+            />
           </div>
         </div>
         <div className='profile-info'>
@@ -302,7 +358,9 @@ const MyProfile = () => {
           <div className='profile-cancel-button' onClick={onClickCancel}>
             Cancel
           </div>
-          <div className='profile-save-button' onClick={onClickSubmit}>Save</div>
+          <div className='profile-save-button' onClick={onClickSubmit}>
+            Save
+          </div>
         </div>
       </div>
     </div>
