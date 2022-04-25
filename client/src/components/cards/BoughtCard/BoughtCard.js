@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 import { useContext } from 'react';
 import { AppContext } from '../../../hooks/AppContext';
 import { useNavigate } from 'react-router-dom';
+import getDate from '../../../utility/getDate';
 
 const BoughtCard = ({eart}) => {
   const imageArray = [image, image2, image3, image4];
@@ -36,7 +37,7 @@ const BoughtCard = ({eart}) => {
         <div className='bought__rowOne'>
           <div className='bought__title'>{eart.title}</div>
         </div>
-        <div className='bought__rowTwo'>uploaded at {new Date(eart.uploadDate).getDate()}th {new Date(eart.uploadDate).toLocaleString("default", {month: "long"})}, {new Date(eart.uploadDate).getFullYear()}</div>
+        <div className='bought__rowTwo'>uploaded at {getDate(eart.uploadDate)}</div>
         <div className='bought__rowThree'>
           <div className='bought__created'>
             <span>Created by :</span>

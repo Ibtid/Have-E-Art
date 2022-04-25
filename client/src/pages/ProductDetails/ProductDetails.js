@@ -18,6 +18,7 @@ import { Link, useNavigate } from 'react-router-dom';
 
 import './ProductDetails.css';
 import CertifiedSellForm from '../../modals/CertifiedSellForm/CertifiedSellForm';
+import getDate from '../../utility/getDate';
 
 const ProductDetails = () => {
   let navigate = useNavigate();
@@ -41,8 +42,8 @@ const ProductDetails = () => {
         />
       )}
       <div className='productDetails__firstRow'>
-        <div className='productDetails__name'>Color Brust</div>
-        {contextStore.owner && (
+        <div className='productDetails__name'>{contextStore.eart.title}</div>
+        {contextStore.user._id == contextStore.eart.owner._id && (
           <Link to='/product/edit/1' className='productDetails__editButton'>
             <img src={EditIcon} alt='edit' />
           </Link>
@@ -85,14 +86,14 @@ const ProductDetails = () => {
         </div>
       </div>
       <div className='productDetails__dateAndViews'>
-        <div className='productDetails__date'>16th February, 2022</div>
+        <div className='productDetails__date'>{getDate(contextStore.eart.uploadDate)}</div>
         <div className='productDetails__views'>
           <img src={views} className='productDetails__viewsicon' alt='views' />
           <div className='productDetails__viewsNumber'> 198,222</div>
         </div>
       </div>
       <div className='productDetails__fileTypeAndDimension'>
-        <div className='productDetails__fileType'>pdf</div>
+        <div className='productDetails__fileType'>{contextStore.eart.format}</div>
         <div className='productDetails__dimension'>
           <img src={dimension} alt='dimension' />
           <div className='productDetails__dimensionText'>1920 * 1080</div>
@@ -102,7 +103,7 @@ const ProductDetails = () => {
       <div className='productDetails__title'>Creator:</div>
       <div className='productDetails__personDescription'>
         <Link to='/profile/1' className='productDetails__personName'>
-          Don Carlo
+          {contextStore.eart.creator.firstName} {contextStore.eart.creator.lastName}
         </Link>
         <div className='productDetails__personSocial'>
           <img
@@ -125,7 +126,7 @@ const ProductDetails = () => {
       <div className='productDetails__title'>Owner:</div>
       <div className='productDetails__personDescription'>
         <Link to='/profile/1' className='productDetails__personName'>
-          Don Carlo
+          {contextStore.eart.owner.firstName} {contextStore.eart.owner.lastName}
         </Link>
         <div className='productDetails__personSocial'>
           <img
@@ -148,18 +149,14 @@ const ProductDetails = () => {
       {/*............................................................................................*/}
       <div className='productDetails__title'>Description:</div>
       <div className='productDetails__longText'>
-        Hard-working artisan, solitary genius, credentialed professional—the
-        image of the artist has changed radically over the centuries. What if
-        the latest model to emerge means the end of art as we have known it?
+        {contextStore.eart.description}
       </div>
       <div className='productDetails__title'>Background Story:</div>
       <div className='productDetails__longText'>
-        Before we thought of artists as geniuses, we thought of them as
-        artisans. The words, by no coincidence, are virtually the same. Art
-        itself derives from a root that means to “join” or “fit together”.
+        {contextStore.eart.backgroundStory}
       </div>
       {/*............................................................................................*/}
-      {!contextStore.owner && (
+      {!contextStore.user._id == contextStore.eart.owner._id && (
         <div className='productDetails__absoluteSection'>
           <div className='productDetails__priceTag'>
             <div className='productDetails__priceText'>Price: </div>
@@ -178,7 +175,7 @@ const ProductDetails = () => {
         </div>
       )}
       {/*............................................................................................*/}
-      {contextStore.owner && !listedForSale && (
+      {contextStore.user._id == contextStore.eart.owner._id && !listedForSale && (
         <div className='productDetails__sellButtonGroup'>
           <div className='productDetails__buyButtons'>
             <div
@@ -200,7 +197,7 @@ const ProductDetails = () => {
         </div>
       )}
       {/*............................................................................................*/}
-      {contextStore.owner && listedForSale && (
+      {contextStore.user._id == contextStore.eart.owner._id && listedForSale && (
         <div className='productDetails__absoluteSection'>
           <div className='productDetails__priceTag'>
             <div className='productDetails__priceText'>Price: </div>

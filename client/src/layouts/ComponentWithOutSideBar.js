@@ -8,11 +8,11 @@ import { AppContext } from '../hooks/AppContext';
 
 const ComponentWithOutSideBar = (props) => {
   let history = useNavigate();
-  const value = useContext(AppContext);
+  const {contextStore} = useContext(AppContext);
 
   return (
     <div className='app__scroll'>
-      {value.loggedIn && <SecondaryNav />}
+      {contextStore.loggedIn && <SecondaryNav />}
       {/*Change Component*/}
       <div
         className='app__goback'
@@ -24,7 +24,7 @@ const ComponentWithOutSideBar = (props) => {
       </div>
       <div className='app__bigImageComponent'>
         <div className='app__bigImageContainer'>
-          <img className='app__bigImage' src={image1} alt='art' />
+          <img className='app__bigImage' src={contextStore.eart.imgUrl} alt='art' />
         </div>
         <div className='app__bigImageText'>{props.children}</div>
       </div>

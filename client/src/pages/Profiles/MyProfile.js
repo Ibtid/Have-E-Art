@@ -47,6 +47,7 @@ const MyProfile = () => {
 
   const onChangeFormData = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+    
   };
 
   const onChangeSocialLinks = (e) => {

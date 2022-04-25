@@ -14,11 +14,11 @@ const EditProductText = () => {
   const [showSpinner, setShowSpinner] = useState(false);
 
   const [formData, setFormData] = useState({
-    description: 'I draw This',
-    backgroundStory: 'For no reason',
-    videoLink: 'https://youtu.be/VaExN-H5vCc',
-    privacy: true,
-    gallery: null,
+    description: contextStore.eart.description,
+    backgroundStory: contextStore.eart.backgroundStory,
+    videoLink: contextStore.eart.videoLink,
+    privacy: contextStore.eart.flag.private,
+    gallery: contextStore.eart.gallery,
   });
   const onChangeFormData = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -45,7 +45,7 @@ const EditProductText = () => {
     <div className='addOrEditProductText'>
       {showSpinner && <Spinkit />}
       <div className='addOrEditProductText__inputLabel'>Title:</div>
-      <div className='addOrEditProductText__title'>Abstract Inspire</div>
+      <div className='addOrEditProductText__title'>{contextStore.eart.title}</div>
       <div className='addOrEditProductText__inputLabel'>Description:</div>
       <textarea
         name='description'
