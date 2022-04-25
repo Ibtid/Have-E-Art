@@ -139,38 +139,57 @@ const MyProfile = () => {
         </div>
       </div>
       <div className='profile-grid'>
-        <div className='profile-img-section'>
-          <div className='profile-img-back'>
-            <img
-              className='profile-img'
-              src={file ? URL.createObjectURL(file) : contextStore.user.profileImage ? contextStore.user.profileImage : userImg}
-              alt='img'
-            />
-            <div className='profile-img-upload-button'>
-              <div className='profile-img-button' onClick={pickImageHandler}>
-                Upload Image
+        <div
+          className='profile-image-with-buttons'
+          style={{
+            display: 'flex',
+
+            justifyContent: 'center',
+            flexDirection: 'column',
+          }}>
+          <div className='profile-img-section'>
+            <div className='profile-img-back'>
+              <img
+                className='profile-img'
+                src={file ? URL.createObjectURL(file) : userImg}
+                alt='img'
+              />
+              <div className='profile-img-upload-button'>
+                <div className='profile-img-button' onClick={pickImageHandler}>
+                  Upload Image
+                </div>
               </div>
+              <input
+                style={{ display: 'none' }}
+                ref={filePickerRef}
+                type='file'
+                className='profile-img__input'
+                id='image'
+                name='image'
+                placeholder='Choose the image'
+                accept='.jpg,.png,.jpeg'
+                onChange={handleImage}
+              />
             </div>
-            <input
-              style={{ display: 'none' }}
-              ref={filePickerRef}
-              type='file'
-              className='profile-img__input'
-              id='image'
-              name='image'
-              placeholder='Choose the image'
-              accept='.jpg,.png,.jpeg'
-              onChange={handleImage}
-            />
+          </div>
+          <div style={{ marginTop: '2rem', marginBottom: '2rem' }}>
+            {file && (
+              <span
+                className='profile-img-cancel-button'
+                style={{ marginRight: '1rem' }}>
+                Cancel
+              </span>
+            )}
+            {file && (
+              <span
+                className='profile-img-save-button'
+                style={{ marginLeft: '1rem' }}>
+                Save
+              </span>
+            )}
           </div>
         </div>
-        {file &&<div className='profile-cancel-button' onClick={onClickCancelSaveImage}>
-            Cancel
-          </div>
-          }
-        {file && <div className='profile-save-button' onClick={onClickSaveImage}>
-            Save
-          </div>}
+
 
         <div className='profile-info'>
           <div
