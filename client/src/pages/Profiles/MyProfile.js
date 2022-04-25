@@ -151,7 +151,7 @@ const MyProfile = () => {
             <div className='profile-img-back'>
               <img
                 className='profile-img'
-                src={file ? URL.createObjectURL(file) : userImg}
+                src={file ? URL.createObjectURL(file) : contextStore.user.profileImage? contextStore.user.profileImage :userImg}
                 alt='img'
               />
               <div className='profile-img-upload-button'>
@@ -176,14 +176,18 @@ const MyProfile = () => {
             {file && (
               <span
                 className='profile-img-cancel-button'
-                style={{ marginRight: '1rem' }}>
+                style={{ marginRight: '1rem' }}
+                onClick = {onClickCancelSaveImage}
+                >
                 Cancel
               </span>
             )}
             {file && (
               <span
                 className='profile-img-save-button'
-                style={{ marginLeft: '1rem' }}>
+                style={{ marginLeft: '1rem' }}
+                onClick = {onClickSaveImage}
+                >
                 Save
               </span>
             )}
