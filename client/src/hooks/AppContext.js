@@ -9,7 +9,8 @@ const AppContextProvider = (props) => {
     const [contextStore, setContextStore] = useState({
         loggedIn: false,
         owner: false,
-        user: undefined
+        user: undefined,
+        eart: {}
     })
 
     return (

@@ -5,7 +5,8 @@ const actions = {
     editProfile: "EDIT_PROFILE",
     addEArt: "ADDEART",
     addGallery: "ADDGALLERY",
-    getGalleries: "GETGALLERY"
+    getGalleries: "GETGALLERY",
+    getOwnedEarts: "GETOWNEDEARTS"
 }
 
 export default actions
