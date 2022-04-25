@@ -1,14 +1,15 @@
 import React, { useContext, useEffect, useState } from 'react';
-import './AddorEditProductText.css';
+import './AddProductText.css';
 import downArrow from '../../assets/icons/downArrow.svg';
 import dispatch from '../../dispatcher/dispatch';
 import actions from '../../dispatcher/actions';
 import { AppContext } from '../../hooks/AppContext';
 import { useNavigate } from 'react-router-dom';
 import Spinkit from '../../modals/Spinkit/Spinkit';
-const AddorEditProductText = (props) => {
-  const navigate = useNavigate()
-  const {contextStore, setContextStore} = useContext(AppContext)
+
+const AddProductText = (props) => {
+  const navigate = useNavigate();
+  const { contextStore, setContextStore } = useContext(AppContext);
   const [formData, setFormData] = useState({
     title: '',
     description: '',
@@ -17,52 +18,61 @@ const AddorEditProductText = (props) => {
     privacy: true,
     gallery: null,
   });
-  const [galleries, setGalleries] = useState([])
-  const [showSpinner, setShowSpinner] = useState(false)
+  const [galleries, setGalleries] = useState([]);
+  const [showSpinner, setShowSpinner] = useState(false);
   const [showDropDown, setShowDropDown] = useState(false);
 
   const onChangeFormData = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const onClickSubmit = async() => {
-    console.log(formData)
-    setShowSpinner(true)
-    if(!props.image){
-      alert("please add image")
-      setShowSpinner(false)
-      return
+  const onClickSubmit = async () => {
+    console.log(formData);
+    setShowSpinner(true);
+    if (!props.image) {
+      alert('please add image');
+      setShowSpinner(false);
+      return;
     }
-    let data = new FormData()
-    for (const props in formData){
-      if(props == "gallery"){
-        data.append(props, JSON.stringify(formData[props]))
+    let data = new FormData();
+    for (const props in formData) {
+      if (props == 'gallery') {
+        data.append(props, JSON.stringify(formData[props]));
+      } else {
+        data.append(props, formData[props]);
       }
-        else{
-          data.append(props, formData[props])
-        }
     }
-    data.append("image", props.image, props.image.name)
-    const response = await dispatch(actions.addEArt,{},data, contextStore.user.token)
-    console.log(response)
-    if(response.errors){
-      alert(response.errors[0].msg)
-      setShowSpinner(false)
-      return
+    data.append('image', props.image, props.image.name);
+    const response = await dispatch(
+      actions.addEArt,
+      {},
+      data,
+      contextStore.user.token
+    );
+    console.log(response);
+    if (response.errors) {
+      alert(response.errors[0].msg);
+      setShowSpinner(false);
+      return;
     }
-    navigate(-1)
-  }
+    navigate(-1);
+  };
   useEffect(() => {
     (async () => {
-      const response = await dispatch(actions.getGalleries, {},{}, contextStore.user.token)
-      console.log(response)
-      if(response.errors){
-        return
+      const response = await dispatch(
+        actions.getGalleries,
+        {},
+        {},
+        contextStore.user.token
+      );
+      console.log(response);
+      if (response.errors) {
+        return;
       }
-      setGalleries(response)
-    })()
+      setGalleries(response);
+    })();
+  }, []);
 
-  },[])
   return (
     <div className='addOrEditProductText'>
       {showSpinner && <Spinkit />}
@@ -102,7 +112,7 @@ const AddorEditProductText = (props) => {
         onChange={onChangeFormData}
         className='addOrEditProductText__inputText'
       />
-      <div className='addOrEditProductText__inputLabel'>Group:</div>
+      <div className='addOrEditProductText__inputLabel'>Gallery:</div>
       <div
         className='addOrEditProductText__dropDown'
         onClick={() => {
@@ -128,7 +138,7 @@ const AddorEditProductText = (props) => {
               className='addToGallery__options'
               key={gallery._id}
               onClick={() => {
-                console.log(gallery)
+                console.log(gallery);
                 setFormData({ ...formData, gallery: gallery });
                 setShowDropDown(!showDropDown);
               }}>
@@ -164,28 +174,23 @@ const AddorEditProductText = (props) => {
           }></div>
         <div className='addOrEditProductText__checkboxText'>Public</div>
       </div>
-      {/*<div className='addOrEditProductText__inputLabel'>
-        Price of Original Piece
-      </div>
-      <div className='addOrEditProductText__smallInputGroup'>
-        <input className='addOrEditProductText__smallInput' type='text' />
-        <div className='addOrEditProductText__smallInputText'>USD</div>
-      </div>
-      <div className='addOrEditProductText__inputLabel'>
-        Price of Certified Copy
-      </div>
-      <div className='addOrEditProductText__smallInputGroup'>
-        <input className='addOrEditProductText__smallInput' type='text' />
-        <div className='addOrEditProductText__smallInputText'>USD</div>
-  </div>*/}
+
       <div className='addOrEditProductText__buttonGroup'>
-        <div className='addOrEditProductText__cancelButton' onClick={() => {
-          navigate("/MyCollection")
-        }}>Cancel</div>
-        <div className='addOrEditProductText__submitButton' onClick={onClickSubmit}>Add to Gallery</div>
+        <div
+          className='addOrEditProductText__cancelButton'
+          onClick={() => {
+            navigate('/MyCollection');
+          }}>
+          Cancel
+        </div>
+        <div
+          className='addOrEditProductText__submitButton'
+          onClick={onClickSubmit}>
+          Add to Gallery
+        </div>
       </div>
     </div>
   );
 };
 
-export default AddorEditProductText;
+export default AddProductText;

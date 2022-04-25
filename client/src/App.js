@@ -12,7 +12,7 @@ import CompleteCheckout from './pages/Checkout/CompleteCheckout';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import ComponentWithSideBar from './layouts/ComponentWithSideBar';
 import ComponentWithOutSideBar from './layouts/ComponentWithOutSideBar';
-import AddorEditProduct from './pages/AddorEditProduct/AddorEditProduct';
+import AddProduct from './pages/AddorEditProduct/AddProduct';
 import BoughtShowcase from './components/ShowCase/BoughtShowcase';
 
 import { useContext, useEffect } from 'react';
@@ -21,6 +21,7 @@ import { AppContext } from './hooks/AppContext';
 import ForSaleShowcase from './components/ShowCase/ForSaleShowcase';
 import GalleryShowcase from './components/ShowCase/GalleryShowcase';
 import OwnedShowcase from './components/ShowCase/OwnedShowcase';
+import EditProduct from './pages/AddorEditProduct/EditProduct';
 
 function App() {
   const { contextStore, setContextStore } = useContext(AppContext);
@@ -116,8 +117,9 @@ function App() {
             }
           />
 
-          <Route path='/product/add' element={<AddorEditProduct />} />
-          <Route path='/product/edit/:id' element={<AddorEditProduct />} />
+          <Route path='/product/add' element={<AddProduct />} />
+
+          <Route path='/product/edit/:id' element={<EditProduct />} />
 
           <Route
             path='/checkout'
@@ -127,6 +129,7 @@ function App() {
               </ComponentWithOutSideBar>
             }
           />
+
           <Route
             path='/checkoutComplete'
             element={
