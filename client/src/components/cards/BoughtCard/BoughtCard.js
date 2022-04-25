@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 import { useContext } from 'react';
 import { AppContext } from '../../../hooks/AppContext';
 import { useNavigate } from 'react-router-dom';
+import getDate from '../../../utility/getDate';
 
 const BoughtCard = () => {
   const imageArray = [image, image2, image3, image4];
@@ -33,7 +34,9 @@ const BoughtCard = () => {
         <div className='bought__rowOne'>
           <div className='bought__title'>Color Brust</div>
         </div>
+
         <div className='bought__rowTwo'>Bought at 16th February, 2022</div>
+
         <div className='bought__rowThree'>
           <div className='bought__created'>
             <span>Created by :</span>

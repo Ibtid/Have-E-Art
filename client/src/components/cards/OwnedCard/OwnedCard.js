@@ -3,6 +3,7 @@ import React from 'react';
 import { useContext } from 'react';
 import { AppContext } from '../../../hooks/AppContext';
 import { useNavigate } from 'react-router-dom';
+import getDate from '../../../utility/getDate';
 
 const OwnedCard = ({ eart }) => {
   const { contextStore, setContextStore } = useContext(AppContext);
@@ -24,11 +25,7 @@ const OwnedCard = ({ eart }) => {
           <div className='bought__title'>{eart.title}</div>
         </div>
         <div className='bought__rowTwo'>
-          uploaded at {new Date(eart.uploadDate).getDate()}th{' '}
-          {new Date(eart.uploadDate).toLocaleString('default', {
-            month: 'long',
-          })}
-          , {new Date(eart.uploadDate).getFullYear()}
+          Uploaded at {getDate(eart.uploadDate)}
         </div>
         <div className='bought__rowThree'>
           <div className='bought__created'>
