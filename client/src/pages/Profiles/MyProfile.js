@@ -47,7 +47,6 @@ const MyProfile = () => {
 
   const onChangeFormData = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
-    
   };
 
   const onChangeSocialLinks = (e) => {
@@ -146,6 +145,9 @@ const MyProfile = () => {
             />
           </div>
         </div>
+        {file && <div>Cancel</div>}
+        {file && <div>Save</div>}
+
         <div className='profile-info'>
           <div
             className={
