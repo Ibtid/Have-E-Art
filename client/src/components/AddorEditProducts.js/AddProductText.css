@@ -23,6 +23,20 @@
   color: var(--secondaryWhite);
 }
 
+.addOrEditProductText__title{
+  background-color: var(--primary);
+  outline: none;
+  color: var(--white);
+  font-family: Montserrat, sans-serif;
+  width: 80%;
+  height: 1rem;
+ 
+  border-radius: 0.3rem;
+  letter-spacing: 0.05rem;
+  margin-bottom: 1.5rem;
+  color: var(--secondaryWhite);
+}
+
 .extra__height {
   height: 5rem;
 }
