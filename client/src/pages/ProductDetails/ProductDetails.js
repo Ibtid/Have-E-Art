@@ -24,10 +24,12 @@ const ProductDetails = () => {
   let navigate = useNavigate();
   const ratingArray = [1, 2, 3, 4, 5];
 
-  const {contextStore} = useContext(AppContext);
+  const { contextStore } = useContext(AppContext);
 
   const [listedForSale, setListedForSale] = useState(false);
   const [openCertifiedModal, setOpenCertifiedModal] = useState(false);
+
+  const [original, setOriginal] = useState(false);
 
   return (
     <div className='productDetails'>
@@ -86,14 +88,18 @@ const ProductDetails = () => {
         </div>
       </div>
       <div className='productDetails__dateAndViews'>
-        <div className='productDetails__date'>{getDate(contextStore.eart.uploadDate)}</div>
+        <div className='productDetails__date'>
+          {getDate(contextStore.eart.uploadDate)}
+        </div>
         <div className='productDetails__views'>
           <img src={views} className='productDetails__viewsicon' alt='views' />
           <div className='productDetails__viewsNumber'> 198,222</div>
         </div>
       </div>
       <div className='productDetails__fileTypeAndDimension'>
-        <div className='productDetails__fileType'>{contextStore.eart.format}</div>
+        <div className='productDetails__fileType'>
+          {contextStore.eart.format}
+        </div>
         <div className='productDetails__dimension'>
           <img src={dimension} alt='dimension' />
           <div className='productDetails__dimensionText'>1920 * 1080</div>
@@ -103,7 +109,8 @@ const ProductDetails = () => {
       <div className='productDetails__title'>Creator:</div>
       <div className='productDetails__personDescription'>
         <Link to='/profile/1' className='productDetails__personName'>
-          {contextStore.eart.creator.firstName} {contextStore.eart.creator.lastName}
+          {contextStore.eart.creator.firstName}{' '}
+          {contextStore.eart.creator.lastName}
         </Link>
         <div className='productDetails__personSocial'>
           <img
@@ -182,6 +189,7 @@ const ProductDetails = () => {
               className='productDetails__buy'
               onClick={() => {
                 setListedForSale(true);
+                setOriginal(true);
               }}>
               Sell Original
             </div>
@@ -189,7 +197,7 @@ const ProductDetails = () => {
               className='productDetails__buy'
               onClick={() => {
                 setOpenCertifiedModal(true);
-                /*setListedForSale(true);*/
+                setOriginal(false);
               }}>
               Sell Certified Copy
             </div>
@@ -202,7 +210,9 @@ const ProductDetails = () => {
           <div className='productDetails__priceTag'>
             <div className='productDetails__priceText'>Price: </div>
             <div className='productDetails__priceNumber'>$ 10,000.00</div>
-            <div className='productDetails__priceTagSmallText'>$500/copy</div>
+            <div className='productDetails__priceTagSmallText'>
+              {original ? `$500/copy (original)` : `$500/copy (certified)`}
+            </div>
           </div>
           <div className='productDetails__piecesSold'>69/100 pieces sold</div>
           <div
