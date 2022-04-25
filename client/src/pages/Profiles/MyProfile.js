@@ -86,6 +86,25 @@ const MyProfile = () => {
     setFormData(JSON.parse(localStorage.getItem('user')));
     handleEdit();
   };
+  const onClickSaveImage = async() => {
+    setShowSpinner(true)
+    const data = new FormData()
+    data.append("image", file, file.name)
+    const response = await dispatch(actions.uploadProfileImage, {}, data, contextStore.user.token)
+    console.log(response)
+    if(response.errors){
+      return
+    }
+    const user = { ...response, token: contextStore.user.token };
+    setContextStore({ ...contextStore, user });
+    localStorage.setItem('user', JSON.stringify(user));
+    setFile(null)
+    setShowSpinner(false)
+  }
+  const onClickCancelSaveImage = () => {
+    console.log(file)
+    setFile(null)
+  }
 
   // useEffect(() => {
   //   if (!file) {
@@ -132,7 +151,7 @@ const MyProfile = () => {
             <div className='profile-img-back'>
               <img
                 className='profile-img'
-                src={file ? URL.createObjectURL(file) : userImg}
+                src={file ? URL.createObjectURL(file) : contextStore.user.profileImage? contextStore.user.profileImage :userImg}
                 alt='img'
               />
               <div className='profile-img-upload-button'>
@@ -157,19 +176,25 @@ const MyProfile = () => {
             {file && (
               <span
                 className='profile-img-cancel-button'
-                style={{ marginRight: '1rem' }}>
+                style={{ marginRight: '1rem' }}
+                onClick = {onClickCancelSaveImage}
+                >
                 Cancel
               </span>
             )}
             {file && (
               <span
                 className='profile-img-save-button'
-                style={{ marginLeft: '1rem' }}>
+                style={{ marginLeft: '1rem' }}
+                onClick = {onClickSaveImage}
+                >
                 Save
               </span>
             )}
           </div>
         </div>
+
+
         <div className='profile-info'>
           <div
             className={

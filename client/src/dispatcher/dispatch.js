@@ -58,6 +58,11 @@ const dispatch = async (action, headerParams = {}, body = {}, token = '') => {
       response = await axios(axiosOptions)
       return response.data
       break
+    case actions.uploadProfileImage:
+      axiosOptions = getAxiosOptions("PUT", `${baseUrl}/user/profileImage`, body, token)
+      response = await axios(axiosOptions)
+      return response.data  
+      break
   }
  }catch(err){
    console.log(err)
@@ -92,9 +97,7 @@ const getAxiosOptions = (method, url, body, token) => {
         method: 'PUT',
         url,
         headers,
-        data: {
-          ...body,
-        },
+        data: body,
       };
       break;
     case 'DELETE':

@@ -15,30 +15,50 @@ import ComponentWithOutSideBar from './layouts/ComponentWithOutSideBar';
 import AddProduct from './pages/AddorEditProduct/AddProduct';
 import BoughtShowcase from './components/ShowCase/BoughtShowcase';
 
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { AppContext } from './hooks/AppContext';
 
 import ForSaleShowcase from './components/ShowCase/ForSaleShowcase';
 import GalleryShowcase from './components/ShowCase/GalleryShowcase';
 import OwnedShowcase from './components/ShowCase/OwnedShowcase';
 import EditProduct from './pages/AddorEditProduct/EditProduct';
+import dispatch from './dispatcher/dispatch';
+import actions from './dispatcher/actions';
+import Spinkit from './modals/Spinkit/Spinkit';
 
 function App() {
+  const [showSpinner, setShowSpinner] = useState(false)
   const { contextStore, setContextStore } = useContext(AppContext);
   useEffect(() => {
-    if (localStorage.getItem('user')) {
-      console.log(localStorage.getItem('user'));
-      setContextStore({
-        ...contextStore,
-        loggedIn: true,
-        user: JSON.parse(localStorage.getItem('user')),
-      });
-    }
+    (async () => {
+      if (localStorage.getItem('user')) {
+        console.log(localStorage.getItem('user'))
+        setShowSpinner(true)
+        let user = JSON.parse(localStorage.getItem("user"))
+        const response = await dispatch(actions.getMyProfile, {}, {}, user.token)
+        console.log(response)
+        if(response.errors){
+          setShowSpinner(false)
+          return
+        }
+        user = {...response, token: user.token}
+        setContextStore({
+          ...contextStore,
+          loggedIn: true,
+          user,
+        });
+        localStorage.setItem("user", JSON.stringify(user))
+        setShowSpinner(false)
+      }
+    })()
   }, []);
   return (
     <BrowserRouter>
+    
       <div className='App'>
         <Navbar />
+        {console.log(showSpinner)}
+        {showSpinner && <Spinkit />}
         <Routes>
           <Route
             path='/'
