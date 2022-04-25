@@ -1,6 +1,5 @@
 import React from 'react';
 import BoughtCard from '../cards/BoughtCard/BoughtCard';
-import ForSale from '../cards/ForSale/ForSale';
 
 const BoughtShowcase = () => {
   const listingart = [
@@ -10,7 +9,7 @@ const BoughtShowcase = () => {
   return (
     <div className='home__cardContainer'>
       {listingart.map((a) => (
-        <ForSale />
+        <BoughtCard />
       ))}
     </div>
   );
