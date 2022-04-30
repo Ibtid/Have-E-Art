@@ -4,14 +4,12 @@ import HomePage from './pages/Home/HomePage';
 import ProductDetails from './pages/ProductDetails/ProductDetails';
 import MyCollection from './pages/MyCollection/MyCollection';
 import Checkout from './pages/Checkout/Checkout';
-import MyProfile from './components/Profiles/MyProfile';
-import UserProfile from './components/Profiles/UserProfile';
+
 import Following from './pages/Following/Following';
 import Messages from './pages/Messages/Messages';
 import CompleteCheckout from './pages/Checkout/CompleteCheckout';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import ComponentWithSideBar from './layouts/ComponentWithSideBar';
-import ComponentWithOutSideBar from './layouts/ComponentWithOutSideBar';
+
 import AddProduct from './pages/AddorEditProduct/AddProduct';
 import BoughtShowcase from './components/ShowCase/BoughtShowcase';
 

@@ -22,7 +22,7 @@ import getDate from '../../utility/getDate';
 import dispatch from '../../dispatcher/dispatch';
 import actions from '../../dispatcher/actions';
 import Spinkit from '../../modals/Spinkit/Spinkit';
-import ComponentWithOutSideBar from '../../layouts/ComponentWithOutSideBar';
+import BigImageComponent from '../../layouts/BigImageComponent';
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -57,7 +57,7 @@ const ProductDetails = () => {
     })();
   }, []);
   return (
-    <ComponentWithOutSideBar imgUrl={eart.imgUrl}>
+    <BigImageComponent imgUrl={eart.imgUrl}>
       <div className='productDetails'>
         {showSpinner && <Spinkit />}
         {openCertifiedModal && (
@@ -250,7 +250,7 @@ const ProductDetails = () => {
           </div>
         )}
       </div>
-    </ComponentWithOutSideBar>
+    </BigImageComponent>
   );
 };
 

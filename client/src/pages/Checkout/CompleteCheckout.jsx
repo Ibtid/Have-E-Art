@@ -2,11 +2,11 @@ import React from 'react';
 import './CompleteCheckout.css';
 
 import { Link } from 'react-router-dom';
-import ComponentWithOutSideBar from '../../layouts/ComponentWithOutSideBar';
+import BigImageComponent from '../../layouts/BigImageComponent';
 
 function CompleteCheckout() {
   return (
-    <ComponentWithOutSideBar>
+    <BigImageComponent>
       <div>
         <div className='checkout-complete-heading'>Congratulations!</div>
         <div className='checkout-complete-sub-heading'>
@@ -21,7 +21,7 @@ function CompleteCheckout() {
           </Link>
         </div>
       </div>
-    </ComponentWithOutSideBar>
+    </BigImageComponent>
   );
 }
 

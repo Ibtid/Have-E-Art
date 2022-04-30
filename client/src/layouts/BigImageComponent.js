@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import { AppContext } from '../hooks/AppContext';
 
-const ComponentWithOutSideBar = (props) => {
+const BigImageComponent = (props) => {
   let history = useNavigate();
   const { contextStore } = useContext(AppContext);
 
@@ -32,4 +32,4 @@ const ComponentWithOutSideBar = (props) => {
   );
 };
 
-export default ComponentWithOutSideBar;
+export default BigImageComponent;
