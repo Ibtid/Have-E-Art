@@ -8,7 +8,7 @@ import web from '../../assets/icons/web.svg';
 import instagram from '../../assets/icons/instagram.svg';
 import pinterest from '../../assets/icons/pinterest.svg';
 
-import ProductShowcaseCard from '../../components/cards/ProductShowcaseCard/ProductShowcaseCard';
+import ProductShowcaseCard from '../cards/ProductShowcaseCard/ProductShowcaseCard';
 
 const UserProfile = () => {
   const listingart = [

@@ -4,8 +4,8 @@ import HomePage from './pages/Home/HomePage';
 import ProductDetails from './pages/ProductDetails/ProductDetails';
 import MyCollection from './pages/MyCollection/MyCollection';
 import Checkout from './pages/Checkout/Checkout';
-import MyProfile from './pages/Profiles/MyProfile';
-import UserProfile from './pages/Profiles/UserProfile';
+import MyProfile from './components/Profiles/MyProfile';
+import UserProfile from './components/Profiles/UserProfile';
 import Following from './pages/Following/Following';
 import Messages from './pages/Messages/Messages';
 import CompleteCheckout from './pages/Checkout/CompleteCheckout';
@@ -25,6 +25,8 @@ import EditProduct from './pages/AddorEditProduct/EditProduct';
 import dispatch from './dispatcher/dispatch';
 import actions from './dispatcher/actions';
 import Spinkit from './modals/Spinkit/Spinkit';
+import MyProfilePage from './pages/Profiles/MyProfilePage';
+import UserProfilePage from './pages/Profiles/UserProfilePage';
 
 function App() {
   const [showSpinner, setShowSpinner] = useState(false);
@@ -133,22 +135,8 @@ function App() {
               </ComponentWithOutSideBar>
             }
           />
-          <Route
-            path='/profile'
-            element={
-              <ComponentWithSideBar>
-                <MyProfile />
-              </ComponentWithSideBar>
-            }
-          />
-          <Route
-            path='/profile/:id'
-            element={
-              <ComponentWithSideBar>
-                <UserProfile />
-              </ComponentWithSideBar>
-            }
-          />
+          <Route path='/profile' element={<MyProfilePage />} />
+          <Route path='/profile/:id' element={<UserProfilePage />} />
           <Route path='/messages/:chatId' element={<Messages />} />
         </Routes>
       </div>
