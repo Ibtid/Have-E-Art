@@ -71,42 +71,34 @@ function App() {
           <Route
             path='/MyCollection/BoughtShowcase'
             element={
-              <ComponentWithSideBar>
-                <MyCollection>
-                  <BoughtShowcase />
-                </MyCollection>
-              </ComponentWithSideBar>
+              <MyCollection>
+                <BoughtShowcase />
+              </MyCollection>
             }
           />
           <Route
             path='/MyCollection/ForSaleShowcase'
             element={
-              <ComponentWithSideBar>
-                <MyCollection>
-                  <ForSaleShowcase />
-                </MyCollection>
-              </ComponentWithSideBar>
+              <MyCollection>
+                <ForSaleShowcase />
+              </MyCollection>
             }
           />
           <Route
             path='/MyCollection/GalleryShowcase'
             element={
-              <ComponentWithSideBar>
-                <MyCollection>
-                  <GalleryShowcase />
-                </MyCollection>
-              </ComponentWithSideBar>
+              <MyCollection>
+                <GalleryShowcase />
+              </MyCollection>
             }
           />
 
           <Route
             path='/MyCollection/OwnedShowcase'
             element={
-              <ComponentWithSideBar>
-                <MyCollection>
-                  <OwnedShowcase />
-                </MyCollection>
-              </ComponentWithSideBar>
+              <MyCollection>
+                <OwnedShowcase />
+              </MyCollection>
             }
           />
 
