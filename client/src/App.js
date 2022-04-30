@@ -66,14 +66,7 @@ function App() {
         <Routes>
           <Route path='/' element={<HomePage />} />
           <Route path='/:attribute' element={<HomePage />} />
-          <Route
-            path='/following'
-            element={
-              <ComponentWithSideBar>
-                <Following />
-              </ComponentWithSideBar>
-            }
-          />
+          <Route path='/following' element={<Following />} />
 
           <Route
             path='/MyCollection/BoughtShowcase'

@@ -1,15 +1,12 @@
 import React from 'react';
-import OneFollowingUser from '../../components/Following/OneFollowingUser';
-
-import './Following.css';
+import All_Followings from '../../components/Following/All_Followings/All_Followings';
+import ComponentWithSideBar from '../../layouts/ComponentWithSideBar';
 
 const Following = () => {
   return (
-    <div className='following'>
-      <OneFollowingUser />
-      <OneFollowingUser />
-      <OneFollowingUser />
-    </div>
+    <ComponentWithSideBar>
+      <All_Followings />
+    </ComponentWithSideBar>
   );
 };
 
