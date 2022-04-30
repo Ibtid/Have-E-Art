@@ -1,5 +1,5 @@
 import React from 'react';
-import ProductShowcaseCard from '../../components/cards/ProductShowcaseCard/ProductShowcaseCard';
+import ProductShowcaseCard from '../cards/ProductShowcaseCard/ProductShowcaseCard';
 
 import './Home.css';
 

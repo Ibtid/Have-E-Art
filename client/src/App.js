@@ -1,6 +1,6 @@
 import './App.css';
 import Navbar from './components/shared/Navbar/Navbar';
-import Home from './pages/Home/Home';
+import HomePage from './pages/Home/HomePage';
 import ProductDetails from './pages/ProductDetails/ProductDetails';
 import MyCollection from './pages/MyCollection/MyCollection';
 import Checkout from './pages/Checkout/Checkout';
@@ -27,55 +27,45 @@ import actions from './dispatcher/actions';
 import Spinkit from './modals/Spinkit/Spinkit';
 
 function App() {
-  const [showSpinner, setShowSpinner] = useState(false)
+  const [showSpinner, setShowSpinner] = useState(false);
   const { contextStore, setContextStore } = useContext(AppContext);
   useEffect(() => {
     (async () => {
       if (localStorage.getItem('user')) {
-        console.log(localStorage.getItem('user'))
-        setShowSpinner(true)
-        let user = JSON.parse(localStorage.getItem("user"))
-        const response = await dispatch(actions.getMyProfile, {}, {}, user.token)
-        console.log(response)
-        if(response.errors){
-          setShowSpinner(false)
-          return
+        console.log(localStorage.getItem('user'));
+        setShowSpinner(true);
+        let user = JSON.parse(localStorage.getItem('user'));
+        const response = await dispatch(
+          actions.getMyProfile,
+          {},
+          {},
+          user.token
+        );
+        console.log(response);
+        if (response.errors) {
+          setShowSpinner(false);
+          return;
         }
-        user = {...response, token: user.token}
+        user = { ...response, token: user.token };
         setContextStore({
           ...contextStore,
           loggedIn: true,
           user,
         });
-        localStorage.setItem("user", JSON.stringify(user))
-        setShowSpinner(false)
+        localStorage.setItem('user', JSON.stringify(user));
+        setShowSpinner(false);
       }
-    })()
+    })();
   }, []);
   return (
     <BrowserRouter>
-    
       <div className='App'>
         <Navbar />
         {console.log(showSpinner)}
         {showSpinner && <Spinkit />}
         <Routes>
-          <Route
-            path='/'
-            element={
-              <ComponentWithSideBar>
-                <Home />
-              </ComponentWithSideBar>
-            }
-          />
-          <Route
-            path='/:attribute'
-            element={
-              <ComponentWithSideBar>
-                <Home />
-              </ComponentWithSideBar>
-            }
-          />
+          <Route path='/' element={<HomePage />} />
+          <Route path='/:attribute' element={<HomePage />} />
           <Route
             path='/following'
             element={
