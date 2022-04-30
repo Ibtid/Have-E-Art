@@ -8,7 +8,7 @@ import { AppContext } from '../hooks/AppContext';
 
 const ComponentWithOutSideBar = (props) => {
   let history = useNavigate();
-  const {contextStore} = useContext(AppContext);
+  const { contextStore } = useContext(AppContext);
 
   return (
     <div className='app__scroll'>
@@ -24,7 +24,7 @@ const ComponentWithOutSideBar = (props) => {
       </div>
       <div className='app__bigImageComponent'>
         <div className='app__bigImageContainer'>
-          <img className='app__bigImage' src={contextStore.eart.imgUrl} alt='art' />
+          <img className='app__bigImage' src={props.imgUrl} alt='art' />
         </div>
         <div className='app__bigImageText'>{props.children}</div>
       </div>

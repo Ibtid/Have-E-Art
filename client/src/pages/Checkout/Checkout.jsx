@@ -4,6 +4,7 @@ import './Checkout.css';
 
 import {useNavigate} from 'react-router-dom';
 import CardDetails from '../../modals/CardDetails/CardDetails';
+import ComponentWithOutSideBar from '../../layouts/ComponentWithOutSideBar';
 
 
 function Checkout() {
@@ -11,6 +12,7 @@ function Checkout() {
   
   const [showForm, setShowForm] = useState(false);
   return (
+    <ComponentWithOutSideBar>
     <div>
        {showForm && (
         <CardDetails
@@ -102,6 +104,7 @@ function Checkout() {
         </div>
       </div>
     </div>
+    </ComponentWithOutSideBar>
   );
 }
 

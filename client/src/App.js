@@ -105,36 +105,15 @@ function App() {
           />
 
           <Route path='/messages' element={<Messages />} />
-          <Route
-            path='/product/:id'
-            element={
-              <ComponentWithOutSideBar>
-                <ProductDetails />
-              </ComponentWithOutSideBar>
-            }
-          />
+          <Route path='/product/:id' element={<ProductDetails />} />
 
           <Route path='/product/add' element={<AddProduct />} />
 
           <Route path='/product/edit/:id' element={<EditProduct />} />
 
-          <Route
-            path='/checkout'
-            element={
-              <ComponentWithOutSideBar>
-                <Checkout />
-              </ComponentWithOutSideBar>
-            }
-          />
+          <Route path='/checkout' element={<Checkout />} />
 
-          <Route
-            path='/checkoutComplete'
-            element={
-              <ComponentWithOutSideBar>
-                <CompleteCheckout />
-              </ComponentWithOutSideBar>
-            }
-          />
+          <Route path='/checkoutComplete' element={<CompleteCheckout />} />
           <Route path='/profile' element={<MyProfilePage />} />
           <Route path='/profile/:id' element={<UserProfilePage />} />
           <Route path='/messages/:chatId' element={<Messages />} />
