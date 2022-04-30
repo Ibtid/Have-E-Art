@@ -13,9 +13,9 @@ const OwnedCard = ({ eart }) => {
       to='/product/1'
       className='boughtCard'
       onClick={() => {
-        setContextStore({ ...contextStore, owner: true, eart });
+        setContextStore({ ...contextStore, owner: true });
 
-        navigator('/product/1');
+        navigator(`/product/${eart._id}`);
       }}>
       <div className='bought__imageContainer'>
         <img className='bought__image' src={eart.imgUrl} alt='art' />

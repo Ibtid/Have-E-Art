@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import star from '../../assets/icons/star.svg';
 import share from '../../assets/icons/shareIcon.svg';
@@ -14,13 +14,21 @@ import EditIcon from '../../assets/icons/edit.svg';
 import { useContext } from 'react';
 import { AppContext } from '../../hooks/AppContext';
 
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 
 import './ProductDetails.css';
 import CertifiedSellForm from '../../modals/CertifiedSellForm/CertifiedSellForm';
 import getDate from '../../utility/getDate';
+import dispatch from '../../dispatcher/dispatch';
+import actions from '../../dispatcher/actions';
+import Spinkit from '../../modals/Spinkit/Spinkit';
 
 const ProductDetails = () => {
+  const {id} = useParams()
+  const [eart, setEart] = useState({
+    owner: {},
+    creator: {}
+  })
   let navigate = useNavigate();
   const ratingArray = [1, 2, 3, 4, 5];
 
@@ -28,11 +36,23 @@ const ProductDetails = () => {
 
   const [listedForSale, setListedForSale] = useState(false);
   const [openCertifiedModal, setOpenCertifiedModal] = useState(false);
-
+  const [showSpinner, setShowSpinner] = useState(false)
   const [original, setOriginal] = useState(false);
-
+  useEffect(() => {
+    (async () => {
+      setShowSpinner(true)
+      const response = await dispatch(actions.getEart, {id}, {}, contextStore.user.token)
+      setShowSpinner(false)
+      console.log(response)
+      if(response.errors){
+        return
+      }
+      setEart(response)
+    })()
+  },[])
   return (
     <div className='productDetails'>
+      {showSpinner && <Spinkit />}
       {openCertifiedModal && (
         <CertifiedSellForm
           closeForm={() => {
@@ -44,9 +64,9 @@ const ProductDetails = () => {
         />
       )}
       <div className='productDetails__firstRow'>
-        <div className='productDetails__name'>{contextStore.eart.title}</div>
-        {contextStore.user._id == contextStore.eart.owner._id && (
-          <Link to='/product/edit/1' className='productDetails__editButton'>
+        <div className='productDetails__name'>{eart.title}</div>
+        {contextStore.user._id == eart.owner._id && (
+          <Link to={`/product/edit/${id}`} className='productDetails__editButton'>
             <img src={EditIcon} alt='edit' />
           </Link>
         )}
@@ -89,7 +109,7 @@ const ProductDetails = () => {
       </div>
       <div className='productDetails__dateAndViews'>
         <div className='productDetails__date'>
-          {getDate(contextStore.eart.uploadDate)}
+          {getDate(eart.uploadDate)}
         </div>
         <div className='productDetails__views'>
           <img src={views} className='productDetails__viewsicon' alt='views' />
@@ -98,7 +118,7 @@ const ProductDetails = () => {
       </div>
       <div className='productDetails__fileTypeAndDimension'>
         <div className='productDetails__fileType'>
-          {contextStore.eart.format}
+          {eart.format}
         </div>
         <div className='productDetails__dimension'>
           <img src={dimension} alt='dimension' />
@@ -109,8 +129,8 @@ const ProductDetails = () => {
       <div className='productDetails__title'>Creator:</div>
       <div className='productDetails__personDescription'>
         <Link to='/profile/1' className='productDetails__personName'>
-          {contextStore.eart.creator.firstName}{' '}
-          {contextStore.eart.creator.lastName}
+          {eart.creator.firstName}{' '}
+          {eart.creator.lastName}
         </Link>
         <div className='productDetails__personSocial'>
           <img
@@ -133,7 +153,7 @@ const ProductDetails = () => {
       <div className='productDetails__title'>Owner:</div>
       <div className='productDetails__personDescription'>
         <Link to='/profile/1' className='productDetails__personName'>
-          {contextStore.eart.owner.firstName} {contextStore.eart.owner.lastName}
+          {eart.owner.firstName} {eart.owner.lastName}
         </Link>
         <div className='productDetails__personSocial'>
           <img
@@ -156,14 +176,14 @@ const ProductDetails = () => {
       {/*............................................................................................*/}
       <div className='productDetails__title'>Description:</div>
       <div className='productDetails__longText'>
-        {contextStore.eart.description}
+        {eart.description}
       </div>
       <div className='productDetails__title'>Background Story:</div>
       <div className='productDetails__longText'>
-        {contextStore.eart.backgroundStory}
+        {eart.backgroundStory}
       </div>
       {/*............................................................................................*/}
-      {!contextStore.user._id == contextStore.eart.owner._id && (
+      {!contextStore.user._id == eart.owner._id && (
         <div className='productDetails__absoluteSection'>
           <div className='productDetails__priceTag'>
             <div className='productDetails__priceText'>Price: </div>
@@ -182,7 +202,7 @@ const ProductDetails = () => {
         </div>
       )}
       {/*............................................................................................*/}
-      {contextStore.user._id == contextStore.eart.owner._id && !listedForSale && (
+      {contextStore.user._id == eart.owner._id && !eart.flag.forSale && (
         <div className='productDetails__sellButtonGroup'>
           <div className='productDetails__buyButtons'>
             <div
@@ -193,7 +213,10 @@ const ProductDetails = () => {
               }}>
               Sell Original
             </div>
-            <div
+          </div>
+        </div>
+      )}
+      <div
               className='productDetails__buy'
               onClick={() => {
                 setOpenCertifiedModal(true);
@@ -201,20 +224,16 @@ const ProductDetails = () => {
               }}>
               Sell Certified Copy
             </div>
-          </div>
-        </div>
-      )}
       {/*............................................................................................*/}
-      {contextStore.user._id == contextStore.eart.owner._id && listedForSale && (
+      {contextStore.user._id == eart.owner._id && eart.flag.forSale && (
         <div className='productDetails__absoluteSection'>
           <div className='productDetails__priceTag'>
             <div className='productDetails__priceText'>Price: </div>
-            <div className='productDetails__priceNumber'>$ 10,000.00</div>
+            <div className='productDetails__priceNumber'>$ {eart.price}</div>
             <div className='productDetails__priceTagSmallText'>
-              {original ? `$500/copy (original)` : `$500/copy (certified)`}
+              {eart.price}
             </div>
           </div>
-          <div className='productDetails__piecesSold'>69/100 pieces sold</div>
           <div
             className='productDetails__buyButtons'
             onClick={() => {

@@ -54,7 +54,7 @@ const dispatch = async (action, headerParams = {}, body = {}, token = '') => {
       return response.data
       break
     case actions.getOwnedEarts:
-      axiosOptions = getAxiosOptions("GET", `${baseUrl}/eart/owned`,{}, token)
+      axiosOptions = getAxiosOptions("GET", `${baseUrl}/eart/getearts/owned`,{}, token)
       response = await axios(axiosOptions)
       return response.data
       break
@@ -62,6 +62,16 @@ const dispatch = async (action, headerParams = {}, body = {}, token = '') => {
       axiosOptions = getAxiosOptions("PUT", `${baseUrl}/user/profileImage`, body, token)
       response = await axios(axiosOptions)
       return response.data  
+      break
+    case actions.editEart:
+      axiosOptions = getAxiosOptions("PUT", `${baseUrl}/eart/${headerParams.id}`, body, token)
+      response = await axios(axiosOptions)
+      return response.data
+      break
+    case actions.getEart:
+      axiosOptions = getAxiosOptions("GET", `${baseUrl}/eart/geteart/${headerParams.id}`, body, token)
+      response = await axios(axiosOptions)
+      return response.data
       break
   }
  }catch(err){
