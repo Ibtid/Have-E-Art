@@ -10,7 +10,17 @@ import NewGroup from '../../../modals/NewGroup/NewGroup';
 const ShowCaseContainer = (props) => {
   let navigation = useNavigate();
   const [openGallery, setOpenGallery] = useState(false);
-  const [navItem, setNavItem] = useState('BoughtShowcase');
+  const [navItem, setNavItem] = useState(() => {
+    if (window.location.toString().includes('BoughtShowcase')) {
+      return 'BoughtShowcase';
+    }
+    if (window.location.toString().includes('ForSaleShowcase')) {
+      return 'ForSaleShowcase';
+    }
+    if (window.location.toString().includes('OwnedShowcase')) {
+      return 'OwnedShowcase';
+    } else return 'GalleryShowcase';
+  });
   const [openNewGroup, setOpenNewGroup] = useState(false);
   const [toggleDisplayfloatButton, setToggleDisplayfloatButton] =
     useState(false);
