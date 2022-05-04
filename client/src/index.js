@@ -4,12 +4,15 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import AppContextProvider from './hooks/AppContext';
+import SpinnerContextProvider from './hooks/SpinnerContext';
 ReactDOM.render(
+  <SpinnerContextProvider>
   <AppContextProvider>
     <React.StrictMode>
     <App />
   </React.StrictMode>
-  </AppContextProvider>,
+  </AppContextProvider>
+  </SpinnerContextProvider>,
   document.getElementById('root')
 );
 

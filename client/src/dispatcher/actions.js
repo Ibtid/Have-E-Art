@@ -9,7 +9,12 @@ const actions = {
     getOwnedEarts: "GETOWNEDEARTS",
     uploadProfileImage: "UPLOADPROFILEIMAGE",
     editEart: "EDITEART",
-    getEart: "GETEART"
+    getEart: "GETEART",
+    postForSale: "POSTFORSALE",
+    unlistEart: "UNLIST",
+    getAllEarts: "GETALLEARTS",
+    createEdition: "CREATEEDITION",
+    getEartEditions: "GETEARTEDITIONS"
 }
 
 export default actions

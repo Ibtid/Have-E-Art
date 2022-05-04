@@ -12,8 +12,9 @@ import './ProductShowcaseCard.css';
 import { useContext } from 'react';
 import { AppContext } from '../../../hooks/AppContext';
 import { useNavigate } from 'react-router-dom';
+import getDate from '../../../utility/getDate';
 
-const ProductShowcaseCard = () => {
+const ProductShowcaseCard = ({eart}) => {
   const imageArray = [image, image2, image3, image4];
   const {contextStore, setContextStore} = useContext(AppContext);
   let navigator = useNavigate();
@@ -23,13 +24,12 @@ const ProductShowcaseCard = () => {
       to='/product/1'
       className='productShowcaseCard'
       onClick={() => {
-        setContextStore({...contextStore, owner: false});
-        navigator('/product/1');
+        navigator(`/product/${eart._id}`);
       }}>
       <div className='productShowcaseCard__imageContainer'>
         <img
           className='productShowcaseCard__image'
-          src={imageArray[Math.floor(Math.random() * 3.9)]}
+          src={eart.imgUrl}
           alt='art'
         />
         <div className='productShowcaseCard__imageDetails'></div>
@@ -46,12 +46,12 @@ const ProductShowcaseCard = () => {
       </div>
       <div className='productShowcaseCard__description'>
         <div className='productShowcaseCard__rowOne'>
-          <div className='productShowcaseCard__title'>Color Brust</div>
-          <div className='productShowcaseCard__price'>$ 10,000</div>
+          <div className='productShowcaseCard__title'>{eart.title}</div>
+          <div className='productShowcaseCard__price'>$ {eart.price}</div>
         </div>
         <div className='productShowcaseCard__rowTwo'>
           <div className='productShowcaseCard__dateAndViewsContainer'>
-            <div className='productShowcaseCard__date'>16th February, 2022</div>
+            <div className='productShowcaseCard__date'>{getDate(eart.uploadDate)}</div>
             <div className='productShowcaseCard__views'>
               <img
                 src={views}
@@ -61,20 +61,19 @@ const ProductShowcaseCard = () => {
               <div className='productShowcaseCard__viewsNumber'> 198,222</div>
             </div>
           </div>
-          <div className='productShowcaseCard__pricePerCopy'>$500/copy</div>
         </div>
         <div className='productShowcaseCard__rowThree'>
           <div className='productShowcaseCard__people'>
             <div className='productShowcaseCard__created'>
               <span>Created by :</span>
-              <span className='productShowcaseCard__name'>Don Carlo</span>
+              <span className='productShowcaseCard__name'>{eart.creator.firstName} {eart.creator.lastName}</span>
             </div>
             <div className='productShowcaseCard__owned'>
               <span>Owned by:</span>
-              <span className='productShowcaseCard__name'>Don Carlo</span>
+              <span className='productShowcaseCard__name'>{eart.owner.firstName} {eart.owner.lastName}</span>
             </div>
           </div>
-          <div className='productShowcaseCard__button'>Buy E-art</div>
+          <div className='productShowcaseCard__button'>View E-art</div>
         </div>
       </div>
     </div>

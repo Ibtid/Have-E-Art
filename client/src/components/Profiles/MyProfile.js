@@ -17,8 +17,10 @@ import actions from '../../dispatcher/actions';
 import dispatch from '../../dispatcher/dispatch';
 import { useNavigate } from 'react-router-dom';
 import Spinkit from '../../modals/Spinkit/Spinkit';
+import { SpinnerContext } from '../../hooks/SpinnerContext';
 
 const MyProfile = () => {
+  const {setShowSpinner} = useContext(SpinnerContext)
   const [isEditMode, setIsEditMode] = useState(false);
   const [showForm, setShowForm] = useState(false);
   const { contextStore, setContextStore } = useContext(AppContext);
@@ -26,7 +28,6 @@ const MyProfile = () => {
   const handleEdit = (e) => {
     setIsEditMode(!isEditMode);
   };
-  const [showSpinner, setShowSpinner] = useState(false);
   const [formData, setFormData] = useState(
     JSON.parse(localStorage.getItem('user'))
   );
@@ -76,10 +77,10 @@ const MyProfile = () => {
     }
     const user = { ...response, token: contextStore.user.token };
     setContextStore({ ...contextStore, user });
+    setShowSpinner(false)
     localStorage.setItem('user', JSON.stringify(user));
     setFormData(JSON.parse(localStorage.getItem('user')));
     handleEdit();
-    setShowSpinner(false);
   };
 
   const onClickCancel = () => {
@@ -101,10 +102,10 @@ const MyProfile = () => {
       return;
     }
     const user = { ...response, token: contextStore.user.token };
-    setContextStore({ ...contextStore, user });
+    setContextStore({ ...contextStore, user});
+    setShowSpinner(false)
     localStorage.setItem('user', JSON.stringify(user));
     setFile(null);
-    setShowSpinner(false);
   };
   const onClickCancelSaveImage = () => {
     console.log(file);
@@ -120,7 +121,6 @@ const MyProfile = () => {
           }}
         />
       )}
-      {showSpinner && <Spinkit />}
       <div className='profile-head-section'>
         <div className='profile-heading'>Profile</div>
         <div

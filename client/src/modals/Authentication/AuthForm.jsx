@@ -11,14 +11,14 @@ import { AppContext } from "../../hooks/AppContext.js";
 import "./Authentication.css";
 import actions from "../../dispatcher/actions";
 import Spinkit from "../Spinkit/Spinkit";
+import { SpinnerContext } from "../../hooks/SpinnerContext";
 
 function AuthForm(props) {
     const [showPassword, setShowPassword] = useState(false);
-
+    const {setShowSpinner} = useContext(SpinnerContext)
     const {contextStore, setContextStore} = useContext(AppContext);
     const [errors,setErrors] = useState([]);
 
-    const[showSpinner, setShowSpinner] = useState(false);
 
     const [formData, setFormData] = useState({
         firstName: "",
@@ -56,8 +56,8 @@ function AuthForm(props) {
         const user = {...response, token}
         localStorage.setItem("user", JSON.stringify(user))
         setContextStore({...contextStore, user, loggedIn: true})
-        props.closeForm();
         setShowSpinner(false)
+        props.closeForm();
     };
     const onClickLogIn = async (e) => {
         e.preventDefault();
@@ -92,8 +92,8 @@ function AuthForm(props) {
         const user = {...response, token}
         localStorage.setItem("user", JSON.stringify(user))
         setContextStore({...contextStore, user, loggedIn: true})
-        props.closeForm();
         setShowSpinner(false)
+        props.closeForm();
     };
     const onChangeFormData = (e) => {
         console.log(formData);
@@ -101,7 +101,6 @@ function AuthForm(props) {
     };
     return (
         <div className="modal-container">
-            {showSpinner && <Spinkit/>}
             <div className="modal-paper">
                 {props.isSignup ? (
                     <div className="auth-btn-grid">

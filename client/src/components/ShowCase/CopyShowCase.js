@@ -4,12 +4,12 @@ import dispatch from '../../dispatcher/dispatch';
 import { AppContext } from '../../hooks/AppContext';
 import { SpinnerContext } from '../../hooks/SpinnerContext';
 import Spinkit from '../../modals/Spinkit/Spinkit';
-import OwnedCard from '../cards/OwnedCard/OwnedCard';
+import CopyCard from '../cards/CopyCard/CopyCard';
 
-const OwnedShowcase = () => {
+const CopyShowCase = () => {
   const {setShowSpinner} = useContext(SpinnerContext)
   const { contextStore, setContextStore } = useContext(AppContext);
-  const [earts, setEarts] = useState([]);
+  const [copyEarts, setCopyEarts] = useState([]);
   useEffect(() => {
     (async () => {
       setShowSpinner(true)
@@ -32,10 +32,10 @@ const OwnedShowcase = () => {
   return (
     <div className='home__cardContainer'>
       {earts.map((eart) => (
-        <OwnedCard eart={eart} />
+        <CopyCard copyEart={eart} />
       ))}
     </div>
   );
 };
 
-export default OwnedShowcase;
+export default CopyShowCase;

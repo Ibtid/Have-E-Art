@@ -25,15 +25,16 @@ import actions from './dispatcher/actions';
 import Spinkit from './modals/Spinkit/Spinkit';
 import MyProfilePage from './pages/Profiles/MyProfilePage';
 import UserProfilePage from './pages/Profiles/UserProfilePage';
+import { SpinnerContext } from './hooks/SpinnerContext';
 
 function App() {
-  const [showSpinner, setShowSpinner] = useState(false);
+  const {showSpinner, setShowSpinner} = useContext(SpinnerContext)
   const { contextStore, setContextStore } = useContext(AppContext);
   useEffect(() => {
     (async () => {
       if (localStorage.getItem('user')) {
         console.log(localStorage.getItem('user'));
-        setShowSpinner(true);
+        setShowSpinner(true)
         let user = JSON.parse(localStorage.getItem('user'));
         const response = await dispatch(
           actions.getMyProfile,
@@ -43,17 +44,18 @@ function App() {
         );
         console.log(response);
         if (response.errors) {
-          setShowSpinner(false);
+          setShowSpinner(false)
           return;
         }
         user = { ...response, token: user.token };
+        console.log(user)
         setContextStore({
           ...contextStore,
           loggedIn: true,
           user,
         });
+        setShowSpinner(false)
         localStorage.setItem('user', JSON.stringify(user));
-        setShowSpinner(false);
       }
     })();
   }, []);
@@ -61,12 +63,11 @@ function App() {
     <BrowserRouter>
       <div className='App'>
         <Navbar />
-        {console.log(showSpinner)}
         {showSpinner && <Spinkit />}
         <Routes>
           <Route path='/' element={<HomePage />} />
           <Route path='/:attribute' element={<HomePage />} />
-          <Route path='/following' element={<Following />} />
+          {/* <Route path='/following' element={<Following />} /> */}
 
           <Route
             path='/MyCollection/BoughtShowcase'

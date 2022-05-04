@@ -87,6 +87,17 @@ const ShowCaseContainer = (props) => {
             }}>
             Owned
           </div>
+          <div
+            className={
+              navItem === 'CopyShowcase'
+                ? 'myCollection__navItem active'
+                : 'myCollection__navItem'
+            }
+            onClick={() => {
+              clickNav('CopyShowcase');
+            }}>
+            Copy
+          </div>
           {navItem === 'BoughtShowcase' && (
             <div className='myCollection__activeBarLeft'></div>
           )}

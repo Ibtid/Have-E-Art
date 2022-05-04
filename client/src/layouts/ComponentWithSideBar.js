@@ -10,6 +10,7 @@ const ComponentWithSideBar = (props) => {
     <div className='app_bodyWithSideBar'>
       <Sidebar />
       <div>
+        {console.log(contextStore.loggedIn)}
         {contextStore.loggedIn && <SecondaryNav />}
         <div
           className={

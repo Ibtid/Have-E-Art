@@ -1,17 +1,35 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import actions from '../../dispatcher/actions';
+import dispatch from '../../dispatcher/dispatch';
+import { AppContext } from '../../hooks/AppContext';
+import { SpinnerContext } from '../../hooks/SpinnerContext';
+import Spinkit from '../../modals/Spinkit/Spinkit';
 import ProductShowcaseCard from '../cards/ProductShowcaseCard/ProductShowcaseCard';
 
 import './Home.css';
 
 const Home = () => {
-  const listingart = [
-    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
-    22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38,
-  ];
+  const {setShowSpinner} = useContext(SpinnerContext)
+  const [earts, setEarts] = useState([])
+  const {contextStore, setContextStore} = useContext(AppContext)
+
+  useEffect(() => {
+    (async () => {
+      setShowSpinner(true)
+      const response = await dispatch(actions.getAllEarts,{},{})
+      console.log(response)
+      if(response.errors){
+        setShowSpinner(false)
+        return
+      }
+      setEarts(response)
+      setShowSpinner(false)
+    })()
+  },[])
   return (
     <div className='home__cardContainer'>
-      {listingart.map((a) => (
-        <ProductShowcaseCard />
+      {earts.map((eart) => (
+        <ProductShowcaseCard eart={eart} />
       ))}
     </div>
   );

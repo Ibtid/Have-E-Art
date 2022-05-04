@@ -5,21 +5,21 @@ import { AppContext } from '../../hooks/AppContext';
 import Spinkit from '../../modals/Spinkit/Spinkit';
 import dispatch from '../../dispatcher/dispatch';
 import actions from '../../dispatcher/actions';
+import { SpinnerContext } from '../../hooks/SpinnerContext';
 
 const EditProductText = ({eart}) => {
+  const {setShowSpinner} = useContext(SpinnerContext)
   const navigate = useNavigate();
   const { contextStore, setContextStore } = useContext(AppContext);
   const [showDropDown, setShowDropDown] = useState(false);
   const [galleries, setGalleries] = useState([]);
-  const [showSpinner, setShowSpinner] = useState(false);
-
   const [formData, setFormData] = useState({
   });
   const onChangeFormData = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
     const onClickSubmit = async () => {
-    setShowSpinner(true)
+      setShowSpinner(true)
     const response = await dispatch(actions.editEart, {id: eart._id}, formData, contextStore.user.token)
     setShowSpinner(false)
     console.log(response)
@@ -40,6 +40,7 @@ const EditProductText = ({eart}) => {
       setShowSpinner(false);
       console.log(response);
       if (response.errors) {
+        
         return;
       }
       setGalleries(response);
@@ -58,8 +59,6 @@ const EditProductText = ({eart}) => {
   },[eart])
   return (
     <div className='addOrEditProductText'>
-      {console.log(eart)}
-      {showSpinner && <Spinkit />}
       <div className='addOrEditProductText__inputLabel'>Title:</div>
       <div className='addOrEditProductText__title'>{contextStore.eart.title}</div>
       <div className='addOrEditProductText__inputLabel'>Description:</div>
