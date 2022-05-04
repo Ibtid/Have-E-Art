@@ -26,15 +26,17 @@ import Spinkit from './modals/Spinkit/Spinkit';
 import MyProfilePage from './pages/Profiles/MyProfilePage';
 import UserProfilePage from './pages/Profiles/UserProfilePage';
 import { SpinnerContext } from './hooks/SpinnerContext';
+import CopyShowCase from './components/ShowCase/CopyShowCase';
+import CopyProductDetails from './pages/CopyProductDetails/CopyProductDetails';
 
 function App() {
-  const {showSpinner, setShowSpinner} = useContext(SpinnerContext)
+  const { showSpinner, setShowSpinner } = useContext(SpinnerContext);
   const { contextStore, setContextStore } = useContext(AppContext);
   useEffect(() => {
     (async () => {
       if (localStorage.getItem('user')) {
         console.log(localStorage.getItem('user'));
-        setShowSpinner(true)
+        setShowSpinner(true);
         let user = JSON.parse(localStorage.getItem('user'));
         const response = await dispatch(
           actions.getMyProfile,
@@ -44,17 +46,17 @@ function App() {
         );
         console.log(response);
         if (response.errors) {
-          setShowSpinner(false)
+          setShowSpinner(false);
           return;
         }
         user = { ...response, token: user.token };
-        console.log(user)
+        console.log(user);
         setContextStore({
           ...contextStore,
           loggedIn: true,
           user,
         });
-        setShowSpinner(false)
+        setShowSpinner(false);
         localStorage.setItem('user', JSON.stringify(user));
       }
     })();
@@ -103,8 +105,19 @@ function App() {
             }
           />
 
+          <Route
+            path='/MyCollection/CopyShowcase'
+            element={
+              <MyCollection>
+                <CopyShowCase />
+              </MyCollection>
+            }
+          />
+
           <Route path='/messages' element={<Messages />} />
           <Route path='/product/:id' element={<ProductDetails />} />
+
+          <Route path='/product/copy/:id' element={<CopyProductDetails />} />
 
           <Route path='/product/add' element={<AddProduct />} />
 

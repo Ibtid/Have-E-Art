@@ -7,12 +7,12 @@ import Spinkit from '../../modals/Spinkit/Spinkit';
 import CopyCard from '../cards/CopyCard/CopyCard';
 
 const CopyShowCase = () => {
-  const {setShowSpinner} = useContext(SpinnerContext)
+  const { setShowSpinner } = useContext(SpinnerContext);
   const { contextStore, setContextStore } = useContext(AppContext);
   const [copyEarts, setCopyEarts] = useState([]);
   useEffect(() => {
     (async () => {
-      setShowSpinner(true)
+      setShowSpinner(true);
       const response = await dispatch(
         actions.getOwnedEarts,
         {},
@@ -21,17 +21,17 @@ const CopyShowCase = () => {
       );
       console.log(response);
       if (response.errors) {
-        setShowSpinner(false)
+        setShowSpinner(false);
         return;
       }
-      setEarts(response);
-      setShowSpinner(false)
+      setCopyEarts(response);
+      setShowSpinner(false);
     })();
   }, []);
 
   return (
     <div className='home__cardContainer'>
-      {earts.map((eart) => (
+      {copyEarts.map((eart) => (
         <CopyCard copyEart={eart} />
       ))}
     </div>

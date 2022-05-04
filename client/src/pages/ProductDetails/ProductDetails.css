@@ -220,11 +220,11 @@
 }
 
 .edition__options {
-  height: 2rem;
   background-color: var(--secondary);
   color: var(--white);
   display: flex;
-  align-items: center;
+  justify-content: center;
+  flex-direction: column;
   font-family: 'Montserrat', sans-serif;
   margin-top: 1vh;
   padding: 1vh 1vw 1vh 1vw;
@@ -232,6 +232,17 @@
   transition: all 0.2s ease-in-out;
   border-radius: 0.3rem;
 }
+
+.edition__optionsRow{
+  display: flex;
+  margin-top: 0.5rem;
+  color: var(--secondaryWhite);
+}
+
+.edition__optionsPieces{
+  margin-right: 1rem;
+}
+
 @media screen and (max-width: 1420px) {
   .productDetails {
     font-size: 0.9rem;

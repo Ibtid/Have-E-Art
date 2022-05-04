@@ -7,27 +7,31 @@ import dispatch from '../../dispatcher/dispatch';
 import actions from '../../dispatcher/actions';
 import { SpinnerContext } from '../../hooks/SpinnerContext';
 
-const EditProductText = ({eart}) => {
-  const {setShowSpinner} = useContext(SpinnerContext)
+const EditProductText = ({ eart }) => {
+  const { setShowSpinner } = useContext(SpinnerContext);
   const navigate = useNavigate();
   const { contextStore, setContextStore } = useContext(AppContext);
   const [showDropDown, setShowDropDown] = useState(false);
   const [galleries, setGalleries] = useState([]);
-  const [formData, setFormData] = useState({
-  });
+  const [formData, setFormData] = useState({});
   const onChangeFormData = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-    const onClickSubmit = async () => {
-      setShowSpinner(true)
-    const response = await dispatch(actions.editEart, {id: eart._id}, formData, contextStore.user.token)
-    setShowSpinner(false)
-    console.log(response)
-    if(response.errors){
-      return
+  const onClickSubmit = async () => {
+    setShowSpinner(true);
+    const response = await dispatch(
+      actions.editEart,
+      { id: eart._id },
+      formData,
+      contextStore.user.token
+    );
+    setShowSpinner(false);
+    console.log(response);
+    if (response.errors) {
+      return;
     }
-    await navigate(-1)
-  }
+    await navigate(-1);
+  };
   useEffect(() => {
     (async () => {
       setShowSpinner(true);
@@ -40,11 +44,9 @@ const EditProductText = ({eart}) => {
       setShowSpinner(false);
       console.log(response);
       if (response.errors) {
-        
         return;
       }
       setGalleries(response);
-      
     })();
   }, []);
   useEffect(() => {
@@ -54,13 +56,13 @@ const EditProductText = ({eart}) => {
       videoLink: eart.videoLink,
       privacy: eart.flag.private,
       gallery: eart.gallery,
-      price: eart.price
-    })
-  },[eart])
+      price: eart.price,
+    });
+  }, [eart]);
   return (
     <div className='addOrEditProductText'>
       <div className='addOrEditProductText__inputLabel'>Title:</div>
-      <div className='addOrEditProductText__title'>{contextStore.eart.title}</div>
+      <div className='addOrEditProductText__title'>{eart.title}</div>
       <div className='addOrEditProductText__inputLabel'>Description:</div>
       <textarea
         name='description'
@@ -155,7 +157,13 @@ const EditProductText = ({eart}) => {
         Price of Original Piece
       </div>
       <div className='addOrEditProductText__smallInputGroup'>
-      <input className='addOrEditProductText__smallInput' type='number' name='price' value={formData.price} onChange={onChangeFormData}/>
+        <input
+          className='addOrEditProductText__smallInput'
+          type='number'
+          name='price'
+          value={formData.price}
+          onChange={onChangeFormData}
+        />
         <div className='addOrEditProductText__smallInputText'>USD</div>
       </div>
       <div className='addOrEditProductText__buttonGroup'>
@@ -166,7 +174,11 @@ const EditProductText = ({eart}) => {
           }}>
           Cancel
         </div>
-        <div className='addOrEditProductText__submitButton' onClick={onClickSubmit}>Edit E-art</div>
+        <div
+          className='addOrEditProductText__submitButton'
+          onClick={onClickSubmit}>
+          Edit E-art
+        </div>
       </div>
     </div>
   );

@@ -55,6 +55,15 @@
   background-color: var(--accent);
 }
 
+.myCollection__activeBarRightMost1{
+  position: absolute;
+  top: 0.5rem;
+  left: calc(2rem + 2rem + 2rem + 2rem + 3.7rem + 3.7rem + 3.7rem + 3.7rem);
+  height: 0.2rem;
+  width: 3.5rem;
+  background-color: var(--accent);
+}
+
 .myCollection__navItem {
   margin-right: 2rem;
   cursor: pointer;

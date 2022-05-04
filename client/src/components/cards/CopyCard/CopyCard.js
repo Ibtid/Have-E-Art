@@ -5,7 +5,7 @@ import { AppContext } from '../../../hooks/AppContext';
 import { useNavigate } from 'react-router-dom';
 import getDate from '../../../utility/getDate';
 
-const OwnedCard = ({ eart }) => {
+const CopyCard = ({ copyEart }) => {
   const { contextStore, setContextStore } = useContext(AppContext);
   let navigator = useNavigate();
   return (
@@ -15,37 +15,37 @@ const OwnedCard = ({ eart }) => {
       onClick={() => {
         setContextStore({ ...contextStore, owner: true });
 
-        navigator(`/product/${eart._id}`);
+        navigator(`/product/copy/${copyEart._id}`);
       }}>
       <div className='bought__imageContainer'>
-        <img className='bought__image' src={eart.imgUrl} alt='art' />
+        <img className='bought__image' src={copyEart.imgUrl} alt='art' />
       </div>
       <div className='bought__description'>
         <div className='bought__rowOne'>
-          <div className='bought__title'>{eart.title}</div>
+          <div className='bought__title'>{copyEart.title} - Copy</div>
         </div>
         <div className='bought__rowTwo'>
-          Uploaded at {getDate(eart.uploadDate)}
+          Uploaded at {getDate(copyEart.uploadDate)}
         </div>
         <div className='bought__rowThree'>
           <div className='bought__created'>
             <span>Created by :</span>
             <span className='productShowcaseCard__name'>
-              {eart.creator.firstName} {eart.creator.lastName}
+              {copyEart.creator.firstName} {copyEart.creator.lastName}
             </span>
           </div>
-          <div className='bought__type'>Type: Original</div>
+          <div className='bought__type'>Type: Copy</div>
           <div className='bought__owned'>
             <span>Owned by:</span>
             <span className='productShowcaseCard__name'>
-              {eart.owner.firstName} {eart.owner.lastName}
+              {copyEart.owner.firstName} {copyEart.owner.lastName}
             </span>
           </div>
-          <div className='bought__format'>Format: {eart.format}</div>
+          <div className='bought__format'>Format: {copyEart.format}</div>
         </div>
       </div>
     </div>
   );
 };
 
-export default OwnedCard;
+export default CopyCard;

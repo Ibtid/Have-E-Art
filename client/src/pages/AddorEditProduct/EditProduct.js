@@ -8,24 +8,29 @@ import dispatch from '../../dispatcher/dispatch';
 import actions from '../../dispatcher/actions';
 
 const EditProduct = () => {
-  const {contextStore, setContextStore} = useContext(AppContext)
-  const {id} = useParams()
+  const { contextStore, setContextStore } = useContext(AppContext);
+  const { id } = useParams();
   const [eart, setEart] = useState({
-    owner:{},
+    owner: {},
     creator: {},
     gallery: {},
-    flag: {}
-  })
+    flag: {},
+  });
   let history = useNavigate();
   useEffect(() => {
     (async () => {
-      const response = await dispatch(actions.getEart, {id}, {}, contextStore.user.token)
-      if(response.errors){
-        return
+      const response = await dispatch(
+        actions.getEart,
+        { id },
+        {},
+        contextStore.user.token
+      );
+      if (response.errors) {
+        return;
       }
-      setEart(response)
-    })()
-  },[])
+      setEart(response);
+    })();
+  }, []);
   return (
     <div className='app__scroll'>
       <SecondaryNav />
@@ -39,14 +44,10 @@ const EditProduct = () => {
       </div>
       <div className='app__bigImageComponent'>
         <div className='app__bigImageContainer'>
-          <img
-            className='app__bigImage'
-            src={contextStore.eart.imgUrl}
-            alt='art'
-          />
+          <img className='app__bigImage' src={eart.imgUrl} alt='art' />
         </div>
         <div className='app__bigImageText'>
-          <EditProductText eart = {eart}/>
+          <EditProductText eart={eart} />
         </div>
       </div>
     </div>

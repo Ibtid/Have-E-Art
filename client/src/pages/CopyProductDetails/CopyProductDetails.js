@@ -7,8 +7,8 @@ import watchVideo from '../../assets/icons/video-svgrepo-com 1.svg';
 import views from '../../assets/icons/views.svg';
 import dimension from '../../assets/icons/dimension.svg';
 import instagram from '../../assets/icons/instagram.svg';
-import messageOutline from './lightmessage.svg';
-import lightfavourite from './lightfavourite.svg';
+import messageOutline from '../ProductDetails/lightmessage.svg';
+import lightfavourite from '../ProductDetails/lightfavourite.svg';
 import EditIcon from '../../assets/icons/edit.svg';
 
 import { useContext } from 'react';
@@ -16,7 +16,6 @@ import { AppContext } from '../../hooks/AppContext';
 
 import { Link, useNavigate, useParams } from 'react-router-dom';
 
-import './ProductDetails.css';
 import CertifiedSellForm from '../../modals/CertifiedSellForm/CertifiedSellForm';
 import getDate from '../../utility/getDate';
 import dispatch from '../../dispatcher/dispatch';
@@ -25,7 +24,7 @@ import Spinkit from '../../modals/Spinkit/Spinkit';
 import BigImageComponent from '../../layouts/BigImageComponent';
 import { SpinnerContext } from '../../hooks/SpinnerContext';
 
-const ProductDetails = () => {
+const CopyProductDetails = () => {
   const { setShowSpinner } = useContext(SpinnerContext);
   const { id } = useParams();
   const [eart, setEart] = useState({
@@ -116,7 +115,7 @@ const ProductDetails = () => {
           />
         )}
         <div className='productDetails__firstRow'>
-          <div className='productDetails__name'>{eart.title}</div>
+          <div className='productDetails__name'>{eart.title} - Copy</div>
           {contextStore.user._id == eart.owner._id && (
             <Link
               to={`/product/edit/${id}`}
@@ -325,4 +324,4 @@ const ProductDetails = () => {
   );
 };
 
-export default ProductDetails;
+export default CopyProductDetails;
