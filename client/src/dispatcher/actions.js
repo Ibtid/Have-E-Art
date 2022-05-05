@@ -14,7 +14,11 @@ const actions = {
     unlistEart: "UNLIST",
     getAllEarts: "GETALLEARTS",
     createEdition: "CREATEEDITION",
-    getEartEditions: "GETEARTEDITIONS"
+    getEartEditions: "GETEARTEDITIONS",
+    changeOwner: "CHANGEOWNER",
+    createCopyEart: "CREATECOPYEART",
+    getCopyEarts: "GETCOPYEARTS",
+    getCopyEart: "GETCOPYEART"
 }
 
 export default actions

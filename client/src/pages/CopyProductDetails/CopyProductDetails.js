@@ -27,10 +27,13 @@ import { SpinnerContext } from '../../hooks/SpinnerContext';
 const CopyProductDetails = () => {
   const { setShowSpinner } = useContext(SpinnerContext);
   const { id } = useParams();
-  const [eart, setEart] = useState({
+  const [copyEart, setCopyEart] = useState({
     owner: {},
-    creator: {},
-    flag: {},
+    edition: {
+      eart: {
+        creator: {}
+      }
+    }
   });
   let navigate = useNavigate();
   const ratingArray = [1, 2, 3, 4, 5];
@@ -40,44 +43,11 @@ const CopyProductDetails = () => {
   const [listedForSale, setListedForSale] = useState(false);
   const [openCertifiedModal, setOpenCertifiedModal] = useState(false);
   const [original, setOriginal] = useState(false);
-  const [editions, setEditions] = useState([]);
-  const onClickSellOriginal = async () => {
-    setShowSpinner(true);
-    const response = await dispatch(
-      actions.postForSale,
-      { id },
-      {},
-      contextStore.user.token
-    );
-    console.log(response);
-    if (response.errors) {
-      setShowSpinner(false);
-      return;
-    }
-    setEart(response);
-    setShowSpinner(false);
-  };
-  const onClickUnlist = async () => {
-    setShowSpinner(true);
-    const response = await dispatch(
-      actions.unlistEart,
-      { id },
-      {},
-      contextStore.user.token
-    );
-    console.log(response);
-    if (response.errors) {
-      setShowSpinner(false);
-      return;
-    }
-    setEart(response);
-    setShowSpinner(false);
-  };
   useEffect(() => {
     (async () => {
       setShowSpinner(true);
       let response = await dispatch(
-        actions.getEart,
+        actions.getCopyEart,
         { id },
         {},
         contextStore.user.token
@@ -86,43 +56,15 @@ const CopyProductDetails = () => {
       if (response.errors) {
         return;
       }
-      setEart(response);
-      response = await dispatch(
-        actions.getEartEditions,
-        { eartId: id },
-        {},
-        contextStore.user.token
-      );
-      if (response.errors) {
-        return;
-      }
-      setEditions(response);
+      setCopyEart(response);
       setShowSpinner(false);
     })();
   }, []);
   return (
-    <BigImageComponent imgUrl={eart.imgUrl}>
+    <BigImageComponent imgUrl={copyEart.edition.eart.imgUrl}>
       <div className='productDetails'>
-        {openCertifiedModal && (
-          <CertifiedSellForm
-            closeForm={() => {
-              setOpenCertifiedModal(false);
-            }}
-            setListedForSale={() => {
-              setListedForSale(true);
-            }}
-            id={id}
-          />
-        )}
         <div className='productDetails__firstRow'>
-          <div className='productDetails__name'>{eart.title} - Copy</div>
-          {contextStore.user._id == eart.owner._id && (
-            <Link
-              to={`/product/edit/${id}`}
-              className='productDetails__editButton'>
-              <img src={EditIcon} alt='edit' />
-            </Link>
-          )}
+          <div className='productDetails__name'>{copyEart.edition.eart.title} - {copyEart.edition.name} Edition</div>
         </div>
         <div className='productDetails__ratingsAndVotes'>
           <div className='productDetails__ratings'>
@@ -163,7 +105,7 @@ const CopyProductDetails = () => {
           </div>
         </div>
         <div className='productDetails__dateAndViews'>
-          <div className='productDetails__date'>{getDate(eart.uploadDate)}</div>
+          <div className='productDetails__date'>{getDate(copyEart.edition.eart.uploadDate)}</div>
           <div className='productDetails__views'>
             <img
               src={views}
@@ -174,7 +116,7 @@ const CopyProductDetails = () => {
           </div>
         </div>
         <div className='productDetails__fileTypeAndDimension'>
-          <div className='productDetails__fileType'>{eart.format}</div>
+          <div className='productDetails__fileType'>{copyEart.edition.eart.format}</div>
           <div className='productDetails__dimension'>
             <img src={dimension} alt='dimension' />
             <div className='productDetails__dimensionText'>1920 * 1080</div>
@@ -184,7 +126,7 @@ const CopyProductDetails = () => {
         <div className='productDetails__title'>Creator:</div>
         <div className='productDetails__personDescription'>
           <Link to='/profile/1' className='productDetails__personName'>
-            {eart.creator.firstName} {eart.creator.lastName}
+            {copyEart.edition.eart.creator.firstName} {copyEart.edition.eart.creator.lastName}
           </Link>
           <div className='productDetails__personSocial'>
             <img
@@ -207,7 +149,7 @@ const CopyProductDetails = () => {
         <div className='productDetails__title'>Owner:</div>
         <div className='productDetails__personDescription'>
           <Link to='/profile/1' className='productDetails__personName'>
-            {eart.owner.firstName} {eart.owner.lastName}
+            {copyEart.owner.firstName} {copyEart.owner.lastName}
           </Link>
           <div className='productDetails__personSocial'>
             <img
@@ -229,96 +171,9 @@ const CopyProductDetails = () => {
         </div>
         {/*............................................................................................*/}
         <div className='productDetails__title'>Description:</div>
-        <div className='productDetails__longText'>{eart.description}</div>
+        <div className='productDetails__longText'>{copyEart.edition.eart.description}</div>
         <div className='productDetails__title'>Background Story:</div>
-        <div className='productDetails__longText'>{eart.backgroundStory}</div>
-        {/*............................................................................................*/}
-        {!(contextStore.user._id == eart.owner._id) && eart.flag.forSale && (
-          <div className='productDetails__absoluteSection'>
-            <div className='productDetails__priceTag'>
-              <div className='productDetails__priceText'>Price: </div>
-              <div className='productDetails__priceNumber'>$ {eart.price}</div>
-              {/* <div className="productDetails__priceTagSmallText">
-                                $500/copy
-                            </div> */}
-            </div>
-            {/* <div className="productDetails__piecesSold">
-                            69/100 pieces sold
-                        </div> */}
-            <div className='productDetails__buyButtons'>
-              <Link to='/checkout' className='productDetails__buy'>
-                Buy Original
-              </Link>
-            </div>
-          </div>
-        )}
-        {/*............................................................................................*/}
-        {contextStore.user._id == eart.owner._id && !eart.flag.forSale && (
-          <div className='productDetails__sellButtonGroup'>
-            <div className='productDetails__buyButtons'>
-              <div
-                className='productDetails__buy'
-                onClick={onClickSellOriginal}>
-                List For Sale
-              </div>
-            </div>
-          </div>
-        )}
-        {/*............................................................................................*/}
-        {contextStore.user._id == eart.owner._id && eart.flag.forSale && (
-          <div className='productDetails__absoluteSection'>
-            <div className='productDetails__priceTag'>
-              <div className='productDetails__priceText'>Price: </div>
-              <div className='productDetails__priceNumber'>$ {eart.price}</div>
-              <div className='productDetails__priceTagSmallText'>
-                {eart.price}
-              </div>
-            </div>
-            <div
-              className='productDetails__buyButtons'
-              onClick={() => {
-                navigate(`/product/edit/${id}`);
-              }}>
-              <div className='productDetails__changePrice'>Change Price</div>
-            </div>
-            <div className='productDetails__buyButtons' onClick={onClickUnlist}>
-              <div className='productDetails__changePrice'>Unlist</div>
-            </div>
-          </div>
-        )}
-        {contextStore.user._id == eart.owner._id && (
-          <div
-            className='productDetails__buy'
-            onClick={() => {
-              setOpenCertifiedModal(true);
-              setOriginal(false);
-            }}>
-            Create Certified Edition
-          </div>
-        )}
-        {editions.map((edition) => (
-          <div className='edition__options'>
-            <div className='productDetails__priceTag'>
-              <div className='productDetails__priceText'>Edition: </div>
-              <div className='productDetails__priceNumber'>{edition.name}</div>
-            </div>
-            <div className='edition__optionsRow'>
-              <div className='edition__optionsPieces'>
-                {edition.available} pieces available
-              </div>
-              <div className='edition__optionsPrice'>
-                Price: ${edition.price}
-              </div>
-            </div>
-            {!(contextStore.user._id == eart.owner._id) && (
-              <div className='productDetails__buyButtons'>
-                <Link to='/checkout' className='productDetails__buy'>
-                  Buy A Copy
-                </Link>
-              </div>
-            )}
-          </div>
-        ))}
+        <div className='productDetails__longText'>{copyEart.edition.eart.backgroundStory}</div>
       </div>
     </BigImageComponent>
   );

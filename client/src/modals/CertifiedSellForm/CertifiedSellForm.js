@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
+import { useNavigate } from 'react-router-dom';
 import actions from '../../dispatcher/actions';
 import dispatch from '../../dispatcher/dispatch';
 import { AppContext } from '../../hooks/AppContext';
@@ -7,6 +8,7 @@ import { SpinnerContext } from '../../hooks/SpinnerContext';
 import './CertifiedSellForm.css';
 
 const CertifiedSellForm = (props) => {
+  const navigate = useNavigate()
   const ref = useRef();
   const {setShowSpinner} = useContext(SpinnerContext)
   const {contextStore, setContextStore} = useContext(AppContext)
@@ -25,6 +27,7 @@ const CertifiedSellForm = (props) => {
     console.log(response)
     setShowSpinner(false)
     props.closeForm()
+    props.fetchEditions()
   }
   useEffect(() => {
     const checkIfClickedOutside = (e) => {

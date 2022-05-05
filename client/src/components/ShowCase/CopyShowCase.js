@@ -14,7 +14,7 @@ const CopyShowCase = () => {
     (async () => {
       setShowSpinner(true);
       const response = await dispatch(
-        actions.getOwnedEarts,
+        actions.getCopyEarts,
         {},
         {},
         contextStore.user.token

@@ -1,18 +1,51 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 
 import './Checkout.css';
 
 import {useNavigate} from 'react-router-dom';
 import CardDetails from '../../modals/CardDetails/CardDetails';
 import BigImageComponent from '../../layouts/BigImageComponent';
+import { AppContext } from '../../hooks/AppContext';
+import { SpinnerContext } from '../../hooks/SpinnerContext';
+import getPrice from '../../utility/getPrice';
+import dispatch from '../../dispatcher/dispatch';
+import actions from '../../dispatcher/actions';
 
 
 function Checkout() {
   let navigate = useNavigate()
-  
+  const {contextStore, setContextStore} = useContext(AppContext)
+  const {setShowSpinner} = useContext(SpinnerContext)
   const [showForm, setShowForm] = useState(false);
+  const onClickCheckOut = async (e) => {
+    e.preventDefault()
+    setShowSpinner(true)
+    let response
+    switch(contextStore.eart.type){
+      case "original":
+        response = await dispatch(actions.changeOwner, {}, {eart: contextStore.eart}, contextStore.user.token)
+        console.log(response)
+        if(response.errors){
+          setShowSpinner(false)
+          return
+        }
+        setShowSpinner(false)
+        navigate("/checkoutComplete")
+        break
+      case "copy":
+        response = await dispatch(actions.createCopyEart, {}, {edition: contextStore.edition}, contextStore.user.token)
+        console.log(response)
+        if(response.errors){
+          setShowSpinner(false)
+          return
+        }
+        setShowSpinner(false)
+        navigate("/checkoutComplete")
+        break
+    }
+  }
   return (
-    <BigImageComponent>
+    <BigImageComponent imgUrl = {contextStore.eart.imgUrl}>
     <div>
        {showForm && (
         <CardDetails
@@ -24,13 +57,13 @@ function Checkout() {
       <div className='checkout-heading'>Checkout</div>
       <br />
       <div className='checkout-sub-heading'>Title:</div>
-      <div className='checkout-text-grey'>Color Brust</div>
+      <div className='checkout-text-grey'>{contextStore.eart.title}</div>
       <br />
       <div className='checkout-sub-heading'>Type:</div>
-      <div className='checkout-text-accent'>Original</div>
+      <div className='checkout-text-accent'>{contextStore.eart.type}</div>
       <br />
       <div className='checkout-sub-heading'>Format</div>
-      <div className='checkout-text-grey'>pdf</div>
+      <div className='checkout-text-grey'>{contextStore.eart.format}</div>
       <br />
       <div className='checkout-sub-heading'>Dimension:</div>
       <div className='checkout-text-grey'>560*1080 px</div>
@@ -38,20 +71,20 @@ function Checkout() {
       <div className='checkout-sub-heading'>Price:</div>
       <div className='checkout-price-details'>
         <div className='checkout-text-grey'>E-art-fee - 85%</div>
-        <div className='checkout-text-grey'>$8500</div>
+        <div className='checkout-text-grey'>{getPrice(contextStore.eart.price).eartPrice}</div>
       </div>
       <div className='checkout-price-details'>
         <div className='checkout-text-grey'>Creator fee - 10%</div>
-        <div className='checkout-text-grey'>$1000</div>
+        <div className='checkout-text-grey'>{getPrice(contextStore.eart.price).creatorFee}</div>
       </div>
       <div className='checkout-price-details'>
         <div className='checkout-text-grey'>Haveeart fee - 5%</div>
-        <div className='checkout-text-grey'>$500</div>
+        <div className='checkout-text-grey'>{getPrice(contextStore.eart.price).platformFee}</div>
       </div>
       <div className='checkout-price-bar'></div>
       <div className='checkout-price-details'>
         <div className='checkout-text-accent-large'>Total Price</div>
-        <div className='checkout-text-accent-large'>$10,000</div>
+        <div className='checkout-text-accent-large'>{contextStore.eart.price}</div>
       </div>
       <br />
       <div className='checkout-sub-heading'>Payment Option:</div>
@@ -100,7 +133,7 @@ function Checkout() {
         <br />
         <div className='checkout-button-group'>
           <button className='checkout-cancel-button'>Cancel</button>
-          <button className='checkout-confirm-button' onClick={()=>{navigate('/checkoutComplete')}}>Confirm Payment</button>
+          <button className='checkout-confirm-button' onClick={onClickCheckOut}>Confirm Payment</button>
         </div>
       </div>
     </div>

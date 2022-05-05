@@ -18,20 +18,20 @@ const CopyCard = ({ copyEart }) => {
         navigator(`/product/copy/${copyEart._id}`);
       }}>
       <div className='bought__imageContainer'>
-        <img className='bought__image' src={copyEart.imgUrl} alt='art' />
+        <img className='bought__image' src={copyEart.edition.eart.imgUrl} alt='art' />
       </div>
       <div className='bought__description'>
         <div className='bought__rowOne'>
-          <div className='bought__title'>{copyEart.title} - Copy</div>
+          <div className='bought__title'>{copyEart.edition.eart.title} - Copy</div>
         </div>
         <div className='bought__rowTwo'>
-          Uploaded at {getDate(copyEart.uploadDate)}
+          Uploaded at {getDate(copyEart.edition.eart.uploadDate)}
         </div>
         <div className='bought__rowThree'>
           <div className='bought__created'>
             <span>Created by :</span>
             <span className='productShowcaseCard__name'>
-              {copyEart.creator.firstName} {copyEart.creator.lastName}
+              {copyEart.edition.eart.creator.firstName} {copyEart.edition.eart.creator.lastName}
             </span>
           </div>
           <div className='bought__type'>Type: Copy</div>
@@ -41,7 +41,7 @@ const CopyCard = ({ copyEart }) => {
               {copyEart.owner.firstName} {copyEart.owner.lastName}
             </span>
           </div>
-          <div className='bought__format'>Format: {copyEart.format}</div>
+          <div className='bought__format'>Format: {copyEart.edition.eart.format}</div>
         </div>
       </div>
     </div>

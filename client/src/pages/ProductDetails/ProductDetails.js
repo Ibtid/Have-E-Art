@@ -37,7 +37,6 @@ const ProductDetails = () => {
   const ratingArray = [1, 2, 3, 4, 5];
 
   const { contextStore, setContextStore } = useContext(AppContext);
-
   const [listedForSale, setListedForSale] = useState(false);
   const [openCertifiedModal, setOpenCertifiedModal] = useState(false);
   const [original, setOriginal] = useState(false);
@@ -74,9 +73,8 @@ const ProductDetails = () => {
     setEart(response);
     setShowSpinner(false);
   };
-  useEffect(() => {
-    (async () => {
-      setShowSpinner(true);
+  const fetchEditions = async () => {
+    setShowSpinner(true);
       let response = await dispatch(
         actions.getEart,
         { id },
@@ -99,7 +97,20 @@ const ProductDetails = () => {
       }
       setEditions(response);
       setShowSpinner(false);
-    })();
+  }
+  const onClickBuyOriginal = async (e) => {
+    e.preventDefault()
+    setContextStore({...contextStore, eart: {...eart, type: "original"}})
+    navigate("/checkout")
+  }
+  const onClickBuyACopy = async (e, edition) => {
+    e.preventDefault()
+    setContextStore({...contextStore, eart: {...eart, title: `${eart.title} - ${edition.name} Edition`, type: "copy"}, edition})
+    navigate("/checkout")
+
+  }
+  useEffect(() => {
+    fetchEditions()
   }, []);
   return (
     <BigImageComponent imgUrl={eart.imgUrl}>
@@ -112,6 +123,7 @@ const ProductDetails = () => {
             setListedForSale={() => {
               setListedForSale(true);
             }}
+            fetchEditions={fetchEditions}
             id={id}
           />
         )}
@@ -247,7 +259,7 @@ const ProductDetails = () => {
                             69/100 pieces sold
                         </div> */}
             <div className='productDetails__buyButtons'>
-              <Link to='/checkout' className='productDetails__buy'>
+              <Link to='/checkout' className='productDetails__buy' onClick={onClickBuyOriginal}>
                 Buy Original
               </Link>
             </div>
@@ -313,7 +325,7 @@ const ProductDetails = () => {
             </div>
             {!(contextStore.user._id == eart.owner._id) && (
               <div className='productDetails__buyButtons'>
-                <Link to='/checkout' className='productDetails__buy'>
+                <Link to='/checkout' className='productDetails__buy' onClick={(e) => onClickBuyACopy(e, edition)}>
                   Buy A Copy
                 </Link>
               </div>
