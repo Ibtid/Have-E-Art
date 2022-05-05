@@ -9,25 +9,25 @@ import ProductShowcaseCard from '../cards/ProductShowcaseCard/ProductShowcaseCar
 import './Home.css';
 
 const Home = () => {
-  const {setShowSpinner} = useContext(SpinnerContext)
-  const [earts, setEarts] = useState([])
-  const {contextStore, setContextStore} = useContext(AppContext)
+  const { setShowSpinner } = useContext(SpinnerContext);
+  const [earts, setEarts] = useState([]);
+  const { contextStore, setContextStore } = useContext(AppContext);
 
   useEffect(() => {
     (async () => {
-      setShowSpinner(true)
-      const response = await dispatch(actions.getAllEarts,{},{})
-      console.log(response)
-      if(response.errors){
-        setShowSpinner(false)
-        return
+      setShowSpinner(true);
+      const response = await dispatch(actions.getAllEarts, {}, {});
+      console.log(response);
+      if (response.errors) {
+        setShowSpinner(false);
+        return;
       }
-      setEarts(response)
-      setShowSpinner(false)
-    })()
-  },[])
+      setEarts(response);
+      setShowSpinner(false);
+    })();
+  }, []);
   return (
-    <div className='home__cardContainer'>
+    <div className='home__cardContainer noScrollBar'>
       {earts.map((eart) => (
         <ProductShowcaseCard eart={eart} />
       ))}

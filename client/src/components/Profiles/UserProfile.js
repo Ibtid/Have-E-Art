@@ -7,14 +7,13 @@ import fb from '../../assets/icons/fb.svg';
 import web from '../../assets/icons/web.svg';
 import instagram from '../../assets/icons/instagram.svg';
 import pinterest from '../../assets/icons/pinterest.svg';
+import ProfileShowCase from './ProfileShowCase';
 
-import ProductShowcaseCard from '../cards/ProductShowcaseCard/ProductShowcaseCard';
-
-const UserProfile = () => {
+const UserProfile = (props) => {
   const listingart = [];
 
   return (
-    <div className='profile'>
+    <div className='profile noScrollBar'>
       <div className='profile-head-section'>
         <div className='profile-heading'>Profile</div>
       </div>
@@ -69,15 +68,10 @@ const UserProfile = () => {
       </div>
       <br />
       <div className='user-grid-section2'>
-        <div className='user-sub-heading'>E-arts</div>
         <div className='user-text-grey'>nafizimtiaz@gmail.com</div>
-        <div className='profile-card-container reduce__margin'>
-          {listingart.map((a) => (
-            <div className='userProfile__card'>
-              <ProductShowcaseCard />
-            </div>
-          ))}
-        </div>
+        <div className='user-sub-heading'>E-arts</div>
+
+        <ProfileShowCase>{props.children}</ProfileShowCase>
       </div>
     </div>
   );

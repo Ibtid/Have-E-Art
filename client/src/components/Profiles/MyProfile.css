@@ -16,6 +16,18 @@
   background: var(--greyhighlight);
   border-radius: 0.3rem;
 }
+
+.noScrollBar{
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.noScrollBar::-webkit-scrollbar {
+  display: none;
+  width: 8px;
+  height: 8px;
+}
+
 .profile-head-section {
   display: flex;
   justify-content: space-between;

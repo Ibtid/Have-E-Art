@@ -1,0 +1,22 @@
+.profileShowcaseNav{
+    display: flex;
+    align-items: center;
+    z-index: 1500;
+    position: sticky;
+    top:-1rem;
+    height:4rem;
+    background-color: var(--primary)
+}
+
+
+
+ .profileShowCase__scroll{
+     margin-left:-0.9rem;
+ } 
+
+ @media screen and (max-width: 600px) {
+    .profileShowCase__scroll{
+        margin-left:-3rem;
+    }
+  }
+  

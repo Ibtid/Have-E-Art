@@ -127,7 +127,42 @@ function App() {
 
           <Route path='/checkoutComplete' element={<CompleteCheckout />} />
           <Route path='/profile' element={<MyProfilePage />} />
-          <Route path='/profile/:id' element={<UserProfilePage />} />
+          <Route
+            path='/profile/:id'
+            element={
+              <UserProfilePage>
+                <GalleryShowcase />
+              </UserProfilePage>
+            }
+          />
+
+          <Route
+            path='/user/earts/OwnedShowcase/:id'
+            element={
+              <UserProfilePage>
+                <OwnedShowcase />
+              </UserProfilePage>
+            }
+          />
+
+          <Route
+            path='/user/earts/CopyShowcase/:id'
+            element={
+              <UserProfilePage>
+                <CopyShowCase />
+              </UserProfilePage>
+            }
+          />
+
+          <Route
+            path='/user/earts/GalleryShowcase/:id'
+            element={
+              <UserProfilePage>
+                <GalleryShowcase />
+              </UserProfilePage>
+            }
+          />
+
           <Route path='/messages/:chatId' element={<Messages />} />
         </Routes>
       </div>
