@@ -75,42 +75,49 @@ const ProductDetails = () => {
   };
   const fetchEditions = async () => {
     setShowSpinner(true);
-      let response = await dispatch(
-        actions.getEart,
-        { id },
-        {},
-        contextStore.user.token
-      );
-      console.log(response);
-      if (response.errors) {
-        return;
-      }
-      setEart(response);
-      response = await dispatch(
-        actions.getEartEditions,
-        { eartId: id },
-        {},
-        contextStore.user.token
-      );
-      if (response.errors) {
-        return;
-      }
-      setEditions(response);
-      setShowSpinner(false);
-  }
+    let response = await dispatch(
+      actions.getEart,
+      { id },
+      {},
+      contextStore.user.token
+    );
+    console.log(response);
+    if (response.errors) {
+      return;
+    }
+    setEart(response);
+    response = await dispatch(
+      actions.getEartEditions,
+      { eartId: id },
+      {},
+      contextStore.user.token
+    );
+    if (response.errors) {
+      return;
+    }
+    setEditions(response);
+    setShowSpinner(false);
+  };
   const onClickBuyOriginal = async (e) => {
-    e.preventDefault()
-    setContextStore({...contextStore, eart: {...eart, type: "original"}})
-    navigate("/checkout")
-  }
+    e.preventDefault();
+    setContextStore({ ...contextStore, eart: { ...eart, type: 'original' } });
+    navigate('/checkout');
+  };
   const onClickBuyACopy = async (e, edition) => {
-    e.preventDefault()
-    setContextStore({...contextStore, eart: {...eart, title: `${eart.title} - ${edition.name} Edition`, type: "copy"}, edition})
-    navigate("/checkout")
-
-  }
+    e.preventDefault();
+    setContextStore({
+      ...contextStore,
+      eart: {
+        ...eart,
+        title: `${eart.title} - ${edition.name} Edition`,
+        type: 'copy',
+      },
+      edition,
+    });
+    navigate('/checkout');
+  };
   useEffect(() => {
-    fetchEditions()
+    fetchEditions();
   }, []);
   return (
     <BigImageComponent imgUrl={eart.imgUrl}>
@@ -196,7 +203,9 @@ const ProductDetails = () => {
         {/*.............................................................................................*/}
         <div className='productDetails__title'>Creator:</div>
         <div className='productDetails__personDescription'>
-          <Link to='/profile/1' className='productDetails__personName'>
+          <Link
+            to='/user/earts/GalleryShowcase/1'
+            className='productDetails__personName'>
             {eart.creator.firstName} {eart.creator.lastName}
           </Link>
           <div className='productDetails__personSocial'>
@@ -219,7 +228,9 @@ const ProductDetails = () => {
         </div>
         <div className='productDetails__title'>Owner:</div>
         <div className='productDetails__personDescription'>
-          <Link to='/profile/1' className='productDetails__personName'>
+          <Link
+            to='/user/earts/GalleryShowcase/1'
+            className='productDetails__personName'>
             {eart.owner.firstName} {eart.owner.lastName}
           </Link>
           <div className='productDetails__personSocial'>
@@ -251,15 +262,13 @@ const ProductDetails = () => {
             <div className='productDetails__priceTag'>
               <div className='productDetails__priceText'>Price: </div>
               <div className='productDetails__priceNumber'>$ {eart.price}</div>
-              {/* <div className="productDetails__priceTagSmallText">
-                                $500/copy
-                            </div> */}
             </div>
-            {/* <div className="productDetails__piecesSold">
-                            69/100 pieces sold
-                        </div> */}
+
             <div className='productDetails__buyButtons'>
-              <Link to='/checkout' className='productDetails__buy' onClick={onClickBuyOriginal}>
+              <Link
+                to='/checkout'
+                className='productDetails__buy'
+                onClick={onClickBuyOriginal}>
                 Buy Original
               </Link>
             </div>
@@ -325,7 +334,10 @@ const ProductDetails = () => {
             </div>
             {!(contextStore.user._id == eart.owner._id) && (
               <div className='productDetails__buyButtons'>
-                <Link to='/checkout' className='productDetails__buy' onClick={(e) => onClickBuyACopy(e, edition)}>
+                <Link
+                  to='/checkout'
+                  className='productDetails__buy'
+                  onClick={(e) => onClickBuyACopy(e, edition)}>
                   Buy A Copy
                 </Link>
               </div>

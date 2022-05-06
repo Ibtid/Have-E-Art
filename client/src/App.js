@@ -127,14 +127,6 @@ function App() {
 
           <Route path='/checkoutComplete' element={<CompleteCheckout />} />
           <Route path='/profile' element={<MyProfilePage />} />
-          <Route
-            path='/profile/:id'
-            element={
-              <UserProfilePage>
-                <GalleryShowcase />
-              </UserProfilePage>
-            }
-          />
 
           <Route
             path='/user/earts/OwnedShowcase/:id'
