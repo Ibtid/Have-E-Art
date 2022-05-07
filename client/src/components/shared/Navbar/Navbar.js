@@ -15,7 +15,7 @@ const Navbar = () => {
   const [openForm, setOpenForm] = useState(false);
   const [openProfileOptions, setOpenProfileOptions] = useState(false);
   const [toggleDisplay, setToggleDisplay] = useState(true);
-  const {contextStore} = useContext(AppContext);
+  const { contextStore } = useContext(AppContext);
   return (
     <div className='navbar'>
       {openProfileOptions && (
@@ -91,7 +91,17 @@ const Navbar = () => {
             }}
             className='navbar__iconButton'
             style={{ marginRight: '5vw' }}>
-            <img src={avatar} className='navbar__icon' alt='search' />
+            <img
+              src={
+                contextStore.user
+                  ? contextStore.user.profileImage
+                    ? contextStore.user.profileImage
+                    : avatar
+                  : avatar
+              }
+              className='navbar__icon'
+              alt='search'
+            />
           </div>
         </div>
       )}

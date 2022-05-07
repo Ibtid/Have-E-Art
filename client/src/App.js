@@ -5,7 +5,6 @@ import ProductDetails from './pages/ProductDetails/ProductDetails';
 import MyCollection from './pages/MyCollection/MyCollection';
 import Checkout from './pages/Checkout/Checkout';
 
-import Following from './pages/Following/Following';
 import Messages from './pages/Messages/Messages';
 import CompleteCheckout from './pages/Checkout/CompleteCheckout';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';

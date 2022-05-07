@@ -85,10 +85,11 @@
 }
 
 .navbar__icon {
-  height: 1.25rem;
-  width: 1.25rem;
+  height: 1.5rem;
+  width: 1.5rem;
   cursor: pointer;
   margin-right: -5vw;
+  border-radius: 50%;
 }
 
 @media screen and (max-width: 720px) {
