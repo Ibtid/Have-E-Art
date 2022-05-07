@@ -15,7 +15,6 @@ import { useNavigate } from 'react-router-dom';
 import getDate from '../../../utility/getDate';
 
 const ProductShowcaseCard = ({eart}) => {
-  const imageArray = [image, image2, image3, image4];
   const {contextStore, setContextStore} = useContext(AppContext);
   let navigator = useNavigate();
 

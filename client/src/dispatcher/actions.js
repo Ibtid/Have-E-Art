@@ -5,7 +5,7 @@ const actions = {
     editProfile: "EDIT_PROFILE",
     addEArt: "ADDEART",
     addGallery: "ADDGALLERY",
-    getGalleries: "GETGALLERY",
+    getGalleries: "GETGALLERiES",
     getOwnedEarts: "GETOWNEDEARTS",
     uploadProfileImage: "UPLOADPROFILEIMAGE",
     editEart: "EDITEART",
@@ -25,7 +25,9 @@ const actions = {
     changePrivacy: "CHANGEPRIVACY",
     uploadGalleryImage: "UPLOADGALLERYIMAGE",
     getUserProfile: "GETUSERPROFILE",
-    getUserCopyEarts: "GETUSERCOPYEARTS"
+    getUserCopyEarts: "GETUSERCOPYEARTS",
+    editGallery: "EDITGALLERY",
+    getGallery: "GETGALLERY"
 }
 
 export default actions

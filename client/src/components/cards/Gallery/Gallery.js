@@ -65,15 +65,13 @@ const Gallery = (props) => {
     <div
       className='gallery'
       onClick={() => {
-        navigator('/gallery/1');
+        navigator(`/gallery/${gallery._id}`);
       }}>
       <div className='gallery__imageContainer'>
         <img
           className='gallery__image'
           src={
-            file
-              ? URL.createObjectURL(file)
-              : gallery.imgUrl
+             gallery.imgUrl
               ? gallery.imgUrl
               : userImg
           }
