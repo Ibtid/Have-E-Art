@@ -51,9 +51,11 @@ const GalleryDetails = (props) => {
         );
         console.log(response);
         if (response.errors) {
+          setShowSpinner(false)
             return;
         }
         setGallery(response);
+        setShowSpinner(false)
         setFile(null);
     };
 
