@@ -44,12 +44,11 @@ const MyProfile = () => {
   const filePickerRef = useRef();
 
   const pickImageHandler = () => {
+    console.log(filePickerRef.current);
     filePickerRef.current.click();
   };
 
   const handleImage = async (event) => {
-    console.log('jyu');
-    console.log(event.target.files);
     if (event.target.files && event.target.files.length === 1) {
       setFile(event.target.files[0]);
     }
@@ -117,7 +116,6 @@ const MyProfile = () => {
     setFile(null);
   };
   const onClickCancelSaveImage = () => {
-    console.log(file);
     setFile(null);
   };
 
@@ -157,7 +155,7 @@ const MyProfile = () => {
                 src={
                   file
                     ? URL.createObjectURL(file)
-                    : contextStore.user.profileImage
+                    : contextStore.user?.profileImage
                     ? contextStore.user.profileImage
                     : userImg
                 }
