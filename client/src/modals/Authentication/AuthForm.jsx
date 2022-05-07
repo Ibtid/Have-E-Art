@@ -51,6 +51,7 @@ function AuthForm(props) {
         console.log(response)
         if(response.errors){
             console.log(response)
+            setShowSpinner(false)
             return
         }
         const user = {...response, token}
@@ -79,7 +80,7 @@ function AuthForm(props) {
             }
             console.log(allErrors);
             setErrors(allErrors)
-          
+            setShowSpinner(false)
             return
         }
         const token = response

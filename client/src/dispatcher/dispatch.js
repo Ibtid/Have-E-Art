@@ -1,7 +1,7 @@
 import actions from './actions';
 import axios from 'axios';
-const baseUrl = 'https://secret-dawn-63355.herokuapp.com';
-// const baseUrl = "http://localhost:5000"
+// const baseUrl = 'https://secret-dawn-63355.herokuapp.com';
+const baseUrl = "http://localhost:5000"
 
 const dispatch = async (action, headerParams = {}, body = {}, token = '') => {
  try{
@@ -115,6 +115,26 @@ const dispatch = async (action, headerParams = {}, body = {}, token = '') => {
       break
     case actions.getCopyEart:
       axiosOptions = getAxiosOptions("GET", `${baseUrl}/copyeart/${headerParams.id}`, body, token)
+      response = await axios(axiosOptions)
+      return response.data
+      break
+    case actions.getGalleryEarts:
+      axiosOptions = getAxiosOptions("GET", `${baseUrl}/eart/gallery/${headerParams.id}`, body, token)
+      response = await axios(axiosOptions)
+      return response.data
+      break
+    case actions.changePrivacy:
+      axiosOptions = getAxiosOptions("PUT", `${baseUrl}/gallery/privacy/${headerParams.id}`, body, token)
+      response = await axios(axiosOptions)
+      return response.data
+      break
+    case actions.uploadGalleryImage:
+      axiosOptions = getAxiosOptions("PUT", `${baseUrl}/gallery/galleryImage`, body, token)
+      response = await axios(axiosOptions)
+      return response.data
+      break
+    case actions.getUserProfile:
+      axiosOptions = getAxiosOptions("GET", `${baseUrl}/user/${headerParams.id}`, body, token)
       response = await axios(axiosOptions)
       return response.data
       break

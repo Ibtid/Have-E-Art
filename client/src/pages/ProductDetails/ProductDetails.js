@@ -204,7 +204,7 @@ const ProductDetails = () => {
         <div className='productDetails__title'>Creator:</div>
         <div className='productDetails__personDescription'>
           <Link
-            to='/user/earts/GalleryShowcase/1'
+            to={`/user/earts/GalleryShowcase/${id}`}
             className='productDetails__personName'>
             {eart.creator.firstName} {eart.creator.lastName}
           </Link>
@@ -229,7 +229,7 @@ const ProductDetails = () => {
         <div className='productDetails__title'>Owner:</div>
         <div className='productDetails__personDescription'>
           <Link
-            to='/user/earts/GalleryShowcase/1'
+            to={`/user/earts/GalleryShowcase/${id}`}
             className='productDetails__personName'>
             {eart.owner.firstName} {eart.owner.lastName}
           </Link>
