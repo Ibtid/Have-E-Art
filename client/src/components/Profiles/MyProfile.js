@@ -20,7 +20,6 @@ import Spinkit from '../../modals/Spinkit/Spinkit';
 import { SpinnerContext } from '../../hooks/SpinnerContext';
 
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
 const MyProfile = () => {
   const { setShowSpinner } = useContext(SpinnerContext);

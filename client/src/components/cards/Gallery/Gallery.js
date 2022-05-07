@@ -9,13 +9,15 @@ import { SpinnerContext } from '../../../hooks/SpinnerContext';
 import dispatch from '../../../dispatcher/dispatch';
 import actions from '../../../dispatcher/actions';
 import { AppContext } from '../../../hooks/AppContext';
+import { useNavigate } from 'react-router-dom';
 
 const Gallery = (props) => {
-  const {gallery} = props
+  const { gallery } = props;
   const imageArray = [image, image2, image3, image4];
-  const {setShowSpinner} = useContext(SpinnerContext)
-  const {contextStore} = useContext(AppContext)
+  const { setShowSpinner } = useContext(SpinnerContext);
+  const { contextStore } = useContext(AppContext);
   const [showSaveButton, setShowSaveButton] = useState(false);
+  let navigator = useNavigate();
 
   const [privacy, setPrivacy] = useState(gallery.private);
 
@@ -44,18 +46,27 @@ const Gallery = (props) => {
   };
 
   const switchPrivacy = async () => {
-    setShowSpinner(true)
-    let response = await dispatch(actions.changePrivacy, {id: gallery._id}, {privacy: !privacy},contextStore.user.token)
-    console.log(response)
-    if(response.errors){
-      setShowSpinner(false)
-      return
+    setShowSpinner(true);
+    let response = await dispatch(
+      actions.changePrivacy,
+      { id: gallery._id },
+      { privacy: !privacy },
+      contextStore.user.token
+    );
+    console.log(response);
+    if (response.errors) {
+      setShowSpinner(false);
+      return;
     }
-    setShowSpinner(false)
+    setShowSpinner(false);
     setPrivacy(!privacy);
   };
   return (
-    <div className='gallery'>
+    <div
+      className='gallery'
+      onClick={() => {
+        navigator('/gallery/1');
+      }}>
       <div className='gallery__imageContainer'>
         <img
           className='gallery__image'
@@ -63,54 +74,10 @@ const Gallery = (props) => {
             file
               ? URL.createObjectURL(file)
               : gallery.imgUrl
-              ? gallery.imgUrl:
-              userImg
+              ? gallery.imgUrl
+              : userImg
           }
         />
-        <div className='gallery__options'>
-          <div
-            className='gallery__optionsTop gallery__button'
-            onClick={switchPrivacy}>
-            <div>Toggle privacy</div>
-            {!privacy && <div>Public</div>}
-            {privacy && <div>Private</div>}
-          </div>
-          {showSaveButton && (
-            <div className='gallery__optionsBottom'>
-              <div className='gallery__button' onClick={saveImage}>
-                Save
-              </div>
-              <div className='gallery__button' onClick={rollBackChange}>
-                Cancel
-              </div>
-            </div>
-          )}
-          {!showSaveButton && (
-            <div className='gallery__optionsBottom'>
-              <div
-                className='gallery__button'
-                onClick={() => {
-                  props.openGallery();
-                }}>
-                Visit Gallery
-              </div>
-              <div className='gallery__button' onClick={pickImageHandler}>
-                Change Display
-              </div>
-            </div>
-          )}
-          <input
-            style={{ display: 'none' }}
-            ref={filePickerRef}
-            type='file'
-            className='profile-img__input'
-            id='image'
-            name='image'
-            placeholder='Choose the image'
-            accept='.jpg,.png,.jpeg'
-            onChange={handleImage}
-          />
-        </div>
       </div>
       <div className='gallery__text'>
         <div className='gallery__name'>Abstract</div>

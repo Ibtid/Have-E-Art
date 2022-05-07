@@ -27,6 +27,7 @@ import UserProfilePage from './pages/Profiles/UserProfilePage';
 import { SpinnerContext } from './hooks/SpinnerContext';
 import CopyShowCase from './components/ShowCase/CopyShowCase';
 import CopyProductDetails from './pages/CopyProductDetails/CopyProductDetails';
+import GalleryDetail from './pages/GalleryDetail/GalleryDetail';
 
 function App() {
   const { showSpinner, setShowSpinner } = useContext(SpinnerContext);
@@ -153,6 +154,8 @@ function App() {
               </UserProfilePage>
             }
           />
+
+          <Route path='/gallery/:id' element={<GalleryDetail />} />
 
           <Route path='/messages/:chatId' element={<Messages />} />
         </Routes>
