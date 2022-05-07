@@ -1,16 +1,23 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useContext } from 'react';
 import image from '../../../assets/images/pexels-dan-cristian-pădureț-1193743 1.png';
 import image2 from '../../../assets/images/pexels-jane-pham-1571673.jpg';
 import image3 from '../../../assets/images/pexels-vincent-pelletier-908713.jpg';
 import image4 from '../../../assets/images/pexels-ayswarya-aish-2109147.jpg';
 import './Gallery.css';
+import userImg from '../../../assets/icons/avatar.svg';
+import { SpinnerContext } from '../../../hooks/SpinnerContext';
+import dispatch from '../../../dispatcher/dispatch';
+import actions from '../../../dispatcher/actions';
+import { AppContext } from '../../../hooks/AppContext';
 
 const Gallery = (props) => {
+  const {gallery} = props
   const imageArray = [image, image2, image3, image4];
-
+  const {setShowSpinner} = useContext(SpinnerContext)
+  const {contextStore} = useContext(AppContext)
   const [showSaveButton, setShowSaveButton] = useState(false);
 
-  const [privacy, setPrivacy] = useState(true);
+  const [privacy, setPrivacy] = useState(gallery.private);
 
   const [file, setFile] = useState(null);
 
@@ -36,10 +43,17 @@ const Gallery = (props) => {
     setShowSaveButton(false);
   };
 
-  const switchPrivacy = () => {
+  const switchPrivacy = async () => {
+    setShowSpinner(true)
+    let response = await dispatch(actions.changePrivacy, {id: gallery._id}, {privacy: !privacy},contextStore.user.token)
+    console.log(response)
+    if(response.errors){
+      setShowSpinner(false)
+      return
+    }
+    setShowSpinner(false)
     setPrivacy(!privacy);
   };
-
   return (
     <div className='gallery'>
       <div className='gallery__imageContainer'>
@@ -48,7 +62,9 @@ const Gallery = (props) => {
           src={
             file
               ? URL.createObjectURL(file)
-              : imageArray[Math.floor(Math.random() * 3.9)]
+              : gallery.imgUrl
+              ? gallery.imgUrl:
+              userImg
           }
         />
         <div className='gallery__options'>
@@ -98,7 +114,6 @@ const Gallery = (props) => {
       </div>
       <div className='gallery__text'>
         <div className='gallery__name'>Abstract</div>
-        <div className='gallery__totalItems'>Total items: 4</div>
       </div>
     </div>
   );

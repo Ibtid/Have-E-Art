@@ -18,7 +18,12 @@ const actions = {
     changeOwner: "CHANGEOWNER",
     createCopyEart: "CREATECOPYEART",
     getCopyEarts: "GETCOPYEARTS",
-    getCopyEart: "GETCOPYEART"
+    getCopyEart: "GETCOPYEART",
+    getUserGalleries: "GETUSERGALLERIES",
+    getGalleryEarts: "GETGALLERYEARTS",
+    changePrivacy: "CHANGEPRIVACY",
+    uploadGalleryImage: "UPLOADGALLERYIMAGE",
+    getUserProfile: "GETUSERPROFILE"
 }
 
 export default actions

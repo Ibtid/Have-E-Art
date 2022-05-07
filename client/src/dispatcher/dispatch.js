@@ -118,6 +118,26 @@ const dispatch = async (action, headerParams = {}, body = {}, token = '') => {
       response = await axios(axiosOptions)
       return response.data
       break
+    case actions.getGalleryEarts:
+      axiosOptions = getAxiosOptions("GET", `${baseUrl}/eart/gallery/${headerParams.id}`, body, token)
+      response = await axios(axiosOptions)
+      return response.data
+      break
+    case actions.changePrivacy:
+      axiosOptions = getAxiosOptions("PUT", `${baseUrl}/gallery/privacy/${headerParams.id}`, body, token)
+      response = await axios(axiosOptions)
+      return response.data
+      break
+    case actions.uploadGalleryImage:
+      axiosOptions = getAxiosOptions("PUT", `${baseUrl}/gallery/galleryImage`, body, token)
+      response = await axios(axiosOptions)
+      return response.data
+      break
+    case actions.getUserProfile:
+      axiosOptions = getAxiosOptions("GET", `${baseUrl}/user/${headerParams.id}`, body, token)
+      response = await axios(axiosOptions)
+      return response.data
+      break
   }
  }catch(err){
    console.log(err)
