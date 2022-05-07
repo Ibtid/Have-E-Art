@@ -19,15 +19,22 @@ import { useNavigate } from 'react-router-dom';
 import Spinkit from '../../modals/Spinkit/Spinkit';
 import { SpinnerContext } from '../../hooks/SpinnerContext';
 
+import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+
 const MyProfile = () => {
-  const {setShowSpinner} = useContext(SpinnerContext)
+  const { setShowSpinner } = useContext(SpinnerContext);
   const [isEditMode, setIsEditMode] = useState(false);
   const [showForm, setShowForm] = useState(false);
+
   const { contextStore, setContextStore } = useContext(AppContext);
+
   const navigate = useNavigate();
+
   const handleEdit = (e) => {
     setIsEditMode(!isEditMode);
   };
+
   const [formData, setFormData] = useState(
     JSON.parse(localStorage.getItem('user'))
   );
@@ -41,6 +48,8 @@ const MyProfile = () => {
   };
 
   const handleImage = async (event) => {
+    console.log('jyu');
+    console.log(event.target.files);
     if (event.target.files && event.target.files.length === 1) {
       setFile(event.target.files[0]);
     }
@@ -77,7 +86,7 @@ const MyProfile = () => {
     }
     const user = { ...response, token: contextStore.user.token };
     setContextStore({ ...contextStore, user });
-    setShowSpinner(false)
+    setShowSpinner(false);
     localStorage.setItem('user', JSON.stringify(user));
     setFormData(JSON.parse(localStorage.getItem('user')));
     handleEdit();
@@ -102,8 +111,8 @@ const MyProfile = () => {
       return;
     }
     const user = { ...response, token: contextStore.user.token };
-    setContextStore({ ...contextStore, user});
-    setShowSpinner(false)
+    setContextStore({ ...contextStore, user });
+    setShowSpinner(false);
     localStorage.setItem('user', JSON.stringify(user));
     setFile(null);
   };
@@ -155,9 +164,31 @@ const MyProfile = () => {
                 alt='img'
               />
               <div className='profile-img-upload-button'>
-                <div className='profile-img-button' onClick={pickImageHandler}>
-                  Upload Image
-                </div>
+                {!file && (
+                  <div
+                    className='profile-img-button'
+                    onClick={pickImageHandler}>
+                    <AddPhotoAlternateIcon
+                      style={{ height: '3rem', width: '3rem' }}
+                    />
+                  </div>
+                )}
+                {file && (
+                  <div>
+                    <span
+                      className='profile-img-cancel-button'
+                      style={{ marginRight: '1rem' }}
+                      onClick={onClickCancelSaveImage}>
+                      Cancel
+                    </span>
+                    <span
+                      className='profile-img-save-button'
+                      style={{ marginLeft: '1rem' }}
+                      onClick={onClickSaveImage}>
+                      Save
+                    </span>
+                  </div>
+                )}
               </div>
               <input
                 style={{ display: 'none' }}
@@ -171,24 +202,6 @@ const MyProfile = () => {
                 onChange={handleImage}
               />
             </div>
-          </div>
-          <div style={{ marginTop: '2rem', marginBottom: '2rem' }}>
-            {file && (
-              <span
-                className='profile-img-cancel-button'
-                style={{ marginRight: '1rem' }}
-                onClick={onClickCancelSaveImage}>
-                Cancel
-              </span>
-            )}
-            {file && (
-              <span
-                className='profile-img-save-button'
-                style={{ marginLeft: '1rem' }}
-                onClick={onClickSaveImage}>
-                Save
-              </span>
-            )}
           </div>
         </div>
 

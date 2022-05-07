@@ -104,11 +104,14 @@
 }
 
 .profile-img-button{
- background: var(--accent);
- padding: 0.5rem;
+ padding: 0.25rem;
  border-radius: 5px;
  cursor:pointer;
- font-size: 0.8rem;
+ font-size: 1rem;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ color: var(--secondaryWhite)
 }
 
 .profile-img-cancel-button{
