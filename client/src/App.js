@@ -27,6 +27,9 @@ import UserProfilePage from './pages/Profiles/UserProfilePage';
 import { SpinnerContext } from './hooks/SpinnerContext';
 import CopyShowCase from './components/ShowCase/CopyShowCase';
 import CopyProductDetails from './pages/CopyProductDetails/CopyProductDetails';
+import ProfileOwnedShowCase from './components/ProfileShowCase/ProfileOwnedShowCase';
+import ProfileCopyShowCase from './components/ProfileShowCase/ProfileCopyShowCase';
+import ProfileGalleryShowcase from './components/ProfileShowCase/ProfileGalleryShowCase';
 
 function App() {
   const { showSpinner, setShowSpinner } = useContext(SpinnerContext);
@@ -131,7 +134,7 @@ function App() {
             path='/user/earts/OwnedShowcase/:id'
             element={
               <UserProfilePage>
-                <OwnedShowcase />
+                <ProfileOwnedShowCase/>
               </UserProfilePage>
             }
           />
@@ -140,7 +143,7 @@ function App() {
             path='/user/earts/CopyShowcase/:id'
             element={
               <UserProfilePage>
-                <CopyShowCase />
+                <ProfileCopyShowCase />
               </UserProfilePage>
             }
           />
@@ -149,7 +152,7 @@ function App() {
             path='/user/earts/GalleryShowcase/:id'
             element={
               <UserProfilePage>
-                <GalleryShowcase />
+                <ProfileGalleryShowcase />
               </UserProfilePage>
             }
           />

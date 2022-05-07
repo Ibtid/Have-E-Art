@@ -5,20 +5,19 @@ import dispatch from "../../dispatcher/dispatch";
 import { AppContext } from "../../hooks/AppContext";
 import { SpinnerContext } from "../../hooks/SpinnerContext";
 import Spinkit from "../../modals/Spinkit/Spinkit";
-import OwnedCard from "../cards/OwnedCard/OwnedCard";
+import CopyCard from "../cards/CopyCard/CopyCard";
 
-const ProfileOwnedShowCase = () => {
+const ProfileCopyShowCase = () => {
     const { id } = useParams();
     const { setShowSpinner } = useContext(SpinnerContext);
     const { contextStore, setContextStore } = useContext(AppContext);
-    const [earts, setEarts] = useState([]);
+    const [copyEarts, setCopyEarts] = useState([]);
     useEffect(() => {
         (async () => {
-            console.log("Hello");
             setShowSpinner(true);
             const response = await dispatch(
-                actions.getUserOwnedArts,
-                { type: "owned", id },
+                actions.getUserCopyEarts,
+                {id},
                 {},
                 contextStore.user.token
             );
@@ -27,18 +26,18 @@ const ProfileOwnedShowCase = () => {
                 setShowSpinner(false);
                 return;
             }
-            setEarts(response);
+            setCopyEarts(response);
             setShowSpinner(false);
         })();
     }, []);
 
     return (
         <div className="home__cardContainer">
-            {earts.map((eart) => (
-                <OwnedCard eart={eart} />
+            {copyEarts.map((eart) => (
+                <CopyCard copyEart={eart} />
             ))}
         </div>
     );
 };
 
-export default ProfileOwnedShowCase;
+export default ProfileCopyShowCase;

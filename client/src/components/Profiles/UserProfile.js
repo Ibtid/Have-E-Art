@@ -18,7 +18,7 @@ const UserProfile = (props) => {
   const [user, setUser] = useState({
     socialLinks: {}
   })
-  const {id} = useParams(id)
+  const {id} = useParams()
   const {setShowSpinner} = useContext(SpinnerContext)
   useEffect(() => {
     (async () => {

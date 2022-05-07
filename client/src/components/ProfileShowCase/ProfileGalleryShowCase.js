@@ -5,7 +5,7 @@ import { AppContext } from '../../hooks/AppContext';
 import { SpinnerContext } from '../../hooks/SpinnerContext';
 import Gallery from '../cards/Gallery/Gallery';
 
-const GalleryShowcase = () => {
+const ProfileGalleryShowcase = () => {
   const {contextStore, setContextStore} = useContext(AppContext)
   const [galleries, setGalleries] = useState([])
   const {setShowSpinner} = useContext(SpinnerContext)
@@ -31,4 +31,4 @@ const GalleryShowcase = () => {
   );
 };
 
-export default GalleryShowcase;
+export default ProfileGalleryShowcase;

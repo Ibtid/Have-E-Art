@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import GalleryDetails from '../MyCollection/GalleryDetail/GalleryDetails';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import './ProfileShowCase.css';
 
 const ProfileShowCase = (props) => {
+  const {id} = useParams()
   let navigation = useNavigate();
   const [openGallery, setOpenGallery] = useState(false);
   const [navItem, setNavItem] = useState(() => {
@@ -22,7 +23,7 @@ const ProfileShowCase = (props) => {
     useState(false);
   const clickNav = (item) => {
     setNavItem(item);
-    navigation(`/user/earts/${item}/1`);
+    navigation(`/user/earts/${item}/${id}`);
   };
 
   return (

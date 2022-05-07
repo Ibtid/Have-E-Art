@@ -20,10 +20,12 @@ const actions = {
     getCopyEarts: "GETCOPYEARTS",
     getCopyEart: "GETCOPYEART",
     getUserGalleries: "GETUSERGALLERIES",
+    getUserOwnedArts: "GETUSEROWNEDARTS",
     getGalleryEarts: "GETGALLERYEARTS",
     changePrivacy: "CHANGEPRIVACY",
     uploadGalleryImage: "UPLOADGALLERYIMAGE",
-    getUserProfile: "GETUSERPROFILE"
+    getUserProfile: "GETUSERPROFILE",
+    getUserCopyEarts: "GETUSERCOPYEARTS"
 }
 
 export default actions
