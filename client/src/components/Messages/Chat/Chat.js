@@ -14,6 +14,7 @@ const Chat = () => {
   const [input, setInput] = useState('');
   const [messages, _setMessages] = useState([]);
   const [messageUpdate, setMessageUpdate] = useState(0);
+  let enterLock = false;
   const messagesRef = useRef(messages);
   const setMessages = (data) => {
     messagesRef.current = data;
@@ -35,6 +36,7 @@ const Chat = () => {
         contextStore.user.token
       );
       setInput('');
+      enterLock = false;
     }
   };
   const messageEventListener = (message) => {
@@ -82,6 +84,15 @@ const Chat = () => {
   useEffect(() => {
     _setMessages(messagesRef.current);
   }, [messageUpdate]);
+
+  const handleKeyDown = (e) => {
+    if (enterLock === false) {
+      if (e.key === 'Enter') {
+        enterLock = true;
+        onClickSend();
+      }
+    }
+  };
   return (
     <div className='chat'>
       <div className='chat__head'>
@@ -105,7 +116,12 @@ const Chat = () => {
           ))}
       </div>
       <div className='chat__footer'>
-        <input className='chat__input' value={input} onChange={onChangeInput} />
+        <input
+          className='chat__input'
+          value={input}
+          onChange={onChangeInput}
+          onKeyDown={handleKeyDown}
+        />
         <div className='chat__button' onClick={onClickSend}>
           Send
         </div>
