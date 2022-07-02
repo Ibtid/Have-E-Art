@@ -1,7 +1,7 @@
 import actions from './actions';
 import axios from 'axios';
-const baseUrl = 'https://secret-dawn-63355.herokuapp.com';
-// const baseUrl = "http://localhost:5000"
+// const baseUrl = 'https://secret-dawn-63355.herokuapp.com';
+const baseUrl = "http://localhost:5000"
 
 const dispatch = async (action, headerParams = {}, body = {}, token = '') => {
  try{
@@ -155,6 +155,66 @@ const dispatch = async (action, headerParams = {}, body = {}, token = '') => {
       break
     case actions.getGallery:
       axiosOptions = getAxiosOptions("GET", `${baseUrl}/gallery/${headerParams.id}`, body, token)
+      response = await axios(axiosOptions)
+      return response.data
+      break
+    case actions.getUserGalleries:
+      axiosOptions = getAxiosOptions("GET", `${baseUrl}/gallery/user/${headerParams.userId}`, body, token)
+      response = await axios(axiosOptions)
+      return response.data
+      break
+    case actions.followUser:
+      axiosOptions = getAxiosOptions("PUT", `${baseUrl}/user/follow/${headerParams.id}`, body, token)
+      response = await axios(axiosOptions)
+      return response.data
+      break
+    case actions.unfollowUser:
+      axiosOptions = getAxiosOptions("PUT", `${baseUrl}/user/unfollow/${headerParams.id}`, body, token)
+      response = await axios(axiosOptions)
+      return response.data
+      break
+    case actions.followEart:
+      axiosOptions = getAxiosOptions("PUT", `${baseUrl}/eart/follow/${headerParams.id}`, body, token)
+      response = await axios(axiosOptions)
+      return response.data
+      break
+    case actions.unfollowEart:
+      axiosOptions = getAxiosOptions("PUT", `${baseUrl}/eart/unfollow/${headerParams.id}`, body, token)
+      response = await axios(axiosOptions)
+      return response.data
+      break
+    case actions.getNotifications:
+      axiosOptions = getAxiosOptions("GET", `${baseUrl}/notification`, body, token)
+      response = await axios(axiosOptions)
+      return response.data
+      break
+    case actions.getNotificationsNotViewed:
+      axiosOptions = getAxiosOptions("GET", `${baseUrl}/notification/notViewed`, body, token)
+      response = await axios(axiosOptions)
+      return response.data
+      break
+    case actions.createRoom:
+      axiosOptions = getAxiosOptions("POST", `${baseUrl}/room`, body, token)
+      response = await axios(axiosOptions)
+      return response.data
+      break
+    case actions.getRooms:
+      axiosOptions = getAxiosOptions("GET", `${baseUrl}/room`, body, token)
+      response = await axios(axiosOptions)
+      return response.data
+      break
+    case actions.getRoomMessages:
+      axiosOptions = getAxiosOptions("GET", `${baseUrl}/message/${headerParams.roomId}`, body, token)
+      response = await axios(axiosOptions)
+      return response.data
+      break
+    case actions.getRoom:
+      axiosOptions = getAxiosOptions("GET", `${baseUrl}/room/${headerParams.id}`, body, token)
+      response = await axios(axiosOptions)
+      return response.data
+      break
+    case actions.sendMessage:
+      axiosOptions = getAxiosOptions("POST", `${baseUrl}/message/${headerParams.roomId}`, body, token)
       response = await axios(axiosOptions)
       return response.data
       break

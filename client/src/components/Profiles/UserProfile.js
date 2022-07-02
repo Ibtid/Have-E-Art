@@ -8,16 +8,21 @@ import web from '../../assets/icons/web.svg';
 import instagram from '../../assets/icons/instagram.svg';
 import pinterest from '../../assets/icons/pinterest.svg';
 import ProfileShowCase from './ProfileShowCase';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import dispatch from '../../dispatcher/dispatch';
 import actions from '../../dispatcher/actions';
 import { SpinnerContext } from '../../hooks/SpinnerContext';
+import checkIfOwner from '../../utility/checkIfOwner';
+import { AppContext } from '../../hooks/AppContext';
 
 const UserProfile = (props) => {
   const listingart = [];
   const [user, setUser] = useState({
-    socialLinks: {}
+    socialLinks: {},
+    followers: []
   })
+  const navigate = useNavigate()
+  const {contextStore} = useContext(AppContext)
   const {id} = useParams()
   const {setShowSpinner} = useContext(SpinnerContext)
   useEffect(() => {
@@ -33,6 +38,37 @@ const UserProfile = (props) => {
       setShowSpinner(false)
     })()
   },[])
+  const onClickFollow = async() => {
+    setShowSpinner(true)
+    let response = await dispatch(actions.followUser, {id}, {}, contextStore.user.token)
+    console.log(response)
+    if(response.errors){
+      setShowSpinner(false)
+      return
+    }
+    setUser(response)
+    setShowSpinner(false)
+  }
+  const onClickUnfollow = async () => {
+    setShowSpinner(true)
+    let response = await dispatch(actions.unfollowUser, {id}, {}, contextStore.user.token)
+    console.log(response)
+    if(response.errors){
+      setShowSpinner(false)
+      return
+    }
+    setUser(response)
+    setShowSpinner(false)
+  }
+  const onClickSendMessage = async () => {
+     setShowSpinner(true)
+     let response = await dispatch(actions.createRoom, {}, {user: {_id: id}}, contextStore.user.token)
+     console.log(response)
+     setShowSpinner(false)
+     if(!response.errors){
+      navigate(`/messages/${response._id}`)
+     }
+  }
   return (
     <div className='profile noScrollBar'>
       <div className='profile-head-section'>
@@ -48,8 +84,10 @@ const UserProfile = (props) => {
           <div className='userInfo__nameAndButtons'>
             <div className='userInfo__name'>{user.firstName} {user.lastName}</div>
             <div className='userInfo__buttonGroup'>
-              <div className='userInfo__accentButton'>Follow</div>
-              <div className='userInfo__accentOutLine'>Send Message</div>
+              {contextStore.user && !checkIfOwner(contextStore, id) &&<div>
+                {user.followers.includes(contextStore.user._id) ? <div className='userInfo__accentButton' onClick={onClickUnfollow}>Following</div> : <div className='userInfo__accentButton' onClick={onClickFollow}>Follow</div>}
+                
+              <div className='userInfo__accentOutLine' onClick={onClickSendMessage}>Send Message</div></div>}
               <div></div>
             </div>
           </div>

@@ -8,7 +8,9 @@ const AppContextProvider = (props) => {
         owner: false,
         user: undefined,
         eart: {},
-        edition: {}
+        edition: {},
+        notifications: [],
+        messages: []
     })
 
     return (

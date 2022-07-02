@@ -27,7 +27,19 @@ const actions = {
     getUserProfile: "GETUSERPROFILE",
     getUserCopyEarts: "GETUSERCOPYEARTS",
     editGallery: "EDITGALLERY",
-    getGallery: "GETGALLERY"
+    getGallery: "GETGALLERY",
+    followUser: "FOLLOWUSER",
+    unfollowUser: "UNFOLLOWUSER",
+    followEart: "FOLLOWEART",
+    unfollowEart: "UNFOLLOWEART",
+    getNotifications: "GETNOTIFICATIONS",
+    getNotificationsNotViewed: "GETNOTIFICATIONSNOTVIEWED",
+    createRoom: "CREATEROOM",
+    getRooms: "GETROOMS",
+    getRoom: "GETROOM",
+    getRoomMessages: "GETROOMMESSAGES",
+    getRoomMessagesNotViewed: "GETROOMMESSAGESNOTVIEWED",
+    sendMessage: "SENDMESSAGE"
 }
 
 export default actions

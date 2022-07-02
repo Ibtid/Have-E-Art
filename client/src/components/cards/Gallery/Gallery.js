@@ -78,7 +78,7 @@ const Gallery = (props) => {
         />
       </div>
       <div className='gallery__text'>
-        <div className='gallery__name'>Abstract</div>
+        <div className='gallery__name'>{gallery.name}</div>
       </div>
     </div>
   );
