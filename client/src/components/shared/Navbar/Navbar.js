@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import searchIcon from "../../../assets/icons/magnifyingGlass.svg";
 import avatar from "../../../assets/icons/avatar.svg";
 import bellTcon from "../../../assets/icons/bellIcon.svg";

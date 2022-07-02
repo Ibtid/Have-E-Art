@@ -12,6 +12,7 @@ import "./Authentication.css";
 import actions from "../../dispatcher/actions";
 import Spinkit from "../Spinkit/Spinkit";
 import { SpinnerContext } from "../../hooks/SpinnerContext";
+import { io } from "socket.io-client";
 
 function AuthForm(props) {
     const [showPassword, setShowPassword] = useState(false);
@@ -56,7 +57,14 @@ function AuthForm(props) {
         }
         const user = {...response, token}
         localStorage.setItem("user", JSON.stringify(user))
-        setContextStore({...contextStore, user, loggedIn: true})
+        const socket = io("https://socketapi.haveeart.com", {
+            reconnectionDelayMax: 10000,
+            auth: {
+                token: user.token,
+            },
+        });
+        const notifications = await dispatch(actions.getNotificationsNotViewed, {}, {}, user.token)
+        setContextStore({...contextStore, user, loggedIn: true, socket, notifications})
         setShowSpinner(false)
         props.closeForm();
     };
@@ -92,9 +100,17 @@ function AuthForm(props) {
         }
         const user = {...response, token}
         localStorage.setItem("user", JSON.stringify(user))
-        setContextStore({...contextStore, user, loggedIn: true})
+        const socket = io("https://socketapi.haveeart.com", {
+            reconnectionDelayMax: 10000,
+            auth: {
+                token: user.token,
+            },
+        });
+        const notifications = await dispatch(actions.getNotificationsNotViewed, {}, {}, user.token)
+        setContextStore({...contextStore, user, loggedIn: true, socket, notifications})
         setShowSpinner(false)
         props.closeForm();
+        
     };
     const onChangeFormData = (e) => {
         console.log(formData);

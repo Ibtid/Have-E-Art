@@ -57,7 +57,7 @@ function App() {
                 console.log(user);
                
                 localStorage.setItem("user", JSON.stringify(user));
-                const socket = io("ws://localhost:5001", {
+                const socket = io("https://socketapi.haveeart.com", {
                     reconnectionDelayMax: 10000,
                     auth: {
                         token: user.token,
