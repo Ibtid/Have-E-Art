@@ -114,7 +114,7 @@ const Navbar = () => {
           className={`navbar__authSection navbar__flexRow ${
             toggleDisplay ? '' : 'no__display'
           }`}>
-          {notificationCount !== 1 ? (
+          {notificationCount !== 0 ? (
             <div className='navbar__shakeIcon'>
               <div
                 className='navbar__iconButton'

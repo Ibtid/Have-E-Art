@@ -192,4 +192,10 @@
     display: none;
     transition: all 0.3s ease-in-out;
   }
+  .navbar__shakeIcon {
+    color: #5bc0eb;
+    position: relative;
+
+    margin-right: 1rem;
+  }
 }
