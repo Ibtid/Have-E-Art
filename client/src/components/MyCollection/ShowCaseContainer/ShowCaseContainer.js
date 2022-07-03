@@ -95,21 +95,6 @@ const ShowCaseContainer = (props) => {
             }}>
             Copy
           </div>
-          {navItem === 'BoughtShowcase' && (
-            <div className='myCollection__activeBarLeft'></div>
-          )}
-          {navItem === 'ForSaleShowcase' && (
-            <div className='myCollection__activeBarMiddle'></div>
-          )}
-          {navItem === 'GalleryShowcase' && (
-            <div className='myCollection__activeBarRight'></div>
-          )}
-          {navItem === 'OwnedShowcase' && (
-            <div className='myCollection__activeBarRightMost'></div>
-          )}
-          {navItem === 'CopyShowcase' && (
-            <div className='myCollection__activeBarRightMost1'></div>
-          )}
         </div>
 
         <div style={{ display: 'flex' }}>

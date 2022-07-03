@@ -19,59 +19,18 @@
   position: relative;
 }
 
-.myCollection__activeBarLeft {
-  position: absolute;
-  top: 0.5rem;
-  left: 0;
-  height: 0.2rem;
-  width: 3.7rem;
-  background-color: var(--accent);
-}
-
-.myCollection__activeBarMiddle {
-  position: absolute;
-  top: 0.5rem;
-  left: calc(2.2rem + 3.7rem);
-  height: 0.2rem;
-  width: 3.7rem;
-  background-color: var(--accent);
-}
-
-.myCollection__activeBarRight {
-  position: absolute;
-  top: 0.5rem;
-  left: calc(2.2rem + 2.2rem + 3.7rem + 3.7rem);
-  height: 0.2rem;
-  width: 3.5rem;
-  background-color: var(--accent);
-}
-
-.myCollection__activeBarRightMost {
-  position: absolute;
-  top: 0.5rem;
-  left: calc(2.2rem + 2.2rem + 2rem + 3.7rem + 3.7rem + 3.7rem);
-  height: 0.2rem;
-  width: 3.5rem;
-  background-color: var(--accent);
-}
-
-.myCollection__activeBarRightMost1 {
-  position: absolute;
-  top: 0.5rem;
-  left: calc(2rem + 2rem + 2rem + 2rem + 3.7rem + 3.7rem + 3.7rem + 3.7rem);
-  height: 0.2rem;
-  width: 3.5rem;
-  background-color: var(--accent);
-}
-
 .myCollection__navItem {
   margin-right: 2rem;
   cursor: pointer;
   color: var(--secondaryWhite);
+  transition: all 0.3s ease-in-out;
 }
 
 .active {
   color: var(--accent);
+  font-weight: bold;
+  transform: scale(1.15);
+  transition: all 0.2s ease-in-out;
 }
 
 .myCollection__addButton {
@@ -196,42 +155,7 @@
   }
 
   .myCollection__navItem {
-    font-size: 0.9rem;
-  }
-
-  .myCollection__activeBarLeft {
-    position: absolute;
-    top: 0.5rem;
-    left: 0;
-    height: 0.2rem;
-    width: 3.3rem;
-    background-color: var(--accent);
-  }
-
-  .myCollection__activeBarMiddle {
-    position: absolute;
-    top: 0.5rem;
-    left: calc(2.2rem + 3.3rem);
-    height: 0.2rem;
-    width: 3.3rem;
-    background-color: var(--accent);
-  }
-
-  .myCollection__activeBarRight {
-    position: absolute;
-    top: 0.5rem;
-    left: calc(2.2rem + 2.2rem + 3.3rem + 3.3rem);
-    height: 0.2rem;
-    width: 3.3rem;
-    background-color: var(--accent);
-  }
-
-  .myCollection__activeBarRightMost {
-    position: absolute;
-    top: 0.5rem;
-    left: calc(2.2rem + 2.2rem + 2rem + 3.3rem + 3.3rem + 3.3rem);
-    height: 0.2rem;
-    width: 3.3rem;
-    background-color: var(--accent);
+    margin-right: 1rem;
+    cursor: pointer;
   }
 }
