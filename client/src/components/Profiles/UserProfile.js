@@ -19,56 +19,71 @@ const UserProfile = (props) => {
   const listingart = [];
   const [user, setUser] = useState({
     socialLinks: {},
-    followers: []
-  })
-  const navigate = useNavigate()
-  const {contextStore} = useContext(AppContext)
-  const {id} = useParams()
-  const {setShowSpinner} = useContext(SpinnerContext)
+    followers: [],
+  });
+  const navigate = useNavigate();
+  const { contextStore } = useContext(AppContext);
+  const { id } = useParams();
+  const { setShowSpinner } = useContext(SpinnerContext);
   useEffect(() => {
     (async () => {
-      setShowSpinner(true)
-      let response = await dispatch(actions.getUserProfile,{id},{})
-      console.log(response)
-      if(response.errors){
-        setShowSpinner(false)
-        return
+      setShowSpinner(true);
+      let response = await dispatch(actions.getUserProfile, { id }, {});
+      console.log(response);
+      if (response.errors) {
+        setShowSpinner(false);
+        return;
       }
-      setUser(response)
-      setShowSpinner(false)
-    })()
-  },[])
-  const onClickFollow = async() => {
-    setShowSpinner(true)
-    let response = await dispatch(actions.followUser, {id}, {}, contextStore.user.token)
-    console.log(response)
-    if(response.errors){
-      setShowSpinner(false)
-      return
+      setUser(response);
+      setShowSpinner(false);
+    })();
+  }, []);
+  const onClickFollow = async () => {
+    setShowSpinner(true);
+    let response = await dispatch(
+      actions.followUser,
+      { id },
+      {},
+      contextStore.user.token
+    );
+    console.log(response);
+    if (response.errors) {
+      setShowSpinner(false);
+      return;
     }
-    setUser(response)
-    setShowSpinner(false)
-  }
+    setUser(response);
+    setShowSpinner(false);
+  };
   const onClickUnfollow = async () => {
-    setShowSpinner(true)
-    let response = await dispatch(actions.unfollowUser, {id}, {}, contextStore.user.token)
-    console.log(response)
-    if(response.errors){
-      setShowSpinner(false)
-      return
+    setShowSpinner(true);
+    let response = await dispatch(
+      actions.unfollowUser,
+      { id },
+      {},
+      contextStore.user.token
+    );
+    console.log(response);
+    if (response.errors) {
+      setShowSpinner(false);
+      return;
     }
-    setUser(response)
-    setShowSpinner(false)
-  }
+    setUser(response);
+    setShowSpinner(false);
+  };
   const onClickSendMessage = async () => {
-     setShowSpinner(true)
-     let response = await dispatch(actions.createRoom, {}, {user: {_id: id}}, contextStore.user.token)
-     console.log(response)
-     setShowSpinner(false)
-     if(!response.errors){
-      navigate(`/messages/${response._id}`)
-     }
-  }
+    setShowSpinner(true);
+    let response = await dispatch(
+      actions.createRoom,
+      {},
+      { user: { _id: id } },
+      contextStore.user.token
+    );
+    console.log(response);
+    setShowSpinner(false);
+    if (!response.errors) {
+      navigate(`/messages/${response._id}`);
+    }
+  };
   return (
     <div className='profile noScrollBar'>
       <div className='profile-head-section'>
@@ -77,33 +92,58 @@ const UserProfile = (props) => {
       <div className='user-grid'>
         <div className='profile-img-section'>
           <div className='profile-img-back'>
-            <img className='profile-img' src={user.profileImage ? user.profileImage : userImg} alt='img' />
+            <img
+              className='profile-img'
+              src={user.profileImage ? user.profileImage : userImg}
+              alt='img'
+            />
           </div>
         </div>
         <div className='user-info'>
           <div className='userInfo__nameAndButtons'>
-            <div className='userInfo__name'>{user.firstName} {user.lastName}</div>
-            <div className='userInfo__buttonGroup'>
-              {contextStore.user && !checkIfOwner(contextStore, id) &&<div>
-                {user.followers.includes(contextStore.user._id) ? <div className='userInfo__accentButton' onClick={onClickUnfollow}>Following</div> : <div className='userInfo__accentButton' onClick={onClickFollow}>Follow</div>}
-                
-              <div className='userInfo__accentOutLine' onClick={onClickSendMessage}>Send Message</div></div>}
-              <div></div>
+            <div className='userInfo__name'>
+              {user.firstName} {user.lastName}
             </div>
+
+            {contextStore.user && !checkIfOwner(contextStore, id) && (
+              <div className='userInfo__buttonGroup'>
+                {user.followers.includes(contextStore.user._id) ? (
+                  <div
+                    className='userInfo__accentButton'
+                    onClick={onClickUnfollow}>
+                    Following
+                  </div>
+                ) : (
+                  <div
+                    className='userInfo__accentButton'
+                    onClick={onClickFollow}>
+                    Follow
+                  </div>
+                )}
+
+                <div
+                  className='userInfo__accentOutLine'
+                  onClick={onClickSendMessage}>
+                  Send Message
+                </div>
+              </div>
+            )}
           </div>
           <div className='profile-username-accent'>{user.userName}</div>
-          <div className='profile-user-bio'>
-            {user.bio}
-          </div>
+          <div className='profile-user-bio'>{user.bio}</div>
         </div>
         <div className='profile-contact'>
           <div className='profile-contact-info'>
             <img className='profile-contact-info-icon' src={fb} alt='fb' />
-            <div className='profile-contact-info-text'>{user.socialLinks.facebook}</div>
+            <div className='profile-contact-info-text'>
+              {user.socialLinks.facebook}
+            </div>
           </div>
           <div className='profile-contact-info'>
             <img className='profile-contact-info-icon' src={web} alt='web' />
-            <div className='profile-contact-info-text'>{user.socialLinks.twitter}</div>
+            <div className='profile-contact-info-text'>
+              {user.socialLinks.twitter}
+            </div>
           </div>
           <div className='profile-contact-info'>
             <img
@@ -111,7 +151,9 @@ const UserProfile = (props) => {
               src={instagram}
               alt='instagram'
             />
-            <div className='profile-contact-info-text'>{user.socialLinks.instagram}</div>
+            <div className='profile-contact-info-text'>
+              {user.socialLinks.instagram}
+            </div>
           </div>
           <div className='profile-contact-info'>
             <img
@@ -119,7 +161,9 @@ const UserProfile = (props) => {
               src={pinterest}
               alt='pinterest'
             />
-            <div className='profile-contact-info-text'>{user.socialLinks.pinterest}</div>
+            <div className='profile-contact-info-text'>
+              {user.socialLinks.pinterest}
+            </div>
           </div>
         </div>
       </div>
