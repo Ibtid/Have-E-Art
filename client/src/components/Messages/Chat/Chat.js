@@ -14,6 +14,7 @@ const Chat = () => {
   const [input, setInput] = useState('');
   const [messages, _setMessages] = useState([]);
   const [messageUpdate, setMessageUpdate] = useState(0);
+
   let enterLock = false;
   const messagesRef = useRef(messages);
   const setMessages = (data) => {
@@ -108,12 +109,14 @@ const Chat = () => {
         </Link>
       </div>
       <div className='chat__scroll'>
-        {messages
-          .slice(0)
-          .reverse()
-          .map((message) => (
-            <OneChat message={message} />
-          ))}
+        <div style={{ transform: 'scaleY(-1)' }}>
+          {messages
+            .slice(0)
+            .reverse()
+            .map((message) => (
+              <OneChat message={message} />
+            ))}
+        </div>
       </div>
       <div className='chat__footer'>
         <input

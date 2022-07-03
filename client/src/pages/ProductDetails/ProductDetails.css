@@ -53,6 +53,7 @@
   border: 1px solid var(--white);
   padding: 5px;
   border-radius: 0.3rem;
+  cursor: pointer;
 }
 
 .productDetails__outlinedButtonImage {
@@ -65,6 +66,7 @@
   border: 1px solid var(--white);
   padding: 5px;
   border-radius: 0.3rem;
+  cursor: pointer;
 }
 
 .productDetails__dateAndViews {
@@ -233,13 +235,13 @@
   border-radius: 0.3rem;
 }
 
-.edition__optionsRow{
+.edition__optionsRow {
   display: flex;
   margin-top: 0.5rem;
   color: var(--secondaryWhite);
 }
 
-.edition__optionsPieces{
+.edition__optionsPieces {
   margin-right: 1rem;
 }
 

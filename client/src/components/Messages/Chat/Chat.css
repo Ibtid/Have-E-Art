@@ -50,7 +50,6 @@
   height: calc(100vh - 16rem);
   width: calc(94vw - 25rem);
   overflow-y: scroll;
-  transform: scaleY(-1);
 }
 
 .chat__scroll::-webkit-scrollbar {

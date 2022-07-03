@@ -114,7 +114,7 @@ const Navbar = () => {
           className={`navbar__authSection navbar__flexRow ${
             toggleDisplay ? '' : 'no__display'
           }`}>
-          {notificationCount !== 0 ? (
+          {notificationCount !== 1 ? (
             <div className='navbar__shakeIcon'>
               <div
                 className='navbar__iconButton'
@@ -134,6 +134,7 @@ const Navbar = () => {
           ) : (
             <div
               className='navbar__iconButton'
+              style={{ marginRight: '3rem' }}
               onClick={() => {
                 setOpenNotifications(true);
               }}>
