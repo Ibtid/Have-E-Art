@@ -17,13 +17,18 @@
   align-items: center;
   height: 3rem;
   position: relative;
+  padding-bottom: 0.5rem;
 }
 
 .myCollection__navItem {
   margin-right: 2rem;
   cursor: pointer;
   color: var(--secondaryWhite);
-  transition: all 0.3s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+
+.myCollection__navItem:hover {
+  color: var(--accent);
 }
 
 .active {
