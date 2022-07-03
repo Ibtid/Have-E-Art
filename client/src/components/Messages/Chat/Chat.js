@@ -15,7 +15,7 @@ const Chat = () => {
   const [input, setInput] = useState('');
   const [messages, _setMessages] = useState([]);
   const [messageUpdate, setMessageUpdate] = useState(0);
-
+  let chatBox = useRef(null);
   let enterLock = false;
   const messagesRef = useRef(messages);
   const setMessages = (data) => {
@@ -80,6 +80,7 @@ const Chat = () => {
         contextStore.socket.emit('joinChatRoom', [chatId]);
         contextStore.socket.on('message', messageEventListener);
       }
+
       setShowSpinner(false);
     })();
 
@@ -99,6 +100,11 @@ const Chat = () => {
       }
     }
   };
+
+  useEffect(() => {
+    chatBox.current.scrollTop = chatBox.current.scrollHeight;
+  }, [messages, messageUpdate]);
+
   return (
     <div className='chat'>
       <div className='chat__head'>
@@ -117,15 +123,10 @@ const Chat = () => {
           <img src={rightArrow} alt='' />
         </Link>
       </div>
-      <div className='chat__scroll'>
-        <div style={{ transform: 'scaleY(-1)' }}>
-          {messages
-            .slice(0)
-            .reverse()
-            .map((message) => (
-              <OneChat message={message} />
-            ))}
-        </div>
+      <div className='chat__scroll' ref={chatBox}>
+        {messages.map((message) => (
+          <OneChat message={message} />
+        ))}
       </div>
       <div className='chat__footer'>
         <input
