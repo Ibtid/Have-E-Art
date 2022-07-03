@@ -23,8 +23,6 @@
   border-radius: 0.3rem;
 }
 
-
-
 @media screen and (max-width: 1920px) {
   .home__cardContainer {
     display: grid;
@@ -37,19 +35,20 @@
 
 @media screen and (max-width: 1520px) {
   .home__cardContainer {
-    display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-auto-rows: 22rem;
-    overflow-y: scroll;
   }
 }
 
-@media screen and (max-width: 1408px) {
+@media screen and (max-width: 1180px) {
   .home__cardContainer {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-auto-rows: 22rem;
-    overflow-y: scroll;
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media screen and (max-width: 880px) {
+  .home__cardContainer {
+    grid-template-columns: 1fr;
+    place-items: center;
   }
 }
 
