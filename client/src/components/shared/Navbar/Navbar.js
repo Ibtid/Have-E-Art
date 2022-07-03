@@ -134,7 +134,7 @@ const Navbar = () => {
           ) : (
             <div
               className='navbar__iconButton'
-              style={{ marginRight: '3rem' }}
+              style={{ marginRight: '5vw' }}
               onClick={() => {
                 setOpenNotifications(true);
               }}>

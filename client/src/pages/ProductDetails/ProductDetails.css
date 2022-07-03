@@ -183,6 +183,20 @@
   margin-top: 0.5rem;
 }
 
+.productDetails__bigOutlineButton {
+  width: 90%;
+  border: 0.2rem solid var(--secondaryWhite);
+  border-radius: 0.3rem;
+  text-align: center;
+  margin-top: 1rem;
+  padding: 0.5rem;
+  cursor: pointer;
+  transition: 0.3s all ease-in-out;
+}
+.productDetails__bigOutlineButton:hover {
+  background-color: var(--accent);
+}
+
 .productDetails__buyButtons {
   display: flex;
   align-items: center;
@@ -205,7 +219,7 @@
 }
 
 .productDetails__sellButtonGroup {
-  margin-top: 3rem;
+  margin-top: 0rem;
 }
 
 .productDetails__changePrice {

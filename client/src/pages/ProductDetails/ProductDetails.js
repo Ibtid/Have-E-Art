@@ -310,6 +310,7 @@ const ProductDetails = () => {
         <div className='productDetails__longText'>{eart.description}</div>
         <div className='productDetails__title'>Background Story:</div>
         <div className='productDetails__longText'>{eart.backgroundStory}</div>
+        <br />
         {/*............................................................................................*/}
         {!checkIfOwner(contextStore, eart.owner._id) && eart.flag.forSale && (
           <div className='productDetails__absoluteSection'>
@@ -328,16 +329,30 @@ const ProductDetails = () => {
             </div>
           </div>
         )}
+
         {/*............................................................................................*/}
+
         {checkIfOwner(contextStore, eart.owner._id) && !eart.flag.forSale && (
-          <div className='productDetails__sellButtonGroup'>
-            <div className='productDetails__buyButtons'>
-              <div
-                className='productDetails__buy'
-                onClick={onClickSellOriginal}>
-                List For Sale
-              </div>
+          <div className='productDetails__buyButtons'>
+            <div
+              className='productDetails__bigOutlineButton'
+              onClick={onClickSellOriginal}>
+              List For Sale
             </div>
+          </div>
+        )}
+        {/*--------------------------------------------------------------------------------------------*/}
+        {checkIfOwner(contextStore, eart.owner._id) && (
+          <div>
+            <div
+              className='productDetails__bigOutlineButton'
+              onClick={() => {
+                setOpenCertifiedModal(true);
+                setOriginal(false);
+              }}>
+              Create Certified Edition
+            </div>
+            <br />
           </div>
         )}
         {/*............................................................................................*/}
@@ -350,28 +365,23 @@ const ProductDetails = () => {
                 {eart.price}
               </div>
             </div>
-            <div
-              className='productDetails__buyButtons'
-              onClick={() => {
-                navigate(`/product/edit/${id}`);
-              }}>
-              <div className='productDetails__changePrice'>Change Price</div>
-            </div>
-            <div className='productDetails__buyButtons' onClick={onClickUnlist}>
-              <div className='productDetails__changePrice'>Unlist</div>
+            <div className='productDetails__buyButtons'>
+              <div
+                className='productDetails__changePrice'
+                onClick={() => {
+                  navigate(`/product/edit/${id}`);
+                }}>
+                Change Price
+              </div>
+              <div
+                className='productDetails__changePrice'
+                onClick={onClickUnlist}>
+                Unlist
+              </div>
             </div>
           </div>
         )}
-        {checkIfOwner(contextStore, eart.owner._id) && (
-          <div
-            className='productDetails__buy'
-            onClick={() => {
-              setOpenCertifiedModal(true);
-              setOriginal(false);
-            }}>
-            Create Certified Edition
-          </div>
-        )}
+
         {editions.map((edition) => (
           <div className='edition__options'>
             <div className='productDetails__priceTag'>
