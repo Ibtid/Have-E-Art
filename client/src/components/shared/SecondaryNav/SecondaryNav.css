@@ -21,7 +21,13 @@
   border-radius: 2rem;
   font-size: 0.86rem;
   text-decoration: none;
+  transition: all 0.3s ease-in-out;
 }
+
+.secondaryNav__option:hover {
+  background-color: var(--accent);
+}
+
 .secondaryNav__imageContainer {
   margin-right: 0.4rem;
   display: flex;

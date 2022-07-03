@@ -9,6 +9,7 @@ import { Link, useParams } from 'react-router-dom';
 import dispatch from '../../../dispatcher/dispatch';
 import actions from '../../../dispatcher/actions';
 import { AppContext } from '../../../hooks/AppContext';
+import { SpinnerContext } from '../../../hooks/SpinnerContext';
 
 const Chat = () => {
   const [input, setInput] = useState('');
@@ -24,6 +25,7 @@ const Chat = () => {
   const [receiver, setReceiver] = useState({});
   const [room, setRoom] = useState({});
   const { chatId } = useParams();
+  const { setShowSpinner } = useContext(SpinnerContext);
   const { contextStore, setContextStore } = useContext(AppContext);
   const onChangeInput = (e) => {
     setInput(e.target.value);
@@ -47,6 +49,7 @@ const Chat = () => {
   };
   useEffect(() => {
     (async () => {
+      setShowSpinner(true);
       let response = await dispatch(
         actions.getRoom,
         { id: chatId },
@@ -77,7 +80,9 @@ const Chat = () => {
         contextStore.socket.emit('joinChatRoom', [chatId]);
         contextStore.socket.on('message', messageEventListener);
       }
+      setShowSpinner(false);
     })();
+
     return () => {
       contextStore.socket.off('message');
     };
@@ -98,7 +103,11 @@ const Chat = () => {
     <div className='chat'>
       <div className='chat__head'>
         <div className='chat__nameAndActiveStatus'>
-          <div className='chat__name'>{`${receiver.firstName} ${receiver.lastName}`}</div>
+          <div className='chat__name'>
+            {receiver.firstName !== undefined
+              ? `${receiver.firstName} ${receiver?.lastName}`
+              : 'Loading'}
+          </div>
           <div className='chat__activeStatus'></div>
         </div>
         <Link

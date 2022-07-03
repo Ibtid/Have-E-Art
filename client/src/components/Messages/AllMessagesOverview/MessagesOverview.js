@@ -7,20 +7,30 @@ import SecondaryNav from '../../shared/SecondaryNav/SecondaryNav';
 import dispatch from '../../../dispatcher/dispatch';
 import actions from '../../../dispatcher/actions';
 import { AppContext } from '../../../hooks/AppContext';
+import { SpinnerContext } from '../../../hooks/SpinnerContext';
 
 const MessagesOverview = () => {
+  const { setShowSpinner } = useContext(SpinnerContext);
   const { width, height } = useWindowDimensions();
-  const [rooms, setRooms] = useState([])
-  const {contextStore, setContextStore} = useContext(AppContext)
+  const [rooms, setRooms] = useState([]);
+  const { contextStore, setContextStore } = useContext(AppContext);
   useEffect(() => {
-    (async() => {
-      const response = await dispatch(actions.getRooms, {}, {}, contextStore.user.token)
-      console.log(response)
-      if(!response.errors){
-        setRooms(response)
+    (async () => {
+      setShowSpinner(true);
+      const response = await dispatch(
+        actions.getRooms,
+        {},
+        {},
+        contextStore.user.token
+      );
+      console.log(response);
+      if (!response.errors) {
+        setRooms(response);
+        setShowSpinner(false);
       }
-    })()
-  },[])
+      setShowSpinner(false);
+    })();
+  }, []);
   return (
     <div className='messagesOverview'>
       {width <= 768 && <SecondaryNav />}
@@ -34,7 +44,9 @@ const MessagesOverview = () => {
         <input className='messagesOverview_searchInput' placeholder='Search' />
       </div>
       <div className='messagesOverview__scroll'>
-        {rooms.map(room => <SingleMessageOverview room = {room}/>)}
+        {rooms.map((room) => (
+          <SingleMessageOverview room={room} />
+        ))}
       </div>
     </div>
   );
