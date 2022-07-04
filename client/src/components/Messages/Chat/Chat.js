@@ -32,13 +32,15 @@ const Chat = () => {
   };
   const onClickSend = async () => {
     if (input) {
+      let dataToSend = input;
+      setInput('');
       let response = await dispatch(
         actions.sendMessage,
         { roomId: chatId },
-        { text: input },
+        { text: dataToSend },
         contextStore.user.token
       );
-      setInput('');
+
       enterLock = false;
     }
   };
