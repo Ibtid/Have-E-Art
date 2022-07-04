@@ -16,7 +16,6 @@ import checkIfOwner from '../../utility/checkIfOwner';
 import { AppContext } from '../../hooks/AppContext';
 
 const UserProfile = (props) => {
-  const listingart = [];
   const [user, setUser] = useState({
     socialLinks: {},
     followers: [],
@@ -102,8 +101,7 @@ const UserProfile = (props) => {
         <div className='user-info'>
           <div className='userInfo__nameAndButtons'>
             <div className='userInfo__name'>
-              {/*{user.firstName} {user.lastName}*/}
-              Ibtida Rahman
+              {user.firstName} {user.lastName}
             </div>
 
             {contextStore.user && !checkIfOwner(contextStore, id) && (

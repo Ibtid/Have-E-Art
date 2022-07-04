@@ -1,11 +1,11 @@
 .secondaryNav {
   height: 3.5rem;
-  width: 30vw;
+  width: 40vw;
+  background-color: var(--white);
   margin-left: 3vw;
   background-color: var(--primary);
   display: flex;
   align-items: center;
-  justify-content: space-between;
 }
 
 .secondaryNav__option {
@@ -17,7 +17,7 @@
   align-items: center;
   justify-content: center;
   height: 1.8rem;
-  width: 10rem;
+  width: 11rem;
   border-radius: 2rem;
   font-size: 0.86rem;
   text-decoration: none;
@@ -44,12 +44,11 @@
 @media screen and (max-width: 1420px) {
   .secondaryNav {
     height: 3rem;
-    width: 40vw;
+    width: 50vw;
     margin-left: 3vw;
     background-color: var(--primary);
     display: flex;
     align-items: center;
-    justify-content: space-between;
   }
 }
 

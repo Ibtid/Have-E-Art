@@ -1,9 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import actions from '../../dispatcher/actions';
 import dispatch from '../../dispatcher/dispatch';
-import { AppContext } from '../../hooks/AppContext';
 import { SpinnerContext } from '../../hooks/SpinnerContext';
-import Spinkit from '../../modals/Spinkit/Spinkit';
 import ProductShowcaseCard from '../cards/ProductShowcaseCard/ProductShowcaseCard';
 
 import './Home.css';
@@ -11,7 +9,6 @@ import './Home.css';
 const Home = () => {
   const { setShowSpinner } = useContext(SpinnerContext);
   const [earts, setEarts] = useState([]);
-  const { contextStore, setContextStore } = useContext(AppContext);
 
   useEffect(() => {
     (async () => {
@@ -29,7 +26,7 @@ const Home = () => {
   return (
     <div className='home__cardContainer noScrollBar'>
       {earts.map((eart) => (
-        <ProductShowcaseCard eart={eart} />
+        <ProductShowcaseCard eart={eart} key={eart._id} />
       ))}
     </div>
   );

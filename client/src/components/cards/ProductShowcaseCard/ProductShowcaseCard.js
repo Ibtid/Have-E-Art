@@ -1,21 +1,14 @@
 import React from 'react';
 
-import image from '../../../assets/images/pexels-dan-cristian-pădureț-1193743 1.png';
-import image2 from '../../../assets/images/pexels-jane-pham-1571673.jpg';
-import image3 from '../../../assets/images/pexels-vincent-pelletier-908713.jpg';
-import image4 from '../../../assets/images/pexels-ayswarya-aish-2109147.jpg';
 import favouriteOutline from '../../../assets/icons/favouritesOutline.svg';
 import shareOutline from '../../../assets/icons/shareIcon.svg';
 import views from '../../../assets/icons/views.svg';
-import { Link } from 'react-router-dom';
 import './ProductShowcaseCard.css';
-import { useContext } from 'react';
-import { AppContext } from '../../../hooks/AppContext';
+
 import { useNavigate } from 'react-router-dom';
 import getDate from '../../../utility/getDate';
 
-const ProductShowcaseCard = ({eart}) => {
-  const {contextStore, setContextStore} = useContext(AppContext);
+const ProductShowcaseCard = ({ eart }) => {
   let navigator = useNavigate();
 
   return (
@@ -50,7 +43,9 @@ const ProductShowcaseCard = ({eart}) => {
         </div>
         <div className='productShowcaseCard__rowTwo'>
           <div className='productShowcaseCard__dateAndViewsContainer'>
-            <div className='productShowcaseCard__date'>{getDate(eart.uploadDate)}</div>
+            <div className='productShowcaseCard__date'>
+              {getDate(eart.uploadDate)}
+            </div>
             <div className='productShowcaseCard__views'>
               <img
                 src={views}
@@ -65,11 +60,15 @@ const ProductShowcaseCard = ({eart}) => {
           <div className='productShowcaseCard__people'>
             <div className='productShowcaseCard__created'>
               <span>Created by :</span>
-              <span className='productShowcaseCard__name'>{eart.creator.firstName} {eart.creator.lastName}</span>
+              <span className='productShowcaseCard__name'>
+                {eart.creator.firstName} {eart.creator.lastName}
+              </span>
             </div>
             <div className='productShowcaseCard__owned'>
               <span>Owned by:</span>
-              <span className='productShowcaseCard__name'>{eart.owner.firstName} {eart.owner.lastName}</span>
+              <span className='productShowcaseCard__name'>
+                {eart.owner.firstName} {eart.owner.lastName}
+              </span>
             </div>
           </div>
           <div className='productShowcaseCard__button'>View E-art</div>

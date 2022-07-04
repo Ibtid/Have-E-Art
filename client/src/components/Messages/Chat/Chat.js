@@ -125,7 +125,7 @@ const Chat = () => {
       </div>
       <div className='chat__scroll' ref={chatBox}>
         {messages.map((message) => (
-          <OneChat message={message} />
+          <OneChat message={message} key={message._id} />
         ))}
       </div>
       <div className='chat__footer'>
