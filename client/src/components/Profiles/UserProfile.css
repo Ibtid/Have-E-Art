@@ -20,7 +20,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 25rem;
+  width: 32.5rem;
 }
 
 .userInfo__name {
@@ -139,6 +139,7 @@
   .userInfo__nameAndButtons {
     margin-top: 1rem;
     margin-bottom: 1rem;
+    width: 28rem;
   }
 }
 

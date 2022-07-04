@@ -102,7 +102,8 @@ const UserProfile = (props) => {
         <div className='user-info'>
           <div className='userInfo__nameAndButtons'>
             <div className='userInfo__name'>
-              {user.firstName} {user.lastName}
+              {/*{user.firstName} {user.lastName}*/}
+              Ibtida Rahman
             </div>
 
             {contextStore.user && !checkIfOwner(contextStore, id) && (
