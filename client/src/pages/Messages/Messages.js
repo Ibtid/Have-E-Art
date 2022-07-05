@@ -17,6 +17,11 @@ const Messages = () => {
         className={chatId ? 'messages__right' : 'messages__right no__display'}>
         <SecondaryNav />
         {chatId && <Chat />}
+        {!chatId && (
+          <div className='messages__right__empty'>
+            It's quite at the moment...
+          </div>
+        )}
       </div>
     </div>
   );
