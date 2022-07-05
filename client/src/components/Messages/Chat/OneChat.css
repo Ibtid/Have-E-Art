@@ -1,3 +1,19 @@
+.sendingChat__opacity {
+  opacity: 0.3;
+  animation: beaming 1s infinite;
+  -webkit-animation: beaming 1s infinite;
+}
+
+@keyframes beaming {
+  0% {
+    opacity: 0.2;
+  }
+
+  100% {
+    opacity: 0.5;
+  }
+}
+
 .oneChat {
   margin: 1rem 0rem 2rem 0rem;
   display: grid;

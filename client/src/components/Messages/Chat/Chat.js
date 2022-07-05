@@ -10,12 +10,18 @@ import dispatch from '../../../dispatcher/dispatch';
 import actions from '../../../dispatcher/actions';
 import { AppContext } from '../../../hooks/AppContext';
 import { SpinnerContext } from '../../../hooks/SpinnerContext';
+import SendingChat from './SendingChat';
 
 const Chat = () => {
   const [input, setInput] = useState('');
   const [messages, _setMessages] = useState([]);
   const [messageUpdate, setMessageUpdate] = useState(0);
+  const [isMessageSending, setIsMessageSending] = useState({
+    state: false,
+    message: '',
+  });
   let chatBox = useRef(null);
+
   let enterLock = false;
   const messagesRef = useRef(messages);
   const setMessages = (data) => {
@@ -33,7 +39,9 @@ const Chat = () => {
   const onClickSend = async () => {
     if (input) {
       let dataToSend = input;
+
       setInput('');
+      console.log('DEKH IBTID', isMessageSending);
       let response = await dispatch(
         actions.sendMessage,
         { roomId: chatId },
@@ -42,6 +50,7 @@ const Chat = () => {
       );
 
       enterLock = false;
+      setIsMessageSending({ state: false, message: '' });
     }
   };
   const messageEventListener = (message) => {
@@ -129,6 +138,9 @@ const Chat = () => {
         {messages.map((message) => (
           <OneChat message={message} key={message._id} />
         ))}
+        {isMessageSending.state && (
+          <SendingChat message={isMessageSending.message} />
+        )}
       </div>
       <div className='chat__footer'>
         <input
