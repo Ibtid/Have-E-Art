@@ -39,9 +39,9 @@ const Chat = () => {
   const onClickSend = async () => {
     if (input) {
       let dataToSend = input;
-
+      setIsMessageSending({ state: true, message: dataToSend });
       setInput('');
-      console.log('DEKH IBTID', isMessageSending);
+
       let response = await dispatch(
         actions.sendMessage,
         { roomId: chatId },
