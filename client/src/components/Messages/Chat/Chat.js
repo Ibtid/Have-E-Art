@@ -52,7 +52,7 @@ const Chat = () => {
       );
 
       enterLock = false;
-      setIsMessageSending({ state: false, message: '' });
+      
     }
   };
   const messageEventListener = (message) => {
@@ -102,6 +102,7 @@ const Chat = () => {
     };
   }, [chatId]);
   useEffect(() => {
+    setIsMessageSending({ state: false, message: '' });
     _setMessages(messagesRef.current);
   }, [messageUpdate]);
 
