@@ -52,37 +52,33 @@ const Navbar = () => {
     }
   }, [contextStore.socket]);
   const closeNotification = async () => {
-    if (notificationCount > 0) {
-      setShowSpinner(true);
-      let response = await dispatch(
-        actions.viewNotifications,
-        {},
-        {},
-        contextStore.user.token
-      );
-      console.log(response);
-      if (response.errors) {
-        return;
-      }
-      setOpenNotifications(false);
-      setShowSpinner(false);
-      response = await dispatch(
-        actions.getNotifications,
-        {},
-        {},
-        contextStore.user.token
-      );
-      console.log(response);
-      if (response.errors) {
-        return;
-      }
-      setContextStore({
-        ...contextStore,
-        notifications: response,
-      });
-    } else {
-      setOpenNotifications(false);
+    setShowSpinner(true);
+    let response = await dispatch(
+      actions.viewNotifications,
+      {},
+      {},
+      contextStore.user.token
+    );
+    console.log(response);
+    if (response.errors) {
+      return;
     }
+    setOpenNotifications(false);
+    setShowSpinner(false);
+    response = await dispatch(
+      actions.getNotifications,
+      {},
+      {},
+      contextStore.user.token
+    );
+    console.log(response);
+    if (response.errors) {
+      return;
+    }
+    setContextStore({
+      ...contextStore,
+      notifications: response,
+    });
   };
   useEffect(() => {
     setContextStore({
@@ -155,7 +151,8 @@ const Navbar = () => {
                   if (!openNotifications) {
                     setOpenNotifications(true);
                     return;
-                  } else closeNotification();
+                  }
+                  closeNotification();
                 }}>
                 <img
                   src={bellTcon}
@@ -175,7 +172,8 @@ const Navbar = () => {
                 if (!openNotifications) {
                   setOpenNotifications(true);
                   return;
-                } else closeNotification();
+                }
+                closeNotification();
               }}>
               <img src={bellTcon} className='navbar__icon' alt='search' />
             </div>
