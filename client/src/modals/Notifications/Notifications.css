@@ -5,7 +5,7 @@
   background-color: rgba(13, 13, 13, 0.1);
   position: fixed;
   left: 0px;
-  top: 4rem;
+  top: 0px;
   height: calc(100vh - 4rem);
   width: 100vw;
   z-index: 1015;
