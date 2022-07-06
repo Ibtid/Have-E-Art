@@ -39,7 +39,8 @@ const actions = {
     getRoom: "GETROOM",
     getRoomMessages: "GETROOMMESSAGES",
     getRoomMessagesNotViewed: "GETROOMMESSAGESNOTVIEWED",
-    sendMessage: "SENDMESSAGE"
+    sendMessage: "SENDMESSAGE",
+    viewNotifications: "VIEWNOTIFICATIONS"
 }
 
 export default actions

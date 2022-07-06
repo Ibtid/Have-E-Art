@@ -55,7 +55,7 @@ function App() {
                 }
                 user = { ...response, token: user.token };
                 console.log(user);
-               
+
                 localStorage.setItem("user", JSON.stringify(user));
                 const socket = io("https://socketapi.haveeart.com", {
                     reconnectionDelayMax: 10000,
@@ -63,18 +63,23 @@ function App() {
                         token: user.token,
                     },
                 });
-                const notifications = await dispatch(actions.getNotificationsNotViewed, {}, {}, user.token)
+                const notifications = await dispatch(
+                    actions.getNotifications,
+                    {},
+                    {},
+                    user.token
+                );
                 setContextStore({
-                  ...contextStore,
-                  loggedIn: true,
-                  user,
-                  socket,
-                  notifications
-              });
-              setShowSpinner(false);
-              return () => {
-                socket.disconnect()
-              }
+                    ...contextStore,
+                    loggedIn: true,
+                    user,
+                    socket,
+                    notifications,
+                });
+                setShowSpinner(false);
+                return () => {
+                    socket.disconnect();
+                };
             }
         })();
     }, []);

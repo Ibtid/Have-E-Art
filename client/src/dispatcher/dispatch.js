@@ -218,6 +218,11 @@ const dispatch = async (action, headerParams = {}, body = {}, token = '') => {
       response = await axios(axiosOptions)
       return response.data
       break
+    case actions.viewNotifications:
+      axiosOptions = getAxiosOptions("PUT", `${baseUrl}/notification/viewNotifications`, body, token)
+      response = await axios(axiosOptions)
+      return response.data
+      break
   }
  }catch(err){
    console.log(err)
