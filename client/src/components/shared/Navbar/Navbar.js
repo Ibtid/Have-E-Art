@@ -82,6 +82,7 @@ const Navbar = () => {
             });
         }
         else{
+          console.log("Notification is supposed to be closed")
           setOpenNotifications(false);
         }
     };
@@ -160,6 +161,7 @@ const Navbar = () => {
                                 className="navbar__iconButton"
                                 onClick={() => {
                                     if (!openNotifications) {
+                                      console.log("This isnt supposed to print 1")
                                         setOpenNotifications(true);
                                         return;
                                     }
@@ -181,8 +183,13 @@ const Navbar = () => {
                             className="navbar__iconButton"
                             style={{ marginRight: "5vw" }}
                             onClick={() => {
-                                setOpenNotifications(true);
-                            }}
+                              if (!openNotifications) {
+                                console.log("This isnt supposed to print 2")
+                                  setOpenNotifications(true);
+                                  return;
+                              }
+                              closeNotification();
+                          }}
                         >
                             <img
                                 src={bellTcon}
