@@ -100,7 +100,7 @@ const Chat = () => {
     return () => {
       contextStore.socket.off('message');
     };
-  }, []);
+  }, [chatId]);
   useEffect(() => {
     _setMessages(messagesRef.current);
   }, [messageUpdate]);
