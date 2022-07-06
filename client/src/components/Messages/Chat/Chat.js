@@ -36,14 +36,14 @@ const Chat = () => {
   const onChangeInput = (e) => {
     setInput(e.target.value);
   };
-  const delay = (ms) => new Promise((res) => setTimeout(res, ms));
+
   const onClickSend = async () => {
     if (input) {
       let dataToSend = input;
       setIsMessageSending({ state: true, message: dataToSend });
 
       setInput('');
-      delay(3000);
+
       let response = await dispatch(
         actions.sendMessage,
         { roomId: chatId },
@@ -52,7 +52,6 @@ const Chat = () => {
       );
 
       enterLock = false;
-      
     }
   };
   const messageEventListener = (message) => {
