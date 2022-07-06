@@ -52,33 +52,37 @@ const Navbar = () => {
     }
   }, [contextStore.socket]);
   const closeNotification = async () => {
-    setShowSpinner(true);
-    let response = await dispatch(
-      actions.viewNotifications,
-      {},
-      {},
-      contextStore.user.token
-    );
-    console.log(response);
-    if (response.errors) {
-      return;
+    if (notificationCount > 0) {
+      setShowSpinner(true);
+      let response = await dispatch(
+        actions.viewNotifications,
+        {},
+        {},
+        contextStore.user.token
+      );
+      console.log(response);
+      if (response.errors) {
+        return;
+      }
+      setOpenNotifications(false);
+      setShowSpinner(false);
+      response = await dispatch(
+        actions.getNotifications,
+        {},
+        {},
+        contextStore.user.token
+      );
+      console.log(response);
+      if (response.errors) {
+        return;
+      }
+      setContextStore({
+        ...contextStore,
+        notifications: response,
+      });
+    } else {
+      setOpenNotifications(false);
     }
-    setOpenNotifications(false);
-    setShowSpinner(false);
-    response = await dispatch(
-      actions.getNotifications,
-      {},
-      {},
-      contextStore.user.token
-    );
-    console.log(response);
-    if (response.errors) {
-      return;
-    }
-    setContextStore({
-      ...contextStore,
-      notifications: response,
-    });
   };
   useEffect(() => {
     setContextStore({
