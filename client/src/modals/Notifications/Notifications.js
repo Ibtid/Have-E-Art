@@ -9,7 +9,7 @@ const Notifications = (props) => {
     const { contextStore } = useContext(AppContext);
     const ref = useRef();
     const [showForm, setShowForm] = useState(true);
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
     useEffect(() => {
         const checkIfClickedOutside = (e) => {
@@ -28,19 +28,29 @@ const Notifications = (props) => {
             document.removeEventListener("mousedown", checkIfClickedOutside);
         };
     }, [showForm]);
+    const onClickHighLight = (type, ref) => {
+        setShowForm(false);
+        props.closeNotifications();
+        switch (type) {
+            case "user":
+                navigate(`/user/earts/GalleryShowcase/${ref}`);
+                break;
+            default:
+                console.log(type);
+        }
+    };
     const onClickNotification = (notification) => {
-      console.log(notification)
-      setShowForm(false);
-      props.closeNotifications();
-      switch(notification.type){
-        case "user":
-          navigate(`/user/earts/GalleryShowcase/${notification.user}`)
-          break
-        case "eart":
-          break
-      }
-     
-    }
+        console.log(notification);
+        setShowForm(false);
+        props.closeNotifications();
+        switch (notification.type) {
+            case "user":
+                navigate(`/user/earts/GalleryShowcase/${notification.user}`);
+                break;
+            case "eart":
+                break;
+        }
+    };
     return ReactDOM.createPortal(
         <div
             className="notifications"
@@ -56,7 +66,7 @@ const Notifications = (props) => {
                         </div>
                         <div className="notifications__scroll">
                             {contextStore.notifications.map((notification) => (
-                                <div className="notifications__oneNotification" onClick={() => {onClickNotification(notification)}}>
+                                <div className="notifications__oneNotification">
                                     <img
                                         className="notifications__image"
                                         src={image}
@@ -64,8 +74,31 @@ const Notifications = (props) => {
                                     />
                                     <div className="notifications__textContainer">
                                         <div className="notifications__event">
-                                            <b>{notification.highlightOne}</b> {notification.noHighlight}{" "}
-                                            <b>{notification.highlightTwo}</b>
+                                            <b
+                                                onClick={() => {
+                                                    onClickHighLight(
+                                                        notification
+                                                            .highlightOne.type,
+                                                        notification
+                                                            .highlightOne.ref
+                                                    );
+                                                }}
+                                            >
+                                                {notification.highlightOne.text}
+                                            </b>{" "}
+                                            {notification.noHighlight}{" "}
+                                            <b
+                                                onClick={() => {
+                                                    onClickHighLight(
+                                                        notification
+                                                            .highlightTwo.type,
+                                                        notification
+                                                            .highlightTwo.ref
+                                                    );
+                                                }}
+                                            >
+                                                {notification.highlightTwo && notification.highlightTwo.text}
+                                            </b>
                                         </div>
                                         <div className="notifications__time">
                                             5 hours ago
