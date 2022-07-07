@@ -39,18 +39,6 @@ const Notifications = (props) => {
         console.log(type);
     }
   };
-  const onClickNotification = (notification) => {
-    console.log(notification);
-    setShowForm(false);
-    props.closeNotifications();
-    switch (notification.type) {
-      case 'user':
-        navigate(`/user/earts/GalleryShowcase/${notification.user}`);
-        break;
-      case 'eart':
-        break;
-    }
-  };
   return ReactDOM.createPortal(
     <div
       className='notifications'
