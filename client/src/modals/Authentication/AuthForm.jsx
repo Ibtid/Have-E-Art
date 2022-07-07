@@ -45,6 +45,7 @@ function AuthForm(props) {
             }
             console.log(allErrors);
             setErrors(allErrors)
+            setShowSpinner(false)
             return
         }
         const token = response
@@ -83,9 +84,7 @@ function AuthForm(props) {
             response.errors.forEach((error)=>{
                 allErrors[error.param]={msg: error.msg, param: error.param}
             })
-            if(formData.confirmPassword!==formData.password){
-                allErrors['confirmPassword']={msg:`Password doesn't match`, param:'confirmPassword'}
-            }
+            
             console.log(allErrors);
             setErrors(allErrors)
             setShowSpinner(false)

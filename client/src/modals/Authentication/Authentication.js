@@ -6,6 +6,7 @@ import AuthForm from './AuthForm';
 
 const Authentication = (props) => {
   const ref = useRef();
+  const [pop, setPop] = useState('pop__up');
   const [isSignup, setIsSignup] = useState(true);
   const [showForm, setShowForm] = useState(true);
 
@@ -14,8 +15,11 @@ const Authentication = (props) => {
       // If the menu is open and the clicked target is not within the menu,
       // then close the menu
       if (showForm && ref.current && !ref.current.contains(e.target)) {
-        setShowForm(false);
-        props.closeForm();
+        setPop('pop__down');
+        setTimeout(() => {
+          setShowForm(false);
+          props.closeForm();
+        }, 300);
       }
     };
 
@@ -38,10 +42,15 @@ const Authentication = (props) => {
   };
 
   const authComponent = (
-    <div ref={ref}>
+    <div ref={ref} className={pop}>
       {showForm && (
         <AuthForm
-          closeForm={props.closeForm}
+          closeForm={() => {
+            setPop('pop__down');
+            setTimeout(() => {
+              props.closeForm();
+            }, 300);
+          }}
           isSignup={isSignup}
           handleSignUp={handleSignUp}
           handleSignIn={handleSignIn}
