@@ -8,7 +8,7 @@
   top: 0px;
   height: calc(100vh - 4rem);
   width: 100vw;
-  z-index: 1015;
+  z-index: 2015;
 }
 
 .notifications__Container {
@@ -50,7 +50,7 @@
   width: 20rem;
   display: grid;
   grid-template-columns: 1fr 6fr;
-  cursor: pointer;
+  cursor: default;
   padding: 0.5rem;
   border-radius: 0.3rem;
 }
