@@ -28,6 +28,17 @@ const Notifications = (props) => {
       document.removeEventListener('mousedown', checkIfClickedOutside);
     };
   }, [showForm]);
+  const onClickHighLight = (type, ref) => {
+    setShowForm(false);
+    props.closeNotifications();
+    switch (type) {
+      case 'user':
+        navigate(`/user/earts/GalleryShowcase/${ref}`);
+        break;
+      default:
+        console.log(type);
+    }
+  };
   const onClickNotification = (notification) => {
     console.log(notification);
     setShowForm(false);
@@ -52,20 +63,29 @@ const Notifications = (props) => {
             <div className='notifications__title'>Notifications</div>
             <div className='notifications__scroll'>
               {contextStore.notifications.map((notification) => (
-                <div
-                  className='notifications__oneNotification'
-                  onClick={() => {
-                    onClickNotification(notification);
-                  }}>
+                <div className='notifications__oneNotification'>
                   <img className='notifications__image' src={image} alt='' />
                   <div className='notifications__textContainer'>
                     <div className='notifications__event'>
-                      <b style={{ cursor: 'pointer' }}>
-                        {notification.highlightOne}
+                      <b
+                        onClick={() => {
+                          onClickHighLight(
+                            notification.highlightOne.type,
+                            notification.highlightOne.ref
+                          );
+                        }}>
+                        {notification.highlightOne.text}
                       </b>{' '}
                       {notification.noHighlight}{' '}
-                      <b style={{ cursor: 'pointer' }}>
-                        {notification.highlightTwo}
+                      <b
+                        onClick={() => {
+                          onClickHighLight(
+                            notification.highlightTwo.type,
+                            notification.highlightTwo.ref
+                          );
+                        }}>
+                        {notification.highlightTwo &&
+                          notification.highlightTwo.text}
                       </b>
                     </div>
                     <div className='notifications__time'>5 hours ago</div>
