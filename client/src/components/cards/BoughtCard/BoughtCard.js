@@ -18,7 +18,7 @@ const BoughtCard = () => {
   return (
     <div
       to='/product/1'
-      className='boughtCard'
+      className='boughtCard fadeIn'
       onClick={() => {
         setContextStore({ ...contextStore, owner: true });
         navigator('/product/1');

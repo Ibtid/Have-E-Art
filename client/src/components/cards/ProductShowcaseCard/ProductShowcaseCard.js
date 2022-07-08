@@ -14,7 +14,7 @@ const ProductShowcaseCard = ({ eart }) => {
   return (
     <div
       to='/product/1'
-      className='productShowcaseCard'
+      className='productShowcaseCard fadeIn'
       onClick={() => {
         navigator(`/product/${eart._id}`);
       }}>

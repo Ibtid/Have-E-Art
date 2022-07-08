@@ -63,18 +63,14 @@ const Gallery = (props) => {
   };
   return (
     <div
-      className='gallery'
+      className='gallery fadeIn'
       onClick={() => {
         navigator(`/gallery/${gallery._id}`);
       }}>
       <div className='gallery__imageContainer'>
         <img
           className='gallery__image'
-          src={
-             gallery.imgUrl
-              ? gallery.imgUrl
-              : userImg
-          }
+          src={gallery.imgUrl ? gallery.imgUrl : userImg}
         />
       </div>
       <div className='gallery__text'>
