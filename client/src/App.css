@@ -265,11 +265,11 @@ input:-webkit-autofill {
   }
 }
 
-.fadeIn {
-  animation: fadeIn 0.5s;
+.leftToRight {
+  animation: leftToRight 0.5s;
 }
 
-@keyframes fadeIn {
+@keyframes leftToRight {
   0% {
     opacity: 0;
     transform: translateX(-50%);

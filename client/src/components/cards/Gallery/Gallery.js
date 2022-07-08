@@ -63,7 +63,7 @@ const Gallery = (props) => {
   };
   return (
     <div
-      className='gallery fadeIn'
+      className='gallery leftToRight'
       onClick={() => {
         navigator(`/gallery/${gallery._id}`);
       }}>

@@ -11,7 +11,7 @@ const OwnedCard = ({ eart }) => {
   return (
     <div
       to='/product/1'
-      className='boughtCard fadeIn'
+      className='boughtCard leftToRight'
       onClick={() => {
         setContextStore({ ...contextStore, owner: true });
 
