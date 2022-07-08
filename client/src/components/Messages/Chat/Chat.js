@@ -47,7 +47,7 @@ const Chat = () => {
       let response = await dispatch(
         actions.sendMessage,
         { roomId: chatId },
-        { text: dataToSend },
+        { text: dataToSend, receiver },
         contextStore.user.token
       );
 

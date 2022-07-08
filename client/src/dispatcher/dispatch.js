@@ -223,6 +223,11 @@ const dispatch = async (action, headerParams = {}, body = {}, token = '') => {
       response = await axios(axiosOptions)
       return response.data
       break
+    case actions.getUserActiveSessions:
+      axiosOptions = getAxiosOptions("GET", `${baseUrl}/session/getActiveSessions/${headerParams.userId}`)
+      response = await axios(axiosOptions)
+      return response.data
+      break
   }
  }catch(err){
    console.log(err)
