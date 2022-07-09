@@ -41,7 +41,10 @@ const actions = {
     getRoomMessagesNotViewed: "GETROOMMESSAGESNOTVIEWED",
     sendMessage: "SENDMESSAGE",
     viewNotifications: "VIEWNOTIFICATIONS",
-    getUserActiveSessions: "GETUSERACTIVESESSIONS"
+    getUserActiveSessions: "GETUSERACTIVESESSIONS",
+    getLastMessage: "GETLASTMESSAGE",
+    getNotViewedMessageCount: "GETNOTVIEWEDMESSAGECOUNT",
+    viewAllMessages: "VIEWALLMESSAGES"
 }
 
 export default actions

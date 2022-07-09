@@ -228,6 +228,21 @@ const dispatch = async (action, headerParams = {}, body = {}, token = '') => {
       response = await axios(axiosOptions)
       return response.data
       break
+    case actions.getLastMessage:
+      axiosOptions = getAxiosOptions("GET",`${baseUrl}/message/getLastMessage/${headerParams.roomId}`, body, token)
+      response = await axios(axiosOptions)
+      return response.data
+      break
+    case actions.getNotViewedMessageCount:
+      axiosOptions = getAxiosOptions("GET", `${baseUrl}/message/notViewedCount/${headerParams.roomId}`, body, token)
+      response = await axios(axiosOptions)
+      return response.data
+      break
+    case actions.viewAllMessages:
+      axiosOptions = getAxiosOptions("PUT", `${baseUrl}/message/viewMessages/${headerParams.roomId}`, body, token)
+      response = await axios(axiosOptions)
+      return response.data
+      break
   }
  }catch(err){
    console.log(err)

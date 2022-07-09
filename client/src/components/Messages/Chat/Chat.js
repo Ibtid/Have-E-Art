@@ -13,30 +13,47 @@ import { SpinnerContext } from '../../../hooks/SpinnerContext';
 import SendingChat from './SendingChat';
 
 const Chat = () => {
-  const [input, setInput] = useState('');
-  const [messages, _setMessages] = useState([]);
-  const [messageUpdate, setMessageUpdate] = useState(0);
-  const [isMessageSending, setIsMessageSending] = useState({
-    state: false,
-    message: '',
-  });
-  let chatBox = useRef(null);
-
-  let enterLock = false;
-  const messagesRef = useRef(messages);
-  const setMessages = (data) => {
-    messagesRef.current = data;
-    setMessageUpdate((past) => past + 1);
-  };
   const [receiver, setReceiver] = useState({});
   const [room, setRoom] = useState({});
   const { chatId } = useParams();
   const { setShowSpinner } = useContext(SpinnerContext);
   const { contextStore, setContextStore } = useContext(AppContext);
+  const [input, setInput] = useState('');
+  //all related to getting and sending messages
+  const [isMessageSending, setIsMessageSending] = useState({
+    state: false,
+    message: '',
+  });
+  const [messages, _setMessages] = useState([]);
+  const [messageUpdate, setMessageUpdate] = useState(0);
+  const messagesRef = useRef(messages);
+  const setMessages = (data) => {
+    messagesRef.current = data;
+    setMessageUpdate((past) => past + 1);
+  };
+  useEffect(() => {
+    setIsMessageSending({ state: false, message: '' });
+    _setMessages(messagesRef.current);
+  }, [messageUpdate]);
+
+  let chatBox = useRef(null);
+  let enterLock = false;
+  useEffect(() => {
+    chatBox.current.scrollTop = chatBox.current.scrollHeight;
+  }, [messages, messageUpdate]);
+
+  
   const onChangeInput = (e) => {
     setInput(e.target.value);
   };
-
+  const handleKeyDown = (e) => {
+    if (enterLock === false) {
+      if (e.key === 'Enter') {
+        enterLock = true;
+        onClickSend();
+      }
+    }
+  };
   const onClickSend = async () => {
     if (input) {
       let dataToSend = input;
@@ -54,11 +71,8 @@ const Chat = () => {
       enterLock = false;
     }
   };
-  const messageEventListener = (message) => {
-    const vMessages = messagesRef.current;
-    vMessages.push(message);
-    setMessages(vMessages);
-  };
+  
+  //base class loader
   useEffect(() => {
     (async () => {
       setShowSpinner(true);
@@ -88,6 +102,8 @@ const Chat = () => {
       );
       console.log(response);
       setMessages(response);
+      response = await dispatch(actions.viewAllMessages, {roomId: chatId}, {}, contextStore.user.token)
+      console.log(response)
       if (contextStore.socket) {
         contextStore.socket.emit('joinChatRoom', [chatId]);
         contextStore.socket.on('message', messageEventListener);
@@ -97,27 +113,17 @@ const Chat = () => {
     })();
 
     return () => {
+      //cleanup
       contextStore.socket.off('message');
+      contextStore.socket.emit('leaveChatRoom', [chatId]);
     };
   }, [chatId]);
-  useEffect(() => {
-    setIsMessageSending({ state: false, message: '' });
-    _setMessages(messagesRef.current);
-  }, [messageUpdate]);
-
-  const handleKeyDown = (e) => {
-    if (enterLock === false) {
-      if (e.key === 'Enter') {
-        enterLock = true;
-        onClickSend();
-      }
-    }
+  
+  const messageEventListener = (message) => {
+    const vMessages = messagesRef.current;
+    vMessages.push(message);
+    setMessages(vMessages);
   };
-
-  useEffect(() => {
-    chatBox.current.scrollTop = chatBox.current.scrollHeight;
-  }, [messages, messageUpdate]);
-
   return (
     <div className='chat'>
       <div className='chat__head'>
