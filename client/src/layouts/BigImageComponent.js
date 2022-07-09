@@ -24,7 +24,9 @@ const BigImageComponent = (props) => {
       </div>
       <div className='app__bigImageComponent'>
         <div className='app__bigImageContainer'>
-          <img className='app__bigImage' src={props.imgUrl} alt='art' />
+          {props.imgUrl && (
+            <img className='app__bigImage' src={props.imgUrl} alt='art' />
+          )}
         </div>
         <div className='app__bigImageText'>{props.children}</div>
       </div>

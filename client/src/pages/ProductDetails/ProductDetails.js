@@ -155,260 +155,270 @@ const ProductDetails = () => {
   }, [contextStore.user]);
   return (
     <BigImageComponent imgUrl={eart.imgUrl}>
-      <div className='productDetails'>
-        {openCertifiedModal && (
-          <CertifiedSellForm
-            closeForm={() => {
-              setOpenCertifiedModal(false);
-            }}
-            setListedForSale={() => {
-              setListedForSale(true);
-            }}
-            fetchEditions={fetchEditions}
-            id={id}
-          />
-        )}
-        <div className='productDetails__firstRow'>
-          <div className='productDetails__name'>{eart.title}</div>
-          {checkIfOwner(contextStore, eart.owner._id) && (
-            <Link
-              to={`/product/edit/${id}`}
-              className='productDetails__editButton'>
-              <img src={EditIcon} alt='edit' />
-            </Link>
-          )}
-        </div>
-        <div className='productDetails__ratingsAndVotes'>
-          <div className='productDetails__ratings'>
-            {ratingArray.map((rating) => (
-              <span className='productDetails__stars'>
-                <img src={star} className='productDetails__star' alt='star' />
-              </span>
-            ))}
-          </div>
-          <div className='productDetails__votes'>15,646 votes</div>
-        </div>
-        <div className='productDetails__outlinedButtons'>
-          <div className='productDetails__canShrinkButton'>
-            <img
-              className='productDetails__outlinedButtonImage'
-              src={share}
-              alt=''
+      {eart.imgUrl && (
+        <div className='productDetails'>
+          {openCertifiedModal && (
+            <CertifiedSellForm
+              closeForm={() => {
+                setOpenCertifiedModal(false);
+              }}
+              setListedForSale={() => {
+                setListedForSale(true);
+              }}
+              fetchEditions={fetchEditions}
+              id={id}
             />
-            <div className='productDetails__shrinkButtonText'>Share</div>
+          )}
+          <div className='productDetails__firstRow'>
+            <div className='productDetails__name'>{eart.title}</div>
+            {checkIfOwner(contextStore, eart.owner._id) && (
+              <Link
+                to={`/product/edit/${id}`}
+                className='productDetails__editButton'>
+                <img src={EditIcon} alt='edit' />
+              </Link>
+            )}
           </div>
-
-          {contextStore.user && !checkIfOwner(contextStore, eart.owner._id) && (
+          <div className='productDetails__ratingsAndVotes'>
+            <div className='productDetails__ratings'>
+              {ratingArray.map((rating) => (
+                <span className='productDetails__stars'>
+                  <img src={star} className='productDetails__star' alt='star' />
+                </span>
+              ))}
+            </div>
+            <div className='productDetails__votes'>15,646 votes</div>
+          </div>
+          <div className='productDetails__outlinedButtons'>
             <div className='productDetails__canShrinkButton'>
               <img
                 className='productDetails__outlinedButtonImage'
-                src={
-                  eart.followers.includes(contextStore.user._id)
-                    ? favouriteFilled
-                    : favouriteOutline
-                }
+                src={share}
                 alt=''
               />
-              {eart.followers.includes(contextStore.user._id) ? (
-                <div
-                  className='productDetails__shrinkButtonText'
-                  onClick={onClickUnfollow}>
-                  Following
+              <div className='productDetails__shrinkButtonText'>Share</div>
+            </div>
+
+            {contextStore.user && !checkIfOwner(contextStore, eart.owner._id) && (
+              <div className='productDetails__canShrinkButton'>
+                <img
+                  className='productDetails__outlinedButtonImage'
+                  src={
+                    eart.followers.includes(contextStore.user._id)
+                      ? favouriteFilled
+                      : favouriteOutline
+                  }
+                  alt=''
+                />
+                {eart.followers.includes(contextStore.user._id) ? (
+                  <div
+                    className='productDetails__shrinkButtonText'
+                    onClick={onClickUnfollow}>
+                    Following
+                  </div>
+                ) : (
+                  <div
+                    className='productDetails__shrinkButtonText'
+                    onClick={onClickFollow}>
+                    Follow
+                  </div>
+                )}
+              </div>
+            )}
+
+            <div className='productDetails__outlinedButton'>
+              <img
+                className='productDetails__outlinedButtonImage'
+                src={watchVideo}
+                alt=''
+              />
+              <div className='productDetails__outlinedButtonText'>
+                Watch Video
+              </div>
+            </div>
+          </div>
+          <div className='productDetails__dateAndViews'>
+            <div className='productDetails__date'>
+              {getDate(eart.uploadDate)}
+            </div>
+            <div className='productDetails__views'>
+              <img
+                src={views}
+                className='productDetails__viewsicon'
+                alt='views'
+              />
+              <div className='productDetails__viewsNumber'> 198,222</div>
+            </div>
+          </div>
+          <div className='productDetails__fileTypeAndDimension'>
+            <div className='productDetails__fileType'>{eart.format}</div>
+            <div className='productDetails__dimension'>
+              <img src={dimension} alt='dimension' />
+              <div className='productDetails__dimensionText'>1920 * 1080</div>
+            </div>
+          </div>
+          {/*.............................................................................................*/}
+          <div className='productDetails__title'>Creator:</div>
+          <div className='productDetails__personDescription'>
+            <Link
+              to={`/user/earts/GalleryShowcase/${eart.creator._id}`}
+              className='productDetails__personName'>
+              {eart.creator.firstName} {eart.creator.lastName}
+            </Link>
+            <div className='productDetails__personSocial'>
+              <img
+                src={lightfavourite}
+                className='productDetails__socialIcon'
+                alt='dimension'
+              />
+              <img
+                src={messageOutline}
+                className='productDetails__socialIcon'
+                alt='dimension'
+              />
+              <img
+                src={instagram}
+                className='productDetails__socialIcon'
+                alt='dimension'
+              />
+            </div>
+          </div>
+          <div className='productDetails__title'>Owner:</div>
+          <div className='productDetails__personDescription'>
+            <Link
+              to={`/user/earts/GalleryShowcase/${eart.owner._id}`}
+              className='productDetails__personName'>
+              {eart.owner.firstName} {eart.owner.lastName}
+            </Link>
+            <div className='productDetails__personSocial'>
+              <img
+                src={lightfavourite}
+                className='productDetails__socialIcon'
+                alt='dimension'
+              />
+              <img
+                src={messageOutline}
+                className='productDetails__socialIcon'
+                alt='dimension'
+              />
+              <img
+                src={instagram}
+                className='productDetails__socialIcon'
+                alt='dimension'
+              />
+            </div>
+          </div>
+          {/*............................................................................................*/}
+          <div className='productDetails__title'>Description:</div>
+          <div className='productDetails__longText'>{eart.description}</div>
+          <div className='productDetails__title'>Background Story:</div>
+          <div className='productDetails__longText'>{eart.backgroundStory}</div>
+          <br />
+          {/*............................................................................................*/}
+          {!checkIfOwner(contextStore, eart.owner._id) && eart.flag.forSale && (
+            <div className='productDetails__absoluteSection'>
+              <div className='productDetails__priceTag'>
+                <div className='productDetails__priceText'>Price: </div>
+                <div className='productDetails__priceNumber'>
+                  $ {eart.price}
                 </div>
-              ) : (
-                <div
-                  className='productDetails__shrinkButtonText'
-                  onClick={onClickFollow}>
-                  Follow
-                </div>
-              )}
-            </div>
-          )}
-
-          <div className='productDetails__outlinedButton'>
-            <img
-              className='productDetails__outlinedButtonImage'
-              src={watchVideo}
-              alt=''
-            />
-            <div className='productDetails__outlinedButtonText'>
-              Watch Video
-            </div>
-          </div>
-        </div>
-        <div className='productDetails__dateAndViews'>
-          <div className='productDetails__date'>{getDate(eart.uploadDate)}</div>
-          <div className='productDetails__views'>
-            <img
-              src={views}
-              className='productDetails__viewsicon'
-              alt='views'
-            />
-            <div className='productDetails__viewsNumber'> 198,222</div>
-          </div>
-        </div>
-        <div className='productDetails__fileTypeAndDimension'>
-          <div className='productDetails__fileType'>{eart.format}</div>
-          <div className='productDetails__dimension'>
-            <img src={dimension} alt='dimension' />
-            <div className='productDetails__dimensionText'>1920 * 1080</div>
-          </div>
-        </div>
-        {/*.............................................................................................*/}
-        <div className='productDetails__title'>Creator:</div>
-        <div className='productDetails__personDescription'>
-          <Link
-            to={`/user/earts/GalleryShowcase/${eart.creator._id}`}
-            className='productDetails__personName'>
-            {eart.creator.firstName} {eart.creator.lastName}
-          </Link>
-          <div className='productDetails__personSocial'>
-            <img
-              src={lightfavourite}
-              className='productDetails__socialIcon'
-              alt='dimension'
-            />
-            <img
-              src={messageOutline}
-              className='productDetails__socialIcon'
-              alt='dimension'
-            />
-            <img
-              src={instagram}
-              className='productDetails__socialIcon'
-              alt='dimension'
-            />
-          </div>
-        </div>
-        <div className='productDetails__title'>Owner:</div>
-        <div className='productDetails__personDescription'>
-          <Link
-            to={`/user/earts/GalleryShowcase/${eart.owner._id}`}
-            className='productDetails__personName'>
-            {eart.owner.firstName} {eart.owner.lastName}
-          </Link>
-          <div className='productDetails__personSocial'>
-            <img
-              src={lightfavourite}
-              className='productDetails__socialIcon'
-              alt='dimension'
-            />
-            <img
-              src={messageOutline}
-              className='productDetails__socialIcon'
-              alt='dimension'
-            />
-            <img
-              src={instagram}
-              className='productDetails__socialIcon'
-              alt='dimension'
-            />
-          </div>
-        </div>
-        {/*............................................................................................*/}
-        <div className='productDetails__title'>Description:</div>
-        <div className='productDetails__longText'>{eart.description}</div>
-        <div className='productDetails__title'>Background Story:</div>
-        <div className='productDetails__longText'>{eart.backgroundStory}</div>
-        <br />
-        {/*............................................................................................*/}
-        {!checkIfOwner(contextStore, eart.owner._id) && eart.flag.forSale && (
-          <div className='productDetails__absoluteSection'>
-            <div className='productDetails__priceTag'>
-              <div className='productDetails__priceText'>Price: </div>
-              <div className='productDetails__priceNumber'>$ {eart.price}</div>
-            </div>
-
-            <div className='productDetails__buyButtons'>
-              <Link
-                to='/checkout'
-                className='productDetails__buy'
-                onClick={onClickBuyOriginal}>
-                Buy Original
-              </Link>
-            </div>
-          </div>
-        )}
-
-        {/*............................................................................................*/}
-
-        {checkIfOwner(contextStore, eart.owner._id) && !eart.flag.forSale && (
-          <div className='productDetails__buyButtons'>
-            <div
-              className='productDetails__bigOutlineButton'
-              onClick={onClickSellOriginal}>
-              List For Sale
-            </div>
-          </div>
-        )}
-        {/*--------------------------------------------------------------------------------------------*/}
-        {checkIfOwner(contextStore, eart.owner._id) && (
-          <div>
-            <div
-              className='productDetails__bigOutlineButton'
-              onClick={() => {
-                setOpenCertifiedModal(true);
-                setOriginal(false);
-              }}>
-              Create Certified Edition
-            </div>
-            <br />
-          </div>
-        )}
-        {/*............................................................................................*/}
-        {checkIfOwner(contextStore, eart.owner._id) && eart.flag.forSale && (
-          <div className='productDetails__absoluteSection'>
-            <div className='productDetails__priceTag'>
-              <div className='productDetails__priceText'>Price: </div>
-              <div className='productDetails__priceNumber'>$ {eart.price}</div>
-              <div className='productDetails__priceTagSmallText'>
-                {eart.price}
               </div>
-            </div>
-            <div className='productDetails__buyButtons'>
-              <div
-                className='productDetails__changePrice'
-                onClick={() => {
-                  navigate(`/product/edit/${id}`);
-                }}>
-                Change Price
-              </div>
-              <div
-                className='productDetails__changePrice'
-                onClick={onClickUnlist}>
-                Unlist
-              </div>
-            </div>
-          </div>
-        )}
 
-        {editions.map((edition) => (
-          <div className='edition__options'>
-            <div className='productDetails__priceTag'>
-              <div className='productDetails__priceText'>Edition: </div>
-              <div className='productDetails__priceNumber'>{edition.name}</div>
-            </div>
-            <div className='edition__optionsRow'>
-              <div className='edition__optionsPieces'>
-                {edition.available} pieces available
-              </div>
-              <div className='edition__optionsPrice'>
-                Price: ${edition.price}
-              </div>
-            </div>
-            {!checkIfOwner(contextStore, eart.owner._id) && (
               <div className='productDetails__buyButtons'>
                 <Link
                   to='/checkout'
                   className='productDetails__buy'
-                  onClick={(e) => onClickBuyACopy(e, edition)}>
-                  Buy A Copy
+                  onClick={onClickBuyOriginal}>
+                  Buy Original
                 </Link>
               </div>
-            )}
-          </div>
-        ))}
-      </div>
+            </div>
+          )}
+
+          {/*............................................................................................*/}
+
+          {checkIfOwner(contextStore, eart.owner._id) && !eart.flag.forSale && (
+            <div className='productDetails__buyButtons'>
+              <div
+                className='productDetails__bigOutlineButton'
+                onClick={onClickSellOriginal}>
+                List For Sale
+              </div>
+            </div>
+          )}
+          {/*--------------------------------------------------------------------------------------------*/}
+          {checkIfOwner(contextStore, eart.owner._id) && (
+            <div>
+              <div
+                className='productDetails__bigOutlineButton'
+                onClick={() => {
+                  setOpenCertifiedModal(true);
+                  setOriginal(false);
+                }}>
+                Create Certified Edition
+              </div>
+              <br />
+            </div>
+          )}
+          {/*............................................................................................*/}
+          {checkIfOwner(contextStore, eart.owner._id) && eart.flag.forSale && (
+            <div className='productDetails__absoluteSection'>
+              <div className='productDetails__priceTag'>
+                <div className='productDetails__priceText'>Price: </div>
+                <div className='productDetails__priceNumber'>
+                  $ {eart.price}
+                </div>
+                <div className='productDetails__priceTagSmallText'>
+                  {eart.price}
+                </div>
+              </div>
+              <div className='productDetails__buyButtons'>
+                <div
+                  className='productDetails__changePrice'
+                  onClick={() => {
+                    navigate(`/product/edit/${id}`);
+                  }}>
+                  Change Price
+                </div>
+                <div
+                  className='productDetails__changePrice'
+                  onClick={onClickUnlist}>
+                  Unlist
+                </div>
+              </div>
+            </div>
+          )}
+
+          {editions.map((edition) => (
+            <div className='edition__options'>
+              <div className='productDetails__priceTag'>
+                <div className='productDetails__priceText'>Edition: </div>
+                <div className='productDetails__priceNumber'>
+                  {edition.name}
+                </div>
+              </div>
+              <div className='edition__optionsRow'>
+                <div className='edition__optionsPieces'>
+                  {edition.available} pieces available
+                </div>
+                <div className='edition__optionsPrice'>
+                  Price: ${edition.price}
+                </div>
+              </div>
+              {!checkIfOwner(contextStore, eart.owner._id) && (
+                <div className='productDetails__buyButtons'>
+                  <Link
+                    to='/checkout'
+                    className='productDetails__buy'
+                    onClick={(e) => onClickBuyACopy(e, edition)}>
+                    Buy A Copy
+                  </Link>
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+      )}
     </BigImageComponent>
   );
 };
