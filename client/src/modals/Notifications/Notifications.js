@@ -56,6 +56,7 @@ const Notifications = (props) => {
                   <div className='notifications__textContainer'>
                     <div className='notifications__event'>
                       <b
+                        style={{ cursor: 'pointer' }}
                         onClick={() => {
                           onClickHighLight(
                             notification.highlightOne.type,
@@ -66,6 +67,7 @@ const Notifications = (props) => {
                       </b>{' '}
                       {notification.noHighlight}{' '}
                       <b
+                        style={{ cursor: 'pointer' }}
                         onClick={() => {
                           onClickHighLight(
                             notification.highlightTwo.type,
