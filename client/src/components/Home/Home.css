@@ -33,7 +33,7 @@
   }
 }
 
-@media screen and (max-width: 1520px) {
+@media screen and (max-width: 1600px) {
   .home__cardContainer {
     grid-template-columns: 1fr 1fr 1fr;
   }
@@ -45,7 +45,7 @@
   }
 }
 
-@media screen and (max-width: 880px) {
+@media screen and (max-width: 910px) {
   .home__cardContainer {
     grid-template-columns: 1fr;
     place-items: center;
