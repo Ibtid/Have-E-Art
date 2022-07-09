@@ -279,3 +279,18 @@ input:-webkit-autofill {
     transform: translateX(0%);
   }
 }
+
+.rightToLeft {
+  animation: rightToLeft 0.5s;
+}
+
+@keyframes rightToLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(50%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0%);
+  }
+}
