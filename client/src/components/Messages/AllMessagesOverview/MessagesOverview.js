@@ -9,7 +9,7 @@ import actions from '../../../dispatcher/actions';
 import { AppContext } from '../../../hooks/AppContext';
 import { SpinnerContext } from '../../../hooks/SpinnerContext';
 
-const MessagesOverview = () => {
+const MessagesOverview = ({chatId}) => {
   const { setShowSpinner } = useContext(SpinnerContext);
   const { width, height } = useWindowDimensions();
   const [rooms, setRooms] = useState([]);
@@ -45,7 +45,7 @@ const MessagesOverview = () => {
       </div>
       <div className='messagesOverview__scroll'>
         {rooms.map((room) => (
-          <SingleMessageOverview room={room} />
+          <SingleMessageOverview room={room} chatId={chatId} />
         ))}
       </div>
     </div>

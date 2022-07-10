@@ -11,7 +11,7 @@ const Messages = () => {
   return (
     <div className='messages'>
       <div className={chatId ? 'messages__left no__display' : 'messages__left'}>
-        <MessagesOverview />
+        <MessagesOverview chatId={chatId}/>
       </div>
       <div
         className={chatId ? 'messages__right' : 'messages__right no__display'}>
