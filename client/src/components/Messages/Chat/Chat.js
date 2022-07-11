@@ -40,6 +40,7 @@ const Chat = () => {
 
   let chatBox = useRef(null);
   let enterLock = false;
+  let paginationLock = false;
   useEffect(() => {
     chatBox.current.scrollTop = chatBox.current.scrollHeight;
   }, [messages, messageUpdate]);
@@ -142,8 +143,15 @@ const Chat = () => {
   };
 
   const handleScroll = (e) => {
-    if (e.target.scrollTop === 0) {
+    if (!paginationLock && e.target.scrollTop === 0) {
+      setMiniSpinner(true);
+      paginationLock = true;
+
       console.log('PAGINATION CALL');
+      setTimeout(() => {
+        paginationLock = false;
+        setMiniSpinner(false);
+      }, 2000);
     }
   };
   return (
@@ -165,6 +173,7 @@ const Chat = () => {
         </Link>
       </div>
       <div className='chat__scroll' ref={chatBox} onScroll={handleScroll}>
+        {miniSpinner && <div>Spinner</div>}
         {messages.map((message) => (
           <OneChat message={message} key={message._id} />
         ))}
