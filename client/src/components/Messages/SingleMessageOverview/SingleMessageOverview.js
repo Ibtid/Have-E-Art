@@ -11,6 +11,7 @@ import actions from '../../../dispatcher/actions';
 const SingleMessageOverview = ({ room, chatId }) => {
   const [receiver, setReceiver] = useState({});
   const { contextStore, setContextStore } = useContext(AppContext);
+  const [lastChatId, setLastChatId] = useState("")
 
   //traccking active session of a user
   const [activeSessionUpdate, setActiveSessionUpdate] = useState(0);
@@ -131,12 +132,13 @@ const SingleMessageOverview = ({ room, chatId }) => {
   //class loader on change chatId
   useEffect(() => {
     if (chatId) {
+      
       //if you go into the room
       if (chatId.toString() === room._id.toString()) {
         setUnseenMessages(0);
       }
       //if you go into some other room
-      else {
+      else if(lastChatId === room._id.toString()){
         (async () => {
           const response = await dispatch(
             actions.getLastMessage,
@@ -153,6 +155,7 @@ const SingleMessageOverview = ({ room, chatId }) => {
           }
         })();
       }
+      setLastChatId(chatId)
     }
   }, [chatId]);
   return (

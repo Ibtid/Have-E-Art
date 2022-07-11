@@ -248,6 +248,11 @@ const dispatch = async (action, headerParams = {}, body = {}, token = '') => {
       response = await axios(axiosOptions)
       return response.data
       break
+    case actions.getMessagePage:
+      axiosOptions = getAxiosOptions("GET", `${baseUrl}/message/getPage/${headerParams.roomId}/${headerParams.pageNo}`, body, token)
+      response = await axios(axiosOptions)
+      return response.data
+      break
   }
  }catch(err){
    console.log(err)

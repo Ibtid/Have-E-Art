@@ -45,7 +45,9 @@ const actions = {
     getLastMessage: "GETLASTMESSAGE",
     getNotViewedMessageCount: "GETNOTVIEWEDMESSAGECOUNT",
     viewAllMessages: "VIEWALLMESSAGES",
-    getMessagesLastPage: "GETMESSAGESLASTPAGE"
+    getMessagesLastPage: "GETMESSAGESLASTPAGE",
+    getMessagePage: "GETNEXTPAGE"
+
 }
 
 export default actions
