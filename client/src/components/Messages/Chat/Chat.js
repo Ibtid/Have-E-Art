@@ -59,6 +59,7 @@ const Chat = () => {
   let chatBox = useRef(null);
   let enterLock = false;
   let paginationLock = false;
+
   useEffect(() => {
     chatBox.current.scrollTop = chatBox.current.scrollHeight;
   }, [messages, messageUpdate]);
@@ -157,7 +158,7 @@ const Chat = () => {
     vMessages.push(message);
     setMessages(vMessages);
   };
-  const fetchNextPage = async () => {
+  const fetchNextPage = async (previousScrollHeight) => {
     const response = await dispatch(
       actions.getMessagePage,
       { roomId: chatId, pageNo: page.nextPage },
@@ -168,13 +169,21 @@ const Chat = () => {
     setPage(response, 'scroll');
     paginationLock = false;
     setMiniSpinner(false);
+
+    //For CSS
+    let differenceInScrollHeightAfterPagination =
+      chatBox.current.scrollHeight - previousScrollHeight;
+    chatBox.current.scrollTop = differenceInScrollHeightAfterPagination;
   };
   const handleScroll = (e) => {
-    console.log(e.target.scrollTop);
+    // console.log('top', e.target.scrollTop);
+    console.log('sc', e.target.scrollHeight);
+    // console.log('cl', e.target.clientHeight);
+    // console.log('oh', e.target.offsetHeight);
     if (!paginationLock && e.target.scrollTop === 0 && page.hasNextPage) {
       setMiniSpinner(true);
       paginationLock = true;
-      fetchNextPage();
+      fetchNextPage(e.target.scrollHeight);
     }
   };
   return (
