@@ -243,6 +243,11 @@ const dispatch = async (action, headerParams = {}, body = {}, token = '') => {
       response = await axios(axiosOptions)
       return response.data
       break
+    case actions.getMessagesLastPage:
+      axiosOptions = getAxiosOptions("GET", `${baseUrl}/message/getLastPage/${headerParams.roomId}`, body, token)
+      response = await axios(axiosOptions)
+      return response.data
+      break
   }
  }catch(err){
    console.log(err)

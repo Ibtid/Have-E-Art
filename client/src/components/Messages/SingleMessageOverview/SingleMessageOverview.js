@@ -53,7 +53,14 @@ const SingleMessageOverview = ({ room, chatId }) => {
     }, [unseenMessageUpdate]);
 
     //tracking the last message of this room by any user
-    const [lastMessage, setLastMessage] = useState("")
+    const [lastMessage, setLastMessage] = useState({
+        sender: {
+
+        },
+        receiver: {
+            
+        }
+    })
     //base class loader
     useEffect(() => {
         (async () => {

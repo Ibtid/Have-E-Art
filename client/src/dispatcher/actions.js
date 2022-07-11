@@ -44,7 +44,8 @@ const actions = {
     getUserActiveSessions: "GETUSERACTIVESESSIONS",
     getLastMessage: "GETLASTMESSAGE",
     getNotViewedMessageCount: "GETNOTVIEWEDMESSAGECOUNT",
-    viewAllMessages: "VIEWALLMESSAGES"
+    viewAllMessages: "VIEWALLMESSAGES",
+    getMessagesLastPage: "GETMESSAGESLASTPAGE"
 }
 
 export default actions

@@ -19,6 +19,7 @@ const Chat = () => {
   const { setShowSpinner } = useContext(SpinnerContext);
   const { contextStore, setContextStore } = useContext(AppContext);
   const [input, setInput] = useState('');
+  const [page, setPage] = useState({})
   //all related to getting and sending messages
   const [isMessageSending, setIsMessageSending] = useState({
     state: false,
@@ -94,16 +95,21 @@ const Chat = () => {
         setReceiver(leftParticipants[0]);
         setRoom(response);
       }
-      response = await dispatch(
-        actions.getRoomMessages,
-        { roomId: chatId },
-        {},
-        contextStore.user.token
-      );
-      console.log(response);
-      setMessages(response);
+      response = await dispatch(actions.getMessagesLastPage, {roomId: chatId}, {}, contextStore.user.token)
+      console.log(response)
+      setMessages(response.docs)
+      setPage(response)
+      // response = await dispatch(
+      //   actions.getRoomMessages,
+      //   { roomId: chatId },
+      //   {},
+      //   contextStore.user.token
+      // );
+      // console.log(response);
+      // setMessages(response);
       response = await dispatch(actions.viewAllMessages, {roomId: chatId}, {}, contextStore.user.token)
       console.log(response)
+      
       if (contextStore.socket) {
         contextStore.socket.emit('joinChatRoom', [chatId]);
         contextStore.socket.on('message', messageEventListener);
