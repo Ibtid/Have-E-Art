@@ -13,13 +13,14 @@ import { SpinnerContext } from '../../../hooks/SpinnerContext';
 import SendingChat from './SendingChat';
 
 const Chat = () => {
+  const [miniSpinner, setMiniSpinner] = useState(false);
   const [receiver, setReceiver] = useState({});
   const [room, setRoom] = useState({});
   const { chatId } = useParams();
   const { setShowSpinner } = useContext(SpinnerContext);
   const { contextStore, setContextStore } = useContext(AppContext);
   const [input, setInput] = useState('');
-  const [page, setPage] = useState({})
+  const [page, setPage] = useState({});
   //all related to getting and sending messages
   const [isMessageSending, setIsMessageSending] = useState({
     state: false,
@@ -43,7 +44,6 @@ const Chat = () => {
     chatBox.current.scrollTop = chatBox.current.scrollHeight;
   }, [messages, messageUpdate]);
 
-  
   const onChangeInput = (e) => {
     setInput(e.target.value);
   };
@@ -72,7 +72,7 @@ const Chat = () => {
       enterLock = false;
     }
   };
-  
+
   //base class loader
   useEffect(() => {
     (async () => {
@@ -95,10 +95,15 @@ const Chat = () => {
         setReceiver(leftParticipants[0]);
         setRoom(response);
       }
-      response = await dispatch(actions.getMessagesLastPage, {roomId: chatId}, {}, contextStore.user.token)
-      console.log(response)
-      setMessages(response.docs)
-      setPage(response)
+      response = await dispatch(
+        actions.getMessagesLastPage,
+        { roomId: chatId },
+        {},
+        contextStore.user.token
+      );
+      console.log(response);
+      setMessages(response.docs);
+      setPage(response);
       // response = await dispatch(
       //   actions.getRoomMessages,
       //   { roomId: chatId },
@@ -107,9 +112,14 @@ const Chat = () => {
       // );
       // console.log(response);
       // setMessages(response);
-      response = await dispatch(actions.viewAllMessages, {roomId: chatId}, {}, contextStore.user.token)
-      console.log(response)
-      
+      response = await dispatch(
+        actions.viewAllMessages,
+        { roomId: chatId },
+        {},
+        contextStore.user.token
+      );
+      console.log(response);
+
       if (contextStore.socket) {
         contextStore.socket.emit('joinChatRoom', [chatId]);
         contextStore.socket.on('message', messageEventListener);
@@ -124,11 +134,17 @@ const Chat = () => {
       contextStore.socket.emit('leaveChatRoom', [chatId]);
     };
   }, [chatId]);
-  
+
   const messageEventListener = (message) => {
     const vMessages = messagesRef.current;
     vMessages.push(message);
     setMessages(vMessages);
+  };
+
+  const handleScroll = (e) => {
+    if (e.target.scrollTop === 0) {
+      console.log('PAGINATION CALL');
+    }
   };
   return (
     <div className='chat'>
@@ -148,7 +164,7 @@ const Chat = () => {
           <img src={rightArrow} alt='' />
         </Link>
       </div>
-      <div className='chat__scroll' ref={chatBox}>
+      <div className='chat__scroll' ref={chatBox} onScroll={handleScroll}>
         {messages.map((message) => (
           <OneChat message={message} key={message._id} />
         ))}
