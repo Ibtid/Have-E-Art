@@ -46,7 +46,7 @@ const SingleMessageOverview = ({ room, chatId }) => {
           if(response.errors){
             return
           }
-          setLastMessage(response.text)
+          setLastMessage(response)
         }
         })();
         _setUnseenMessages(unseenMessagesRef.current);
@@ -54,7 +54,7 @@ const SingleMessageOverview = ({ room, chatId }) => {
 
     //tracking the last message of this room by any user
     const [lastMessage, setLastMessage] = useState("")
-
+    //base class loader
     useEffect(() => {
         (async () => {
             const leftParticipants = room.participants.filter(
@@ -99,7 +99,7 @@ const SingleMessageOverview = ({ room, chatId }) => {
                 if (response.errors) {
                     return;
                 }
-                setLastMessage(response.text);
+                setLastMessage(response);
             }
             
 
@@ -134,11 +134,14 @@ const SingleMessageOverview = ({ room, chatId }) => {
     const sessionEventListener = (activeSessions) => {
         setActiveSessions(activeSessions);
     };
+    //class loader on change chatId
     useEffect(() => {
         if (chatId) {
+            //if you go into the room
             if (chatId.toString() === room._id.toString()) {
                 setUnseenMessages(0);
             }
+            //if you go into some other room
             else{
               (async () => {
                 const response = await dispatch(
@@ -152,7 +155,7 @@ const SingleMessageOverview = ({ room, chatId }) => {
                 if(response.errors){
                   return
                 }
-                setLastMessage(response.text)
+                setLastMessage(response)
               }
               })();
             }
@@ -179,7 +182,7 @@ const SingleMessageOverview = ({ room, chatId }) => {
                             unseenMessages !== 0 ? "highlightedMessage" : ""
                         }`}
                     >
-                        {lastMessage}
+                        {lastMessage.sender._id === contextStore.user._id ? chatId !== room._id && `You: ${lastMessage.text}` : chatId !== room._id && `${lastMessage.sender.firstName}: ${lastMessage.text}`}
                     </div>
                     {unseenMessages !== 0 && (
                         <div className="singleMessageOverview__messageCircle">
