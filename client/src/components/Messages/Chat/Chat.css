@@ -101,6 +101,14 @@
   text-decoration: none;
 }
 
+.mini__spinnerContainer {
+  height: 3rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 @media screen and (max-width: 1600px) {
   .chat__input {
     width: 80%;
