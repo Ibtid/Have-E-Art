@@ -130,6 +130,7 @@ input:-webkit-autofill {
   /*background-color: var(--secondary);*/
   overflow-y: scroll;
   position: relative;
+  border-radius: 0rem 0rem 0.3rem 0.3rem;
 }
 
 .app__bigImageText::-webkit-scrollbar {
@@ -292,5 +293,31 @@ input:-webkit-autofill {
   100% {
     opacity: 1;
     transform: translateX(0%);
+  }
+}
+
+.bottomToTop {
+  animation: bottomToTop 0.5s;
+}
+
+@keyframes bottomToTop {
+  0% {
+    transform: translateY(50%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
+
+.fadeIn {
+  animation: fadeIn 0.5s;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }

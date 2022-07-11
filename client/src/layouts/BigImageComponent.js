@@ -25,7 +25,11 @@ const BigImageComponent = (props) => {
       <div className='app__bigImageComponent'>
         <div className='app__bigImageContainer'>
           {props.imgUrl && (
-            <img className='app__bigImage' src={props.imgUrl} alt='art' />
+            <img
+              className='app__bigImage fadeIn'
+              src={props.imgUrl}
+              alt='art'
+            />
           )}
         </div>
         <div className='app__bigImageText'>{props.children}</div>

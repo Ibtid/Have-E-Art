@@ -156,7 +156,7 @@ const ProductDetails = () => {
   return (
     <BigImageComponent imgUrl={eart.imgUrl}>
       {eart.imgUrl && (
-        <div className='productDetails'>
+        <div className='productDetails fadeIn'>
           {openCertifiedModal && (
             <CertifiedSellForm
               closeForm={() => {
