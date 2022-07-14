@@ -24,19 +24,18 @@ const Navbar = () => {
   const notificationsRef = useRef(contextStore.notifications);
   const { showSpinner, setShowSpinner } = useContext(SpinnerContext);
   const setNotifications = (data) => {
+    console.log(data)
     notificationsRef.current = data;
     setNotificationUpdate((past) => past + 1);
   };
   useEffect(() => {
-    if (contextStore.loggedIn) {
-      let count = 0;
-      contextStore.notifications.map((notification) => {
-        if (!notification.viewStatus) {
-          count = count + 1;
-        }
-      });
-      setNotificationCount(count);
-    }
+    
+    
+     
+      
+      if(notificationUpdate === 0){
+        notificationsRef.current = contextStore.notifications
+      }
   }, [contextStore.notifications]);
   useEffect(() => {
     if (contextStore.socket) {
@@ -65,26 +64,24 @@ const Navbar = () => {
         return;
       }
       setOpenNotifications(false);
-      setShowSpinner(false);
-      response = await dispatch(
-        actions.getNotifications,
-        {},
-        {},
-        contextStore.user.token
-      );
-      console.log(response);
-      if (response.errors) {
-        return;
-      }
-      setContextStore({
-        ...contextStore,
-        notifications: response,
-      });
+      setShowSpinner(false)
+      setNotificationCount(0)
+      notificationsRef.current = notificationsRef.current.map(notification => {
+        notification.viewStatus = true
+        return notification
+      })
     } else {
       setOpenNotifications(false);
     }
   };
   useEffect(() => {
+    let count = 0
+    notificationsRef.current.map((notification) => {
+      if (!notification.viewStatus) {
+        count = count + 1;
+      }
+    })
+    setNotificationCount(count)
     setContextStore({
       ...contextStore,
       notifications: notificationsRef.current,

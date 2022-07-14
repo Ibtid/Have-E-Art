@@ -35,6 +35,9 @@ const Notifications = (props) => {
       case 'user':
         navigate(`/user/earts/GalleryShowcase/${ref}`);
         break;
+      case "eart":
+        navigate(`/product/${ref}`)
+        break
       default:
         console.log(type);
     }
@@ -51,11 +54,13 @@ const Notifications = (props) => {
             <div className='notifications__title'>Notifications</div>
             <div className='notifications__scroll'>
               {contextStore.notifications.map((notification) => (
+                
                 <div className='notifications__oneNotification'>
+                  {console.log(notification)}
                   <img className='notifications__image' src={image} alt='' />
                   <div className='notifications__textContainer'>
                     <div className='notifications__event'>
-                      <b
+                    {notification.highlightOne &&<b
                         style={{ cursor: 'pointer' }}
                         onClick={() => {
                           onClickHighLight(
@@ -63,10 +68,10 @@ const Notifications = (props) => {
                             notification.highlightOne.ref
                           );
                         }}>
-                        {notification.highlightOne.text}
-                      </b>{' '}
+                        { notification.highlightOne.text}
+                      </b>}{' '}
                       {notification.noHighlight}{' '}
-                      <b
+                      {notification.highlightTwo &&<b
                         style={{ cursor: 'pointer' }}
                         onClick={() => {
                           onClickHighLight(
@@ -74,9 +79,9 @@ const Notifications = (props) => {
                             notification.highlightTwo.ref
                           );
                         }}>
-                        {notification.highlightTwo &&
+                        {
                           notification.highlightTwo.text}
-                      </b>
+                      </b>}
                     </div>
                     <div className='notifications__time'>5 hours ago</div>
                   </div>
