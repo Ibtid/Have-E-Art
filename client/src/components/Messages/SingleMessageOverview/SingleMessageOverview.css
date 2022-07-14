@@ -65,7 +65,6 @@
   display: grid;
   grid-template-columns: 8fr 2fr;
   grid-template-rows: 1fr;
-  place-items: center;
 }
 
 .highlightedMessage {
@@ -91,6 +90,10 @@
   .singleMessageOverview {
     grid-template-columns: 1fr 6fr;
     justify-items: center;
+  }
+
+  .singleMessageOverview__messageContainer {
+    place-items: center;
   }
 }
 

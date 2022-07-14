@@ -52,7 +52,7 @@ const Notifications = (props) => {
         {showForm && (
           <div className='notifications__Container'>
             <div className='notifications__title'>Notifications</div>
-            {contextStore.notifications ? (
+            {!contextStore.notifications ? (
               <div className='no_notification'>No notifications</div>
             ) : (
               <div className='notifications__scroll'>

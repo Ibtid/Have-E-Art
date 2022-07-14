@@ -11,7 +11,7 @@ import actions from '../../../dispatcher/actions';
 const SingleMessageOverview = ({ room, chatId }) => {
   const [receiver, setReceiver] = useState({});
   const { contextStore, setContextStore } = useContext(AppContext);
-  const [lastChatId, setLastChatId] = useState("")
+  const [lastChatId, setLastChatId] = useState('');
 
   //traccking active session of a user
   const [activeSessionUpdate, setActiveSessionUpdate] = useState(0);
@@ -132,13 +132,12 @@ const SingleMessageOverview = ({ room, chatId }) => {
   //class loader on change chatId
   useEffect(() => {
     if (chatId) {
-      
       //if you go into the room
       if (chatId.toString() === room._id.toString()) {
         setUnseenMessages(0);
       }
       //if you go into some other room
-      else if(lastChatId === room._id.toString()){
+      else if (lastChatId === room._id.toString()) {
         (async () => {
           const response = await dispatch(
             actions.getLastMessage,
@@ -155,7 +154,7 @@ const SingleMessageOverview = ({ room, chatId }) => {
           }
         })();
       }
-      setLastChatId(chatId)
+      setLastChatId(chatId);
     }
   }, [chatId]);
   return (
@@ -182,10 +181,12 @@ const SingleMessageOverview = ({ room, chatId }) => {
             className={`singleMessageOverview__message ${
               unseenMessages !== 0 ? 'highlightedMessage' : ''
             }`}>
-            {lastMessage.sender._id === contextStore.user._id
-              ? chatId !== room._id && `You: ${lastMessage.text}`
-              : chatId !== room._id &&
-                `${lastMessage.sender.firstName}: ${lastMessage.text}`}
+            {lastMessage._id
+              ? lastMessage.sender._id === contextStore.user._id
+                ? chatId !== room._id && `You: ${lastMessage.text}`
+                : chatId !== room._id &&
+                  `${lastMessage.sender.firstName}: ${lastMessage.text}`
+              : 'Loading...'}
           </div>
           {unseenMessages !== 0 && (
             <div className='singleMessageOverview__messageCircle'>

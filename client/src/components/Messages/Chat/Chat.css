@@ -94,7 +94,11 @@
   border: none;
   outline: none;
   background: var(--secondaryWhite);
-  font-size: 1.1rem;
+  font-size: 1rem;
+  letter-spacing: 0.1rem;
+  word-spacing: 0.3rem;
+  font-weight: bold;
+  color: var(--secondary);
 }
 
 .chat__viewProfileButton {
