@@ -35,9 +35,9 @@ const Notifications = (props) => {
       case 'user':
         navigate(`/user/earts/GalleryShowcase/${ref}`);
         break;
-      case "eart":
-        navigate(`/product/${ref}`)
-        break
+      case 'eart':
+        navigate(`/product/${ref}`);
+        break;
       default:
         console.log(type);
     }
@@ -52,42 +52,48 @@ const Notifications = (props) => {
         {showForm && (
           <div className='notifications__Container'>
             <div className='notifications__title'>Notifications</div>
-            <div className='notifications__scroll'>
-              {contextStore.notifications.map((notification) => (
-                
-                <div className='notifications__oneNotification'>
-                  {console.log(notification)}
-                  <img className='notifications__image' src={image} alt='' />
-                  <div className='notifications__textContainer'>
-                    <div className='notifications__event'>
-                    {notification.highlightOne &&<b
-                        style={{ cursor: 'pointer' }}
-                        onClick={() => {
-                          onClickHighLight(
-                            notification.highlightOne.type,
-                            notification.highlightOne.ref
-                          );
-                        }}>
-                        { notification.highlightOne.text}
-                      </b>}{' '}
-                      {notification.noHighlight}{' '}
-                      {notification.highlightTwo &&<b
-                        style={{ cursor: 'pointer' }}
-                        onClick={() => {
-                          onClickHighLight(
-                            notification.highlightTwo.type,
-                            notification.highlightTwo.ref
-                          );
-                        }}>
-                        {
-                          notification.highlightTwo.text}
-                      </b>}
+            {contextStore.notifications ? (
+              <div className='no_notification'>No notifications</div>
+            ) : (
+              <div className='notifications__scroll'>
+                {contextStore.notifications.map((notification) => (
+                  <div className='notifications__oneNotification'>
+                    {console.log(notification)}
+                    <img className='notifications__image' src={image} alt='' />
+                    <div className='notifications__textContainer'>
+                      <div className='notifications__event'>
+                        {notification.highlightOne && (
+                          <b
+                            style={{ cursor: 'pointer' }}
+                            onClick={() => {
+                              onClickHighLight(
+                                notification.highlightOne.type,
+                                notification.highlightOne.ref
+                              );
+                            }}>
+                            {notification.highlightOne.text}
+                          </b>
+                        )}{' '}
+                        {notification.noHighlight}{' '}
+                        {notification.highlightTwo && (
+                          <b
+                            style={{ cursor: 'pointer' }}
+                            onClick={() => {
+                              onClickHighLight(
+                                notification.highlightTwo.type,
+                                notification.highlightTwo.ref
+                              );
+                            }}>
+                            {notification.highlightTwo.text}
+                          </b>
+                        )}
+                      </div>
+                      <div className='notifications__time'>5 hours ago</div>
                     </div>
-                    <div className='notifications__time'>5 hours ago</div>
                   </div>
-                </div>
-              ))}
-            </div>
+                ))}
+              </div>
+            )}
           </div>
         )}
       </div>

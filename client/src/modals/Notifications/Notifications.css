@@ -22,6 +22,10 @@
   top: 4rem;
 }
 
+.no_notification {
+  color: var(--inactive);
+}
+
 .notifications__title {
   font-weight: bold;
   letter-spacing: 0.05rem;
@@ -83,6 +87,6 @@
 @media screen and (max-width: 600px) {
   .notifications__Container {
     transform: scale(0.8);
-    top: 2vh;
+    top: 3.5rem;
   }
 }

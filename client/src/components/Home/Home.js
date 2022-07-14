@@ -24,7 +24,7 @@ const Home = () => {
     })();
   }, []);
   return (
-    <div className='home__cardContainer noScrollBar'>
+    <div className='home__cardContainer '>
       {earts.map((eart) => (
         <ProductShowcaseCard eart={eart} key={eart._id} />
       ))}
