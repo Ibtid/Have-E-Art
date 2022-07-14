@@ -57,7 +57,7 @@
 }
 
 .gallery__detailsScroll {
-  height: calc(100vh - 11rem);
+  height: calc(100vh - 10rem);
   width: calc(100vw - 18rem);
   color: var(--white);
   background-color: var(--primary);
@@ -171,20 +171,110 @@
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 1210px) {
+  .gallery__detailsText {
+    margin-left: 3vw;
+    width: 22rem;
+  }
+
+  .gallery__detailsDescription {
+    width: 22rem;
+    height: 6rem;
+  }
+
+  .gallery__detailsCardList {
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
+  }
+}
+
+@media screen and (max-width: 960px) {
   .gallery__detailsInfo {
+    margin-top: 1rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
     flex-direction: column-reverse;
   }
-  .gallery__detailsScroll {
-    width: calc(100vw - 0rem);
+  .gallery__detailsText {
+    margin-left: 0vw;
+    width: 30rem;
   }
+
+  .gallery__detailsDescription {
+    width: 30rem;
+    height: 6rem;
+    margin-bottom: 1rem;
+  }
+}
+
+@media screen and (max-width: 900px) {
   .gallery__detailsCardList {
     display: grid;
     grid-template-columns: 1fr;
-    grid-auto-rows: 22rem;
-    justify-items: center;
+    justify-content: center;
+    padding-bottom: 3rem;
+  }
+}
+
+@media screen and (max-width: 760px) {
+  .gallery__detailsText {
+    margin-left: 0vw;
+    width: 25rem;
+  }
+
+  .gallery__detailsDescription {
+    width: 25rem;
+    height: 6rem;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .gallery__detailsText {
+    font-size: 1rem;
+    margin-left: 0vw;
+    width: 25rem;
+  }
+
+  .gallery__detailsTitle {
+    font-size: 1.1rem;
+  }
+  .gallery__detailsDescription {
+    font-size: 0.9rem;
+    width: 25rem;
+    height: 6rem;
+  }
+}
+
+@media screen and (max-width: 670px) {
+  .gallery__detailsText {
+    width: 20rem;
+  }
+
+  .gallery__detailsTitle {
+    font-size: 1.1rem;
+  }
+  .gallery__detailsDescription {
+    font-size: 0.9rem;
+    width: 20rem;
+    height: 5rem;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .gallery__detailsScroll {
+    width: calc(100vw - 0rem);
+  }
+  .gallery__detailsText {
+    width: 90vw;
+  }
+
+  .gallery__detailsTitle {
+    font-size: 1.4rem;
+  }
+  .gallery__detailsDescription {
+    width: 90vw;
+    height: 6rem;
+    font-size: 1rem;
   }
 }
