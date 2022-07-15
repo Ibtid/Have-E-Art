@@ -50,12 +50,18 @@ const Notifications = (props) => {
       }}>
       <div ref={ref}>
         {showForm && (
-          <div className='notifications__Container'>
+          <div
+            className={`notifications__Container ${
+              contextStore.notifications.length === 0
+                ? 'notificationcontainer__extramargin'
+                : ''
+            }`}>
             <div className='notifications__title'>Notifications</div>
-            {!contextStore.notifications ? (
+            {contextStore.notifications.length === 0 ? (
               <div className='no_notification'>No notifications</div>
             ) : (
               <div className='notifications__scroll'>
+                {console.log(contextStore.notifications, 'ojojojoj')}
                 {contextStore.notifications.map((notification) => (
                   <div className='notifications__oneNotification'>
                     {console.log(notification)}

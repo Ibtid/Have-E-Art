@@ -87,6 +87,11 @@
 @media screen and (max-width: 600px) {
   .notifications__Container {
     transform: scale(0.8);
+    right: 0vw;
+    top: 3vh;
+  }
+
+  .notificationcontainer__extramargin {
     top: 3.5rem;
   }
 }
