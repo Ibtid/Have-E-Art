@@ -27,7 +27,7 @@ const AddorEditProduct = (props) => {
         <img src={backIcon} />
         <div>Go back</div>
       </div>
-      <div className='app__bigImageComponent'>
+      <div className='app__bigImageComponent fadeIn'>
         <div className='app__bigImageContainer'>
           {image && (
             <img
