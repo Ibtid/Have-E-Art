@@ -44,7 +44,9 @@ const EditProduct = () => {
       </div>
       <div className='app__bigImageComponent'>
         <div className='app__bigImageContainer'>
-          <img className='app__bigImage' src={eart.imgUrl} alt='art' />
+          {eart.imgUrl && (
+            <img className='app__bigImage fadeIn' src={eart.imgUrl} alt='art' />
+          )}
         </div>
         <div className='app__bigImageText'>
           <EditProductText eart={eart} />
