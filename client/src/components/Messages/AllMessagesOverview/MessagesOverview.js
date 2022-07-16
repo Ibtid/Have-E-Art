@@ -30,7 +30,7 @@ const MessagesOverview = ({ chatId }) => {
       }
       setShowSpinner(false);
     })();
-  }, []);
+  }, [contextStore.user]);
   return (
     <div className='messagesOverview'>
       {width <= 768 && <SecondaryNav />}

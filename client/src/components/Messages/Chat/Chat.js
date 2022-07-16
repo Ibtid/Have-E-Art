@@ -48,8 +48,8 @@ const Chat = () => {
                 setMessages(page.docs);
                 break;
             case "scroll":
+                messagesRef.current = [...page.docs, ...messagesRef.current]
                 let vMessages = messagesRef.current;
-                vMessages = [...page.docs, ...vMessages];
                 _setPage(page);
                 console.log(vMessages);
                 rearrangeMessagesForDisplay(vMessages);
@@ -149,10 +149,12 @@ const Chat = () => {
 
         return () => {
             //cleanup
-            contextStore.socket.off("message");
+            if(contextStore.socket){
+              contextStore.socket.off("message");
             contextStore.socket.emit("leaveChatRoom", [chatId]);
+            }
         };
-    }, [chatId]);
+    }, [chatId, contextStore.user]);
 
     const messageEventListener = (message) => {
         const vMessages = messagesRef.current;
@@ -185,22 +187,25 @@ const Chat = () => {
     };
 
     const rearrangeMessagesForDisplay = (allMessages) => {
-        let oneBlock = { sender: {}, messageList: [] };
+        let oneBlock = { sender: {}, messageList: [], time: 0 };
         let newArray = [];
         allMessages.map((message) => {
             if (!oneBlock.sender._id) {
                 oneBlock = {
                     sender: message.sender,
                     messageList: [message.text],
+                    time: message.time
                 };
             } else {
-                if (oneBlock.sender._id === message.sender._id) {
+                console.log(new Date(message.time).getTime() - new Date(oneBlock.time).getTime())
+                if (oneBlock.sender._id === message.sender._id  && (new Date(message.time).getTime() - new Date(oneBlock.time).getTime()) < 180000 && oneBlock.messageList.length < 10) {
                     oneBlock.messageList.push(message.text);
                 } else {
                     newArray.push(oneBlock);
                     oneBlock = {
                         sender: message.sender,
                         messageList: [message.text],
+                        time: message.time
                     };
                 }
             }
