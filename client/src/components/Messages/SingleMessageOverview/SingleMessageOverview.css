@@ -143,6 +143,11 @@
     height: 2.5rem;
     width: 2.5rem;
   }
+  .loadingMessageOverview__imageContainer {
+    height: 2.5rem;
+    width: 2.5rem;
+    margin-left: 0vw;
+  }
 }
 
 @media screen and (max-width: 670px) {
