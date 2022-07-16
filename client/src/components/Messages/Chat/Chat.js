@@ -48,14 +48,13 @@ const Chat = () => {
         setMessages(page.docs);
         break;
       case 'scroll':
-        let vMessages = messages;
+        let vMessages = messagesRef.current;
         vMessages = [...page.docs, ...vMessages];
         _setPage(page);
-
+        console.log(vMessages)
         rearrangeMessagesForDisplay(vMessages);
         break;
     }
-    let vMessages = messages;
   };
 
   let chatBox = useRef(null);
