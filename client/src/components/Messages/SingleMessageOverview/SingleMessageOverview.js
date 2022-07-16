@@ -163,41 +163,56 @@ const SingleMessageOverview = ({ room, chatId }) => {
       className={`singleMessageOverview ${
         chatId === room._id ? 'active__MessageOverview' : ''
       }`}>
-      <div className='singleMessageOverview__imageContainer'>
-        <img
-          src={receiver.profileImage ? receiver.profileImage : avatar}
-          className='singleMessageOverview__image'
-        />
-      </div>
-      <div className='singleMessageOverview__text'>
-        <div className='singleMessageOverview__nameAndActive'>
-          <div className='singleMessageOverview__name'>{`${receiver.firstName} ${receiver.lastName}`}</div>
-          {activeSessions > 0 && (
-            <div className='singleMessageOverview__active'></div>
-          )}
-        </div>
-        <div className='singleMessageOverview__messageContainer'>
-          <div
-            className={`singleMessageOverview__message ${
-              unseenMessages !== 0 ? 'highlightedMessage' : ''
-            }`}>
-            {lastMessage._id
-              ? lastMessage.sender._id === contextStore.user._id
-                ? chatId !== room._id && `You: ${lastMessage.text}`
-                : chatId !== room._id &&
-                  `${lastMessage.sender.firstName}: ${lastMessage.text}`
-              : 'Loading...'}
+      {!lastMessage._id ? (
+        <>
+          <div className='loadingMessageOverview__imageContainer sendingChat__opacity'></div>
+          <div className='singleMessageOverview__text'>
+            <div className='loadingMessageOverview__nameAndActive sendingChat__opacity'></div>
+            <div className='loadingMessageOverview sendingChat__opacity'></div>
           </div>
-          {unseenMessages !== 0 && (
-            <div className='singleMessageOverview__messageCircle'>
-              {unseenMessages}
+        </>
+      ) : (
+        <>
+          <div className='singleMessageOverview__imageContainer fadeIn'>
+            <img
+              src={receiver.profileImage ? receiver.profileImage : avatar}
+              className='singleMessageOverview__image'
+            />
+          </div>
+          <div className='singleMessageOverview__text fadeIn'>
+            <div className='singleMessageOverview__nameAndActive'>
+              <div className='singleMessageOverview__name'>{`${receiver.firstName} ${receiver.lastName}`}</div>
+              {activeSessions > 0 && (
+                <div className='singleMessageOverview__active'></div>
+              )}
             </div>
-          )}
-        </div>
-      </div>
-      <div className='singleMessageOverview__time'>2:21 AM</div>
+            <div className='singleMessageOverview__messageContainer'>
+              <div
+                className={`singleMessageOverview__message ${
+                  unseenMessages !== 0 ? 'highlightedMessage' : ''
+                }`}>
+                {lastMessage.sender._id === contextStore.user._id
+                  ? chatId !== room._id && `You: ${lastMessage.text}`
+                  : chatId !== room._id &&
+                    `${lastMessage.sender.firstName}: ${lastMessage.text}`}
+              </div>
+              {unseenMessages !== 0 && (
+                <div className='singleMessageOverview__messageCircle'>
+                  {unseenMessages}
+                </div>
+              )}
+            </div>
+          </div>
+          <div className='singleMessageOverview__time fadeIn'>2:21 AM</div>
+        </>
+      )}
     </Link>
   );
 };
 
 export default SingleMessageOverview;
+// ) : (
+//   <div className='loadingMessageOverview sendingChat__opacity'></div>
+// )}
+
+// lastMessage._id ? (
