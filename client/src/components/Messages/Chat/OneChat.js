@@ -35,7 +35,11 @@ const OneChat = ({ message }) => {
       <div className='oneChat__middle'>
         <div className='oneChat__sendersName'>{`${message.sender.firstName} ${message.sender.lastName}`}</div>
         <div className='oneChat__chatCollection'>
-          <div className='oneChat__singleText'>{message.text}</div>
+          {message.messageList?.map((text, index) => (
+            <div className='oneChat__singleText' key={index}>
+              {text}
+            </div>
+          ))}
         </div>
       </div>
       <div className='oneChat__right'>

@@ -42,7 +42,7 @@ const SingleMessageOverview = ({ room, chatId }) => {
         {},
         contextStore.user.token
       );
-      console.log(response);
+
       if (response) {
         if (response.errors) {
           return;
@@ -71,7 +71,7 @@ const SingleMessageOverview = ({ room, chatId }) => {
       let response = await dispatch(actions.getUserActiveSessions, {
         userId: receiver._id,
       });
-      console.log(response);
+
       if (response.errors) {
         return;
       }
@@ -84,7 +84,7 @@ const SingleMessageOverview = ({ room, chatId }) => {
         {},
         contextStore.user.token
       );
-      console.log(response);
+
       if (response.errors) {
         return;
       }
@@ -97,7 +97,7 @@ const SingleMessageOverview = ({ room, chatId }) => {
         {},
         contextStore.user.token
       );
-      console.log(response);
+
       if (response) {
         if (response.errors) {
           return;
@@ -145,7 +145,7 @@ const SingleMessageOverview = ({ room, chatId }) => {
             {},
             contextStore.user.token
           );
-          console.log(response);
+
           if (response) {
             if (response.errors) {
               return;

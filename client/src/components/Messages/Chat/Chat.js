@@ -36,7 +36,8 @@ const Chat = () => {
   };
   useEffect(() => {
     setIsMessageSending({ state: false, message: '' });
-    _setMessages(messagesRef.current);
+
+    rearrangeMessagesForDisplay(messagesRef.current);
   }, [messageUpdate]);
 
   const [page, _setPage] = useState({});
@@ -50,7 +51,8 @@ const Chat = () => {
         let vMessages = messages;
         vMessages = [...page.docs, ...vMessages];
         _setPage(page);
-        _setMessages(vMessages);
+
+        rearrangeMessagesForDisplay(vMessages);
         break;
     }
     let vMessages = messages;
@@ -103,7 +105,7 @@ const Chat = () => {
         {},
         contextStore.user.token
       );
-      console.log(response);
+
       if (response.errors) {
         return;
       }
@@ -121,7 +123,7 @@ const Chat = () => {
         {},
         contextStore.user.token
       );
-      console.log(response);
+
       setPage(response, 'init');
       if (contextStore.socket) {
         contextStore.socket.emit('joinChatRoom', [chatId]);
@@ -135,7 +137,7 @@ const Chat = () => {
       //   {},
       //   contextStore.user.token
       // );
-      // console.log(response);
+
       // setMessages(response);
       response = await dispatch(
         actions.viewAllMessages,
@@ -143,7 +145,6 @@ const Chat = () => {
         {},
         contextStore.user.token
       );
-      console.log(response);
     })();
 
     return () => {
@@ -165,7 +166,7 @@ const Chat = () => {
       {},
       contextStore.user.token
     );
-    console.log(response);
+
     setPage(response, 'scroll');
     paginationLock = false;
     setMiniSpinner(false);
@@ -176,16 +177,57 @@ const Chat = () => {
     chatBox.current.scrollTop = differenceInScrollHeightAfterPagination;
   };
   const handleScroll = (e) => {
-    // console.log('top', e.target.scrollTop);
-    console.log('sc', e.target.scrollHeight);
-    // console.log('cl', e.target.clientHeight);
-    // console.log('oh', e.target.offsetHeight);
     if (!paginationLock && e.target.scrollTop === 0 && page.hasNextPage) {
       setMiniSpinner(true);
       paginationLock = true;
       fetchNextPage(e.target.scrollHeight);
     }
   };
+
+  const rearrangeMessagesForDisplay = (allMessages) => {
+    if (allMessages?.length === 0 || !allMessages) {
+      return;
+    }
+    let lastSender = allMessages[0].sender;
+    let lastReceiver = allMessages[0].receiver;
+    let lastSendersAllMessages = [];
+    let newMessageArray = [];
+    let oneMessageBlock = {};
+
+    //Grouping all Sender Messages
+    for (let i = 0; i < allMessages.length; i++) {
+      //if a sender is match we keep pushing his consecutive messages
+      if (lastSender._id === allMessages[i].sender._id) {
+        lastSendersAllMessages.push(allMessages[i].text);
+        oneMessageBlock = {
+          sender: lastSender,
+          receiver: lastReceiver,
+          messageList: lastSendersAllMessages,
+        };
+      } else {
+        //if the sender is not match with previous sender, then we push his message block and start a fresh block
+        newMessageArray.push(oneMessageBlock);
+        lastSender = allMessages[i].sender;
+        lastReceiver = allMessages[i].receiver;
+        lastSendersAllMessages = [];
+        lastSendersAllMessages.push(allMessages[i].text);
+        oneMessageBlock = {
+          sender: lastSender,
+          receiver: lastReceiver,
+          messageList: lastSendersAllMessages,
+        };
+      }
+
+      //if there is no more sender after this sender we push his grouped messages
+      if (i + 1 === allMessages.length) {
+        newMessageArray.push(oneMessageBlock);
+      }
+    }
+
+    console.log(newMessageArray);
+    _setMessages(newMessageArray);
+  };
+
   return (
     <div className='chat'>
       <div className='chat__head'>
@@ -210,8 +252,8 @@ const Chat = () => {
             <div className='mini__spinner'></div>
           </div>
         )}
-        {messages.map((message) => (
-          <OneChat message={message} key={message._id} />
+        {messages.map((message, index) => (
+          <OneChat message={message} key={index} />
         ))}
         {isMessageSending.state && (
           <SendingChat message={isMessageSending.message} />
