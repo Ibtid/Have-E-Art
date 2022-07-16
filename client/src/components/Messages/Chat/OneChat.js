@@ -18,7 +18,7 @@ const OneChat = ({ message }) => {
     } else if (diff <= 24 * 60 * 60 * 1000) {
       return `Yesterday at ${hours}:${minutes}`;
     } else {
-      return compDate.toDateString();
+      return `${compDate.toDateString()} at ${hours}:${minutes}`;
     }
   };
   return (
