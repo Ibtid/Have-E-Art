@@ -211,8 +211,3 @@ const SingleMessageOverview = ({ room, chatId }) => {
 };
 
 export default SingleMessageOverview;
-// ) : (
-//   <div className='loadingMessageOverview sendingChat__opacity'></div>
-// )}
-
-// lastMessage._id ? (
