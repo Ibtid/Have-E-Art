@@ -62,6 +62,10 @@ const Chat = () => {
   let paginationLock = false;
 
   useEffect(() => {
+    _setMessages([]);
+  }, [receiver]);
+
+  useEffect(() => {
     chatBox.current.scrollTop = chatBox.current.scrollHeight;
   }, [messages, messageUpdate, isMessageSending]);
 
