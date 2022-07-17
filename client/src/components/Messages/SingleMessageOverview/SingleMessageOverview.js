@@ -176,7 +176,7 @@ const SingleMessageOverview = ({ room, chatId }) => {
           <div className='singleMessageOverview__imageContainer fadeIn'>
             <img
               src={receiver.profileImage ? receiver.profileImage : avatar}
-              className='singleMessageOverview__image'
+              className='singleMessageOverview__image fadeIn'
             />
           </div>
           <div className='singleMessageOverview__text fadeIn'>
