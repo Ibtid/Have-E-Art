@@ -88,4 +88,12 @@
     height: 2rem;
     width: 2rem;
   }
+  .oneChat__date {
+    margin-top: 2rem;
+    width: 100%;
+    height: 2rem;
+    text-align: center;
+    font-size: 0.6rem;
+    color: var(--secondaryWhite);
+  }
 }

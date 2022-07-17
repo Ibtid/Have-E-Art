@@ -4,8 +4,8 @@ import rightArrow from '../../../assets/icons/rightArrow.svg';
 
 import './Chat.css';
 import OneChat from './OneChat';
-
-import { Link, useParams } from 'react-router-dom';
+import back from '../../../assets/icons/backIcon.svg';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import dispatch from '../../../dispatcher/dispatch';
 import actions from '../../../dispatcher/actions';
 import { AppContext } from '../../../hooks/AppContext';
@@ -13,6 +13,7 @@ import { SpinnerContext } from '../../../hooks/SpinnerContext';
 import SendingChat from './SendingChat';
 
 const Chat = () => {
+  let history = useNavigate();
   const [miniSpinner, setMiniSpinner] = useState(false);
   const [receiver, setReceiver] = useState({});
   const [room, setRoom] = useState({});
@@ -228,6 +229,14 @@ const Chat = () => {
     <div className='chat'>
       <div className='chat__head'>
         <div className='chat__nameAndActiveStatus'>
+          <img
+            className='chat__backIcon'
+            src={back}
+            alt='Go Back'
+            onClick={() => {
+              history('/messages');
+            }}
+          />
           <div className='chat__name'>
             {receiver.firstName !== undefined
               ? `${receiver.firstName} ${receiver?.lastName}`

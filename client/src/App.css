@@ -138,7 +138,7 @@ input:-webkit-autofill {
   height: 4px;
 }
 .app__bigImageText::-webkit-scrollbar-track {
-  background: var(--secondary);
+  background: var(--primary);
 }
 .app__bigImageText::-webkit-scrollbar-thumb {
   background: var(--greyhighlight);
