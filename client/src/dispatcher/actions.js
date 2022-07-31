@@ -46,7 +46,8 @@ const actions = {
     getNotViewedMessageCount: "GETNOTVIEWEDMESSAGECOUNT",
     viewAllMessages: "VIEWALLMESSAGES",
     getMessagesLastPage: "GETMESSAGESLASTPAGE",
-    getMessagePage: "GETNEXTPAGE"
+    getMessagePage: "GETNEXTPAGE",
+    roomExists: "ROOMEXISTS"
 
 }
 

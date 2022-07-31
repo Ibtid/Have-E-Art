@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import actions from '../../dispatcher/actions';
 import dispatch from '../../dispatcher/dispatch';
 import { AppContext } from '../../hooks/AppContext';
@@ -7,11 +8,13 @@ import { SpinnerContext } from '../../hooks/SpinnerContext';
 import './MessagePrompt.css';
 
 const MessagePrompt = (props) => {
+  const navigate = useNavigate()
+  const {id} = useParams()
   const ref = useRef();
   const [pop, setPop] = useState('pop__up');
   const [showForm, setShowForm] = useState(true);
   const [formData, setformData] = useState({
-    name: '',
+    message: '',
   });
   const { setShowSpinner } = useContext(SpinnerContext);
   const { contextStore, setContextStore } = useContext(AppContext);
@@ -21,7 +24,10 @@ const MessagePrompt = (props) => {
   };
   const onClickSubmit = async () => {
     setShowSpinner(true);
-
+    let response = await dispatch(actions.createRoom, {}, {user: {_id: id}}, contextStore.user.token)
+    const roomId = response._id
+    response = await dispatch(actions.sendMessage, {roomId}, {text: formData.message, receiver: {_id: id}}, contextStore.user.token)
+    navigate(`/messages/${roomId}`)
     setShowSpinner(false);
     setPop('pop__down');
     setTimeout(() => {
@@ -66,8 +72,8 @@ const MessagePrompt = (props) => {
             <input
               className='cardDetails__inputBig'
               placeholder='Start a conversation'
-              name='name'
-              value={formData.name}
+              name='message'
+              value={formData.message}
               onChange={onChangeFormData}
             />
             <div className='newGroup__button'></div>

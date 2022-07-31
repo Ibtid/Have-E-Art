@@ -72,18 +72,26 @@ const UserProfile = (props) => {
     setShowSpinner(false);
   };
   const onClickSendMessage = async () => {
-    setShowSpinner(true);
-    let response = await dispatch(
-      actions.createRoom,
-      {},
-      { user: { _id: id } },
-      contextStore.user.token
-    );
-    console.log(response);
-    setShowSpinner(false);
-    if (!response.errors) {
-      navigate(`/messages/${response._id}`);
+    setShowSpinner(true)
+    let response = await dispatch(actions.roomExists, {userId: id}, {}, contextStore.user.token)
+    console.log(response)
+    setShowSpinner(false)
+    if(response.exists){
+      return navigate(`/messages/${response._id}`)
     }
+    setOpenMessagePrompt(true)
+    // setShowSpinner(true);
+    // let response = await dispatch(
+    //   actions.createRoom,
+    //   {},
+    //   { user: { _id: id } },
+    //   contextStore.user.token
+    // );
+    // console.log(response);
+    // setShowSpinner(false);
+    // if (!response.errors) {
+    //   navigate(`/messages/${response._id}`);
+    // }
   };
 
   const onClickOpenMessagePrompt = () => {
@@ -96,6 +104,7 @@ const UserProfile = (props) => {
         <MessagePrompt
           closeForm={() => {
             setOpenMessagePrompt(false);
+            
           }}
         />
       )}
@@ -137,7 +146,7 @@ const UserProfile = (props) => {
 
                   <div
                     className='userInfo__accentOutLine'
-                    onClick={onClickOpenMessagePrompt}>
+                    onClick={onClickSendMessage}>
                     Send Message
                   </div>
                 </div>

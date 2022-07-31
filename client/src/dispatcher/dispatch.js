@@ -446,6 +446,15 @@ const dispatch = async (action, headerParams = {}, body = {}, token = '') => {
         response = await axios(axiosOptions);
         return response.data;
         break;
+      case actions.roomExists:
+        axiosOptions = getAxiosOptions(
+          "GET",
+          `${baseUrl}/room/roomexists/${headerParams.userId}`,
+          body,
+          token
+        )
+        response = await axios(axiosOptions)
+        return response.data
     }
   } catch (err) {
     console.log(err);
