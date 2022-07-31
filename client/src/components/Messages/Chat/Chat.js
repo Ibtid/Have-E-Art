@@ -1,3 +1,4 @@
+
 import React, { useContext, useEffect, useRef, useState } from 'react';
 
 import rightArrow from '../../../assets/icons/rightArrow.svg';
@@ -11,6 +12,7 @@ import actions from '../../../dispatcher/actions';
 import { AppContext } from '../../../hooks/AppContext';
 import { SpinnerContext } from '../../../hooks/SpinnerContext';
 import SendingChat from './SendingChat';
+
 
 const Chat = () => {
   let history = useNavigate();
@@ -94,6 +96,7 @@ const Chat = () => {
         { text: dataToSend, receiver },
         contextStore.user.token
       );
+
 
       enterLock = false;
     }
