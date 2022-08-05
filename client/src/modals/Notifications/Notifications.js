@@ -65,7 +65,7 @@ const Notifications = (props) => {
                 {contextStore.notifications.map((notification) => (
                   <div className='notifications__oneNotification'>
                     {console.log(notification)}
-                    <img className='notifications__image' src={image} alt='' />
+                    <img className='notifications__image' src={notification.imgUrl ? notification.imgUrl : image} alt='' />
                     <div className='notifications__textContainer'>
                       <div className='notifications__event'>
                         {notification.highlightOne && (
