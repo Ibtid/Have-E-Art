@@ -33,6 +33,7 @@ import ProfileGalleryShowcase from './components/ProfileShowCase/ProfileGalleryS
 import GalleryDetail from './pages/GalleryDetail/GalleryDetail';
 import { io } from 'socket.io-client';
 import Following from './pages/Following/Following';
+import FavoritesPage from './pages/Favorites/FavoritesPage';
 
 function App() {
   const { showSpinner, setShowSpinner } = useContext(SpinnerContext);
@@ -93,6 +94,7 @@ function App() {
           <Route path='/' element={<HomePage />} />
           <Route path='/:attribute' element={<HomePage />} />
           <Route path='/following' element={<Following />} />
+          <Route path='/favorites' element={<FavoritesPage />} />
 
           <Route
             path='/MyCollection/BoughtShowcase'

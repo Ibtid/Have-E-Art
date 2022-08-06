@@ -47,7 +47,9 @@ const actions = {
     viewAllMessages: "VIEWALLMESSAGES",
     getMessagesLastPage: "GETMESSAGESLASTPAGE",
     getMessagePage: "GETNEXTPAGE",
-    roomExists: "ROOMEXISTS"
+    roomExists: "ROOMEXISTS",
+    getFollowedUsers: "GETFOLLOWEDUSERS",
+    getFollowedEarts: "GETFOLLOWEDEARTS"
 
 }
 
