@@ -32,6 +32,7 @@ import ProfileCopyShowCase from './components/ProfileShowCase/ProfileCopyShowCas
 import ProfileGalleryShowcase from './components/ProfileShowCase/ProfileGalleryShowCase';
 import GalleryDetail from './pages/GalleryDetail/GalleryDetail';
 import { io } from 'socket.io-client';
+import Following from './pages/Following/Following';
 
 function App() {
   const { showSpinner, setShowSpinner } = useContext(SpinnerContext);
@@ -91,7 +92,7 @@ function App() {
         <Routes>
           <Route path='/' element={<HomePage />} />
           <Route path='/:attribute' element={<HomePage />} />
-          {/* <Route path='/following' element={<Following />} /> */}
+          <Route path='/following' element={<Following />} />
 
           <Route
             path='/MyCollection/BoughtShowcase'
