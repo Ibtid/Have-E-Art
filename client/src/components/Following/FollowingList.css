@@ -3,7 +3,7 @@
   width: calc(100% - 2vw);
   color: var(--white);
   background-color: var(--primary);
-
+  margin-top: 1rem;
   font-family: Montserrat, sans-serif;
   display: flex;
   flex-wrap: wrap;
@@ -80,7 +80,7 @@
 @media screen and (max-width: 600px) {
   .followingList {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-evenly;
     overflow-y: scroll;
   }
