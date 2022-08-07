@@ -1,14 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 import favouriteOutline from '../../../assets/icons/favouritesOutline.svg';
+import favouriteFilled from '../../../assets/icons/favoritesFilled.svg';
 import shareOutline from '../../../assets/icons/shareIcon.svg';
 import views from '../../../assets/icons/views.svg';
 import './ProductShowcaseCard.css';
 
 import { useNavigate } from 'react-router-dom';
 import getDate from '../../../utility/getDate';
+import { AppContext } from '../../../hooks/AppContext';
 
 const ProductShowcaseCard = ({ eart }) => {
+  const { contextStore, setContextStore } = useContext(AppContext);
   let navigator = useNavigate();
 
   return (
@@ -27,7 +30,11 @@ const ProductShowcaseCard = ({ eart }) => {
         <div className='productShowcaseCard__imageDetails'></div>
         <img
           className='productShowcaseCard__favouriteIcon'
-          src={favouriteOutline}
+          src={
+            eart.followers.includes(contextStore.user._id)
+              ? favouriteFilled
+              : favouriteOutline
+          }
           alt='favourite'
         />
         <img

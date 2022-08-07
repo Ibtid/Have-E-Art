@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 
 import star from '../../assets/icons/star.svg';
 import share from '../../assets/icons/shareIcon.svg';
@@ -12,7 +12,6 @@ import messageOutline from './lightmessage.svg';
 import lightfavourite from './lightfavourite.svg';
 import EditIcon from '../../assets/icons/edit.svg';
 
-import { useContext } from 'react';
 import { AppContext } from '../../hooks/AppContext';
 
 import { Link, useNavigate, useParams } from 'react-router-dom';
@@ -22,7 +21,6 @@ import CertifiedSellForm from '../../modals/CertifiedSellForm/CertifiedSellForm'
 import getDate from '../../utility/getDate';
 import dispatch from '../../dispatcher/dispatch';
 import actions from '../../dispatcher/actions';
-import Spinkit from '../../modals/Spinkit/Spinkit';
 import BigImageComponent from '../../layouts/BigImageComponent';
 import { SpinnerContext } from '../../hooks/SpinnerContext';
 import checkIfOwner from '../../utility/checkIfOwner';
