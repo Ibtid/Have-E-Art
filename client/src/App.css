@@ -9,6 +9,7 @@ html {
   --greyhighlight: #4d4d4d;
   --inactive: #737983;
   --secondaryWhite: #c1c1c1;
+  --red: rgb(253, 120, 120);
 }
 
 body {

@@ -208,14 +208,14 @@
   cursor: pointer;
 }
 
-.form__error{
-  color: red;
+.form__error {
+  color: var(--red);
   font-size: 11px;
   margin-bottom: -10px;
 }
 
-.red__border{
-  border: 1.5px solid red;
+.red__border {
+  border: 1.5px solid var(--red);
 }
 
 @media screen and (max-width: 1440px) {
@@ -295,7 +295,7 @@
     height: 1.5rem;
   }
 
-  .form__error{
+  .form__error {
     color: red;
     font-size: 11px;
     margin-bottom: -22px;

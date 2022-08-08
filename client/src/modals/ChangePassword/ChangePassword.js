@@ -45,9 +45,9 @@ const ChangePassword = (props) => {
     setShowSpinner(false);
     setErrors(allErrors);
     if (
-      errors.confirmPassword.length === 1 &&
-      errors.newPassword.length === 1 &&
-      errors.oldPassword.length === 1
+      errors.confirmPassword.length === 0 &&
+      errors.newPassword.length === 0 &&
+      errors.oldPassword.length === 0
     ) {
       setPop('pop__down');
       setTimeout(() => {
