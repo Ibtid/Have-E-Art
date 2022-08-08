@@ -31,7 +31,7 @@ const ProductShowcaseCard = ({ eart }) => {
         <img
           className='productShowcaseCard__favouriteIcon'
           src={
-            eart.followers.includes(contextStore.user._id)
+            contextStore.user && eart.followers.includes(contextStore.user._id)
               ? favouriteFilled
               : favouriteOutline
           }

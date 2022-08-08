@@ -245,7 +245,7 @@ const Chat = () => {
               ? `${receiver.firstName} ${receiver?.lastName}`
               : 'Loading'}
           </div>
-          <div className='chat__activeStatus'></div>
+          {/* <div className='chat__activeStatus'></div> */}
         </div>
         <Link
           to={`/user/earts/GalleryShowcase/${receiver._id}`}
