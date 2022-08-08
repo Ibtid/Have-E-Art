@@ -3,8 +3,12 @@ import ReactDOM from 'react-dom';
 import './ChangePassword.css';
 
 import { SpinnerContext } from '../../hooks/SpinnerContext';
+import dispatch from '../../dispatcher/dispatch';
+import actions from '../../dispatcher/actions';
+import { AppContext } from '../../hooks/AppContext';
 
 const ChangePassword = (props) => {
+  const {contextStore}= useContext(AppContext)
   const ref = useRef();
   const [pop, setPop] = useState('pop__up');
   const [showForm, setShowForm] = useState(true);
@@ -25,7 +29,7 @@ const ChangePassword = (props) => {
   };
   const onClickSubmit = async () => {
     let allErrors = { newPassword: '', oldPassword: '', confirmPassword: '' };
-    setShowSpinner(true);
+
     if (formData.newPassword.length < 6) {
       allErrors = { ...allErrors, newPassword: 'Use atleast 6 characters' };
     }
@@ -42,13 +46,25 @@ const ChangePassword = (props) => {
         confirmPassword: 'Password does not match',
       };
     }
-    setShowSpinner(false);
+   
     setErrors(allErrors);
     if (
-      errors.confirmPassword.length === 0 &&
-      errors.newPassword.length === 0 &&
-      errors.oldPassword.length === 0
+      allErrors.confirmPassword.length === 0 &&
+      allErrors.newPassword.length === 0 &&
+      allErrors.oldPassword.length === 0
     ) {
+      setShowSpinner(true);
+      let response = await dispatch(actions.changePassword, {},{currentPassword: formData.oldPassword, newPassword: formData.newPassword}, contextStore.user.token)
+      console.log(response)
+      if(response.errors){
+        setShowSpinner(false)
+        setErrors({
+          ...errors,
+          oldPassword: response.errors[0].msg
+        })
+        return
+      }
+      setShowSpinner(false);
       setPop('pop__down');
       setTimeout(() => {
         props.closeForm();

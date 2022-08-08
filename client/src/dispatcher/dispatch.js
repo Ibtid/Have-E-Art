@@ -522,6 +522,15 @@ const dispatch = async (action, headerParams = {}, body = {}, token = "") => {
                 );
                 response = await axios(axiosOptions);
                 return response.data;
+            case actions.changePassword:
+                axiosOptions = getAxiosOptions(
+                    "PUT",
+                    `${baseUrl}/user/change/password`,
+                    body,
+                    token
+                )
+                response = await axios(axiosOptions)
+                return response.data
         }
     } catch (err) {
         console.log(err);

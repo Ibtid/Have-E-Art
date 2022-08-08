@@ -51,7 +51,8 @@ const actions = {
     getFollowedUsers: "GETFOLLOWEDUSERS",
     getFollowedEarts: "GETFOLLOWEDEARTS",
     getBoughtEarts: "GETBOUGHTEARTS",
-    getForsaleEarts: "GETFORSALEEARTS"
+    getForsaleEarts: "GETFORSALEEARTS",
+    changePassword: "CHANGEPASSWORD"
 
 }
 

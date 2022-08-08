@@ -239,7 +239,7 @@ function AuthForm(props) {
                                 type="submit"
                                 variant="contained"
                                 className="confirm-btn"
-                                onClick={onClickSignUp}
+                                
                             >
                                 Register
                             </button>
