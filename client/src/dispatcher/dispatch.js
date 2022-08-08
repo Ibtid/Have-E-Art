@@ -503,6 +503,25 @@ const dispatch = async (action, headerParams = {}, body = {}, token = "") => {
                 )
                 response = await axios(axiosOptions)
                 return response.data
+            case actions.getBoughtEarts:
+                axiosOptions = getAxiosOptions(
+                    "GET",
+                    `${baseUrl}/eart/getearts/bought`,
+                    {},
+                    token
+                );
+                response = await axios(axiosOptions);
+                return response.data;
+                break
+            case actions.getForsaleEarts:
+                axiosOptions = getAxiosOptions(
+                    "GET",
+                    `${baseUrl}/eart/getearts/forSale`,
+                    {},
+                    token
+                );
+                response = await axios(axiosOptions);
+                return response.data;
         }
     } catch (err) {
         console.log(err);
