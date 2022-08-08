@@ -45,6 +45,8 @@ const OneChat = ({ message }) => {
 
     if (minutes >= 0 && minutes < 10) {
       formatedMinutes = `0${minutes}`;
+    } else {
+      formatedMinutes = minutes;
     }
     return `${formatedHours}:${formatedMinutes} ${meridiemStatus}`;
   };
