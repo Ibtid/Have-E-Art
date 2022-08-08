@@ -35,11 +35,9 @@ const OneChat = ({ message }) => {
     if (hours >= 12) {
       hours = hours - 12;
       meridiemStatus = 'PM';
-    }
-    if (hours === 0) {
+    } else if (hours === 0) {
       formatedHours = '12';
-    }
-    if (hours > 0 && hours < 10) {
+    } else if (hours > 0 && hours < 10) {
       formatedHours = `0${hours}`;
     }
 
