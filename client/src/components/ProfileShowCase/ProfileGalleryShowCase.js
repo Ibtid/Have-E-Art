@@ -25,7 +25,7 @@ const ProfileGalleryShowcase = () => {
         setGalleries(response)
       })()
     }
-  }, [contextStore.user])
+  }, [contextStore.user, id])
   return (
     <div className=' gallery__rowGap'>
       {galleries.map((gallery) => (
