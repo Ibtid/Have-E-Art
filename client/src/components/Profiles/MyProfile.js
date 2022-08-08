@@ -1,8 +1,7 @@
-import React, { useContext, useEffect, useRef } from 'react';
+import React, { useState, useContext, useEffect, useRef } from 'react';
 import './MyProfile.css';
 
-import { useState } from 'react';
-
+import KeyIcon from '@mui/icons-material/Key';
 import userImg from '../../assets/icons/avatar.svg';
 import fb from '../../assets/icons/fb.svg';
 import web from '../../assets/icons/web.svg';
@@ -16,15 +15,16 @@ import { AppContext } from '../../hooks/AppContext';
 import actions from '../../dispatcher/actions';
 import dispatch from '../../dispatcher/dispatch';
 import { useNavigate } from 'react-router-dom';
-import Spinkit from '../../modals/Spinkit/Spinkit';
 import { SpinnerContext } from '../../hooks/SpinnerContext';
 
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
+import ChangePassword from '../../modals/ChangePassword/ChangePassword';
 
 const MyProfile = () => {
   const { setShowSpinner } = useContext(SpinnerContext);
   const [isEditMode, setIsEditMode] = useState(false);
   const [showForm, setShowForm] = useState(false);
+  const [changePassword, setChangePassword] = useState(false);
 
   const { contextStore, setContextStore } = useContext(AppContext);
 
@@ -124,6 +124,13 @@ const MyProfile = () => {
         <CardDetails
           closeForm={() => {
             setShowForm(false);
+          }}
+        />
+      )}
+      {changePassword && (
+        <ChangePassword
+          closeForm={() => {
+            setChangePassword(false);
           }}
         />
       )}
@@ -362,48 +369,61 @@ const MyProfile = () => {
         </div>
       </div>
       <br />
+      <br />
       <div className='profile-grid-section2'>
-        <div>
-          <div className='profile-sub-heading'>Email</div>
-          <div className='profile-text-grey'>{formData.email}</div>
+        <div className='profile-flex-bottom'>
+          <div>
+            <div className='profile-sub-heading'>Email</div>
+            <div className='profile-text-grey'>{formData.email}</div>
 
-          <div className='profile-sub-heading'>Credetial information:</div>
-          <div className='profile-payment-option'>
-            <div className='profile-option-text-grey'>
-              1. VISA **** **** **** 2139
+            <div
+              className='profile-change-Password'
+              onClick={() => {
+                setChangePassword(true);
+              }}>
+              <div style={{ marginRight: '0.5rem' }}>Change Password</div>{' '}
+              <KeyIcon />
             </div>
-            <img
-              className={
-                isEditMode
-                  ? 'profile-contact-info-icon'
-                  : 'profile-contact-info-icon profile-edit-mode'
-              }
-              src={cancel}
-              alt='c'
-            />
           </div>
-          <div className='profile-payment-option'>
-            <div className='profile-option-text-grey'>
-              2. Master Card **** **** **** 2139
+          <div>
+            <div className='profile-sub-heading'>Credential information:</div>
+            <div className='profile-payment-option'>
+              <div className='profile-option-text-grey'>
+                1. VISA **** **** **** 2139
+              </div>
+              <img
+                className={
+                  isEditMode
+                    ? 'profile-contact-info-icon'
+                    : 'profile-contact-info-icon profile-edit-mode'
+                }
+                src={cancel}
+                alt='c'
+              />
             </div>
-            <img
-              className={
-                isEditMode
-                  ? 'profile-contact-info-icon'
-                  : 'profile-contact-info-icon profile-edit-mode'
-              }
-              src={cancel}
-              alt='c'
-            />
-          </div>
-          <br />
-          <div
-            className='profile-add-button'
-            onClick={() => {
-              setShowForm(true);
-            }}>
-            <div className='profile-add-button-sign'>+</div>
-            <div className='profile-add-button-text'>Add New</div>
+            <div className='profile-payment-option'>
+              <div className='profile-option-text-grey'>
+                2. Master Card **** **** **** 2139
+              </div>
+              <img
+                className={
+                  isEditMode
+                    ? 'profile-contact-info-icon'
+                    : 'profile-contact-info-icon profile-edit-mode'
+                }
+                src={cancel}
+                alt='c'
+              />
+            </div>
+
+            <div
+              className='profile-add-button'
+              onClick={() => {
+                setShowForm(true);
+              }}>
+              <div className='profile-add-button-sign'>+</div>
+              <div className='profile-add-button-text'>Add New</div>
+            </div>
           </div>
         </div>
         <div
