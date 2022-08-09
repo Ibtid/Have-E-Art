@@ -7,12 +7,12 @@ import Spinkit from '../../modals/Spinkit/Spinkit';
 import OwnedCard from '../cards/OwnedCard/OwnedCard';
 
 const OwnedShowcase = () => {
-  const {setShowSpinner} = useContext(SpinnerContext)
+  const { setShowSpinner } = useContext(SpinnerContext);
   const { contextStore, setContextStore } = useContext(AppContext);
   const [earts, setEarts] = useState([]);
   useEffect(() => {
     (async () => {
-      setShowSpinner(true)
+      setShowSpinner(true);
       const response = await dispatch(
         actions.getOwnedEarts,
         {},
@@ -21,11 +21,11 @@ const OwnedShowcase = () => {
       );
       console.log(response);
       if (response.errors) {
-        setShowSpinner(false)
+        setShowSpinner(false);
         return;
       }
       setEarts(response);
-      setShowSpinner(false)
+      setShowSpinner(false);
     })();
   }, []);
 
@@ -34,6 +34,7 @@ const OwnedShowcase = () => {
       {earts.map((eart) => (
         <OwnedCard eart={eart} />
       ))}
+      <div className='illusionNav'></div>
     </div>
   );
 };

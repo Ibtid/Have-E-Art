@@ -34,6 +34,7 @@ const CopyShowCase = () => {
       {copyEarts.map((eart) => (
         <CopyCard copyEart={eart} />
       ))}
+      <div className='illusionNav'></div>
     </div>
   );
 };
