@@ -7,30 +7,36 @@ import { SpinnerContext } from '../../hooks/SpinnerContext';
 import Gallery from '../cards/Gallery/Gallery';
 
 const ProfileGalleryShowcase = () => {
-  const {id} = useParams()
-  const {contextStore, setContextStore} = useContext(AppContext)
-  const [galleries, setGalleries] = useState([])
-  const {setShowSpinner} = useContext(SpinnerContext)
+  const { id } = useParams();
+  const { contextStore, setContextStore } = useContext(AppContext);
+  const [galleries, setGalleries] = useState([]);
+  const { setShowSpinner } = useContext(SpinnerContext);
   useEffect(() => {
-    if(contextStore.user){
-      (async () =>{
-        setShowSpinner(true)
-        let response = await dispatch(actions.getUserGalleries,{userId: id},{}, contextStore.user.token)
-        console.log(response)
-        if(response.errors){
-          setShowSpinner(false)
-          return
+    if (contextStore.user) {
+      (async () => {
+        setShowSpinner(true);
+        let response = await dispatch(
+          actions.getUserGalleries,
+          { userId: id },
+          {},
+          contextStore.user.token
+        );
+        console.log(response);
+        if (response.errors) {
+          setShowSpinner(false);
+          return;
         }
-        setShowSpinner(false)
-        setGalleries(response)
-      })()
+        setShowSpinner(false);
+        setGalleries(response);
+      })();
     }
-  }, [contextStore.user, id])
+  }, [contextStore.user, id]);
   return (
     <div className=' gallery__rowGap'>
       {galleries.map((gallery) => (
-        <Gallery gallery = {gallery}/>
+        <Gallery gallery={gallery} />
       ))}
+      <div className='illusionNav'></div>
     </div>
   );
 };

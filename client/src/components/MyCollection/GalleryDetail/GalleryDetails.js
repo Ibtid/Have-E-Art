@@ -275,6 +275,7 @@ const GalleryDetails = (props) => {
             {earts.map((eart) => (
               <ProductShowcaseCard eart={eart} />
             ))}
+            <div className='illusionNav'></div>
           </div>
         </div>
       )}
