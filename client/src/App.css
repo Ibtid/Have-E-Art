@@ -10,7 +10,6 @@ html {
   --inactive: #737983;
   --secondaryWhite: #c1c1c1;
   --red: rgb(253, 120, 120);
-  height: -webkit-fill-available;
 }
 
 body {
@@ -197,12 +196,10 @@ input:-webkit-autofill {
   .app__notAuthenticated {
     width: 100vw;
     height: calc(100vh - 8rem);
-    height: -webkit-fill-available;
   }
   .app__authenticated {
     width: 100vw;
     height: calc(100vh - 11rem);
-    height: -webkit-fill-available;
   }
 
   .extra__divToHide {
