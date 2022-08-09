@@ -198,7 +198,7 @@ input:-webkit-autofill {
   }
 
   .illusionNav {
-    margin-top: 1rem;
+    margin-top: 3rem;
     width: 100vw;
     height: 1rem;
     background-color: var(--primary);
