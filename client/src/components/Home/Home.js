@@ -28,6 +28,7 @@ const Home = () => {
       {earts.map((eart) => (
         <ProductShowcaseCard eart={eart} key={eart._id} />
       ))}
+      <div className='illusionNav'></div>
     </div>
   );
 };
