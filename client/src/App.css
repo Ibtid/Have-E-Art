@@ -195,11 +195,11 @@ input:-webkit-autofill {
 
   .app__notAuthenticated {
     width: 100vw;
-    height: calc(100vh - 8rem);
+    height: calc(100vh - 10rem);
   }
   .app__authenticated {
     width: 100vw;
-    height: calc(100vh - 11rem);
+    height: calc(100vh - 13rem);
   }
 
   .extra__divToHide {
