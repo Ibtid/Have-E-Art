@@ -64,10 +64,10 @@ const UserProfile = (props) => {
       contextStore.user.token
     );
     console.log(response);
-    if (response.errors) {
-      setShowSpinner(false);
-      return;
-    }
+    // if (response.errors) {
+    //   setShowSpinner(false);
+    //   return;
+    // }
     setUser(response);
     setShowSpinner(false);
   };
