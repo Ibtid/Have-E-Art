@@ -196,12 +196,12 @@ input:-webkit-autofill {
   .app__notAuthenticated {
     width: 100vw;
     height: calc(100vh - 8rem);
-    margin-bottom: 3.5rem;
+    padding-bottom: 3.5rem;
   }
   .app__authenticated {
     width: 100vw;
     height: calc(100vh - 11rem);
-    margin-bottom: 3.5rem;
+    padding-bottom: 3.5rem;
   }
 
   .extra__divToHide {
