@@ -8,27 +8,33 @@ import UserCard from '../cards/User/UserCard';
 import './FollowingList.css';
 
 const FollowingList = () => {
-  const {contextStore} = useContext(AppContext);
-  const {setShowSpinner} = useContext(SpinnerContext);
+  const { contextStore } = useContext(AppContext);
+  const { setShowSpinner } = useContext(SpinnerContext);
   const [followedUsers, setFollowedUsers] = useState([]);
   useEffect(() => {
     (async () => {
-      setShowSpinner(true)
-      const response = await dispatch(actions.getFollowedUsers, {}, {}, contextStore.user.token)
-      console.log(response)
+      setShowSpinner(true);
+      const response = await dispatch(
+        actions.getFollowedUsers,
+        {},
+        {},
+        contextStore.user.token
+      );
+      console.log(response);
       if (response.errors) {
         setShowSpinner(false);
         return;
-    }
-    setFollowedUsers(response)
-    setShowSpinner(false)
-    })()
-  },[])
+      }
+      setFollowedUsers(response);
+      setShowSpinner(false);
+    })();
+  }, []);
   return (
     <div className='followingList'>
-      {followedUsers.map(followedUser => (
+      {followedUsers.map((followedUser) => (
         <UserCard user={followedUser} />
       ))}
+      <div className='illusionNav'></div>
     </div>
   );
 };
