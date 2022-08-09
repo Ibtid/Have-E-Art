@@ -198,9 +198,10 @@ input:-webkit-autofill {
   }
 
   .illusionNav {
+    margin-top: 1rem;
     width: 100vw;
-    height: 3.5;
-    background-color: white;
+    height: 1rem;
+    background-color: var(--primary);
     display: flex;
   }
 
