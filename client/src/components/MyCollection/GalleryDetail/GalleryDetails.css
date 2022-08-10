@@ -210,10 +210,10 @@
 
 @media screen and (max-width: 900px) {
   .gallery__detailsCardList {
-    display: grid;
-    grid-template-columns: 1fr;
+    display: flex;
+    align-items: center;
     justify-content: center;
-    padding-bottom: 3rem;
+    padding-bottom: 1rem;
   }
 }
 
@@ -265,6 +265,10 @@
   .gallery__detailsScroll {
     width: calc(100vw - 0rem);
   }
+  .gallery__detailsCardList {
+    padding-bottom: 3rem;
+  }
+
   .gallery__detailsText {
     width: 90vw;
   }
