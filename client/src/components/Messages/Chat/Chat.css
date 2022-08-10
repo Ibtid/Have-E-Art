@@ -74,9 +74,6 @@
   margin-left: 3vw;
   width: calc(94vw - 25rem);
   height: 4rem;
-}
-
-.chat__footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -162,6 +159,12 @@
     height: 0.7rem;
     width: 0.7rem;
     margin-left: 0.5rem;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .chat__scroll {
+    height: 75%;
   }
 }
 
