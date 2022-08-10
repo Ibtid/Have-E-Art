@@ -165,6 +165,7 @@
 @media screen and (max-width: 550px) {
   .chat__scroll {
     height: 70%;
+    z-index: 100;
   }
   .chat__footer {
     height: 10%;
