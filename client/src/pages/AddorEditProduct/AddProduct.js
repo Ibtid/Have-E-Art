@@ -57,6 +57,7 @@ const AddorEditProduct = (props) => {
         </div>
         <div className='app__bigImageText'>
           <AddProductText image={image} />
+          <div className='illusionNav'></div>
         </div>
       </div>
     </div>

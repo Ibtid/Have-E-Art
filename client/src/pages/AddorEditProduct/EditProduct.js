@@ -50,6 +50,7 @@ const EditProduct = () => {
         </div>
         <div className='app__bigImageText'>
           <EditProductText eart={eart} />
+          <div className='illusionNav'></div>
         </div>
       </div>
     </div>
