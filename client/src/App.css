@@ -197,14 +197,6 @@ input:-webkit-autofill {
     flex-direction: column-reverse;
   }
 
-  .illusionNav {
-    margin-top: 3rem;
-    width: 50vw;
-    height: 1rem;
-    background-color: var(--primary);
-    display: flex;
-  }
-
   .app__notAuthenticated {
     width: 100vw;
     height: calc(100vh - 8rem);
@@ -218,6 +210,32 @@ input:-webkit-autofill {
     display: block;
     height: 8rem;
     width: 100vw;
+  }
+
+  .app__bigImageContainer {
+    height: calc(70vh - 12rem);
+    width: 80vw;
+    background-color: var(--secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 0.5rem;
+    margin-left: 3vw;
+  }
+
+  .app__bigImage {
+    max-width: 80vw;
+    max-height: calc(70vh - 12rem);
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .illusionNav {
+    margin-top: 3rem;
+    width: 50vw;
+    height: 1rem;
+    display: flex;
   }
 }
 
