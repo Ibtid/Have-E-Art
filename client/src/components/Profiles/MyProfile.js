@@ -20,6 +20,18 @@ import { SpinnerContext } from '../../hooks/SpinnerContext';
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 import ChangePassword from '../../modals/ChangePassword/ChangePassword';
 
+import {
+  CardElement,
+  Elements,
+  useElements,
+  useStripe,
+} from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
+
+const stripePromise = loadStripe(
+  'pk_test_51HZDOcHKFvH5Oe64NcisIbwlEP1GXpFzpIWKhNeM6Qj6rgbFsHfxwJNFHyFXXtkfSosJZsbq2hLBE1nUWJMOmyl700jMbS2Mwn'
+);
+
 const MyProfile = () => {
   const facebookRegex = /(?:(?:http|https):\/\/)?(?:www.)?facebook.com\/?/;
   const instagramRegex = /(?:(?:http|https):\/\/)?(?:www.)?instagram.com\/?/;
@@ -161,11 +173,13 @@ const MyProfile = () => {
   return (
     <div className='profile'>
       {showForm && (
-        <CardDetails
-          closeForm={() => {
-            setShowForm(false);
-          }}
-        />
+        <Elements stripe={stripePromise}>
+          <CardDetails
+            closeForm={() => {
+              setShowForm(false);
+            }}
+          />
+        </Elements>
       )}
       {changePassword && (
         <ChangePassword
