@@ -331,6 +331,23 @@ const ProductDetails = () => {
             </div>
           )}
 
+          {/* STRipeeeeeeeeeeeeeeeeeeeeeeeee */}
+
+          {/* <div className='productDetails__absoluteSection'>
+            <div className='productDetails__priceTag'>
+              <div className='productDetails__priceText'>Price: </div>
+              <div className='productDetails__priceNumber'>$ {eart.price}</div>
+            </div>
+
+            <div className='productDetails__buyButtons'>
+              <Link
+                to='/checkout'
+                className='productDetails__buy'
+                onClick={onClickBuyOriginal}>
+                Buy Original
+              </Link>
+            </div>
+          </div> */}
           {/*............................................................................................*/}
 
           {checkIfOwner(contextStore, eart.owner._id) && !eart.flag.forSale && (

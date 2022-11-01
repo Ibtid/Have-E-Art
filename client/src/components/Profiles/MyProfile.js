@@ -21,6 +21,10 @@ import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 import ChangePassword from '../../modals/ChangePassword/ChangePassword';
 
 const MyProfile = () => {
+  const facebookRegex = /(?:(?:http|https):\/\/)?(?:www.)?facebook.com\/?/;
+  const instagramRegex = /(?:(?:http|https):\/\/)?(?:www.)?instagram.com\/?/;
+  const twitterRegex = /(?:(?:http|https):\/\/)?(?:www.)?twitter.com\/?/;
+  const pinterestRegex = /(?:(?:http|https):\/\/)?(?:www.)?pinterest.com\/?/;
   const { setShowSpinner } = useContext(SpinnerContext);
   const [isEditMode, setIsEditMode] = useState(false);
   const [showForm, setShowForm] = useState(false);
@@ -65,6 +69,42 @@ const MyProfile = () => {
 
   const onClickSubmit = async () => {
     setShowSpinner(true);
+    let linksErrors = [];
+    if (
+      formData.socialLinks.facebook &&
+      !facebookRegex.test(formData.socialLinks.facebook)
+    ) {
+      linksErrors.push('facebook');
+    }
+    if (
+      formData.socialLinks.twitter &&
+      !twitterRegex.test(formData.socialLinks.twitter)
+    ) {
+      linksErrors.push('twitter');
+    }
+    if (
+      formData.socialLinks.instagram &&
+      !instagramRegex.test(formData.socialLinks.instagram)
+    ) {
+      linksErrors.push('instagram');
+    }
+    if (
+      formData.socialLinks.pinterest &&
+      !pinterestRegex.test(formData.socialLinks.pinterest)
+    ) {
+      linksErrors.push('pinterest');
+    }
+
+    if (linksErrors.length !== 0) {
+      alert(
+        `Invalid ${linksErrors.map((e) => {
+          return e + ', ';
+        })}links`
+      );
+      setShowSpinner(false);
+      return;
+    }
+
     const response = await dispatch(
       actions.editProfile,
       {},
