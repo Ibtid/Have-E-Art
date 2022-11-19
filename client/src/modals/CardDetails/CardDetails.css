@@ -28,6 +28,7 @@
 .cardDetails__label {
   margin-bottom: 0.5rem;
   font-size: 0.9rem;
+  color: var(--white);
 }
 
 .cardDetails__inputBig {
@@ -54,6 +55,8 @@
   color: var(--secondaryWhite);
   outline: none;
   text-align: center;
+  margin-left: 1rem;
+  color: var(--white);
 }
 
 .cardDetails__button {

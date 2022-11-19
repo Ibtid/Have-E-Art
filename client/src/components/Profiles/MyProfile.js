@@ -20,12 +20,7 @@ import { SpinnerContext } from '../../hooks/SpinnerContext';
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 import ChangePassword from '../../modals/ChangePassword/ChangePassword';
 
-import {
-  CardElement,
-  Elements,
-  useElements,
-  useStripe,
-} from '@stripe/react-stripe-js';
+import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 
 const stripePromise = loadStripe(
@@ -41,6 +36,8 @@ const MyProfile = () => {
   const [isEditMode, setIsEditMode] = useState(false);
   const [showForm, setShowForm] = useState(false);
   const [changePassword, setChangePassword] = useState(false);
+  const [paymentMethod, setPaymentMethod] = useState([]);
+  const [selectedMethod, setSelectedMethod] = useState({});
 
   const { contextStore, setContextStore } = useContext(AppContext);
 
@@ -169,6 +166,49 @@ const MyProfile = () => {
   const onClickCancelSaveImage = () => {
     setFile(null);
   };
+
+  useEffect(() => {
+    (async () => {
+      setShowSpinner(true);
+      const response = await dispatch(
+        actions.getPaymentMethods,
+        {},
+        {},
+        contextStore.user.token
+      );
+      console.log(response);
+      setPaymentMethod(response.data);
+      setShowSpinner(false);
+    })();
+  }, [showForm]);
+
+  async function createPaymentIntent(selectedPaymentMethodId) {
+    setShowSpinner(true);
+    let response = await dispatch(
+      actions.createPaymentIntent,
+      {},
+      { paymentMethod: selectedPaymentMethodId },
+      contextStore.user.token
+    );
+    console.log(response);
+    response = await dispatch(
+      actions.getPaymentMethods,
+      {},
+      {},
+      contextStore.user.token
+    );
+    console.log(response);
+    setPaymentMethod(response.data);
+    setShowSpinner(false);
+    //     setPaymentIntent(resp.data);
+    //     setActiveScreen({ paymentForm: false, paymentMethods: true });
+    //     changeActiveScreen('paymentForm');
+  }
+
+  function handleSelectCard(method) {
+    setSelectedMethod(method);
+    createPaymentIntent(method.id);
+  }
 
   return (
     <div className='profile'>
@@ -441,34 +481,23 @@ const MyProfile = () => {
           </div>
           <div>
             <div className='profile-sub-heading'>Credential information:</div>
-            <div className='profile-payment-option'>
-              <div className='profile-option-text-grey'>
-                1. VISA **** **** **** 2139
+            {paymentMethod.map((method, index) => (
+              <div className='profile-payment-option'>
+                <div className='profile-option-text-grey'>
+                  {index + 1}. {method?.card?.brand.toUpperCase()} **** ****
+                  **** {method?.card?.last4}
+                </div>
+                <img
+                  className={
+                    isEditMode
+                      ? 'profile-contact-info-icon'
+                      : 'profile-contact-info-icon profile-edit-mode'
+                  }
+                  src={cancel}
+                  alt='c'
+                />
               </div>
-              <img
-                className={
-                  isEditMode
-                    ? 'profile-contact-info-icon'
-                    : 'profile-contact-info-icon profile-edit-mode'
-                }
-                src={cancel}
-                alt='c'
-              />
-            </div>
-            <div className='profile-payment-option'>
-              <div className='profile-option-text-grey'>
-                2. Master Card **** **** **** 2139
-              </div>
-              <img
-                className={
-                  isEditMode
-                    ? 'profile-contact-info-icon'
-                    : 'profile-contact-info-icon profile-edit-mode'
-                }
-                src={cancel}
-                alt='c'
-              />
-            </div>
+            ))}
 
             <div
               className='profile-add-button'

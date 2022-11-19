@@ -39,6 +39,7 @@
 .checkout-payment-option {
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
 .checkout-payment-text-accent {
   font-size: 16px;
@@ -53,6 +54,17 @@
   border-radius: 100%;
   cursor: pointer;
   background-color: var(--secondaryWhite);
+  cursor: pointer;
+}
+
+.checkout-payment-option-radio-selected {
+  height: 17px;
+  width: 17px;
+  border: none;
+  border-radius: 100%;
+  cursor: pointer;
+  background-color: var(--accent);
+  cursor: pointer;
 }
 
 .checkout-payment-text-grey {

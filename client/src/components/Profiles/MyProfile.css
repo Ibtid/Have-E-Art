@@ -201,6 +201,7 @@
   margin: 0.5rem 0rem;
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
 .profile-payment-icon {
   height: 15px;

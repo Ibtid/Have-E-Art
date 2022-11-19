@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 
 import './Checkout.css';
 
@@ -12,14 +12,22 @@ import dispatch from '../../dispatcher/dispatch';
 import actions from '../../dispatcher/actions';
 
 import StripeCheckout from 'react-stripe-checkout';
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
 
 function Checkout() {
   let navigate = useNavigate();
+  const stripePromise = loadStripe(
+    'pk_test_51HZDOcHKFvH5Oe64NcisIbwlEP1GXpFzpIWKhNeM6Qj6rgbFsHfxwJNFHyFXXtkfSosJZsbq2hLBE1nUWJMOmyl700jMbS2Mwn'
+  );
+
   const { contextStore, setContextStore } = useContext(AppContext);
   const { setShowSpinner } = useContext(SpinnerContext);
   const [showForm, setShowForm] = useState(false);
-  const onClickCheckOut = async (e) => {
-    e.preventDefault();
+  const [paymentMethod, setPaymentMethod] = useState([]);
+  const [paymentIntent, setPaymentIntent] = useState({});
+  const [selectedMethod, setSelectedMethod] = useState(null);
+  const transferOwnerShip = async () => {
     setShowSpinner(true);
     let response;
     switch (contextStore.eart.type) {
@@ -55,17 +63,82 @@ function Checkout() {
         break;
     }
   };
-  let onToken = (token) => {};
+  useEffect(() => {
+    (async () => {
+      const response = await dispatch(
+        actions.getPaymentMethods,
+        {},
+        {},
+        contextStore.user.token
+      );
+      console.log(response);
+      setPaymentMethod(response.data);
+    })();
+  }, [showForm]);
+
+  const handleSelectCard = async (method) => {
+    if (method.id === selectedMethod?.id) {
+      setSelectedMethod(null);
+    } else setSelectedMethod(method);
+    console.log(method);
+    if (method.id) {
+      await createPaymentIntent(method.id);
+    }
+  };
+
+  const createPaymentIntent = async (selectedPaymentMethodId) => {
+    setShowSpinner(true);
+    const response = await dispatch(
+      actions.createPaymentIntent,
+      {},
+      {
+        paymentMethod: selectedPaymentMethodId,
+        amount: contextStore.eart.price,
+      },
+      contextStore.user.token
+    );
+    console.log(response);
+    setPaymentIntent(response);
+    setShowSpinner(false);
+  };
+
+  const confirmPaymentIntent = async () => {
+    setShowSpinner(true);
+    console.log(selectedMethod);
+    const response = await dispatch(
+      actions.confirmPaymentIntent,
+      {},
+      {
+        paymentMethod: selectedMethod.id,
+        paymentIntent: paymentIntent.id,
+      },
+      contextStore.user.token
+    );
+    console.log(response);
+    setShowSpinner(false);
+    return response;
+  };
+
+  const confirmPayment = async () => {
+    let response = await confirmPaymentIntent();
+    if (response?.amount_received > 0) {
+      await transferOwnerShip();
+    }
+  };
+
   return (
     <BigImageComponent imgUrl={contextStore.eart.imgUrl}>
-      <div>
-        {showForm && (
+      {showForm && (
+        <Elements stripe={stripePromise}>
           <CardDetails
             closeForm={() => {
               setShowForm(false);
             }}
           />
-        )}
+        </Elements>
+      )}
+
+      <div>
         <div className='checkout-heading'>Checkout</div>
         <br />
         <div className='checkout-sub-heading'>Title:</div>
@@ -107,22 +180,32 @@ function Checkout() {
           </div>
         </div>
         <br />
-        {/* <div className='checkout-sub-heading'>Payment Option:</div>
-        <div className='checkout-payment-option'>
-          <div className='checkout-payment-option-radio' />
-          <div className='checkout-payment-text-grey'>
-            {' '}
-            VISA **** **** **** 2139
+        <div className='checkout-sub-heading'>Payment Option:</div>
+        {paymentMethod.map((method) => (
+          <div
+            onClick={() => {
+              handleSelectCard(method);
+            }}>
+            <br />
+            <div className='checkout-payment-option'>
+              <div
+                className={
+                  method.id === selectedMethod?.id
+                    ? 'checkout-payment-option-radio-selected'
+                    : 'checkout-payment-option-radio'
+                }
+              />
+              <div className='checkout-payment-text-grey'>
+                {' '}
+                {method.card.brand.toUpperCase()} **** **** ****{' '}
+                {method.card.last4}
+              </div>
+            </div>
+            {/* <br />
+            <label className='cardDetails__label'>CC/CVC:</label>
+            <input className='cardDetails__input' /> */}
           </div>
-        </div>
-        <br />
-        <div className='checkout-payment-option'>
-          <div className='checkout-payment-option-radio' />
-          <div className='checkout-payment-text-grey'>
-            {' '}
-            Master Card **** **** **** 2139
-          </div>
-        </div>
+        ))}
         <br />
         <div
           className='checkout-add-button'
@@ -131,7 +214,7 @@ function Checkout() {
           }}>
           <div className='checkout-add-button-sign'>+</div>
           <button className='checkout-add-button-text'>Add New</button>
-        </div> */}
+        </div>
         <br />
         <div className='checkout-condition'>
           <div className='checkout-condition-option'>
@@ -155,8 +238,14 @@ function Checkout() {
           <br />
           <div className='checkout-button-group'>
             <button className='checkout-cancel-button'>Cancel</button>
-            {/* <button className='checkout-confirm-button' onClick={onClickCheckOut}>Confirm Payment</button> */}
-            <StripeCheckout
+            <button
+              className='checkout-confirm-button'
+              onClick={() => {
+                confirmPayment();
+              }}>
+              Confirm Payment
+            </button>
+            {/* <StripeCheckout
               stripeKey='pk_test_51HZDOcHKFvH5Oe64NcisIbwlEP1GXpFzpIWKhNeM6Qj6rgbFsHfxwJNFHyFXXtkfSosJZsbq2hLBE1nUWJMOmyl700jMbS2Mwn'
               token={() => {}}
               name={contextStore.eart.title}
@@ -167,7 +256,7 @@ function Checkout() {
               <button className='checkout-confirm-button' onClick={() => {}}>
                 Confirm Payment
               </button>
-            </StripeCheckout>
+            </StripeCheckout> */}
           </div>
         </div>
       </div>

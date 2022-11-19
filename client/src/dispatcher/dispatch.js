@@ -39,6 +39,46 @@ const dispatch = async (action, headerParams = {}, body = {}, token = '') => {
         response = await axios(axiosOptions);
         return response.data;
         break;
+      case actions.attachPaymentMethod:
+        axiosOptions = getAxiosOptions(
+          'PUT',
+          `${baseUrl}/user/payment/method/attach`,
+          body,
+          token
+        );
+        response = await axios(axiosOptions);
+        return response.data;
+        break;
+      case actions.getPaymentMethods:
+        axiosOptions = getAxiosOptions(
+          'GET',
+          `${baseUrl}/user/payment/methods`,
+          body,
+          token
+        );
+        response = await axios(axiosOptions);
+        return response.data;
+        break;
+      case actions.createPaymentIntent:
+        axiosOptions = getAxiosOptions(
+          'POST',
+          `${baseUrl}/user/payment/create`,
+          body,
+          token
+        );
+        response = await axios(axiosOptions);
+        return response.data;
+        break;
+      case actions.confirmPaymentIntent:
+        axiosOptions = getAxiosOptions(
+          'POST',
+          `${baseUrl}/user/payment/confirm`,
+          body,
+          token
+        );
+        response = await axios(axiosOptions);
+        return response.data;
+        break;
       case actions.addEArt:
         axiosOptions = getAxiosOptions('POST', `${baseUrl}/eart`, body, token);
         response = await axios(axiosOptions);

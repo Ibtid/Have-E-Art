@@ -1,18 +1,11 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import { SpinnerContext } from '../../hooks/SpinnerContext';
+import { AppContext } from '../../hooks/AppContext';
 import ReactDOM from 'react-dom';
-import {
-  CardElement,
-  Elements,
-  useElements,
-  useStripe,
-} from '@stripe/react-stripe-js';
+import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import './CardDetails.css';
-import { loadStripe } from '@stripe/stripe-js';
-
-const stripePromise = loadStripe(
-  'pk_test_51HZDOcHKFvH5Oe64NcisIbwlEP1GXpFzpIWKhNeM6Qj6rgbFsHfxwJNFHyFXXtkfSosJZsbq2hLBE1nUWJMOmyl700jMbS2Mwn'
-);
+import dispatch from '../../dispatcher/dispatch';
+import actions from '../../dispatcher/actions';
 
 const inputStyle = {
   iconColor: '#c4f0ff',
@@ -37,6 +30,7 @@ const CardDetails = (props) => {
   const [showForm, setShowForm] = useState(true);
   const card = useRef();
   const { setShowSpinner } = useContext(SpinnerContext);
+  const { contextStore, setContextStore } = useContext(AppContext);
 
   useEffect(() => {
     const checkIfClickedOutside = (e) => {
@@ -64,24 +58,27 @@ const CardDetails = (props) => {
           type: 'card',
           card: elements.getElement(CardElement),
         })
-        .then((resp) => {
+        .then(async (resp) => {
           console.log(resp);
-          // postRequest('/payment/method/attach', {
-          //   paymentMethod: resp.paymentMethod,
-          // })
-          //   .then((resp) => {
-          //     // Handle success
-          //   })
-          //   .catch((err) => {
-          //     /*Handle Error */
-          //   });
-          // console.log(resp);
+          const response = await dispatch(
+            actions.attachPaymentMethod,
+            {},
+            {
+              paymentMethod: resp.paymentMethod,
+            },
+            contextStore.user.token
+          );
+          console.log(response);
           setShowSpinner(false);
+          setShowForm(false);
+          props.closeForm();
         });
     } catch (err) {
       // Handle Error
       console.log(err);
       setShowSpinner(false);
+      setShowForm(false);
+      props.closeForm();
     }
   }
 
