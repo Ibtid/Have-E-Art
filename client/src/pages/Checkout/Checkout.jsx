@@ -27,7 +27,7 @@ function Checkout() {
   const [paymentMethod, setPaymentMethod] = useState([]);
   const [paymentIntent, setPaymentIntent] = useState({});
   const [selectedMethod, setSelectedMethod] = useState(null);
-  const transferOwnerShip = async () => {
+  const transferOwnerShip = async (paymentMethod, amount) => {
     setShowSpinner(true);
     let response;
     switch (contextStore.eart.type) {
@@ -35,7 +35,7 @@ function Checkout() {
         response = await dispatch(
           actions.changeOwner,
           {},
-          { eart: contextStore.eart },
+          { eart: contextStore.eart,  paymentMethod, amount},
           contextStore.user.token
         );
         console.log(response);
@@ -50,7 +50,7 @@ function Checkout() {
         response = await dispatch(
           actions.createCopyEart,
           {},
-          { edition: contextStore.edition },
+          { edition: contextStore.edition, paymentMethod, amount },
           contextStore.user.token
         );
         console.log(response);
@@ -80,50 +80,14 @@ function Checkout() {
     if (method.id === selectedMethod?.id) {
       setSelectedMethod(null);
     } else setSelectedMethod(method);
-    console.log(method);
-    if (method.id) {
-      await createPaymentIntent(method.id);
-    }
   };
-
-  const createPaymentIntent = async (selectedPaymentMethodId) => {
-    setShowSpinner(true);
-    const response = await dispatch(
-      actions.createPaymentIntent,
-      {},
-      {
-        paymentMethod: selectedPaymentMethodId,
-        amount: contextStore.eart.price,
-      },
-      contextStore.user.token
-    );
-    console.log(response);
-    setPaymentIntent(response);
-    setShowSpinner(false);
-  };
-
-  const confirmPaymentIntent = async () => {
-    setShowSpinner(true);
-    console.log(selectedMethod);
-    const response = await dispatch(
-      actions.confirmPaymentIntent,
-      {},
-      {
-        paymentMethod: selectedMethod.id,
-        paymentIntent: paymentIntent.id,
-      },
-      contextStore.user.token
-    );
-    console.log(response);
-    setShowSpinner(false);
-    return response;
-  };
-
   const confirmPayment = async () => {
-    let response = await confirmPaymentIntent();
-    if (response?.amount_received > 0) {
-      await transferOwnerShip();
-    }
+      if(selectedMethod){
+        await transferOwnerShip(selectedMethod.id,contextStore.eart.price );
+      }
+      else{
+        alert("Please Select Card")
+      }
   };
 
   return (

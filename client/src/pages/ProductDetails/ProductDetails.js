@@ -108,6 +108,7 @@ const ProductDetails = () => {
           ...eart,
           title: `${eart.title} - ${edition.name} Edition`,
           type: 'copy',
+          price: edition.price
         },
         edition,
       });

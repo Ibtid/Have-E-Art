@@ -38,6 +38,8 @@ const Notifications = (props) => {
       case 'eart':
         navigate(`/product/${ref}`);
         break;
+      case 'payout': 
+        navigate(`/profile`)
       default:
         console.log(type);
     }
