@@ -9,12 +9,18 @@ const Authentication = (props) => {
   const [pop, setPop] = useState('pop__up');
   const [isSignup, setIsSignup] = useState(true);
   const [showForm, setShowForm] = useState(true);
+  const [openUserNameModal, setOpenUserNameModal] = useState(false);
 
   useEffect(() => {
     const checkIfClickedOutside = (e) => {
       // If the menu is open and the clicked target is not within the menu,
       // then close the menu
-      if (showForm && ref.current && !ref.current.contains(e.target)) {
+      if (
+        showForm &&
+        ref.current &&
+        !ref.current.contains(e.target) &&
+        !openUserNameModal
+      ) {
         setPop('pop__down');
         setTimeout(() => {
           setShowForm(false);
@@ -29,7 +35,7 @@ const Authentication = (props) => {
       // Cleanup the event listener
       document.removeEventListener('mousedown', checkIfClickedOutside);
     };
-  }, [showForm]);
+  }, [showForm, openUserNameModal]);
 
   const handleSignUp = (e) => {
     setIsSignup(true);
@@ -54,6 +60,8 @@ const Authentication = (props) => {
           isSignup={isSignup}
           handleSignUp={handleSignUp}
           handleSignIn={handleSignIn}
+          openUserNameModal={openUserNameModal}
+          setOpenUserNameModal={setOpenUserNameModal}
         />
       )}
     </div>

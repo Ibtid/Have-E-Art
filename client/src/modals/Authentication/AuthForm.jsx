@@ -12,6 +12,7 @@ import actions from '../../dispatcher/actions';
 import Spinkit from '../Spinkit/Spinkit';
 import { SpinnerContext } from '../../hooks/SpinnerContext';
 import { io } from 'socket.io-client';
+import UserNameModal from '../UserName/UserName.modal';
 
 function AuthForm(props) {
   const [showPassword, setShowPassword] = useState(false);
@@ -56,7 +57,7 @@ function AuthForm(props) {
       socket,
       notifications,
     });
-  }
+  };
   const onClickSignUp = async (e) => {
     e.preventDefault();
     setShowSpinner(true);
@@ -79,7 +80,7 @@ function AuthForm(props) {
       setShowSpinner(false);
       return;
     }
-    await processToken(response)
+    await processToken(response);
     setShowSpinner(false);
     props.closeForm();
   };
@@ -104,7 +105,7 @@ function AuthForm(props) {
       setShowSpinner(false);
       return;
     }
-    await processToken(response)
+    await processToken(response);
     setShowSpinner(false);
     props.closeForm();
   };
@@ -114,25 +115,38 @@ function AuthForm(props) {
   };
   const hangleGoogleLogin = async (response) => {
     setShowSpinner(true);
-    console.log(response.credential)
-    const response1 = await dispatch(actions.signInWithGoogle, {}, {gtoken: response.credential})
-    console.log(response1)
-    await processToken(response1)
+    console.log(response.credential);
+    const response1 = await dispatch(
+      actions.signInWithGoogle,
+      {},
+      { gtoken: response.credential }
+    );
+    console.log(response1);
+    await processToken(response1);
     setShowSpinner(false);
-    props.closeForm()
-  }
+    props.closeForm();
+  };
   useEffect(() => {
     window.google.accounts.id.initialize({
-      client_id: "390554336762-3e4opbptvh0g82245kc2s5oa2jedtrv8.apps.googleusercontent.com",
-      callback: hangleGoogleLogin
-    })
-    window.google.accounts.id.renderButton(
-      document.getElementById("gsignin"),
-      { theme: "outline", size: "large"}
-    )
-  },[])
+      client_id:
+        '390554336762-3e4opbptvh0g82245kc2s5oa2jedtrv8.apps.googleusercontent.com',
+      callback: hangleGoogleLogin,
+    });
+    window.google.accounts.id.renderButton(document.getElementById('gsignin'), {
+      theme: 'outline',
+      size: 'large',
+    });
+  }, []);
+
   return (
     <div className='modal-container'>
+      {props.openUserNameModal && (
+        <UserNameModal
+          closeForm={() => {
+            props.setOpenUserNameModal(false);
+          }}
+        />
+      )}
       <div className='modal-paper'>
         {props.isSignup ? (
           <div className='auth-btn-grid'>
@@ -161,119 +175,130 @@ function AuthForm(props) {
           Join <p className='modal-sub-heading'> &nbsp;and&nbsp;</p> explore{' '}
           <p className='modal-sub-heading'> &nbsp;the world of e-art</p>
         </div>
-        <form className='form'>
-          <Grid container spacing={5}>
-            {props.isSignup && (
-              <>
-                <Input
-                  name='firstName'
-                  label='First Name'
-                  half
-                  errors={errors}
-                  onChange={onChangeFormData}
-                  value={formData.firstName}
-                />
+        {
+          <form className='form'>
+            <Grid container spacing={5}>
+              {props.isSignup && (
+                <>
+                  <Input
+                    name='firstName'
+                    label='First Name'
+                    half
+                    errors={errors}
+                    onChange={onChangeFormData}
+                    value={formData.firstName}
+                  />
 
-                <Input
-                  name='lastName'
-                  label='Last Name'
-                  half
-                  onChange={onChangeFormData}
-                  value={formData.lastName}
-                  errors={errors}
-                />
+                  <Input
+                    name='lastName'
+                    label='Last Name'
+                    half
+                    onChange={onChangeFormData}
+                    value={formData.lastName}
+                    errors={errors}
+                  />
 
-                <Input
-                  extra
-                  name='userName'
-                  label='userName'
-                  onChange={onChangeFormData}
-                  value={formData.userName}
-                  errors={errors}
-                />
-              </>
-            )}
+                  <Input
+                    extra
+                    name='userName'
+                    label='userName'
+                    onChange={onChangeFormData}
+                    value={formData.userName}
+                    errors={errors}
+                  />
+                </>
+              )}
 
-            <Input
-              extra
-              name='email'
-              label='Email Address'
-              type='email'
-              onChange={onChangeFormData}
-              value={formData.email}
-              errors={errors}
-            />
-
-            <Input
-              extra
-              name='password'
-              label='Password'
-              type={showPassword ? 'text' : 'password'}
-              onChange={onChangeFormData}
-              value={formData.password}
-              errors={errors}
-            />
-
-            {props.isSignup && (
               <Input
                 extra
-                name='confirmPassword'
-                label='Confirm Password'
-                type='password'
+                name='email'
+                label='Email Address'
+                type='email'
                 onChange={onChangeFormData}
-                value={formData.confirmPassword}
+                value={formData.email}
                 errors={errors}
               />
-            )}
-          </Grid>
-          {props.isSignup ? (
-            <div className='modal-footer'>
-              <p className='footer-text'>
-                Already have an account?{' '}
-                <a className='footer-sub-text'>
-                  <u>&nbsp;Login</u>
-                </a>
-              </p>
-              <button
-                type='submit'
-                variant='contained'
-                className='confirm-btn'
-                onClick={onClickSignUp}>
-                Register
-              </button>
-            </div>
-          ) : (
-            <div>
-              <div className='modal-content'>
-                <div className='modal-checkbox-content'>
-                  <input className='modal-checkbox' type='checkbox' />
-                  <p className='modal-checkbox-text'>Remember me</p>
-                </div>
-                <p>
-                  <a className='modal-content-text'>
-                    <u>&nbsp;Forgot password?</u>
-                  </a>
-                </p>
-              </div>
+
+              <Input
+                extra
+                name='password'
+                label='Password'
+                type={showPassword ? 'text' : 'password'}
+                onChange={onChangeFormData}
+                value={formData.password}
+                errors={errors}
+              />
+
+              {props.isSignup && (
+                <Input
+                  extra
+                  name='confirmPassword'
+                  label='Confirm Password'
+                  type='password'
+                  onChange={onChangeFormData}
+                  value={formData.confirmPassword}
+                  errors={errors}
+                />
+              )}
+            </Grid>
+            {props.isSignup ? (
               <div className='modal-footer'>
                 <p className='footer-text'>
-                  Don't have an account?{' '}
+                  Already have an account?{' '}
                   <a className='footer-sub-text'>
-                    <u>&nbsp;Register</u>
+                    <u>&nbsp;Login</u>
                   </a>
                 </p>
                 <button
                   type='submit'
                   variant='contained'
                   className='confirm-btn'
-                  onClick={onClickLogIn}>
-                  Login
+                  onClick={onClickSignUp}>
+                  Register
                 </button>
               </div>
-            </div>
-          )}
+            ) : (
+              <div>
+                <div className='modal-content'>
+                  <div className='modal-checkbox-content'>
+                    <input className='modal-checkbox' type='checkbox' />
+                    <p className='modal-checkbox-text'>Remember me</p>
+                  </div>
+                  <p>
+                    <a className='modal-content-text'>
+                      <u>&nbsp;Forgot password?</u>
+                    </a>
+                  </p>
+                </div>
+                <div className='modal-footer'>
+                  <p className='footer-text'>
+                    Don't have an account?{' '}
+                    <a className='footer-sub-text'>
+                      <u>&nbsp;Register</u>
+                    </a>
+                  </p>
+                  <button
+                    type='submit'
+                    variant='contained'
+                    className='confirm-btn'
+                    onClick={onClickLogIn}>
+                    Login
+                  </button>
+                </div>
+              </div>
+            )}
+          </form>
+        }
+        <div className='modal-footer'>
           <div id='gsignin'></div>
-        </form>
+          <button
+            className='confirm-btn'
+            onClick={() => {
+              props.setOpenUserNameModal(true);
+            }}>
+            UserName
+          </button>
+        </div>
       </div>
       <div
         className={props.isSignup ? 'modal-bar-left' : 'modal-bar-right'}></div>
