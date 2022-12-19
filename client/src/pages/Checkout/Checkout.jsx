@@ -61,6 +61,17 @@ function Checkout() {
         setShowSpinner(false);
         navigate('/checkoutComplete');
         break;
+      case 'copytransfer':
+        response = await dispatch(actions.changeOwnerCopyEart, {id: contextStore.eart._id}, {paymentMethod, amount}, contextStore.user.token)
+        console.log(response)
+        if (response.errors) {
+          setShowSpinner(false);
+          return;
+        }
+        setShowSpinner(false);
+        navigate('/checkoutComplete');
+        break;
+
     }
   };
   useEffect(() => {

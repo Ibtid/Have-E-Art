@@ -57,6 +57,16 @@ const actions = {
   getBoughtEarts: 'GETBOUGHTEARTS',
   getForsaleEarts: 'GETFORSALEEARTS',
   changePassword: 'CHANGEPASSWORD',
+  copyEartListForSale: "COPYEARTLISTFORSALE",
+  copyEartUnlistForSale: "COPYEARTUNLITSTFORSALE",
+  copyEartMakePrivate: "COPYEARTMAKEPRIVATE",
+  copyEartMakePublic: "COPYEARTMAKEPUBLIC",
+  copyEartChangePrice: "COPYEARTCHANGEPRICE",
+  changeOwnerCopyEart: "CHANGEOWNERCOPYEART",
+  changeCopyEart: "CHANGECOPYEART",
+  getAllCopyEarts: "GETALLCOPYEARTS",
+  changeOwnerCopyEart: "CHANGEOWNERCOPYEARTS",
+  signInWithGoogle: "SIGNINWITHGOOGLE"
 };
 
 export default actions;

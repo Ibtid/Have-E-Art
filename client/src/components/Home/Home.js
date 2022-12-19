@@ -19,7 +19,11 @@ const Home = () => {
         setShowSpinner(false);
         return;
       }
-      setEarts(response);
+      const copyEarts = await dispatch(actions.getAllCopyEarts, {},{})
+      const earts = [...response, ...copyEarts.map(copyEart => {
+        return {...copyEart.edition.eart, _id: copyEart._id,  title: `${copyEart.edition.eart.title} - ${copyEart.edition.name} Edition`, price: copyEart.price, type: "copy", followers: [] }
+      })]
+      setEarts(earts);
       setShowSpinner(false);
     })();
   }, []);

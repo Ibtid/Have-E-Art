@@ -19,7 +19,12 @@ const ProductShowcaseCard = ({ eart }) => {
       to='/product/1'
       className='productShowcaseCard leftToRight'
       onClick={() => {
-        navigator(`/product/${eart._id}`);
+        if(eart.type === "copy"){
+          navigator(`/product/copy/${eart._id}`);
+        }
+        else{
+          navigator(`/product/${eart._id}`);
+        }
       }}>
       <div className='productShowcaseCard__imageContainer'>
         <img

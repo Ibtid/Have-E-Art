@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useState } from 'react';
 import dispatch from '../../dispatcher/dispatch';
 import { Grid, Container } from '@material-ui/core';
@@ -7,7 +7,6 @@ import Input from './InputField';
 
 import { useContext } from 'react';
 import { AppContext } from '../../hooks/AppContext.js';
-
 import './Authentication.css';
 import actions from '../../dispatcher/actions';
 import Spinkit from '../Spinkit/Spinkit';
@@ -28,30 +27,8 @@ function AuthForm(props) {
     password: '',
     confirmPassword: '',
   });
-  const onClickSignUp = async (e) => {
-    e.preventDefault();
-    setShowSpinner(true);
-    console.log(formData);
-    let response = await dispatch(actions.signUp, {}, { ...formData });
-    if (response.errors) {
-      console.log(response);
-      let allErrors = {};
-      response.errors.forEach((error) => {
-        allErrors[error.param] = { msg: error.msg, param: error.param };
-      });
-      if (formData.confirmPassword !== formData.password) {
-        allErrors['confirmPassword'] = {
-          msg: `Password doesn't match`,
-          param: 'confirmPassword',
-        };
-      }
-      console.log(allErrors);
-      setErrors(allErrors);
-      setShowSpinner(false);
-      return;
-    }
-    const token = response;
-    response = await dispatch(actions.getMyProfile, {}, {}, response);
+  const processToken = async (token) => {
+    let response = await dispatch(actions.getMyProfile, {}, {}, token);
     console.log(response);
     if (response.errors) {
       console.log(response);
@@ -79,6 +56,30 @@ function AuthForm(props) {
       socket,
       notifications,
     });
+  }
+  const onClickSignUp = async (e) => {
+    e.preventDefault();
+    setShowSpinner(true);
+    console.log(formData);
+    let response = await dispatch(actions.signUp, {}, { ...formData });
+    if (response.errors) {
+      console.log(response);
+      let allErrors = {};
+      response.errors.forEach((error) => {
+        allErrors[error.param] = { msg: error.msg, param: error.param };
+      });
+      if (formData.confirmPassword !== formData.password) {
+        allErrors['confirmPassword'] = {
+          msg: `Password doesn't match`,
+          param: 'confirmPassword',
+        };
+      }
+      console.log(allErrors);
+      setErrors(allErrors);
+      setShowSpinner(false);
+      return;
+    }
+    await processToken(response)
     setShowSpinner(false);
     props.closeForm();
   };
@@ -103,34 +104,7 @@ function AuthForm(props) {
       setShowSpinner(false);
       return;
     }
-    const token = response;
-    response = await dispatch(actions.getMyProfile, {}, {}, response);
-    console.log(response);
-    if (response.errors) {
-      console.log(response);
-      return;
-    }
-    const user = { ...response, token };
-    localStorage.setItem('user', JSON.stringify(user));
-    const socket = io('https://socketapi.haveeart.com', {
-      reconnectionDelayMax: 10000,
-      auth: {
-        token: user.token,
-      },
-    });
-    const notifications = await dispatch(
-      actions.getNotificationsNotViewed,
-      {},
-      {},
-      user.token
-    );
-    setContextStore({
-      ...contextStore,
-      user,
-      loggedIn: true,
-      socket,
-      notifications,
-    });
+    await processToken(response)
     setShowSpinner(false);
     props.closeForm();
   };
@@ -138,6 +112,25 @@ function AuthForm(props) {
     console.log(formData);
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+  const hangleGoogleLogin = async (response) => {
+    setShowSpinner(true);
+    console.log(response.credential)
+    const response1 = await dispatch(actions.signInWithGoogle, {}, {gtoken: response.credential})
+    console.log(response1)
+    await processToken(response1)
+    setShowSpinner(false);
+    props.closeForm()
+  }
+  useEffect(() => {
+    window.google.accounts.id.initialize({
+      client_id: "390554336762-3e4opbptvh0g82245kc2s5oa2jedtrv8.apps.googleusercontent.com",
+      callback: hangleGoogleLogin
+    })
+    window.google.accounts.id.renderButton(
+      document.getElementById("gsignin"),
+      { theme: "outline", size: "large"}
+    )
+  },[])
   return (
     <div className='modal-container'>
       <div className='modal-paper'>
@@ -279,6 +272,7 @@ function AuthForm(props) {
               </div>
             </div>
           )}
+          <div id='gsignin'></div>
         </form>
       </div>
       <div

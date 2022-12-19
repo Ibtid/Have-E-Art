@@ -212,7 +212,7 @@ const dispatch = async (action, headerParams = {}, body = {}, token = '') => {
       case actions.getCopyEarts:
         axiosOptions = getAxiosOptions(
           'GET',
-          `${baseUrl}/copyeart/`,
+          `${baseUrl}/copyeart/get/own`,
           body,
           token
         );
@@ -542,6 +542,81 @@ const dispatch = async (action, headerParams = {}, body = {}, token = '') => {
         );
         response = await axios(axiosOptions);
         return response.data;
+      case actions.copyEartListForSale:
+        axiosOptions = getAxiosOptions(
+          "PUT",
+          `${baseUrl}/copyeart/forsale/list/${headerParams.id}`,
+          body,
+          token
+        )
+        response = await axios(axiosOptions)
+        return response.data
+      case actions.copyEartUnlistForSale:
+        axiosOptions = getAxiosOptions(
+          "PUT",
+          `${baseUrl}/copyeart/forsale/unlist/${headerParams.id}`,
+          body,
+          token
+        )
+        response = await axios(axiosOptions)
+        return response.data
+      case actions.copyEartMakePrivate:
+        axiosOptions = getAxiosOptions(
+          "PUT",
+          `${baseUrl}/copyeart/viewstatus/unlist/${headerParams.id}`,
+          body,
+          token
+        )
+        response = await axios(axiosOptions)
+        return response.data
+      case actions.copyEartMakePublic:
+        axiosOptions = getAxiosOptions(
+          "PUT",
+          `${baseUrl}/copyeart/viewstatus/list/${headerParams.id}`,
+          body,
+          token
+        )
+        response = await axios(axiosOptions)
+        return response.data
+      case actions.copyEartChangePrice:
+        axiosOptions = getAxiosOptions(
+          "PUT",
+          `${baseUrl}/copyeart/changePrice/${headerParams.id}`,
+          body, 
+          token
+        )
+        response = await axios(axiosOptions)
+        return response.data
+      case actions.changeOwnerCopyEart:
+        axiosOptions = getAxiosOptions(
+          "PUT",
+          `${baseUrl}/copyeart/changeOwner/${headerParams.id}`,
+          body,
+          token
+        )
+        response = await axios(axiosOptions)
+        return response.data
+      case actions.changeCopyEart:
+        axiosOptions = getAxiosOptions(
+          "PUT",
+          `${baseUrl}/copyeart/change/${headerParams.id}`,
+          body,
+          token
+        )
+        response = await axios(axiosOptions)
+        return response.data
+      case actions.getAllCopyEarts:
+        axiosOptions = getAxiosOptions("GET",`${baseUrl}/copyeart`)
+        response = await axios(axiosOptions)
+        return response.data
+      case actions.changeCopyEart:
+        axiosOptions = getAxiosOptions("PUT",`${baseUrl}/copyeart/changeOwner/${headerParams.id}`, body, token)
+        response = await axios(axiosOptions)
+        return response.data
+      case actions.signInWithGoogle:
+        axiosOptions = getAxiosOptions("POST",`${baseUrl}/user/login/google`, body)
+        response = await axios(axiosOptions)
+        return response.data
     }
   } catch (err) {
     throw err;
