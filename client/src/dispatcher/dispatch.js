@@ -617,9 +617,14 @@ const dispatch = async (action, headerParams = {}, body = {}, token = '') => {
         axiosOptions = getAxiosOptions("POST",`${baseUrl}/user/login/google`, body)
         response = await axios(axiosOptions)
         return response.data
+      case actions.signInWithGoogleCheck:
+        axiosOptions = getAxiosOptions("POST", `${baseUrl}/user/login/google/check`, body)
+        response = await axios(axiosOptions)
+        return response.data
     }
   } catch (err) {
-    throw err;
+    console.log(err)
+    return err.response.data
   }
 };
 

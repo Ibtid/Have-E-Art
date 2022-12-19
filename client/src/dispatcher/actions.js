@@ -66,7 +66,8 @@ const actions = {
   changeCopyEart: "CHANGECOPYEART",
   getAllCopyEarts: "GETALLCOPYEARTS",
   changeOwnerCopyEart: "CHANGEOWNERCOPYEARTS",
-  signInWithGoogle: "SIGNINWITHGOOGLE"
+  signInWithGoogle: "SIGNINWITHGOOGLE",
+  signInWithGoogleCheck: "SIGNINWITHGOOGLECHECK"
 };
 
 export default actions;

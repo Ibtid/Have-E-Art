@@ -21,24 +21,9 @@ const UserNameModal = (props) => {
     setformData({ ...formData, [e.target.name]: e.target.value });
   };
   const onClickSubmit = async () => {
-    setShowSpinner(true);
-    const response = await dispatch(
-      actions.addGallery,
-      {},
-      formData,
-      contextStore.user.token
-    );
-    console.log(response);
-    if (response.errors) {
-      setShowSpinner(false);
-      alert(response.errors[0].msg);
-      return;
+    if(formData.name.length > 6){
+      props.closeForm(formData.name)
     }
-    setShowSpinner(false);
-    setPop('pop__down');
-    setTimeout(() => {
-      props.closeForm();
-    }, 300);
   };
   useEffect(() => {
     const checkIfClickedOutside = (e) => {
@@ -47,8 +32,10 @@ const UserNameModal = (props) => {
       if (showForm && ref.current && !ref.current.contains(e.target)) {
         setPop('pop__down');
         setTimeout(() => {
-          setShowForm(false);
-          props.closeForm();
+          if(formData.name.length > 6){
+            setShowForm(false);
+            props.closeForm(formData.name);
+          }
         }, 300);
       }
     };

@@ -19,6 +19,7 @@ function AuthForm(props) {
   const { setShowSpinner } = useContext(SpinnerContext);
   const { contextStore, setContextStore } = useContext(AppContext);
   const [errors, setErrors] = useState([]);
+  const [gtoken, setGtoken] = useState("")
 
   const [formData, setFormData] = useState({
     firstName: '',
@@ -113,18 +114,42 @@ function AuthForm(props) {
     console.log(formData);
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+  const handleUserName = async (userName) => {
+    setShowSpinner(true)
+    const token = await dispatch(
+      actions.signInWithGoogle, 
+      {},
+      {gtoken, userName}
+    )
+    if(!token.errors){
+      await processToken(token)
+    }
+    setShowSpinner(false)
+    props.closeForm()
+  }
   const hangleGoogleLogin = async (response) => {
     setShowSpinner(true);
     console.log(response.credential);
+    setGtoken(response.credential)
     const response1 = await dispatch(
-      actions.signInWithGoogle,
+      actions.signInWithGoogleCheck,
       {},
       { gtoken: response.credential }
     );
-    console.log(response1);
-    await processToken(response1);
-    setShowSpinner(false);
-    props.closeForm();
+    if(response1.userExists){
+      const token = await dispatch(
+        actions.signInWithGoogle, 
+        {},
+        {gtoken: response.credential}
+      )
+      await processToken(token)
+      props.closeForm()
+      setShowSpinner(false)
+    }
+    else{
+      setShowSpinner(false)
+      props.setOpenUserNameModal(true);
+    }
   };
   useEffect(() => {
     window.google.accounts.id.initialize({
@@ -142,7 +167,8 @@ function AuthForm(props) {
     <div className='modal-container'>
       {props.openUserNameModal && (
         <UserNameModal
-          closeForm={() => {
+          closeForm={(userName) => {
+            handleUserName(userName)
             props.setOpenUserNameModal(false);
           }}
         />
@@ -253,7 +279,7 @@ function AuthForm(props) {
                   type='submit'
                   variant='contained'
                   className='confirm-btn'
-                  onClick={onClickSignUp}>
+                  >
                   Register
                 </button>
               </div>
@@ -281,7 +307,7 @@ function AuthForm(props) {
                     type='submit'
                     variant='contained'
                     className='confirm-btn'
-                    onClick={onClickLogIn}>
+                    >
                     Login
                   </button>
                 </div>
@@ -291,13 +317,13 @@ function AuthForm(props) {
         }
         <div className='modal-footer'>
           <div id='gsignin'></div>
-          <button
+          {/* <button
             className='confirm-btn'
             onClick={() => {
               props.setOpenUserNameModal(true);
             }}>
             UserName
-          </button>
+          </button> */}
         </div>
       </div>
       <div
